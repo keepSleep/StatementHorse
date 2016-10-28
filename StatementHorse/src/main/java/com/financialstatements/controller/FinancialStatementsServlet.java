@@ -19,15 +19,17 @@ public class FinancialStatementsServlet extends HttpServlet {
     }
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		doPost(req,res);
 	}
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		doGet(request, response);
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		
+		req.setCharacterEncoding("utf-8");
+		String action = req.getParameter("action");
+		
+		
 	}
 
 }
