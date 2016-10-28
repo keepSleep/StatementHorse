@@ -6,7 +6,7 @@ import java.util.Set;
 import com.incomestatement.model.IncomeStatementVO;
 
 
-public interface FinancialStatementsDAO_interface {
+public interface FinancialStatements_interface {
     public void insert(FinancialStatementsVO financialStatementsVO);
     public void update(FinancialStatementsVO financialStatementsVO);
     public void delete(FinancialStatementsVO financialStatementsVO);
