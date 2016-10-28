@@ -17,4 +17,12 @@
     <servlet-name>BalanceSheetServlet</servlet-name>
     <url-pattern>/balancesheet/balanceSheet.do</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>FinancialStatementsServlet</servlet-name>
+    <servlet-class>com.financialstatements.controller.FinancialStatementsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FinancialStatementsServlet</servlet-name>
+    <url-pattern>/financialstatements/financialstatements.do</url-pattern>
+  </servlet-mapping>
 </web-app>
