@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.news.model.NewsVO" table="NEWS">
+
+		<id name="newsId" column="news_id">
+			<generator class="identity" />
+		</id>
+		<property name="newsDate" column="news_date" />
+		<property name="newsTitle" column="news_title" />
+		<property name="newsWebaddress" column="news_webaddress" />
+
+		<set name="stocknews" table="STOCK_NEWS" lazy="false" cascade="all"
+			inverse="true">
+			<key>
+				<column name="news_id" />
+			</key>
+			<one-to-many class="com.stocknews.model.StockNewsVO" />
+		</set>
+
+
+
+	</class>
+</hibernate-mapping>
+
