@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.listingdetails.model.ListingDetailsVO" table="LISTING_DETAILS">
+	
+	<composite-id>
+		<key-many-to-one name="trackListingVO" class="com.tracklisting.model.TrackListingVO" lazy="false">
+			<column name="listing_no"></column>
+		</key-many-to-one>
+<!-- 		<key-property name="stockNo" column="stock_no"></key-property> -->
+		<key-many-to-one name="stockVO" class="com.stock.model.StockVO" lazy="false">
+			<column name="stock_no"></column>
+		</key-many-to-one>
+<!-- 		<generator class="identity"></generator> -->
+<!-- listing_no 和  stock_no 都是其他表格的外鍵，無須使用主鍵生成工具，identity 為流水號方式 -->
+	</composite-id>
+	
+	
+	
+	
+	
+	</class>
+</hibernate-mapping>
