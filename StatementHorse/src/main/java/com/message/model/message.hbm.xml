@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.message.model.MsgVO" table="MESSAGE">
+		<composite-id>
+			<!-- <key-property name="MemberId" column="member_id"/> -->
+			<key-many-to-one name="MemberVO" class="com.member.model.MemberVO"
+				lazy="false">
+				<column name="member_id"></column>
+			</key-many-to-one>
+<!-- 			<key-property name="StockNo" column="stock_no" /> -->
+			<key-many-to-one name="StockVO" class="com.stock.model.StockVO"
+				lazy="false">
+				<column name="stock_no"></column>
+			</key-many-to-one>
+			
+			<key-many-to-one name="MsgListVO"
+				class="com.messagelists.model.MsgListVO" lazy="false">
+				<column name="list_no"></column>
+			</key-many-to-one>
+		</composite-id>
+
+
+		<!-- <many-to-one name="MsgListVO" class="message_lists.model.MsgListVO" 
+			lazy="false" insert="false" update="false"> -->
+		<!-- <column name="list_no" ></column> -->
+		<!-- </many-to-one> -->
+		<!-- <many-to-one name="MsgListVO" class="message_list.model.MsgListVO" 
+			lazy="false"> -->
+		<!-- <column name="list_no"></column> -->
+		<!-- </many-to-one> -->
+		<!-- <many-to-one name="MsgListVO" class="message_list.model.MsgListVO" 
+			lazy="false"> -->
+		<!-- <column name="list_no"></column> -->
+		<!-- </many-to-one> -->
+	</class>
+</hibernate-mapping>
+
