@@ -29,7 +29,6 @@
 		日期：<input type="text" name="date" id="datepicker">
 	</p>
 	<p id="show"></p>
-	<input type ="button" id="show1" value="按按看">
 	<input type= "submit" value="確認">
 	</form>
 	
