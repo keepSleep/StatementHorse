@@ -24,12 +24,13 @@
 </head>
 <body>
 
-	<form>
+	<form method="post" action="financialstatements.do">
 	<p>
 		日期：<input type="text" name="date" id="datepicker">
 	</p>
 	<p id="show"></p>
 	<input type= "submit" value="確認">
+	<input type="hidden" name="action" value="financialstatements">
 	</form>
 	
 	
