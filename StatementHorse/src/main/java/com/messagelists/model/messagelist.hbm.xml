@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.messagelists.model.MsgListVO" table="MESSAGE_LIST" >
+        
+        <id name="ListNo" column="list_no">
+            <generator class="identity"/>
+        </id>
+        
+        <property name="ListName" column="list_name" />
+        <set name="messages" table="MESSAGE" lazy="false" cascade="all" inverse="true" >
+        	<key><column name="list_no"/></key>
+        	<one-to-many class="com.message.model.MsgVO"/>
+        </set>
+        
+    </class>
+</hibernate-mapping>
+

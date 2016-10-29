@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.mgr.model.MGRVO" table="MGR" >
+        
+        <composite-id>
+        	<key-many-to-one name="StockVO" class="com.stock.model.StockVO" lazy="false">
+            	<column name="stock_no" />
+        	</key-many-to-one>
+        	<key-property name="revenueDate" column="revenue_date"></key-property>
+        
+        </composite-id>
+        <property name="revenue" column="revenue" />
+        <property name="postDate" column="post_date" />
+     
+
+        
+    </class>
+</hibernate-mapping>
+
