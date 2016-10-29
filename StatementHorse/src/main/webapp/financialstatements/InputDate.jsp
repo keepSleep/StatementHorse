@@ -38,9 +38,9 @@
 	//更換text中的日期格式
 	$( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
 	
-// 	$("#datepicker").change(function(){
-// 		console.log($("#datepicker").datepicker("getDate"))
-// 	})
+	$("#datepicker").change(function(){
+		console.log($("#datepicker").datepicker("getDate"))
+	})
 	var str1 = $('#datepicker').datepicker("getDate");
 	var str = new Date(str1);
 	
