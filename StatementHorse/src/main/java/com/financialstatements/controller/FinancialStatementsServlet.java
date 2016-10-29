@@ -1,7 +1,7 @@
 package com.financialstatements.controller;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,7 +40,7 @@ public class FinancialStatementsServlet extends HttpServlet {
 			System.out.println(day);
 			/***************************2.開始查詢資料*****************************************/
 			FinancialStatementsService financialStatementsSvc = new FinancialStatementsService();
-			financialStatementsSvc.
+			financialStatementsSvc.getByPostDate(new Date(day));
 			/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 			
 		}

@@ -54,5 +54,11 @@ public class FinancialStatementsService {
 	public List<FinancialStatementsVO> getAll(){
 		return dao.getAll();
 	}
+	
+	public List<FinancialStatementsVO> getByPostDate(Date postDate ){
+		FinancialStatementsVO financialStatementsVO = new FinancialStatementsVO();
+		financialStatementsVO.setPostDate(postDate);
+		return dao.getByPostDate(financialStatementsVO);
+	}
 
 }

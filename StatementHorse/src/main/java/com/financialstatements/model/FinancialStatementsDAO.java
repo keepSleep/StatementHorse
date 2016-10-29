@@ -22,7 +22,8 @@ import hibernate.util.HibernateUtil;
 
 public class FinancialStatementsDAO implements FinancialStatements_interface {
 	private static final String GET_ALL_STMT = "FROM FinancialStatementsVO ORDER BY stockNo , statementDate";
-
+	private static final String GET_BY_POST_DATE_STMT ="FROM FinancialStatementsVO where post_date=? order by post_time";
+	
 	@Override
 	public void insert(FinancialStatementsVO financialStatementsVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -109,7 +110,22 @@ public class FinancialStatementsDAO implements FinancialStatements_interface {
 		return list;
 	}
 	
-
+	@Override
+	public List<FinancialStatementsVO> getByPostDate(FinancialStatementsVO financialStatementsVO){
+		List<FinancialStatementsVO> list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try{
+			session.beginTransaction();
+			Query query = session.createQuery(GET_BY_POST_DATE_STMT);
+			list= query.list();
+			session.getTransaction().commit();
+		}catch(RuntimeException ex){
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		
+		return list;
+	}
 	
 	
 }
