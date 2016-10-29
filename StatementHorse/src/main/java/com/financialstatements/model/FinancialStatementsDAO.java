@@ -20,7 +20,7 @@ import com.incomestatement.model.IncomeStatementVO;
 
 import hibernate.util.HibernateUtil;
 
-public class FinancialStatementsHibernateDAO implements FinancialStatements_interface {
+public class FinancialStatementsDAO implements FinancialStatements_interface {
 	private static final String GET_ALL_STMT = "FROM FinancialStatementsVO ORDER BY stockNo , statementDate";
 
 	@Override
