@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.financialstatements.model.FinancialStatementsService;
+
 
 //@WebServlet("/FinancialStatementsServlet")
 public class FinancialStatementsServlet extends HttpServlet {
@@ -37,6 +39,8 @@ public class FinancialStatementsServlet extends HttpServlet {
 			String day = req.getParameter("date");
 			System.out.println(day);
 			/***************************2.開始查詢資料*****************************************/
+			FinancialStatementsService financialStatementsSvc = new FinancialStatementsService();
+			financialStatementsSvc.
 			/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 			
 		}
