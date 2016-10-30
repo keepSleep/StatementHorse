@@ -1,4 +1,4 @@
-﻿package com.member.model;
+package com.member.model;
 
 import java.util.List;
 import java.util.Set;
