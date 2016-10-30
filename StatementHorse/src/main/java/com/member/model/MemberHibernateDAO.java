@@ -1,4 +1,4 @@
-﻿package com.member.model;
+package com.member.model;
 
 import java.util.List;
 import java.util.Set;
@@ -26,8 +26,6 @@ import com.message.model.MsgVO;
 import com.tracklisting.model.TrackListingVO;
 
 import hibernate.util.HibernateUtil;
-
-
 
 public class MemberHibernateDAO implements MemberDAOInterface {
 
@@ -128,7 +126,8 @@ public class MemberHibernateDAO implements MemberDAOInterface {
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery("from MemberVO where memberEmail=?");
-			query.setParameter(0,memberEmail);
+			query.setParameter(0, memberEmail);
+			memberVO = (MemberVO) query.uniqueResult();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 
@@ -139,60 +138,44 @@ public class MemberHibernateDAO implements MemberDAOInterface {
 	}
 
 	public static void main(String[] args) {
-		/*MemberDAOInterface dao = new MemberHibernateDAO();
-		// 新增(新增會員ok，新會員帳號)
-		MemberVO memberVO = new MemberVO(); 
-		memberVO.setMemberId("Alice");
-		memberVO.setMemberEmail("Alice@gmail.com");
-		memberVO.setMemberPassword("123456");
-		dao.insert(memberVO);
-		MemberVO memberVO1 = dao.findByPrimaryKey("Alice");
-		System.out.println("新增帳號" + memberVO1.getMemberId());
-		System.out.println("新增信箱" + memberVO1.getMemberEmail());
-		System.out.println("新增密碼" + memberVO1.getMemberPassword());
-		// 更改密碼
-		memberVO1.setMemberPassword("234567");
-		dao.update(memberVO1);
-		memberVO1 = dao.findByPrimaryKey("Alice");
-		System.out.println("更改密碼" + memberVO1.getMemberPassword());
-		// getAll測試，確認是否新增帳號成功
-		List<MemberVO> members = dao.getAll();
-		if (members.size() == 3) {
-			for (MemberVO data1:members){
-				System.out.println("所有帳號資料"+data1.getMemberId()+" / "+data1.getMemberEmail()+" / "+data1.getMemberPassword());
-			}
-			System.out.println("帳號筆數無誤");
-		} else {
-			System.out.println("帳號筆數有誤");
-		}
-		// delete測試
-		dao.delete("Alice");
-		// getAll測試，確認是否刪除帳號成功
-		members = dao.getAll();
-		if (members.size() == 2) {
-			for(MemberVO data2:members){
-				System.out.println("所有帳號資料"+data2.getMemberId()+" / "+data2.getMemberEmail()+" / "+data2.getMemberPassword());
-				//測設連結MsgVO的值
-				System.out.println("通知明細");
-				for(MsgVO msgVO:data2.getMsgVOs()){
-				System.out.println(msgVO.getMemberVO()+"/"+msgVO.getStockNo()+" / "+msgVO.getMsgListVO().getListNo());
-				}
-				System.out.println("追蹤清單");
-				for(TrackListingVO trackListingVO:data2.getTrackListingVOs()){
-					System.out.println(trackListingVO.getListingName()+trackListingVO.getMemberVO().getMemberId()+trackListingVO.getListingName());
-				}
-			}
-			System.out.println("帳號筆數無誤");
-		} else {
-			System.out.println("帳號筆數有誤");
-		}*/
+		/*
+		 * MemberDAOInterface dao = new MemberHibernateDAO(); //
+		 * 新增(新增會員ok，新會員帳號) MemberVO memberVO = new MemberVO();
+		 * memberVO.setMemberId("Alice");
+		 * memberVO.setMemberEmail("Alice@gmail.com");
+		 * memberVO.setMemberPassword("123456"); dao.insert(memberVO); MemberVO
+		 * memberVO1 = dao.findByPrimaryKey("Alice"); System.out.println("新增帳號"
+		 * + memberVO1.getMemberId()); System.out.println("新增信箱" +
+		 * memberVO1.getMemberEmail()); System.out.println("新增密碼" +
+		 * memberVO1.getMemberPassword()); // 更改密碼
+		 * memberVO1.setMemberPassword("234567"); dao.update(memberVO1);
+		 * memberVO1 = dao.findByPrimaryKey("Alice"); System.out.println("更改密碼"
+		 * + memberVO1.getMemberPassword()); // getAll測試，確認是否新增帳號成功
+		 * List<MemberVO> members = dao.getAll(); if (members.size() == 3) { for
+		 * (MemberVO data1:members){
+		 * System.out.println("所有帳號資料"+data1.getMemberId()+" / "+data1.
+		 * getMemberEmail()+" / "+data1.getMemberPassword()); }
+		 * System.out.println("帳號筆數無誤"); } else { System.out.println("帳號筆數有誤");
+		 * } // delete測試 dao.delete("Alice"); // getAll測試，確認是否刪除帳號成功 members =
+		 * dao.getAll(); if (members.size() == 2) { for(MemberVO data2:members){
+		 * System.out.println("所有帳號資料"+data2.getMemberId()+" / "+data2.
+		 * getMemberEmail()+" / "+data2.getMemberPassword()); //測設連結MsgVO的值
+		 * System.out.println("通知明細"); for(MsgVO msgVO:data2.getMsgVOs()){
+		 * System.out.println(msgVO.getMemberVO()+"/"+msgVO.getStockNo()+" / "
+		 * +msgVO.getMsgListVO().getListNo()); } System.out.println("追蹤清單");
+		 * for(TrackListingVO trackListingVO:data2.getTrackListingVOs()){
+		 * System.out.println(trackListingVO.getListingName()+trackListingVO.
+		 * getMemberVO().getMemberId()+trackListingVO.getListingName()); } }
+		 * System.out.println("帳號筆數無誤"); } else { System.out.println("帳號筆數有誤");
+		 * }
+		 */
 		MemberDAOInterface dao = new MemberHibernateDAO();
 		MemberVO membervo = dao.findByPrimaryKey("Charizard");
 		Set<TrackListingVO> list1 = membervo.getTrackListingVOs();
 		membervo.getMemberId();
-		for(TrackListingVO tl:list1){
+		for (TrackListingVO tl : list1) {
 			Set<ListingDetailsVO> ldvo = tl.getLds();
-			for(ListingDetailsVO ld:ldvo){
+			for (ListingDetailsVO ld : ldvo) {
 				System.out.println(ld.getStockVO());
 			}
 		}
