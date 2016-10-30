@@ -108,5 +108,11 @@ public class FinancialStatementsHibernateDAO implements FinancialStatements_inte
 		}
 		return list;
 	}
+
+	@Override
+	public List<FinancialStatementsVO> getByPostDate(FinancialStatementsVO financialStatementsVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

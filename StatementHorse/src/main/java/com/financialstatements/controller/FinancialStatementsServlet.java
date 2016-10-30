@@ -1,7 +1,10 @@
 package com.financialstatements.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.financialstatements.model.FinancialStatementsService;
+import com.financialstatements.model.FinancialStatementsVO;
 
 
 //@WebServlet("/FinancialStatementsServlet")
@@ -40,7 +44,21 @@ public class FinancialStatementsServlet extends HttpServlet {
 			System.out.println(day);
 			/***************************2.開始查詢資料*****************************************/
 			FinancialStatementsService financialStatementsSvc = new FinancialStatementsService();
-			financialStatementsSvc.getByPostDate(new Date(day));
+			//-------------------注意!!------------------
+			List<FinancialStatementsVO> list;
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			
+			try {
+				
+				long date = new Date().parse(day);
+				java.sql.Date dateParse = (java.sql.Date) sdf.parse(day);
+				list = financialStatementsSvc.getByPostDate(dateParse);
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			//-------------------到這!!------------------
 			/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 			
 		}
