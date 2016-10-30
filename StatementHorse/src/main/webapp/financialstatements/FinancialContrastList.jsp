@@ -31,13 +31,22 @@
 			alert($(this).text());
 			alert($(this).attr("name"))
 		})
+		//刪除click事件
+	    $('#simpleTable').on('click','.btn-danger',function(){
+	    	$(this).parents('tr').remove();
+	    })
+		//增加click事件
+		$('#buttonAdd').click(function(){
+			$('table').append("<tr><td>X</td><td>Y</td><td>Z</td><td><a href='#' class='btn btn-danger'>刪除</a></td></tr>");
+		});
+		
 	});
 </script>
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="col-md-2" id="accordion">
+			<div class="col-md-3" id="accordion">
 				<h3>資產負債表</h3>
 				<div>
 					<dl>
@@ -76,8 +85,30 @@
 					</dl>
 				</div>
 			</div>
-			<div class="col-md-10">
-				<h1>12345678654</h1>
+			<div class="col-md-9">
+				<input type="button" value="add row" id="buttonAdd" class="btn btn-success">
+				<div id="msg"></div>
+				<table id="simpleTable" class="table table-bordered table-hover">
+					<tr>
+						<td>A0</td>
+						<td>B1</td>
+						<td>C2</td>
+						<td><a href="#" class="btn btn-danger">刪除</a></td>
+					</tr>
+					<tr>
+						<td>D3</td>
+						<td>E4</td>
+						<td>F5</td>
+						<td><a href="#" class="btn btn-danger">刪除</a></td>
+					</tr>
+					<tr>
+						<td>G6</td>
+						<td>H7</td>
+						<td>I8</td>
+						<td><a href="#" class="btn btn-danger">刪除</a></td>
+					</tr>
+				</table>
+
 			</div>
 		</div>
 	</div>
