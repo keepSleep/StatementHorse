@@ -22,23 +22,25 @@
 <script>
 	$(function() {
 		var colNo = 0;
-
+		var start = true;
 		//click事件
 		$("dd").click(
 				function() {
 					var dd = $(this);
-					if (colNo == 0) {
+					start = false;
+// 					if (colNo == 0) {
 						$('td[name="tr"]').remove();
-					} 
-
+// 					} 
 						if (dd.attr("flag")== 'true') {
 							dd.attr("flag", 'false');
 							$('td[name="'+dd.attr('name')+'"]').remove();
 							colNo--;
-							if (colNo == 0) {
-								$('thead td:last-child').after('<td name="tr">+增加會計科目</td>')
-								$('tbody td:last-child').after('<td name="tr"></td>')
-							} 
+							//----------------有問題--------------
+// 							if (colNo == 0) {
+// 								$('thead td:last-child').after('<td name="tr">+增加會計科目</td>')
+// 								$('tbody td:last-child').after('<td name="tr"></td>')
+// 							} 
+							//----------------到這裡--------------
 						} else {
 							dd.attr("flag", 'true');
 							$('thead td:last-child').after("<td name='" + dd.attr('name') + "'>"
@@ -46,7 +48,7 @@
 							$('tbody td:last-child').after("<td name='" + dd.attr('name') + "'></td>");
 							colNo++;
 						}
-					
+// 						alert(colNo);
 				});
 		//刪除click事件
 		$('#simpleTable').on('click', '.btn-danger', function() {
@@ -57,18 +59,32 @@
 				.click(
 						function() {
 							if (colNo == 0) {
+								if(start){
 								$('tbody')
 										.append(
 												"<tr><td><input type='text'/><a href='#' class='btn btn-danger'>刪除</a></td><td name='tr'></td></tr>");
-							} else {
+								start = false;
+								}else {
 								var tds;
+								//正常
 								for (var i = 0; i < colNo; i++) {
 									tds += "<td></td>";
+								}
+								//正常到這
+// 									$('thead td').each(function(){
+// 										if($(this).prop('name') == undefined){
+											
+// 										}else{
+
+// 										tds += "<td name='"+ $(this).attr('name') +"'></td>";
+// 										}
+// 									})
 								}
 								$('tbody').append(
 										"<tr><td><input type='text'/><a href='#' class='btn btn-danger'>刪除</a></td>"
 												+ tds + "</tr>");
 							}
+							
 						});
 
 	});
