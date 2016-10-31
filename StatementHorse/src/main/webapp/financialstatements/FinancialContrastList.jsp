@@ -23,61 +23,57 @@
 	$(function() {
 		var colNo = 0;
 		var start = true;
-		//click事件
+		//會計科目清單click事件
 		$("dd").click(
 				function() {
 					var dd = $(this);
 					start = false;
-						$('td[name="tr"]').remove();
-						if (dd.attr("flag") == 'true') {
-							dd.attr("flag", 'false');
-							$('td[name="'+dd.attr('name')+'"]').remove();
-							colNo--;
-							//----------------有問題--------------
-// 							if (colNo == 0) {
-// 								$('thead td:last-child').after('<td name="tr">+增加會計科目</td>')
-// 								$('tbody td:last-child').after('<td name="tr"></td>')
-// 							} 
-							//----------------到這裡--------------
-						} else {
-							dd.attr("flag", 'true');
-							$('thead td:last-child').after("<td name='" + dd.attr('name') + "'>"
-															+ dd.text() + "</td>");
-							$('tbody td:last-child').after("<td name='" + dd.attr('name') + "'></td>");
-							colNo++;
-						}
+					$('td[name="tr"]').remove();
+					if (dd.attr("flag") == 'true') {
+						dd.attr("flag", 'false');
+						$('td[name="' + dd.attr('name') + '"]').remove();
+						colNo--;
+					} else {
+						dd.attr("flag", 'true');
+						$('thead td:last-child').after(
+								"<td name='" + dd.attr('name') + "'>"
+										+ dd.text() + "</td>");
+						$('tbody td:last-child').after(
+								"<td name='" + dd.attr('name') + "'></td>");
+						colNo++;
+					}
 				});
-		//刪除click事件
+		//刪除個股整行click事件
 		$('#simpleTable').on('click', '.btn-danger', function() {
 			$(this).parents('tr').remove();
 		})
-		//增加click事件
+		//增加個股行click事件
 		$('#buttonAdd')
 				.click(
 						function() {
-								if(start){
+							if (start) {
 								$('tbody')
 										.append(
 												"<tr><td><input type='text'/><a href='#' class='btn btn-danger'>刪除</a></td><td name='tr'></td></tr>");
-								}else {
+							} else {
 								var tds;
-								//正常
-// 								for (var i = 0; i < colNo; i++) {
-// 									tds += "<td></td>";
-// 								}
-								//正常到這
-								//測式開始
-									$('thead td:gt(0)').each(function(){
-// 										alert($(this).attr("name"))
-									}
-								//測式結束
+								$('thead td:gt(0)').each(
+										function() {
+											tds += "<td name='"
+													+ $(this).attr("name")
+													+ "'></td>";
+										})
 								$('tbody').append(
 										"<tr><td><input type='text'/><a href='#' class='btn btn-danger'>刪除</a></td>"
 												+ tds + "</tr>");
-								}
-							
+							}
 						});
-
+		//清空整個頁面
+		$('#clear').click(function() {
+			$('#simpleTable').empty().prepend('<thead><tr><td>股票號碼</td><td name="tr">+增加會計科目</td></tr></thead><tbody><tr><td><input type="text"/><a href="#" class="btn btn-danger">刪除</a></td><td name="tr"></td></tr></tbody>')
+			colNo = 0;
+			start = true;	
+		})
 	});
 </script>
 </head>
@@ -154,6 +150,12 @@
 					<div>
 						<input type="button" value="add row" id="buttonAdd"
 							class="btn btn-success">
+							
+<!-- 							清空開始 -->
+						<input type="button" value="clear" id="clear"
+							class="btn btn-success">
+<!-- 							清空結束 -->
+
 						<div id="msg"></div>
 						<div class="table table-responsive">
 							<table id="simpleTable" class="table table-bordered table-hover">
