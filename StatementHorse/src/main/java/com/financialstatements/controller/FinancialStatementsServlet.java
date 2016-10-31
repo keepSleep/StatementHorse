@@ -56,6 +56,7 @@ public class FinancialStatementsServlet extends HttpServlet {
 			dayLong = dayLong.valueOf(day);
 			
 			System.out.println(dayLong);
+
 			/***************************2.開始查詢資料*****************************************/
 			FinancialStatementsService financialStatementsSvc = new FinancialStatementsService();
 

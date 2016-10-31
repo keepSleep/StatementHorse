@@ -22,7 +22,7 @@ import hibernate.util.HibernateUtil;
 
 public class FinancialStatementsDAO implements FinancialStatements_interface {
 	private static final String GET_ALL_STMT = "FROM FinancialStatementsVO ORDER BY stockNo , statementDate";
-	private static final String GET_BY_POST_DATE_STMT ="FROM FinancialStatementsVO where post_date='?' order by post_time";
+	private static final String GET_BY_POST_DATE_STMT ="FROM FinancialStatementsVO where postDate=? order by postTime";
 	
 	@Override
 	public void insert(FinancialStatementsVO financialStatementsVO) {
@@ -117,15 +117,19 @@ public class FinancialStatementsDAO implements FinancialStatements_interface {
 		try{
 			session.beginTransaction();
 			Query query = session.createQuery(GET_BY_POST_DATE_STMT);
-			query.setParameter(1, financialStatementsVO.getPostDate());
+			query.setParameter(0, financialStatementsVO.getPostDate());
+			
 			list= query.list();
+			
 			session.getTransaction().commit();
+			
 		}catch(RuntimeException ex){
 			session.getTransaction().rollback();
 			throw ex;
 		}
 		
 		return list;
+		
 	}
 	
 	
