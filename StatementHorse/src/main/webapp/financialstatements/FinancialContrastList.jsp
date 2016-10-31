@@ -21,26 +21,32 @@
 
 <script>
 	$(function() {
-		//jQuery動態清單
-		// 		$("#accordion").accordion({
-		// 			heightStyle : "content"
-		// 		});
 		var colNo = 0;
-		$("body").change(function() {
-		})
 
 		//click事件
 		$("dd").click(
 				function() {
-					if ($('thead td:eq(1)').text() === '+增加會計科目') {
-						$('thead td:eq(1)').remove();
+					var dd = $(this);
+					if (colNo == 0) {
 						$('td[name="tr"]').remove();
-					}
-					$('thead td:last-child').after(
-							"<td name='" + $(this).attr('name') + "'>"
-									+ $(this).text() + "</td>");
-					$('tbody td:last-child').after("<td></td>");
-					colNo++;
+					} 
+
+						if (dd.attr("flag")== 'true') {
+							dd.attr("flag", 'false');
+							$('td[name="'+dd.attr('name')+'"]').remove();
+							colNo--;
+							if (colNo == 0) {
+								$('thead td:last-child').after('<td name="tr">+增加會計科目</td>')
+								$('tbody td:last-child').after('<td name="tr"></td>')
+							} 
+						} else {
+							dd.attr("flag", 'true');
+							$('thead td:last-child').after("<td name='" + dd.attr('name') + "'>"
+															+ dd.text() + "</td>");
+							$('tbody td:last-child').after("<td name='" + dd.attr('name') + "'></td>");
+							colNo++;
+						}
+					
 				});
 		//刪除click事件
 		$('#simpleTable').on('click', '.btn-danger', function() {
@@ -51,15 +57,17 @@
 				.click(
 						function() {
 							if (colNo == 0) {
-								$('tbody').append(
+								$('tbody')
+										.append(
 												"<tr><td><input type='text'/><a href='#' class='btn btn-danger'>刪除</a></td><td name='tr'></td></tr>");
-							}else{
+							} else {
 								var tds;
-								for(var i=0; i < colNo ; i++){
+								for (var i = 0; i < colNo; i++) {
 									tds += "<td></td>";
 								}
 								$('tbody').append(
-												"<tr><td><input type='text'/><a href='#' class='btn btn-danger'>刪除</a></td>"+tds+"</tr>");
+										"<tr><td><input type='text'/><a href='#' class='btn btn-danger'>刪除</a></td>"
+												+ tds + "</tr>");
 							}
 						});
 
@@ -145,7 +153,7 @@
 								<thead>
 									<tr>
 										<td>股票號碼</td>
-										<td>+增加會計科目</td>
+										<td name="tr">+增加會計科目</td>
 									</tr>
 								</thead>
 								<tbody>
