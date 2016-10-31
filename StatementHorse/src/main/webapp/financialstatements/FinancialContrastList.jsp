@@ -28,10 +28,8 @@
 				function() {
 					var dd = $(this);
 					start = false;
-// 					if (colNo == 0) {
 						$('td[name="tr"]').remove();
-// 					} 
-						if (dd.attr("flag")== 'true') {
+						if (dd.attr("flag") == 'true') {
 							dd.attr("flag", 'false');
 							$('td[name="'+dd.attr('name')+'"]').remove();
 							colNo--;
@@ -48,7 +46,6 @@
 							$('tbody td:last-child').after("<td name='" + dd.attr('name') + "'></td>");
 							colNo++;
 						}
-// 						alert(colNo);
 				});
 		//刪除click事件
 		$('#simpleTable').on('click', '.btn-danger', function() {
@@ -58,32 +55,26 @@
 		$('#buttonAdd')
 				.click(
 						function() {
-							if (colNo == 0) {
 								if(start){
 								$('tbody')
 										.append(
 												"<tr><td><input type='text'/><a href='#' class='btn btn-danger'>刪除</a></td><td name='tr'></td></tr>");
-								start = false;
 								}else {
 								var tds;
 								//正常
-								for (var i = 0; i < colNo; i++) {
-									tds += "<td></td>";
-								}
+// 								for (var i = 0; i < colNo; i++) {
+// 									tds += "<td></td>";
+// 								}
 								//正常到這
-// 									$('thead td').each(function(){
-// 										if($(this).prop('name') == undefined){
-											
-// 										}else{
-
-// 										tds += "<td name='"+ $(this).attr('name') +"'></td>";
-// 										}
-// 									})
-								}
+								//測式開始
+									$('thead td:gt(0)').each(function(){
+// 										alert($(this).attr("name"))
+									}
+								//測式結束
 								$('tbody').append(
 										"<tr><td><input type='text'/><a href='#' class='btn btn-danger'>刪除</a></td>"
 												+ tds + "</tr>");
-							}
+								}
 							
 						});
 
