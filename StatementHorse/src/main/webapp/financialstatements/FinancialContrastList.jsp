@@ -21,48 +21,69 @@
 
 <script>
 	$(function() {
-		//jQuery動態清單
-		// 		$("#accordion").accordion({
-		// 			heightStyle : "content"
-		// 		});
+		//紀錄會計科目數量
 		var colNo = 0;
-		$("body").change(function() {
-		})
-
-		//click事件
+		//增加欄位數量設定開關
+		var start = true;
+		//點選會計科目清單，加入/刪除欄位
 		$("dd").click(
 				function() {
-					if ($('thead td:eq(1)').text() === '+增加會計科目') {
-						$('thead td:eq(1)').remove();
-						$('td[name="tr"]').remove();
+					var dd = $(this);
+					start = false;
+					$('td[name="tr"]').remove();
+					if (dd.attr("flag") == 'true') {
+						//刪除
+						dd.attr("flag", 'false');
+						$('td[name="' + dd.attr('name') + '"]').remove();
+						colNo--;
+					} else {
+						//增加
+						dd.attr("flag", 'true');
+						$('thead td:last-child').after(
+								"<td name='" + dd.attr('name') + "'>"
+										+ dd.text() + "</td>");
+						$('tbody td:last-child').after(
+								"<td name='" + dd.attr('name') + "'></td>");
+						colNo++;
 					}
-					$('thead td:last-child').after(
-							"<td name='" + $(this).attr('name') + "'>"
-									+ $(this).text() + "</td>");
-					$('tbody td:last-child').after("<td></td>");
-					colNo++;
 				});
-		//刪除click事件
+		//刪除整列查詢列
 		$('#simpleTable').on('click', '.btn-danger', function() {
 			$(this).parents('tr').remove();
 		})
-		//增加click事件
+		//增加查詢列
 		$('#buttonAdd')
 				.click(
 						function() {
-							if (colNo == 0) {
-								$('tbody').append(
-												"<tr><td><input type='text'/><a href='#' class='btn btn-danger'>刪除</a></td><td name='tr'></td></tr>");
-							}else{
+							if (start) {
+								//尚未點選會計科目時，增加的查詢列
+								$('tbody')
+										.append(
+												"<tr><td><input type='text' name='stockText'/><a href='#' class='btn btn-danger'>刪除</a></td><td name='tr'></td></tr>");
+							} else {
+								//已點選會計科目時，依據增加的欄位數量，增加的查詢列
 								var tds;
-								for(var i=0; i < colNo ; i++){
-									tds += "<td></td>";
-								}
+								$('thead td:gt(0)').each(
+										function() {
+											tds += "<td name='"
+													+ $(this).attr("name")
+													+ "'></td>";
+										})
 								$('tbody').append(
-												"<tr><td><input type='text'/><a href='#' class='btn btn-danger'>刪除</a></td>"+tds+"</tr>");
+												"<tr><td><input type='text' name='stockText'/><a href='#' class='btn btn-danger'>刪除</a></td>"
+												+ tds + "</tr>");
 							}
 						});
-
+		//清空整個頁面，還原到一開始進入的樣子
+		$('#clear').click(function() {
+			$('#simpleTable').empty().prepend('<thead><tr><td>股票號碼</td><td name="tr">+增加會計科目</td></tr></thead><tbody><tr><td><input type="text" name="stockText"/><a href="#" class="btn btn-danger">刪除</a></td><td name="tr"></td></tr></tbody>')
+			colNo = 0;
+			start = true;	
+		})
+		//自動查詢個股股名
+		$('#simpleTable').on('blur','input[name="stockText"]',function(){
+			alert($(this).prop("value"));
+		})
 	});
 </script>
 </head>
@@ -136,27 +157,57 @@
 				</div>
 				<div class="col-md-9">
 					<!--查詢表格 -->
-					<div>
-						<input type="button" value="add row" id="buttonAdd"
+					<div class="row-fluid">
+					<div class="col-md-2 ">
+						<input type="button" value="add" id="buttonAdd"
 							class="btn btn-success">
+							
+						<input type="button" value="clear" id="clear"
+							class="btn btn-success">
+					</div>
+                    <!-- 年分下拉選單開始 -->
+                    <!-- 尚未做動態 -->
+                    <div class="col-md-2 ">
+						<select class="form-control" >
+  							<option>105</option>
+							<option>104</option>
+							<option>103</option>
+						    <option>102</option>
+						</select>
+					</div>
+					<!-- 年分下拉選單結束 -->
+					<!-- 季度下拉選單開始 -->
+					<!-- 尚未做動態 -->
+					<div class="col-md-2 ">
+						<select class="form-control">
+  							<option>最新季度</option>
+							<option>01</option>
+							<option>02</option>
+							<option>03</option>
+						    <option>04</option>
+						</select>
+					</div>
+					<!-- 季度下拉選單結束 -->	
 						<div id="msg"></div>
 						<div class="table table-responsive">
 							<table id="simpleTable" class="table table-bordered table-hover">
 								<thead>
 									<tr>
 										<td>股票號碼</td>
-										<td>+增加會計科目</td>
+										<td name="tr">+增加會計科目</td>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td><input type="text" /><a href='#'
+										<td><input type="text" name="stockText"/><a href='#'
 											class='btn btn-danger'>刪除</a></td>
 										<td name="tr"></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
+						<input type="button" value="submit" id="submit"
+							class="btn btn-info">
 					</div>
 				</div>
 			</div>

@@ -20,6 +20,9 @@
 <c:forEach var="financialStatementsVO" items="${financialStatementsVO}">
 	<tr>
 		<td>${financialStatementsVO.stockNo}</td>
+		<td></td>
+		<td>${financialStatementsVO.postDate}</td>
+		<td>${financialStatementsVO.postTime}</td>
 	</tr>
 </c:forEach>
 
