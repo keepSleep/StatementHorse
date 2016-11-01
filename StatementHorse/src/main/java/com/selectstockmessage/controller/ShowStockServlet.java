@@ -63,7 +63,7 @@ public class ShowStockServlet extends HttpServlet {
 			req.setAttribute("list", list);
 			req.setAttribute("stock_set", stock_set);
 			req.setAttribute("StockNo", stockNo);
-			RequestDispatcher successView = req.getRequestDispatcher("show.jsp");
+			RequestDispatcher successView = req.getRequestDispatcher("stock/show.jsp");
 			successView.forward(req, resp);
 			return;
 		}

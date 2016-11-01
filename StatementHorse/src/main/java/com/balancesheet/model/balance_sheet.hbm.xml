@@ -21,7 +21,7 @@
 		<property name="additionalPaidInCapital" column="additional_paid_in_capital"/>
 		<property name="retainedEarnings" column="retained_earnings"/>
 		<property name="otherEquity" column="other_equity"/>
-		<property name="cniatsotc" column="Consolidated_Net_Income_Attributed_to_Stockholders_of_the_Company"/>
+		<property name="consolidatedNetIncomeAttributedToStockholdersOfTheCompany" column="Consolidated_Net_Income_Attributed_to_Stockholders_of_the_Company"/>
 						
 		<property name="totalEquity" column="total_equity"/>
 
