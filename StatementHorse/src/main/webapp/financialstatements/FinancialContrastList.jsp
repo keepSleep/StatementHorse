@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,13 +10,13 @@
 <title>Insert title here</title>
 
 <!--              設定樣式                                  -->
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/bootstrap.min.css">
 <!-- <link rel="stylesheet" href="../css/jquery-ui.css"> -->
 
 <!--              設定外掛                                  -->
-<script src="../js/jquery.min.js"></script>
-<script src="../js/jquery-ui.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/js/jquery.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/js/jquery-ui.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 
@@ -82,7 +83,11 @@
 		})
 		//自動查詢個股股名
 		$('#simpleTable').on('blur','input[name="stockText"]',function(){
-			alert($(this).prop("value"));
+			var thing = $(this);
+			$.post("${pageContext.servletContext.contextPath}/StockServlet.do",{"stockNo":thing.prop("value")},function(stockName){
+				$('#h4').remove();
+				thing.after("<h6 id='h4'>" + stockName + "<h6>");
+			})
 		})
 	});
 </script>
