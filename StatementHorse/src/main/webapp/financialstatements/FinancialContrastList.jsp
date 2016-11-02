@@ -14,7 +14,7 @@
 
 <!--              設定外掛                                  -->
 <script src="../js/jquery.min.js"></script>
-<!-- <script src="../js/jquery-ui.min.js"></script> -->
+<script src="../js/jquery-ui.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
@@ -88,9 +88,11 @@
 </script>
 </head>
 <body>
+<p/>
 	<div>
 		<div class="container-fluid">
 			<div class="row-fluid">
+			<div class="col-md-1"></div>
 				<div class="col-md-3" id="accordion">
 					<div class="panel-group" id="accordion" role="tablist"
 						aria-multiselectable="true">
@@ -155,7 +157,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-7">
 					<!--查詢表格 -->
 					<div class="row-fluid">
 					<div class="col-md-2 ">
@@ -186,10 +188,12 @@
 							<option>03</option>
 						    <option>04</option>
 						</select>
+						<p/>
 					</div>
+					<div id="msg"></div>
 					<!-- 季度下拉選單結束 -->	
-						<div id="msg"></div>
-						<div class="table table-responsive">
+						
+						<div class="table table-responsive ">
 							<table id="simpleTable" class="table table-bordered table-hover">
 								<thead>
 									<tr>
@@ -206,10 +210,14 @@
 								</tbody>
 							</table>
 						</div>
-						<input type="button" value="submit" id="submit"
-							class="btn btn-info">
+						<div class="row-fluid">
+							<div class="col-md-11"></div>
+								<input type="button" value="submit" id="submit"
+									class="btn btn-info col-md-1">
+						</div>
 					</div>
 				</div>
+				<div class="col-md-1"></div>
 			</div>
 		</div>
 	</div>
