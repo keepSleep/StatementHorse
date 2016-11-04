@@ -85,7 +85,7 @@
 		$('#simpleTable').on('blur','input[name="stockText"]',function(){
 			var thing = $(this);
 			$.post("${pageContext.servletContext.contextPath}/StockServlet.do",{"stockNo":thing.prop("value")},function(stockName){
-				$('#h4').remove();
+				thing.remove();
 				thing.after("<h6 id='h4'>" + stockName + "<h6>");
 			})
 		})
