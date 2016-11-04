@@ -19,6 +19,7 @@ public class MGRDAO implements MGRDAO_interface {
 			"from MGRVO where stock_no=:stockVO order by Revenue_Date ";
 	private static final String DELETE_BY_STOCKNO=
 			"delete from MGRVO where stock_no=:stockVO";
+	private static final String GET_DATE_BY_STOCK="FROM MGRVO Where stockNo=? ORDER BY postDate desc";
 	
 	
 	@Override
@@ -121,6 +122,23 @@ public class MGRDAO implements MGRDAO_interface {
 	
 	}
 
+	@Override
+	public List<MGRVO> findByStockNo(Integer stockno) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		List<MGRVO> list=null;
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GET_DATE_BY_STOCK);
+			query.setParameter(0, stockno);
+			list=query.list();
+			session.getTransaction().commit();			
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
+	}
+	
 	@Override
 	public List<MGRVO> getAll() {
 		List<MGRVO> list = null;

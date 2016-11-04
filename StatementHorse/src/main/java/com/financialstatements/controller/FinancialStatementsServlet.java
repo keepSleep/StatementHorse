@@ -2,7 +2,7 @@ package com.financialstatements.controller;
 
 import java.io.IOException;
 
-import java.sql.Date;
+import java.util.Date;
 /*豪哥版
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -61,6 +61,7 @@ public class FinancialStatementsServlet extends HttpServlet {
 			FinancialStatementsService financialStatementsSvc = new FinancialStatementsService();
 
 			List<FinancialStatementsVO> financialStatementsVO = financialStatementsSvc.getByPostDate(new Date(dayLong));
+			
 /*豪哥版
 			//-------------------注意!!------------------
 			List<FinancialStatementsVO> list;
