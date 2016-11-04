@@ -21,7 +21,8 @@ import hibernate.util.HibernateUtil;
 public class FinancialStatementsHibernateDAO implements FinancialStatements_interface {
 	private static final String GET_ALL_STMT = "FROM FinancialStatementsVO ORDER BY stockNo , statementDate";
 	private static final String GET_BY_POST_DATE_STMT ="FROM FinancialStatementsVO where post_date=? order by post_time";
-
+	private static final String GET_DATE_BY_STOCK="FROM FinancialStatementsVO Where stockNo=? ORDER BY postDate desc";
+	
 	@Override
 	public void insert(FinancialStatementsVO financialStatementsVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -92,6 +93,23 @@ public class FinancialStatementsHibernateDAO implements FinancialStatements_inte
 		return financialStatementsVO;
 	}
 
+	@Override
+	public List<FinancialStatementsVO> findByStockNo(Integer stockno) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		List<FinancialStatementsVO> list=null;
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GET_DATE_BY_STOCK);
+			query.setParameter(0, stockno);
+			list=query.list();
+			session.getTransaction().commit();			
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
+	}
+	
 	@Override
 	public List<FinancialStatementsVO> getAll() {
 		List<FinancialStatementsVO> list = null;

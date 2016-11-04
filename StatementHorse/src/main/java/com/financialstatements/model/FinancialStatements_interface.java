@@ -12,7 +12,7 @@ public interface FinancialStatements_interface {
     public void delete(FinancialStatementsVO financialStatementsVO);
     public FinancialStatementsVO findByPrimaryKey(FinancialStatementsVO financialStatementsVO);
     public List<FinancialStatementsVO> getAll();
-    
+    public List<FinancialStatementsVO> findByStockNo(Integer stockno);
     public List<FinancialStatementsVO> getByPostDate(FinancialStatementsVO financialStatementsVO);
     //�d�߬Y���������u(�@��h)(�^�� Set)
 //    public Set<BalanceSheetVO> getBalanceSheetsByStockNoAndStatementDate(Integer stock_no,String statement_date);

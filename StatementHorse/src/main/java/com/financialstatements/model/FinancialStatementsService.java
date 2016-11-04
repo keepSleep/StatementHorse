@@ -1,6 +1,9 @@
 package com.financialstatements.model;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.balancesheet.model.BalanceSheetDAO;
@@ -62,5 +65,45 @@ public class FinancialStatementsService {
 		financialStatementsVO.setPostDate(postDate);
 		return dao.getByPostDate(financialStatementsVO);
 	}
+	public List<FinancialStatementsVO> checkinsert(Integer stockno,Date lastdateandtime){
+		List<FinancialStatementsVO> returnlist = new LinkedList<>();
+		List<FinancialStatementsVO> list = dao.findByStockNo(stockno);
+		for(FinancialStatementsVO financialStatementsVO:list){
+			Date lastdate = financialStatementsVO.getPostDate();
+			String lasttime = financialStatementsVO.getPostTime();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-ddHH:mm:ss");
+			java.util.Date lastdateandtime1 = null;
+			try {
+				lastdateandtime1 = dateFormat.parse(lastdate.toString()+lasttime);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			if(lastdateandtime1.before(lastdateandtime)){
+				break;
+			}else{
+				returnlist.add(financialStatementsVO);
+			}
+		}
+		return returnlist;
+		
+	}
+
+	public List<FinancialStatementsVO> insert(FinancialStatementsVO financialStatementsVO){
+		List<FinancialStatementsVO> list = dao.findByStockNo(financialStatementsVO.getStockNo());
+		FinancialStatementsVO lastvo = list.get(0);
+		Date lastdate = lastvo.getPostDate();
+		String lasttime = lastvo.getPostTime();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-ddHH:mm:ss");
+		java.util.Date lastdateandtime = null;
+		try {
+			lastdateandtime = dateFormat.parse(lastdate.toString()+lasttime);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		dao.insert(financialStatementsVO);
+		return checkinsert(financialStatementsVO.getStockNo(),(java.sql.Date)lastdateandtime);
+	}
+	
+	
 
 }
