@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,13 +10,13 @@
 <title>Insert title here</title>
 
 <!--              設定樣式                                  -->
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/bootstrap.min.css">
 <!-- <link rel="stylesheet" href="../css/jquery-ui.css"> -->
 
 <!--              設定外掛                                  -->
-<script src="../js/jquery.min.js"></script>
-<!-- <script src="../js/jquery-ui.min.js"></script> -->
-<script src="../js/bootstrap.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/js/jquery.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/js/jquery-ui.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 
@@ -82,15 +83,21 @@
 		})
 		//自動查詢個股股名
 		$('#simpleTable').on('blur','input[name="stockText"]',function(){
-			alert($(this).prop("value"));
+			var thing = $(this);
+			$.post("${pageContext.servletContext.contextPath}/StockServlet.do",{"stockNo":thing.prop("value")},function(stockName){
+				$('#h4').remove();
+				thing.after("<h6 id='h4'>" + stockName + "<h6>");
+			})
 		})
 	});
 </script>
 </head>
 <body>
+<p/>
 	<div>
 		<div class="container-fluid">
 			<div class="row-fluid">
+			<div class="col-md-1"></div>
 				<div class="col-md-3" id="accordion">
 					<div class="panel-group" id="accordion" role="tablist"
 						aria-multiselectable="true">
@@ -155,7 +162,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-7">
 					<!--查詢表格 -->
 					<div class="row-fluid">
 					<div class="col-md-2 ">
@@ -186,10 +193,12 @@
 							<option>03</option>
 						    <option>04</option>
 						</select>
+						<p/>
 					</div>
+					<div id="msg"></div>
 					<!-- 季度下拉選單結束 -->	
-						<div id="msg"></div>
-						<div class="table table-responsive">
+						
+						<div class="table table-responsive ">
 							<table id="simpleTable" class="table table-bordered table-hover">
 								<thead>
 									<tr>
@@ -206,10 +215,14 @@
 								</tbody>
 							</table>
 						</div>
-						<input type="button" value="submit" id="submit"
-							class="btn btn-info">
+						<div class="row-fluid">
+							<div class="col-md-11"></div>
+								<input type="button" value="submit" id="submit"
+									class="btn btn-info col-md-1">
+						</div>
 					</div>
 				</div>
+				<div class="col-md-1"></div>
 			</div>
 		</div>
 	</div>

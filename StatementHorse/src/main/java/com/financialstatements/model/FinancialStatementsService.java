@@ -7,6 +7,8 @@ import java.util.List;
 
 import com.balancesheet.model.BalanceSheetDAO;
 import com.balancesheet.model.BalanceSheetVO;
+import com.stock.model.StockService;
+import com.stock.model.StockVO;
 
 public class FinancialStatementsService {
 	private FinancialStatements_interface dao;

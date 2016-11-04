@@ -3,9 +3,10 @@ package com.balancesheet.model;
 import java.io.Serializable;
 
 import com.financialstatements.model.FinancialStatementsVO;
+import com.stock.model.StockVO;
 
 public class BalanceSheetVO implements Serializable {
-	private Integer stockNo;
+	private StockVO stockVO;
 	private String statementDate;
 	private Long currentAssets;
 	private Long fixedAssets;
@@ -20,22 +21,18 @@ public class BalanceSheetVO implements Serializable {
 	private Long consolidatedNetIncomeAttributedToStockholdersOfTheCompany;
 	private Long totalEquity;
 	private FinancialStatementsVO financialStatementsVO;
-	
-	
-	
-	
-	public FinancialStatementsVO getFinancialStatementsVO() {
+	public StockVO getStockVO() {
+		return stockVO;
+	}
+	public void setStockVO(StockVO stockVO) {
+		this.stockVO = stockVO;
+	}public FinancialStatementsVO getFinancialStatementsVO() {
 		return financialStatementsVO;
 	}
 	public void setFinancialStatementsVO(FinancialStatementsVO financialStatementsVO) {
 		this.financialStatementsVO = financialStatementsVO;
 	}
-	public Integer getStockNo() {
-		return stockNo;
-	}
-	public void setStockNo(Integer stockNo) {
-		this.stockNo = stockNo;
-	}
+	
 	public String getStatementDate() {
 		return statementDate;
 	}
@@ -115,6 +112,7 @@ public class BalanceSheetVO implements Serializable {
 	public void setTotalEquity(Long totalEquity) {
 		this.totalEquity = totalEquity;
 	}
+
 	
 	
 }

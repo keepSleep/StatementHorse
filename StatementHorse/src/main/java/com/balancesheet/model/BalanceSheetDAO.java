@@ -12,13 +12,15 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.price.model.PriceVO;
+import com.stock.model.StockVO;
 
 import hibernate.util.HibernateUtil;
 
 public class BalanceSheetDAO implements BalanceSheet_interface {
 	
 	private static final String GET_ALL_STMT = "FROM BalanceSheetVO ORDER BY stockNo , statementDate";
-
+	private static final String GET_By_StockNo_STMT=
+			"from BalanceSheetVO where stock_no=:stockVO order by statement_date ";
 	@Override
 	public void insert(BalanceSheetVO balanceSheetVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -80,6 +82,26 @@ public class BalanceSheetDAO implements BalanceSheet_interface {
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(GET_ALL_STMT);
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
+	}
+	@Override
+	public List<BalanceSheetVO> getByStockNo(Integer stockNo) {
+		List<BalanceSheetVO> list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GET_By_StockNo_STMT);
+			BalanceSheetVO balanceSheetVO=new BalanceSheetVO();
+			StockVO stockVO=new StockVO();
+			stockVO.setStockNo(stockNo);
+			balanceSheetVO.setStockVO(stockVO);
+			query.setProperties(balanceSheetVO);
 			list = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {

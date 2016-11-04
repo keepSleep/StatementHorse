@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import com.balancesheet.model.BalanceSheetVO;
+import com.incomestatement.model.IncomeStatementVO;
+
 
 import hibernate.util.HibernateUtil;
 

@@ -4,17 +4,20 @@ import java.io.Serializable;
 
 import com.stock.model.StockVO;
 
-
 public class PriceVO implements Serializable {
-	private StockVO StockVO;
+	private StockVO stockVO;
 	private String priceDate;
 	private Double openPrice;
 	private Double closePrice;
 	private Double highestPrice;
 	private Double lowestPrice;
 	private Integer quantity;
-//	private StockVO stockVO;
-	
+	public StockVO getStockVO() {
+		return stockVO;
+	}
+	public void setStockVO(StockVO stockVO) {
+		this.stockVO = stockVO;
+	}
 	public String getPriceDate() {
 		return priceDate;
 	}
@@ -51,19 +54,7 @@ public class PriceVO implements Serializable {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-//	public StockVO getStockVO() {
-//		return stockVO;
-//	}
-//	public void setStockVO(StockVO stockVO) {
-//		this.stockVO = stockVO;
-//	}
-	public StockVO getStockVO() {
-		return StockVO;
-	}
-	public void setStockVO(StockVO stockVO) {
-		StockVO = stockVO;
-	}
-	
+
 	
 	
 	
