@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.financialstatements.model.FinancialStatementsHibernateDAO;
+import com.financialstatements.model.FinancialStatementsDAO;
 import com.financialstatements.model.FinancialStatementsVO;
 import com.message.model.MsgService;
 import com.mgr.model.MGRDAO;
@@ -28,7 +28,7 @@ public class GetNewMsgServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		MsgService msgservicedao = new MsgService();
-		FinancialStatementsHibernateDAO fsdao = new FinancialStatementsHibernateDAO();
+		FinancialStatementsDAO fsdao = new FinancialStatementsDAO();
 		MGRDAO mgdao = new MGRDAO();
 
 		// 傳入追蹤者的id為何

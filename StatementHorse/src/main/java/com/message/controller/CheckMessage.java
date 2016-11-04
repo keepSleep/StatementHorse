@@ -1,6 +1,6 @@
 package com.message.controller;
 
-import com.financialstatements.model.FinancialStatementsHibernateDAO;
+import com.financialstatements.model.FinancialStatementsDAO;
 
 public class CheckMessage implements Runnable{
 	
@@ -12,7 +12,7 @@ public class CheckMessage implements Runnable{
 	
 	@Override
 	public void run() {
-		FinancialStatementsHibernateDAO FinancialStatements = new FinancialStatementsHibernateDAO();
+		FinancialStatementsDAO FinancialStatements = new FinancialStatementsDAO();
 		System.out.println(jobName);
 		
 	}
