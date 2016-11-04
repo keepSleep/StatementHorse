@@ -17,12 +17,12 @@
 		<th>公布日期</th>
 		<th>公布時間</th>
 	</tr>
-<c:forEach var="financialStatementsVO" items="${financialStatementsVO}">
+<c:forEach var="financialStatementVO" items="${financialStatementsVO}">
 	<tr>
-		<td>${financialStatementsVO.stockNo}</td>
+		<td>${financialStatementVO.getStockNo()}</td>
 		<td></td>
-		<td>${financialStatementsVO.postDate}</td>
-		<td>${financialStatementsVO.postTime}</td>
+		<td>${financialStatementVO.postDate}</td>
+		<td>${financialStatementVO.postTime}</td>
 	</tr>
 </c:forEach>
 
