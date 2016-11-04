@@ -1,9 +1,10 @@
 package com.financialstatements.model;
 
-import java.sql.Date;
+
+import java.util.Date;
+import java.util.LinkedList;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.LinkedList;
 import java.util.List;
 
 import com.balancesheet.model.BalanceSheetDAO;
@@ -106,4 +107,20 @@ public class FinancialStatementsService {
 	
 	
 
+	
+	public static final void main(String args[]) throws ParseException{
+		FinancialStatementsService a=new FinancialStatementsService();
+		FinancialStatementsVO FinancialStatementsVO=new FinancialStatementsVO();
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");		
+		FinancialStatementsVO.setPostDate(dateformat.parse("2014-08-01"));
+		
+		List<com.financialstatements.model.FinancialStatementsVO> list = a.getByPostDate(FinancialStatementsVO.getPostDate());
+		for(FinancialStatementsVO aa:list){
+			System.out.println(aa.getPostDate());
+			System.out.println(aa.getPostTime());
+			System.out.println(aa.getStockNo());
+			System.out.println(aa.getStatementDate());
+		}
+	
+	}
 }

@@ -1,20 +1,13 @@
 package com.financialstatements.model;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-
 import com.balancesheet.model.BalanceSheetVO;
 import com.incomestatement.model.IncomeStatementVO;
+
 
 import hibernate.util.HibernateUtil;
 
@@ -133,6 +126,7 @@ public class FinancialStatementsHibernateDAO implements FinancialStatements_inte
 		try{
 			session.beginTransaction();
 			Query query = session.createQuery(GET_BY_POST_DATE_STMT);
+			query.setParameter(0, financialStatementsVO.getPostDate());
 			list= query.list();
 			session.getTransaction().commit();
 		}catch(RuntimeException ex){
