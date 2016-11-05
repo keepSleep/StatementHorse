@@ -9,8 +9,6 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-
-
   <servlet>
     <servlet-name>BalanceSheetServlet</servlet-name>
     <servlet-class>com.balancesheet.controller.BalanceSheetServlet</servlet-class>
@@ -19,7 +17,7 @@
     <servlet-name>BalanceSheetServlet</servlet-name>
     <url-pattern>/balancesheet/balanceSheet.do</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>FinancialStatementsServlet</servlet-name>
     <servlet-class>com.financialstatements.controller.FinancialStatementsServlet</servlet-class>
   </servlet>
@@ -27,6 +25,67 @@
     <servlet-name>FinancialStatementsServlet</servlet-name>
     <url-pattern>/financialstatements/financialstatements.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>ShowStockServlet</servlet-name>
+    <servlet-class>com.selectstockmessage.controller.ShowStockServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowStockServlet</servlet-name>
+    <url-pattern>/ShowStockServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+		<servlet-name>MsgServlet</servlet-name>
+		<servlet-class>com.message.controller.MsgServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>MsgIUDServlet</display-name>
+		<servlet-name>MsgIUDServlet</servlet-name>
+		<servlet-class>com.message.controller.MsgIUDServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>NewsServlet</display-name>
+		<servlet-name>NewsServlet</servlet-name>
+		<servlet-class>com.message.controller.GetNewMsgServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Startfinding</display-name>
+		<servlet-name>Startfinding</servlet-name>
+		<servlet-class>com.message.controller.Startfinding</servlet-class>
+<!-- 		<load-on-startup>1</load-on-startup> -->
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>GetNewsMsgServlet</display-name>
+		<servlet-name>GetNewsMsgServlet</servlet-name>
+		<servlet-class>com.message.controller.GetNewsMsgServlet</servlet-class>
+	</servlet>
 
+	<servlet-mapping>
+		<servlet-name>MsgServlet</servlet-name>
+		<url-pattern>/MsgServlet</url-pattern>
+	</servlet-mapping>
 
+	<servlet-mapping>
+		<servlet-name>MsgIUDServlet</servlet-name>
+		<url-pattern>/MsgIUDServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>NewsServlet</servlet-name>
+		<url-pattern>/NewsServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Startfinding</servlet-name>
+		<url-pattern>/Startfinding</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetNewsMsgServlet</servlet-name>
+		<url-pattern>/GetNewsMsgServlet</url-pattern>
+	</servlet-mapping>
 </web-app>

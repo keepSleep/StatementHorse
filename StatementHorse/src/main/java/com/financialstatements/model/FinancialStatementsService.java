@@ -1,10 +1,16 @@
 package com.financialstatements.model;
 
-import java.sql.Date;
+
+import java.util.Date;
+import java.util.LinkedList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import com.balancesheet.model.BalanceSheetDAO;
 import com.balancesheet.model.BalanceSheetVO;
+import com.stock.model.StockService;
+import com.stock.model.StockVO;
 
 public class FinancialStatementsService {
 	private FinancialStatements_interface dao;
@@ -60,5 +66,61 @@ public class FinancialStatementsService {
 		financialStatementsVO.setPostDate(postDate);
 		return dao.getByPostDate(financialStatementsVO);
 	}
+	public List<FinancialStatementsVO> checkinsert(Integer stockno,Date lastdateandtime){
+		List<FinancialStatementsVO> returnlist = new LinkedList<>();
+		List<FinancialStatementsVO> list = dao.findByStockNo(stockno);
+		for(FinancialStatementsVO financialStatementsVO:list){
+			Date lastdate = financialStatementsVO.getPostDate();
+			String lasttime = financialStatementsVO.getPostTime();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-ddHH:mm:ss");
+			java.util.Date lastdateandtime1 = null;
+			try {
+				lastdateandtime1 = dateFormat.parse(lastdate.toString()+lasttime);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			if(lastdateandtime1.before(lastdateandtime)){
+				break;
+			}else{
+				returnlist.add(financialStatementsVO);
+			}
+		}
+		return returnlist;
+		
+	}
 
+	public List<FinancialStatementsVO> insert(FinancialStatementsVO financialStatementsVO){
+		List<FinancialStatementsVO> list = dao.findByStockNo(financialStatementsVO.getStockNo());
+		FinancialStatementsVO lastvo = list.get(0);
+		Date lastdate = lastvo.getPostDate();
+		String lasttime = lastvo.getPostTime();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-ddHH:mm:ss");
+		java.util.Date lastdateandtime = null;
+		try {
+			lastdateandtime = dateFormat.parse(lastdate.toString()+lasttime);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		dao.insert(financialStatementsVO);
+		return checkinsert(financialStatementsVO.getStockNo(),(java.sql.Date)lastdateandtime);
+	}
+	
+	
+
+	
+	public static final void main(String args[]) throws ParseException{
+		FinancialStatementsService a=new FinancialStatementsService();
+		FinancialStatementsVO FinancialStatementsVO=new FinancialStatementsVO();
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");		
+		FinancialStatementsVO.setPostDate(dateformat.parse("2014-08-01"));
+		
+		List<com.financialstatements.model.FinancialStatementsVO> list = a.getByPostDate(FinancialStatementsVO.getPostDate());
+		for(FinancialStatementsVO aa:list){
+			System.out.println(aa.getPostDate());
+			System.out.println(aa.getPostTime());
+			System.out.println(aa.getStockNo());
+			System.out.println(aa.getStatementDate());
+		}
+	
+	}
 }

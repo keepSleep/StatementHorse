@@ -13,4 +13,5 @@ public interface MGRDAO_interface {
 		public MGRVO FindByPrimaryKey(MGRVO mgrVO);
 		public List<MGRVO> getAll();
 		public List<MGRVO> getByStockNo(Integer stockNo);
+		public List<MGRVO> findByStockNo(Integer stockno);
 }
