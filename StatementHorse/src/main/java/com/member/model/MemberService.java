@@ -22,4 +22,9 @@ public class MemberService implements MemberServiceInterface {
 	public void insertMember(MemberVO insmember) {
 		memberDAOInterface.insert(insmember);
 	}
+
+	@Override
+	public MemberVO findMember(String memberEmail) {
+		return memberDAOInterface.findByMemberEmail(memberEmail);
+	}
 }

@@ -12,16 +12,16 @@
     <title>註冊財報馬</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="${pageContext.request.contextPath}/resources/css/metisMenu.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="${pageContext.request.contextPath}/resources/css/sb-admin-2.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -87,16 +87,16 @@
     </div>
 
     <!-- jQuery -->
-    <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="${pageContext.request.contextPath}/resources/js/metisMenu.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="${pageContext.request.contextPath}/resources/js/sb-admin-2.js"></script>
+    <script src="${pageContext.request.contextPath}/js/sb-admin-2.js"></script>
 
 </body>
 
