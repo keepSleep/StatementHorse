@@ -1,11 +1,7 @@
 package com.financialstatements.controller;
 
 import java.io.IOException;
-import java.security.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import java.text.ParseException;
+import java.io.PrintWriter;
 
 import java.util.List;
 
@@ -16,8 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
 import com.financialstatements.model.FinancialStatementsService;
 import com.financialstatements.model.FinancialStatementsVO;
+import com.tojsonarray.model.ToJsonArray;
 
 //@WebServlet("/FinancialStatementsServlet")
 public class FinancialStatementsServlet extends HttpServlet {
@@ -35,6 +34,8 @@ public class FinancialStatementsServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		req.setCharacterEncoding("utf-8");
+		res.setCharacterEncoding("UTF-8");
+		PrintWriter out=res.getWriter();
 		String action = req.getParameter("action");
 		Long dayLong = null;
 
@@ -82,7 +83,18 @@ public class FinancialStatementsServlet extends HttpServlet {
 				nullView.forward(req, res);
 			}
 		}
-
+		
+		
+		//財報比較查詢最新一筆
+		if("findStockFSs".equals(action)){
+			Integer stockNo = new Integer(req.getParameter("stockNo"));
+			FinancialStatementsService FSS = new FinancialStatementsService();
+			FinancialStatementsVO FSVO = FSS.getStockFS(stockNo);
+			JSONObject json = new ToJsonArray().getFSToJSON(FSVO);
+			
+			out.println(json);
+			out.close();
+		}
 	}
 
 }

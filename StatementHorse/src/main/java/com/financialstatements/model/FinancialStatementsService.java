@@ -6,9 +6,11 @@ import java.util.LinkedList;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Set;
 
 import com.balancesheet.model.BalanceSheetDAO;
 import com.balancesheet.model.BalanceSheetVO;
+import com.incomestatement.model.IncomeStatementVO;
 import com.stock.model.StockService;
 import com.stock.model.StockVO;
 
@@ -105,22 +107,48 @@ public class FinancialStatementsService {
 		return checkinsert(financialStatementsVO.getStockNo(),(java.sql.Date)lastdateandtime);
 	}
 	
+	//-----------新增財報比較查詢一筆----By葉哲--------
+	public FinancialStatementsVO getStockFS(Integer stockNo){
+		FinancialStatementsVO fsVO = new FinancialStatementsVO();
+		fsVO.setStockNo(stockNo);
+		fsVO.setStatementDate("10502");
+		return fsVO = dao.findByPrimaryKey(fsVO);
+	}
+	
 	
 
-	
-	public static final void main(String args[]) throws ParseException{
-		FinancialStatementsService a=new FinancialStatementsService();
-		FinancialStatementsVO FinancialStatementsVO=new FinancialStatementsVO();
-		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");		
-		FinancialStatementsVO.setPostDate(dateformat.parse("2014-08-01"));
+	//快速測試程式碼
+//	public static final void main(String args[]) throws ParseException{
+//		FinancialStatementsService a=new FinancialStatementsService();
+//		FinancialStatementsVO FinancialStatementsVO=new FinancialStatementsVO();
+//		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");		
+//		FinancialStatementsVO.setPostDate(dateformat.parse("2014-08-01"));
 		
-		List<com.financialstatements.model.FinancialStatementsVO> list = a.getByPostDate(FinancialStatementsVO.getPostDate());
-		for(FinancialStatementsVO aa:list){
-			System.out.println(aa.getPostDate());
-			System.out.println(aa.getPostTime());
-			System.out.println(aa.getStockNo());
-			System.out.println(aa.getStatementDate());
-		}
+//		List<com.financialstatements.model.FinancialStatementsVO> list = a.getByPostDate(FinancialStatementsVO.getPostDate());
+//		for(FinancialStatementsVO aa:list){
+//			System.out.println(aa.getPostDate());
+//			System.out.println(aa.getPostTime());
+//			System.out.println(aa.getStockNo());
+//			System.out.println(aa.getStatementDate());
+//		}
 	
-	}
+	
+	//-------------測試財報比較查詢一筆--開始--------------------
+//		FinancialStatementsVO = a.getNewestStockFS();
+//		System.out.print(FinancialStatementsVO.getStockNo()+":");
+//		
+//		for(BalanceSheetVO bSVO :FinancialStatementsVO.getBalanceSheets()){
+//			System.out.print(bSVO.getStockVO().getStockName()+",");
+//			System.out.print(bSVO.getCurrentAssets()+",");
+//			
+//		}
+//		for(IncomeStatementVO iSVO :FinancialStatementsVO.getIncomeStatements()){
+//			System.out.println(iSVO.getOperatingRevenue()+"");
+//		}
+	//-------------測試財報比較查詢一筆--結束--------------------
+	
+	
+//	}
+	
+	
 }

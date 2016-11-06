@@ -26,13 +26,16 @@ public class StockServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		String action = request.getParameter("action");
 		PrintWriter out=response.getWriter();
+		
+		if("getStockName".equals(action)){
 		Integer stockNo = new Integer(request.getParameter("stockNo"));
 		StockService sS = new StockService();
 		StockVO sVO = sS.getOneStock(stockNo);
-		
 		out.println(sVO.getStockName());
 		out.close();
+		}
 	}
 
 }
