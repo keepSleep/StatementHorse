@@ -52,11 +52,6 @@ public class FinancialStatementsServlet extends HttpServlet {
 			} catch (IllegalArgumentException ie) {
 
 			}
-			// Date dateParse = sdf.parse(dayStr);
-
-			// java.sql.Timestamp dateParse =
-			// java.sql.Timestamp.valueOf(dayStr);
-			System.out.println(dateParse);
 
 			/*************************** 2.開始查詢資料 *****************************************/
 			FinancialStatementsService financialStatementsSvc = new FinancialStatementsService();
