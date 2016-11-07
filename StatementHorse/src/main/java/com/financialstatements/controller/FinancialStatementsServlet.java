@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.financialstatements.model.FinancialStatementsService;
@@ -85,16 +86,29 @@ public class FinancialStatementsServlet extends HttpServlet {
 		}
 		
 		
-		//財報比較查詢最新一筆
+		//財報比較查詢最新一筆---By葉哲
 		if("findStockFSs".equals(action)){
 			Integer stockNo = new Integer(req.getParameter("stockNo"));
+			String statementDate = req.getParameter("statementDate");
 			FinancialStatementsService FSS = new FinancialStatementsService();
-			FinancialStatementsVO FSVO = FSS.getStockFS(stockNo);
+			FinancialStatementsVO FSVO = FSS.getStockFS(stockNo,statementDate);
 			JSONObject json = new ToJsonArray().getFSToJSON(FSVO);
 			
 			out.println(json);
 			out.close();
 		}
+		
+		//財報比較查詢全部statementDates---By葉哲
+		if("getAllSDs".equals(action)){
+			FinancialStatementsService FSS = new FinancialStatementsService();
+			JSONArray json = new JSONArray(FSS.getAllSDs());
+			
+			out.println(json);
+			out.close();
+		}
+		
+		
+		
 	}
 
 }

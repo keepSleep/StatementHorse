@@ -108,29 +108,35 @@ public class FinancialStatementsService {
 	}
 	
 	//-----------新增財報比較查詢一筆----By葉哲--------
-	public FinancialStatementsVO getStockFS(Integer stockNo){
+	public FinancialStatementsVO getStockFS(Integer stockNo ,String statementDate){
 		FinancialStatementsVO fsVO = new FinancialStatementsVO();
 		fsVO.setStockNo(stockNo);
-		fsVO.setStatementDate("10502");
-		return fsVO = dao.findByPrimaryKey(fsVO);
+		fsVO.setStatementDate(statementDate);
+		return dao.findByPrimaryKey(fsVO);
 	}
 	
-	
+	//-----------財報比較查詢全部statementDates----By葉哲--------
+	public List<FinancialStatementsVO> getAllSDs(){
+		return dao.getAllSDs();
+	}
 
 	//快速測試程式碼
-//	public static final void main(String args[]) throws ParseException{
+	public static final void main(String args[]) throws ParseException{
 //		FinancialStatementsService a=new FinancialStatementsService();
-//		FinancialStatementsVO FinancialStatementsVO=new FinancialStatementsVO();
-//		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");		
-//		FinancialStatementsVO.setPostDate(dateformat.parse("2014-08-01"));
+		FinancialStatementsDAO aa = new FinancialStatementsDAO();
+		FinancialStatementsVO FinancialStatementsVO=new FinancialStatementsVO();
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");		
+		FinancialStatementsVO.setPostDate(dateformat.parse("2014-08-01"));
+		List<FinancialStatementsVO> bb = aa.getByPostDate(FinancialStatementsVO);
+		
 		
 //		List<com.financialstatements.model.FinancialStatementsVO> list = a.getByPostDate(FinancialStatementsVO.getPostDate());
-//		for(FinancialStatementsVO aa:list){
-//			System.out.println(aa.getPostDate());
-//			System.out.println(aa.getPostTime());
-//			System.out.println(aa.getStockNo());
-//			System.out.println(aa.getStatementDate());
-//		}
+		for(FinancialStatementsVO cc:bb){
+			Set<IncomeStatementVO> dd = cc.getIncomeStatements();
+			for(IncomeStatementVO ee :dd){
+				System.out.println(ee.getStockVO().getStockName());
+			}
+		}
 	
 	
 	//-------------測試財報比較查詢一筆--開始--------------------
@@ -148,7 +154,7 @@ public class FinancialStatementsService {
 	//-------------測試財報比較查詢一筆--結束--------------------
 	
 	
-//	}
+	}
 	
 	
 }
