@@ -57,7 +57,7 @@
 								//尚未點選會計科目時，增加的查詢列
 								$('tbody')
 										.append(
-												"<tr><td><a href='#' class='btn btn-danger'>刪除</a></td><td><input type='text' name='stockText'/></td><td name='tr'></td></tr>");
+												"<tr><td><a href='#' class='btn btn-danger'>刪除</a></td><td><input type='text' name='stockText' maxlength='4'/></td><td name='tr'></td></tr>");
 							} else {
 								//已點選會計科目時，依據增加的欄位數量，增加的查詢列
 								var tds;
@@ -68,13 +68,13 @@
 													+ "'></td>";
 										})
 								$('tbody').append(
-												"<tr><td><a href='#' class='btn btn-danger'>刪除</a></td><td><input type='text' name='stockText'/></td>"
+												"<tr><td><a href='#' class='btn btn-danger'>刪除</a></td><td><input type='text' name='stockText' maxlength='4'/></td>"
 												+ tds + "</tr>");
 							}
 						});
 		//清空整個頁面，還原到一開始進入的樣子
 		$('#clear').click(function() {
-			$('#simpleTable').empty().prepend('<thead><td class="col-md-1"></td><td class="col-md-3">股票號碼</td><td name="tr">+增加會計科目</td></thead><tbody><tr><td><a href="#" class="btn btn-danger">刪除</a></td><td><input type="text" name="stockText"/></td><td name="tr"></td></tr></tbody>')
+			$('#simpleTable').empty().prepend('<thead><td class="col-md-1"></td><td class="col-md-3">股票號碼</td><td name="tr">+增加會計科目</td></thead><tbody><tr><td><a href="#" class="btn btn-danger">刪除</a></td><td><input type="text" name="stockText" maxlength="4"/></td><td name="tr"></td></tr></tbody>')
 			colNo = 0;
 			start = true;	
 		})
@@ -83,8 +83,8 @@
 			var thing = $(this);
 			if(thing.prop("value") != ""){
 				
-				$.post("${pageContext.servletContext.contextPath}/StockServlet.do",{"stockNo":thing.prop("value")},function(stockName){
-						thing.prop("stockNo",thing.prop("value"))
+				$.post("${pageContext.servletContext.contextPath}/StockServlet.do",{"action":"getStockName","stockNo":thing.prop("value")},function(stockName){
+						thing.attr("stockNo",thing.prop("value"))
 						if(thing.next().text() != stockName){
 							thing.next().remove()
 							thing.after("<h5>"+ stockName +"</h5>")
@@ -98,13 +98,25 @@
 		})
 		//submit送出
 		$('#submit').click(function() {
+			$('')
+			
 			$('input[name="stockText"]').each(function(){
 				alert($(this).prop("value"))
+			
+			
+		//-------------放入表格---開始-------
+			$.getJSON("${pageContext.servletContext.contextPath}/financialstatements/financialstatements.do",{"action":"findStockFSs","stockNo":$(this).prop("value")},function(data){
+				$("input[stockNo=" + data.stockNo + "]").parent().nextAll().each(function(){
+					var td = $(this)
+					$.each(data,function(key,value){
+						if(key == td.attr('name')){
+							td.text(value)
+						}
+					})
+				})
 			})
-			
-			
-			
-			
+		//-------------放入表格---結束-------
+			})
 		})
 		
 	});
@@ -115,7 +127,7 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="col-md-1"></div>
-					<div class="col-md-3" id="accordion">
+					<div class="col-md-3" >
 						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 							<div class="panel panel-default">
 								<div class="panel-heading" role="tab" id="headingOne">
@@ -192,7 +204,7 @@
   								<option>105</option>
 								<option>104</option>
 								<option>103</option>
-						   		 <option>102</option>
+						   		<option>102</option>
 							</select>
 						</div>
 					<!-- 年分下拉選單結束 -->
@@ -225,7 +237,7 @@
 									<tbody>
 										<tr>
 											<td><a href='#' class='btn btn-danger'>刪除</a></td>
-											<td><input type="text" name="stockText"/></td>
+											<td><input type="text" name="stockText" maxlength="4"/></td>
 											<td name="tr"></td>
 										</tr>
 									</tbody>
