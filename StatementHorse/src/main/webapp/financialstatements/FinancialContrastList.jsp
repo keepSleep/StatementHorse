@@ -22,6 +22,15 @@
 
 <script>
 	$(function() {
+		//載入AllStatementDates
+		$.getJSON("${pageContext.servletContext.contextPath}/financialstatements/financialstatements.do",{"action":"getAllSDs"},function(data){
+			var SDs = "";
+			$.each(data,function(index,value){
+				SDs += "<option value="+ value +">" + value + "</option>"	
+			})
+			$("select[name='SDSelect']").html(SDs).attr('value',data[0])
+		})
+				
 		//紀錄會計科目數量
 		var colNo = 0;
 		//增加欄位數量設定開關
@@ -98,23 +107,19 @@
 		})
 		//submit送出
 		$('#submit').click(function() {
-			$('')
-			
 			$('input[name="stockText"]').each(function(){
-				alert($(this).prop("value"))
-			
 			
 		//-------------放入表格---開始-------
-			$.getJSON("${pageContext.servletContext.contextPath}/financialstatements/financialstatements.do",{"action":"findStockFSs","stockNo":$(this).prop("value")},function(data){
-				$("input[stockNo=" + data.stockNo + "]").parent().nextAll().each(function(){
-					var td = $(this)
-					$.each(data,function(key,value){
-						if(key == td.attr('name')){
-							td.text(value)
-						}
+				$.getJSON("${pageContext.servletContext.contextPath}/financialstatements/financialstatements.do",{"action":"findStockFSs","stockNo":$(this).prop("value"),"statementDate":$("select[name='SDSelect']").val()},function(data){
+					$("input[stockNo=" + data.stockNo + "]").parent().nextAll().each(function(){
+						var td = $(this)
+						$.each(data,function(key,value){
+							if(key == td.attr('name')){
+								td.text(value)
+							}
+						})
 					})
 				})
-			})
 		//-------------放入表格---結束-------
 			})
 		})
@@ -200,32 +205,31 @@
                     <!-- 年分下拉選單開始 -->
                     <!-- 尚未做動態 -->
                     	<div class="col-md-3">
-							<select class="form-control" >
-  								<option>105</option>
-								<option>104</option>
-								<option>103</option>
-						   		<option>102</option>
+							<select name="SDSelect" class="form-control" >
+<!--   								<option>105</option> -->
+<!-- 								<option>104</option> -->
+<!-- 								<option>103</option> -->
+<!-- 						   		<option>102</option> -->
 							</select>
 						</div>
 					<!-- 年分下拉選單結束 -->
 					<!-- 季度下拉選單開始 -->
 					<!-- 尚未做動態 -->
 						<div class="col-md-3">
-							<select class="form-control">
-  								<option>最新季度</option>
-								<option>01</option>
-								<option>02</option>
-								<option>03</option>
-						   	 <option>04</option>
-							</select>
+<!-- 							<select class="form-control"> -->
+<!--   								<option>最新季度</option> -->
+<!-- 								<option>01</option> -->
+<!-- 								<option>02</option> -->
+<!-- 								<option>03</option> -->
+<!-- 						   	 <option>04</option> -->
+<!-- 							</select> -->
 						</div>
 						<div class="col-md-4"></div>
 					</div>
 					<!-- 季度下拉選單結束 -->	
-					<p/>
 					<div class="row-fluid">
-					
 						<div class="table table-responsive ">
+							<p/>
 								<table id="simpleTable" class="table table-bordered">
 									<thead>
 										<tr>

@@ -149,6 +149,25 @@ public class FinancialStatementsDAO implements FinancialStatements_interface {
 		return list;
 		
 	}
+
+	
+	//------------財報比較查詢全部statementDates---By葉哲-----------------
+	private static final String GET_ALL_SDs = "select statement_date FROM FINANCIAL_STATEMENTS GROUP BY statement_date ORDER BY statement_date desc";
+	@Override
+	public List<FinancialStatementsVO> getAllSDs() {
+		List<FinancialStatementsVO> list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try{
+			session.beginTransaction();
+			Query query = session.createSQLQuery(GET_ALL_SDs);
+			list= query.list();
+			session.getTransaction().commit();
+		}catch(RuntimeException ex){
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
+	}
 	
 	
 }
