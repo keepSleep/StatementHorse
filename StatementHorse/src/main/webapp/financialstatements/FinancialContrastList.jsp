@@ -133,10 +133,10 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="col-md-1"></div>
-					<div class="col-md-3" >
+					<div class="col-md-3" ">
 						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="headingOne">
+								<div class="panel-heading" role="tab" id="headingOne"  style="background-color: lightblue">
 								<h2 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion"
 										href="#collapseOne" aria-expanded="true"
@@ -165,7 +165,7 @@
 							</div>
 						</div>
 						<div class="panel panel-default">
-							<div class="panel-heading" role="tab" id="headingTwo">
+							<div class="panel-heading" role="tab" id="headingTwo" style="background-color: lightblue">
 								<h2 class="panel-title">
 									<a class="collapsed" data-toggle="collapse"
 										data-parent="#accordion" href="#collapseTwo"
