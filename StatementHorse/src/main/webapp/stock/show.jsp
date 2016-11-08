@@ -432,78 +432,9 @@ a:link {
 						});
 					})
 				})
-<<<<<<< HEAD
 
-				//mgrjson
-				var url = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=mgrjson&stock_no='
-						+ stockno;
-				$.getJSON(url, function(data) {
-					$('#tab1info').highcharts('StockChart', {
-						rangeSelector : {
-							selected : 5
-						},
-						title : {
-							text : '月營收(' + stockno + ')'
-						},
-						series : [ {
-							name : 'AAPL',
-							data : data,
-							tooltip : {
-								valueDecimals : 2
-							}
-						} ]
-					});
-				});
-
-				//pricejson
-				var url = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=pricejson&stock_no='
-						+ stockno
-				$.getJSON(url, function(data) {
-					$('#tab3info').highcharts('StockChart', {
-						rangeSelector : {
-							selected : 1
-						},
-						title : {
-							text : '股價(' + stockno + ')'
-						},
-						series : [ {
-							type : 'candlestick',
-							name : 'AAPL Stock Price',
-							data : data,
-							dataGrouping : {
-								units : [ [ 'week', // unit name
-								[ 1 ] // allowed multiples
-								], [ 'month', [ 1, 2, 3, 4, 6 ] ] ]
-							}
-						} ]
-					});
-				});
-				//incomestatementjson
-				var url = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=earningPerShare&stock_no='
-						+ stockno;
-				$.getJSON(url, function(data) {
-					// Create the chart
-					$('#tab2info').highcharts('StockChart', {
-						rangeSelector : {
-							selected : 5
-						},
-						title : {
-							text : '每股盈餘(' + stockno + ')'
-						},
-						series : [ {
-							name : 'AAPL',
-							data : data,
-							tooltip : {
-								valueDecimals : 2
-							}
-						} ]
-					});
-				});
-
-			})
+				
 		</script>
-=======
-			</script>
->>>>>>> branch 'master' of https://github.com/EEIT89Team3/StatementHorse.git
+
 </body>
 </html>
