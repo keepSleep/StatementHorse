@@ -22,6 +22,22 @@ public class MemberService implements MemberServiceInterface {
 	public void insertMember(MemberVO insmember) {
 		memberDAOInterface.insert(insmember);
 	}
+	
+	@Override
+	public void updateMember(MemberVO membervo,String password){
+		membervo.setMemberPassword(password);
+		memberDAOInterface.update(membervo);
+		
+	}
+	
+	@Override
+	public MemberVO findByMemberid(String memberid, String password) {
+		MemberVO memberVO = memberDAOInterface.findByPrimaryKey(memberid);
+		if (memberVO != null && memberVO.getMemberPassword().equals(password))
+			return memberVO;
+		else
+			return null;
+		}
 
 	@Override
 	public MemberVO findMember(String memberEmail) {
