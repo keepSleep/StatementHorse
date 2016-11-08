@@ -54,9 +54,15 @@ public class GetNewsMsgServlet extends HttpServlet {
 			for (Integer stockno : memberstockno) {
 				List<FinancialStatementsVO> fsmessage = null;
 				List<MGRVO> mgmessage = null;
-				fsmessage = fsdao.checkinsert(stockno, logintime);
-				mgmessage = mgdao.checkinsert(stockno, logintime);
-
+				List<Integer> list = msgservicedao.findByKey(member_id, stockno);
+				for (Integer listno : list) {
+					if (listno == 2) {
+						fsmessage = fsdao.checkinsert(stockno, logintime);
+					}
+					if (listno == 1) {
+						mgmessage = mgdao.checkinsert(stockno, logintime);
+					}
+				}
 				for (FinancialStatementsVO FinancialStatementsVO : fsmessage) {
 					newmessage.add(FinancialStatementsVO.getStockNo().toString() + "於"
 							+ FinancialStatementsVO.getPostDate() + " " + FinancialStatementsVO.getPostTime() + "發佈"
@@ -82,7 +88,7 @@ public class GetNewsMsgServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
-	//日期的排序
+	// 日期的排序
 	public List<String> orderByDate(List<String> list) {
 		List<String> list1 = new LinkedList<>();
 		Date[] empty1 = new Date[list.size()];
@@ -90,9 +96,9 @@ public class GetNewsMsgServlet extends HttpServlet {
 		Date[] time = new Date[list.size()];
 		String[] String1 = new String[list.size()];
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		
+
 		int k = 0;
-		for (String data : list) {			
+		for (String data : list) {
 			int i = data.indexOf("於");
 			try {
 				java.util.Date date = dateFormat.parse(data.substring(i + 1, i + 1 + 10));
@@ -102,16 +108,16 @@ public class GetNewsMsgServlet extends HttpServlet {
 			}
 			String1[k] = data;
 
-//			System.out.println(data.substring(i+1, i+1 + 10));
-//			System.out.println(time[k]);
-//			System.out.println(String1[k]);
+			// System.out.println(data.substring(i+1, i+1 + 10));
+			// System.out.println(time[k]);
+			// System.out.println(String1[k]);
 			k++;
-//			System.out.println(k);
+			// System.out.println(k);
 		}
-		
+
 		for (int i = 0; i < time.length; i++) {
 			for (int j = 1; j < time.length - i; j++) {
-//				System.out.println(time[i].before(time[i + j]));
+				// System.out.println(time[i].before(time[i + j]));
 				if (time[i].before(time[i + j])) {
 					empty1[i] = time[i];
 					time[i] = time[i + j];
@@ -120,16 +126,18 @@ public class GetNewsMsgServlet extends HttpServlet {
 					empty2[i] = String1[i];
 					String1[i] = String1[i + j];
 					String1[i + j] = empty2[i];
-		
+
 				}
 			}
-		};
-		
+		}
+		;
+
 		for (int i = 0; i < time.length; i++) {
-//			System.out.println(String1[i]);
+			// System.out.println(String1[i]);
 			list1.add(String1[i]);
-		};
-		
+		}
+		;
+
 		return list1;
 	}
 }

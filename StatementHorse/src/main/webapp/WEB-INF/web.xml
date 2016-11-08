@@ -66,6 +66,13 @@
 		<servlet-name>GetNewsMsgServlet</servlet-name>
 		<servlet-class>com.message.controller.GetNewsMsgServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ChangePassword</display-name>
+		<servlet-name>ChangePassword</servlet-name>
+		<servlet-class>com.member.controller.ChangePassword</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>MsgServlet</servlet-name>
@@ -87,5 +94,9 @@
 	<servlet-mapping>
 		<servlet-name>GetNewsMsgServlet</servlet-name>
 		<url-pattern>/GetNewsMsgServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ChangePassword</servlet-name>
+		<url-pattern>/changepassword/ChangePassword</url-pattern>
 	</servlet-mapping>
 </web-app>
