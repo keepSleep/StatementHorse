@@ -64,26 +64,26 @@
 						function() {
 							if (start) {
 								//尚未點選會計科目時，增加的查詢列
-								$('tbody')
+								$('#Fbody')
 										.append(
 												"<tr><td><a href='#' class='btn btn-danger'>刪除</a></td><td><input type='text' name='stockText' maxlength='4'/></td><td name='tr'></td></tr>");
 							} else {
 								//已點選會計科目時，依據增加的欄位數量，增加的查詢列
 								var tds;
-								$('thead td:gt(1)').each(
+								$('#Fhead td:gt(1)').each(
 										function() {
 											tds += "<td name='"
 													+ $(this).attr("name")
 													+ "'></td>";
 										})
-								$('tbody').append(
+								$('#Fbody').append(
 												"<tr><td><a href='#' class='btn btn-danger'>刪除</a></td><td><input type='text' name='stockText' maxlength='4'/></td>"
 												+ tds + "</tr>");
 							}
 						});
 		//清空整個頁面，還原到一開始進入的樣子
 		$('#clear').click(function() {
-			$('#simpleTable').empty().prepend('<thead><td class="col-md-1"></td><td class="col-md-3">股票號碼</td><td name="tr">+增加會計科目</td></thead><tbody><tr><td><a href="#" class="btn btn-danger">刪除</a></td><td><input type="text" name="stockText" maxlength="4"/></td><td name="tr"></td></tr></tbody>')
+			$('#simpleTable').empty().prepend('<thead id="Fhead"><td class="col-md-1"></td><td class="col-md-3">股票號碼</td><td name="tr">+增加會計科目</td></thead><tbody id="Fbody"><tr><td><a href="#" class="btn btn-danger">刪除</a></td><td><input type="text" name="stockText" maxlength="4"/></td><td name="tr"></td></tr></tbody>')
 			colNo = 0;
 			start = true;	
 		})
@@ -128,6 +128,7 @@
 </script>
 </head>
 <body>
+<%@include file="/top/Top.jsp"%>
 <p/>
 		<div class="container-fluid">
 			<div class="row-fluid">
@@ -231,14 +232,14 @@
 						<div class="table table-responsive ">
 							<p/>
 								<table id="simpleTable" class="table table-bordered">
-									<thead>
+									<thead id="Fhead">
 										<tr>
 											<td class="col-md-1"></td>
 											<td class="col-md-3">股票號碼</td>
 											<td name="tr">+增加會計科目</td>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="Fbody">
 										<tr>
 											<td><a href='#' class='btn btn-danger'>刪除</a></td>
 											<td><input type="text" name="stockText" maxlength="4"/></td>
