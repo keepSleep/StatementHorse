@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import com.financialstatements.model.FinancialStatementsService;
 import com.financialstatements.model.FinancialStatementsVO;
+import com.stock.model.StockService;
 import com.tojsonarray.model.ToJsonArray;
 
 //@WebServlet("/FinancialStatementsServlet")
@@ -40,11 +41,10 @@ public class FinancialStatementsServlet extends HttpServlet {
 		String action = req.getParameter("action");
 		Long dayLong = null;
 
+		//查詢財報公布日期
 		if ("financialstatements".equals(action)) {
 
-			/***************************
-			 * 1.接收請求參數 - 輸入格式的錯誤處理
-			 **********************/
+			/**************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 
 			// 接收日期(格式yyyy-mm-dd)(字串)
 			String dayStr = req.getParameter("date");
@@ -57,9 +57,14 @@ public class FinancialStatementsServlet extends HttpServlet {
 
 			/*************************** 2.開始查詢資料 *****************************************/
 			FinancialStatementsService financialStatementsSvc = new FinancialStatementsService();
+			StockService stockSvc = new StockService();
+			
 			List<FinancialStatementsVO> financialStatementsVO=null;
+					
 			try{
 			financialStatementsVO = financialStatementsSvc.getByPostDate(dateParse);
+//			financialStatementsVO
+			
 			}catch(org.hibernate.exception.SQLGrammarException e){
 				String url = "InputDate.jsp";
 				RequestDispatcher nothingHappend =req.getRequestDispatcher(url);
@@ -79,6 +84,7 @@ public class FinancialStatementsServlet extends HttpServlet {
 				nullView.forward(req, res);
 			}
 		}
+		//查詢財報公布日期 END
 		
 		
 		//財報比較查詢最新一筆---By葉哲

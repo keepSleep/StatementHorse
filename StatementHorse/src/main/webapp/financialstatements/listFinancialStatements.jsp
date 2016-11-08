@@ -20,7 +20,13 @@
 <c:forEach var="financialStatementVO" items="${financialStatementsVO}" >
 	<tr>
 		<td>${financialStatementVO.getStockNo()}</td>
-		<td></td>
+<%-- 		<td>${financialStatementVO.incomeStatements} }</td> --%>
+		<c:forEach var="xx" items="${financialStatementVO.incomeStatements}">
+			<c:if test="${xx.stockVO.stockNo == financialStatementVO.getStockNo()}">
+			<td>${xx.stockVO.stockName }</td>
+			</c:if>
+		</c:forEach>
+		
 		<c:set var="vv" value="${financialStatementVO.postDate}" scope="request" />
 		<%  java.util.Date dd= (java.util.Date)request.getAttribute("vv");
 			String date = dd.toString().substring(0, 10);
@@ -28,6 +34,7 @@
 		%>
 		<td>${datex}</td>
 		<td>${financialStatementVO.postTime}</td>
+<%-- 		${${financialStatementVO.incomeStatements}.iterator().next().stockVO.stockName} --%>
 	</tr>
 </c:forEach>
 
