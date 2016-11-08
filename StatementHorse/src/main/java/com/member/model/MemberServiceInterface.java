@@ -7,4 +7,6 @@ public interface MemberServiceInterface {
 		public void insertMember (MemberVO insmember);
 		public void updateMember(MemberVO membervo,String password);
 		public MemberVO findByMemberid(String memberid, String password) ;
+		
+		public MemberVO findMember(String memberEmail);
 }

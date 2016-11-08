@@ -29,8 +29,8 @@
 			日期：<input type="text" name="date" id="datepicker">
 		</p>
 		<!-- 	<p id="show"></p> -->
-		<input type="submit" value="確認"> <input type="hidden"
-			name="action" value="financialstatements">
+		<input type="submit" value="確認"> 
+		<input type="hidden" name="action" value="financialstatements">
 	</form>
 
 
@@ -43,15 +43,7 @@
 		$("#datepicker").change(function() {
 			console.log($("#datepicker").datepicker("getDate"))
 		})
-		var str1 = $('#datepicker').datepicker("getDate");
-		var str = new Date(str1);
 
-		// 	var dateFormat = require('dateformat');
-		// 	str = dateFormat(str,'yyyy-mm-dd')
-
-		// 	$('#show1').click(function(){
-		// 		$('#show').append(str);
-		// 	});
 	</script>
 
 </body>

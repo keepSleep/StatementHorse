@@ -22,6 +22,15 @@
 
 <script>
 	$(function() {
+		//載入AllStatementDates
+		$.getJSON("${pageContext.servletContext.contextPath}/financialstatements/financialstatements.do",{"action":"getAllSDs"},function(data){
+			var SDs = "";
+			$.each(data,function(index,value){
+				SDs += "<option value="+ value +">" + value + "</option>"	
+			})
+			$("select[name='SDSelect']").html(SDs).attr('value',data[0])
+		})
+				
 		//紀錄會計科目數量
 		var colNo = 0;
 		//增加欄位數量設定開關
@@ -40,11 +49,8 @@
 					} else {
 						//增加
 						dd.attr("flag", 'true');
-						$('thead td:last-child').after(
-								"<td name='" + dd.attr('name') + "'>"
-										+ dd.text() + "</td>");
-						$('tbody td:last-child').after(
-								"<td name='" + dd.attr('name') + "'></td>");
+						$('thead td:last-child').after("<td name='" + dd.attr('name') + "'>" + dd.text() + "</td>");
+						$('tbody td:last-child').after("<td name='" + dd.attr('name') + "'></td>");
 						colNo++;
 					}
 				});
@@ -58,51 +64,79 @@
 						function() {
 							if (start) {
 								//尚未點選會計科目時，增加的查詢列
-								$('tbody')
+								$('#Fbody')
 										.append(
-												"<tr><td><input type='text' name='stockText'/><a href='#' class='btn btn-danger'>刪除</a></td><td name='tr'></td></tr>");
+												"<tr><td><a href='#' class='btn btn-danger'>刪除</a></td><td><input type='text' name='stockText' maxlength='4'/></td><td name='tr'></td></tr>");
 							} else {
 								//已點選會計科目時，依據增加的欄位數量，增加的查詢列
 								var tds;
-								$('thead td:gt(0)').each(
+								$('#Fhead td:gt(1)').each(
 										function() {
 											tds += "<td name='"
 													+ $(this).attr("name")
 													+ "'></td>";
 										})
-								$('tbody').append(
-												"<tr><td><input type='text' name='stockText'/><a href='#' class='btn btn-danger'>刪除</a></td>"
+								$('#Fbody').append(
+												"<tr><td><a href='#' class='btn btn-danger'>刪除</a></td><td><input type='text' name='stockText' maxlength='4'/></td>"
 												+ tds + "</tr>");
 							}
 						});
 		//清空整個頁面，還原到一開始進入的樣子
 		$('#clear').click(function() {
-			$('#simpleTable').empty().prepend('<thead><tr><td>股票號碼</td><td name="tr">+增加會計科目</td></tr></thead><tbody><tr><td><input type="text" name="stockText"/><a href="#" class="btn btn-danger">刪除</a></td><td name="tr"></td></tr></tbody>')
+			$('#simpleTable').empty().prepend('<thead id="Fhead"><td class="col-md-1"></td><td class="col-md-3">股票號碼</td><td name="tr">+增加會計科目</td></thead><tbody id="Fbody"><tr><td><a href="#" class="btn btn-danger">刪除</a></td><td><input type="text" name="stockText" maxlength="4"/></td><td name="tr"></td></tr></tbody>')
 			colNo = 0;
 			start = true;	
 		})
-		//自動查詢個股股名
+		//自動查詢個股股名,增加到輸入方塊中
 		$('#simpleTable').on('blur','input[name="stockText"]',function(){
 			var thing = $(this);
-			$.post("${pageContext.servletContext.contextPath}/StockServlet.do",{"stockNo":thing.prop("value")},function(stockName){
-				$('#h4').remove();
-				thing.after("<h6 id='h4'>" + stockName + "<h6>");
+			if(thing.prop("value") != ""){
+				
+				$.post("${pageContext.servletContext.contextPath}/StockServlet.do",{"action":"getStockName","stockNo":thing.prop("value")},function(stockName){
+						thing.attr("stockNo",thing.prop("value"))
+						if(thing.next().text() != stockName){
+							thing.next().remove()
+							thing.after("<h5>"+ stockName +"</h5>")
+						}
+				})
+			}else{
+				
+				thing.next().remove()
+			}
+			
+		})
+		//submit送出
+		$('#submit').click(function() {
+			$('input[name="stockText"]').each(function(){
+			
+		//-------------放入表格---開始-------
+				$.getJSON("${pageContext.servletContext.contextPath}/financialstatements/financialstatements.do",{"action":"findStockFSs","stockNo":$(this).prop("value"),"statementDate":$("select[name='SDSelect']").val()},function(data){
+					$("input[stockNo=" + data.stockNo + "]").parent().nextAll().each(function(){
+						var td = $(this)
+						$.each(data,function(key,value){
+							if(key == td.attr('name')){
+								td.text(value)
+							}
+						})
+					})
+				})
+		//-------------放入表格---結束-------
 			})
 		})
+		
 	});
 </script>
 </head>
 <body>
+<%@include file="/top/Top.jsp"%>
 <p/>
-	<div>
 		<div class="container-fluid">
 			<div class="row-fluid">
-			<div class="col-md-1"></div>
-				<div class="col-md-3" id="accordion">
-					<div class="panel-group" id="accordion" role="tablist"
-						aria-multiselectable="true">
-						<div class="panel panel-default">
-							<div class="panel-heading" role="tab" id="headingOne">
+				<div class="col-md-1"></div>
+					<div class="col-md-3" >
+						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+							<div class="panel panel-default">
+								<div class="panel-heading" role="tab" id="headingOne">
 								<h2 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion"
 										href="#collapseOne" aria-expanded="true"
@@ -165,66 +199,69 @@
 				<div class="col-md-7">
 					<!--查詢表格 -->
 					<div class="row-fluid">
-					<div class="col-md-2 ">
-						<input type="button" value="add" id="buttonAdd"
-							class="btn btn-success">
-							
-						<input type="button" value="clear" id="clear"
-							class="btn btn-success">
-					</div>
+						<div class="col-md-2 ">
+							<input type="button" value="add" id="buttonAdd"
+								class="btn btn-success">
+						</div>
                     <!-- 年分下拉選單開始 -->
                     <!-- 尚未做動態 -->
-                    <div class="col-md-2 ">
-						<select class="form-control" >
-  							<option>105</option>
-							<option>104</option>
-							<option>103</option>
-						    <option>102</option>
-						</select>
-					</div>
+                    	<div class="col-md-3">
+							<select name="SDSelect" class="form-control" >
+<!--   								<option>105</option> -->
+<!-- 								<option>104</option> -->
+<!-- 								<option>103</option> -->
+<!-- 						   		<option>102</option> -->
+							</select>
+						</div>
 					<!-- 年分下拉選單結束 -->
 					<!-- 季度下拉選單開始 -->
 					<!-- 尚未做動態 -->
-					<div class="col-md-2 ">
-						<select class="form-control">
-  							<option>最新季度</option>
-							<option>01</option>
-							<option>02</option>
-							<option>03</option>
-						    <option>04</option>
-						</select>
-						<p/>
+						<div class="col-md-3">
+<!-- 							<select class="form-control"> -->
+<!--   								<option>最新季度</option> -->
+<!-- 								<option>01</option> -->
+<!-- 								<option>02</option> -->
+<!-- 								<option>03</option> -->
+<!-- 						   	 <option>04</option> -->
+<!-- 							</select> -->
+						</div>
+						<div class="col-md-4"></div>
 					</div>
-					<div id="msg"></div>
 					<!-- 季度下拉選單結束 -->	
-						
+					<div class="row-fluid">
 						<div class="table table-responsive ">
-							<table id="simpleTable" class="table table-bordered table-hover">
-								<thead>
-									<tr>
-										<td>股票號碼</td>
-										<td name="tr">+增加會計科目</td>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><input type="text" name="stockText"/><a href='#'
-											class='btn btn-danger'>刪除</a></td>
-										<td name="tr"></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<div class="row-fluid">
-							<div class="col-md-11"></div>
-								<input type="button" value="submit" id="submit"
-									class="btn btn-info col-md-1">
-						</div>
+							<p/>
+								<table id="simpleTable" class="table table-bordered">
+									<thead id="Fhead">
+										<tr>
+											<td class="col-md-1"></td>
+											<td class="col-md-3">股票號碼</td>
+											<td name="tr">+增加會計科目</td>
+										</tr>
+									</thead>
+									<tbody id="Fbody">
+										<tr>
+											<td><a href='#' class='btn btn-danger'>刪除</a></td>
+											<td><input type="text" name="stockText" maxlength="4"/></td>
+											<td name="tr"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 					</div>
+					<div class="row-fluid">
+							<div class="col-md-8"></div>
+							<div class="col-md-4">
+								<input type="button" value="clear" id="clear"
+									class="btn btn-success">
+								<input type="button" value="submit" id="submit"
+									class="btn btn-info">
+							</div>
+					</div>
+					
+				
+					<div class="col-md-1"></div>
 				</div>
-				<div class="col-md-1"></div>
 			</div>
-		</div>
-	</div>
 </body>
 </html>

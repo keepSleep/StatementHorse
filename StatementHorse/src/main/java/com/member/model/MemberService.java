@@ -37,5 +37,10 @@ public class MemberService implements MemberServiceInterface {
 			return memberVO;
 		else
 			return null;
+		}
+
+	@Override
+	public MemberVO findMember(String memberEmail) {
+		return memberDAOInterface.findByMemberEmail(memberEmail);
 	}
 }
