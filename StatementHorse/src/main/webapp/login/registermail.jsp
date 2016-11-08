@@ -14,22 +14,22 @@
 
 <!-- Bootstrap Core CSS -->
 <link
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- MetisMenu CSS -->
 <link
-	href="${pageContext.request.contextPath}/resources/css/metisMenu.min.css"
+	href="${pageContext.request.contextPath}/css/metisMenu.min.css"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
 <link
-	href="${pageContext.request.contextPath}/resources/css/sb-admin-2.css"
+	href="${pageContext.request.contextPath}/css/sb-admin-2.css"
 	rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link
-	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css"
+	href="${pageContext.request.contextPath}/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -52,7 +52,7 @@
 					</div>
 					<div class="panel-body">
 						<form role="form" method="post"
-							action="${pageContext.request.contextPath}/account/login">
+							action="${pageContext.request.contextPath}/account/registermailagain">
 							<fieldset>
 								<div class="form-group">
 									<label>感謝申請會員，
@@ -74,19 +74,19 @@
 
 	<!-- jQuery -->
 	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+		src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
 	<script
-		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+		src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
 	<script
-		src="${pageContext.request.contextPath}/resources/js/metisMenu.min.js"></script>
+		src="${pageContext.request.contextPath}/js/metisMenu.min.js"></script>
 
 	<!-- Custom Theme JavaScript -->
 	<script
-		src="${pageContext.request.contextPath}/resources/js/sb-admin-2.js"></script>
+		src="${pageContext.request.contextPath}/js/sb-admin-2.js"></script>
 
 </body>
 

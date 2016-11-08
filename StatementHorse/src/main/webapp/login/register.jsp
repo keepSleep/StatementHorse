@@ -54,11 +54,11 @@
                                 </div>
                                  <div class="form-group">
                                 	<label>再次輸入密碼：</label>
-                                    <input class="form-control" placeholder="再次輸入您的密碼" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="再次輸入您的密碼" name="password2" type="password" value="">
                                 </div>
                                 <div class="form-group">
 									<label>輸入驗證碼：</label> <input class="form-control"
-										placeholder="請輸入4位數驗證碼" name="password" type="password"
+										placeholder="請輸入4位數驗證碼" name="checkword" type="checkword"
 										value="">
 								</div>
 								<div>
@@ -71,7 +71,7 @@
 								</a>
 								</div>
                                 <div>
-									<label>錯誤訊息：${ErrorMsgKey.LoginError}</label>
+									<label>錯誤訊息：${ErrorMsgKey.registerError}</label>
 								</div>
 								<div>
 								<!-- Change this to a button or input when using this as a form -->
