@@ -30,7 +30,11 @@
 						</div>
 				<!-- 頁面右方區塊 -->
 						<div id="mid-right-Blank" class="col-xs-9" style="border:2px solid #648381; height:580px">
-						右方
+							<div class="row-fluid">
+								<div id="mid-right-top-Blank" class="col-xs-12" style="border:2px dotted #563635; height:50px">右上方</div>
+								<p/>
+								<div id="mid-right-down-Blank" class="col-xs-12" style="border:2px solid #563635; height:500px">右下方</div>
+							</div>
 						</div>
 					</div>
 				</div>
