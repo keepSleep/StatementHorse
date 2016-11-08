@@ -16,6 +16,7 @@ import org.json.JSONArray;
 
 import com.listingdetails.model.ListingDetailsHibernateDAO;
 import com.listingdetails.model.ListingDetailsVO;
+import com.stock.model.StockService;
 import com.stock.model.StockVO;
 import com.tojsonarray.model.ToJsonArray;
 import com.tracklisting.model.TrackListingHibernateDAO;
@@ -42,6 +43,9 @@ public class ShowStockServlet extends HttpServlet {
 
 	
 		if ("stock".equals(action)) {
+			StockService stockService=new StockService();
+			StockVO stockVO=new StockVO();
+			stockVO=stockService.getOneStock(stockNo);
 			TrackListingHibernateDAO trackdao = new TrackListingHibernateDAO();
 			List<TrackListingVO> list = trackdao.getAllByMember(memberId);
 			Set<ListingDetailsVO> set = null;
@@ -59,7 +63,7 @@ public class ShowStockServlet extends HttpServlet {
 					stock_set.add(stock_list);
 				}
 			}
-			
+			req.setAttribute("stockVO", stockVO);
 			req.setAttribute("list", list);
 			req.setAttribute("stock_set", stock_set);
 			req.setAttribute("StockNo", stockNo);
@@ -83,7 +87,7 @@ public class ShowStockServlet extends HttpServlet {
 			}else if("delete".equals(insert_or_delete)){
 				listingdetailsdao.delete(list_no, stockNo);
 			}else if("select".equals(insert_or_delete)){
-				System.out.println("good");
+//				System.out.println("good");
 				PrintWriter out=resp.getWriter();
 				listingDetailsVO=listingdetailsdao.findByPrimaryKey(list_no, stockNo);
 				if(listingDetailsVO!=null){
@@ -113,8 +117,21 @@ public class ShowStockServlet extends HttpServlet {
 		}if("incomestatementjson".equals(json)){
 			PrintWriter out = resp.getWriter();
 			ToJsonArray tojson=new ToJsonArray();
-			System.out.println("test");
+//			System.out.println("test");
 			JSONArray list=tojson.incomeStatementToJson(stockNo,need);
+			out.print(list);	
+			out.close();
+		}if("dividendjson".equals(json)){
+			PrintWriter out = resp.getWriter();
+			ToJsonArray tojson=new ToJsonArray();
+			JSONArray list=tojson.dividendToJson(stockNo);
+			out.print(list);	
+			out.close();
+		}
+		if("PERjson".equals(json)){
+			PrintWriter out = resp.getWriter();
+			ToJsonArray tojson=new ToJsonArray();
+			JSONArray list=tojson.PERToJson(stockNo);
 			out.print(list);	
 			out.close();
 		}
