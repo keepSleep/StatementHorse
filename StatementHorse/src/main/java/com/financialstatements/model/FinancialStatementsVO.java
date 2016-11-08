@@ -2,7 +2,7 @@ package com.financialstatements.model;
 
 import java.io.Serializable;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 

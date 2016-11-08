@@ -2,16 +2,21 @@ package com.tojsonarray.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.balancesheet.model.BalanceSheetService;
 import com.balancesheet.model.BalanceSheetVO;
 import com.dividend.model.DividendService;
 import com.dividend.model.DividendVO;
+import com.financialstatements.model.FinancialStatementsService;
+import com.financialstatements.model.FinancialStatementsVO;
 import com.incomestatement.model.IncomeStatementService;
 import com.incomestatement.model.IncomeStatementVO;
 import com.mgr.model.MGRService;
@@ -156,6 +161,7 @@ public class ToJsonArray {
 		return list;
 	}
 
+
 	public JSONArray PERToJson(Integer stock_no) {
 		PriceService priceSvc = new PriceService();
 		IncomeStatementService incomeStatementSvc=new IncomeStatementService();
@@ -209,5 +215,47 @@ public class ToJsonArray {
 		
 	}
 	
+
+	
+	
+	
+	//-------------財報比較查詢結果轉JSON--開始--by葉哲-----------------
+	public JSONObject getFSToJSON(FinancialStatementsVO FSVO){
+		Map map = new Hashtable();
+		map.put("stockNo", FSVO.getStockNo());
+		for(BalanceSheetVO BSVO :FSVO.getBalanceSheets()){
+			map.put("currentAssets", BSVO.getCurrentAssets());
+			map.put("fixedAssets", BSVO.getFixedAssets());
+			map.put("assets", BSVO.getAssets());
+			map.put("currentLiabilities", BSVO.getCurrentLiabilities());
+			map.put("longTermLiabilities", BSVO.getLongTermLiabilities());
+			map.put("liabilities", BSVO.getLiabilities());
+			map.put("capitalStock", BSVO.getCapitalStock());
+			map.put("additionalPaidInCapital", BSVO.getAdditionalPaidInCapital());
+			map.put("retainedEarnings", BSVO.getRetainedEarnings());
+			map.put("otherEquity", BSVO.getOtherEquity());
+			map.put("consolidatedNetIncomeAttributedToStockholdersOfTheCompany", BSVO.getConsolidatedNetIncomeAttributedToStockholdersOfTheCompany());
+			map.put("totalEquity", BSVO.getTotalEquity());
+		};
+		for(IncomeStatementVO ISVO:FSVO.getIncomeStatements()){
+			map.put("operatingRevenue", ISVO.getOperatingRevenue());
+			map.put("operatingCost", ISVO.getOperatingCost());
+			map.put("operatingMargain", ISVO.getOperatingMargain());
+			map.put("netOperatingMargain", ISVO.getNetOperatingMargain());
+			map.put("operatingExpenses", ISVO.getOperatingExpenses());
+			map.put("operatingIncome", ISVO.getOperatingIncome());
+			map.put("nonOperatingRevenue", ISVO.getNonOperatingRevenue());
+			map.put("oibt", ISVO.getOibt());
+			map.put("incomeTaxExpense", ISVO.getIncomeTaxExpense());
+			map.put("coiat", ISVO.getCoiat());
+			map.put("netIncome", ISVO.getNetIncome());
+			map.put("oci", ISVO.getOci());
+			map.put("currentProfitAndLoss", ISVO.getCurrentProfitAndLoss());
+			map.put("earningPerShare", ISVO.getEarningPerShare());
+		}
+		JSONObject json = new JSONObject(map);
+		return json;
+	}
+	//-------------財報比較查詢結果轉JSON--結束--by葉哲-----------------
 
 }

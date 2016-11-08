@@ -5,4 +5,6 @@ public interface MemberServiceInterface {
 		public MemberVO findMember(String memberEmail,String passsword);
 		
 		public void insertMember (MemberVO insmember);
+		
+		public MemberVO findMember(String memberEmail);
 }

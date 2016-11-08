@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.financialstatements.model.FinancialStatementsVO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,12 +17,17 @@
 		<th>公布日期</th>
 		<th>公布時間</th>
 	</tr>
-<c:forEach var="financialStatementsVO" items="${financialStatementsVO}">
+<c:forEach var="financialStatementVO" items="${financialStatementsVO}" >
 	<tr>
-		<td>${financialStatementsVO.stockNo}</td>
+		<td>${financialStatementVO.getStockNo()}</td>
 		<td></td>
-		<td>${financialStatementsVO.postDate}</td>
-		<td>${financialStatementsVO.postTime}</td>
+		<c:set var="vv" value="${financialStatementVO.postDate}" scope="request" />
+		<%  java.util.Date dd= (java.util.Date)request.getAttribute("vv");
+			String date = dd.toString().substring(0, 10);
+			request.setAttribute("datex",date);
+		%>
+		<td>${datex}</td>
+		<td>${financialStatementVO.postTime}</td>
 	</tr>
 </c:forEach>
 
