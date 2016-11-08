@@ -200,7 +200,7 @@ a:link {
 				})
 
 				//mgrjson
-				var url = 'http://localhost:8081/Statement_Horse_Hibernate1029/ShowStockServlet?json=mgrjson&stock_no='
+				var url = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=mgrjson&stock_no='
 						+ stockno;
 				$.getJSON(url, function(data) {
 					$('#tab1info').highcharts('StockChart', {
@@ -221,7 +221,7 @@ a:link {
 				});
 
 				//pricejson
-				var url = 'http://localhost:8081/Statement_Horse_Hibernate1029/ShowStockServlet?json=pricejson&stock_no='
+				var url = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=pricejson&stock_no='
 						+ stockno
 				$.getJSON(url, function(data) {
 					$('#tab3info').highcharts('StockChart', {
@@ -244,7 +244,7 @@ a:link {
 					});
 				});
 				//incomestatementjson
-				var url = 'http://localhost:8081/Statement_Horse_Hibernate1029/ShowStockServlet?json=incomestatementjson&need=earningPerShare&stock_no='
+				var url = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=earningPerShare&stock_no='
 						+ stockno;
 				$.getJSON(url, function(data) {
 					// Create the chart
