@@ -10,8 +10,8 @@
 <script src="${pageContext.servletContext.contextPath}/js/jquery-1.12.3.min.js"></script>
 
 <p id="2330"><h2><a href="/StatementHorse/ShowStockServlet?action=stock&stock_no=2330&member_id=Blastoise" >2330台積電</a></h2></p>
-<p id="3008"><h2><a href="ShowStockServlet?action=stock&stock_no=3008&member_id=Blastoise" >3008大立光</a></h2></p>
-<p id="1476"><h2><a href="ShowStockServlet?action=stock&stock_no=1476&member_id=Blastoise" >1476儒鴻</a></h2></p>
+<p id="3008"><h2><a href="/StatementHorse/ShowStockServlet?action=stock&stock_no=3008&member_id=Blastoise" >3008大立光</a></h2></p>
+<p id="1476"><h2><a href="/StatementHorse/ShowStockServlet?action=stock&stock_no=1476&member_id=Blastoise" >1476儒鴻</a></h2></p>
 <script>
 $(function(){
 	
