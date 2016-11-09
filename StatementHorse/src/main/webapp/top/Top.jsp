@@ -38,7 +38,8 @@
 				<table>
 					<tr>
 						<td class="col-sm-1"> <button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >個股資料</button></td>
-						<td class="col-sm-1"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報比較</button></td>
+						<td class="col-sm-1"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報日期</button></td>
+						<td class="col-sm-1"><a href="${pageContext.servletContext.contextPath}/financialstatements/FinancialContrastList.jsp"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報比較</button></a></td>
 						<td class="col-sm-4">
 							<div class="input-group custom-search-form">
                                 <input type="text" style="width:500px;height:auto" class="form-control" placeholder="輸入股號或股名...">
@@ -56,6 +57,7 @@
 						<c:if test="${!empty member_id}">
 						 <button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none " id="logout"><i class="fa fa-user fa-fw"></i>登出</button>
 						</c:if>
+						<c:if test="${!empty member_id}">
 						</td>
 						<td class="col-sm-1">
  							<ul class="nav navbar-top-links navbar-right ">
@@ -66,15 +68,15 @@
                    					 <ul class="dropdown-menu dropdown-messages">
                        					 <li>
                            					        <div class="chat-panel panel panel-default">
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <ul class="chat" id="newmessage">
-                            </ul>
-                        </div> 
-                        <div style="display:none" id="messagelength"></div>      
-                        <!-- /.panel-footer -->
-                    	</div>
-                        				 </li>             
+						                        <!-- /.panel-heading -->
+						                        <div class="panel-body">
+						                            <ul class="chat" id="newmessage">
+						                            </ul>
+						                        </div> 
+						                        <div style="display:none" id="messagelength"></div>      
+						                        <!-- /.panel-footer -->
+						                    	</div>
+	                        			 </li>             
                         				 <li>
                         				    <a class="text-center" href="#">
                          				       <strong>Read All Messages</strong>
@@ -92,9 +94,9 @@
 			                        <i class="fa fa-gear fa-fw"></i><i class="fa fa-caret-down"></i>
 			                    </a>
 			                    <ul class="dropdown-menu dropdown-user">
-			                        <li><a style="cursor:pointer"><i class="fa fa-user fa-fw"></i> User Profile</a>
+			                        <li><a  href="${pageContext.servletContext.contextPath}/changepassword/changepassword.jsp" style="cursor:pointer"><i class="fa fa-user fa-fw"></i>更改密碼</a>
 			                        </li>
-			                        <li><a  id="setting" style="cursor:pointer"><i class="fa fa-gear fa-fw"></i> Settings</a>
+			                        <li><a  id="setting" style="cursor:pointer"><i class="fa fa-gear fa-fw"></i>通知設定</a>
 			                        </li>
 			                        <li class="divider"></li>
 			                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -103,6 +105,7 @@
 			                </li>
 			                </ul>
 						</td>
+						</c:if>
 					</tr>
 				</table>
 			</td>
@@ -163,7 +166,7 @@
 	
 	$(document).ready(function(){
 		var last=$("#true").text();
-		setInterval("refreshnews()",5000);
+// 		setInterval("refreshnews()",5000);
 		$("#tg").click(function(){
 			$("#tg").attr("style","color:#337ab7")
 		})
@@ -226,6 +229,7 @@
 	function refreshnews()
 	{
 	$.getJSON("GetNewsMsgServlet",function(data){
+		console.log(data)
 		$("#newmessage").empty();
 		if($("#messagelength").val()!=data.length){
 			$("#tg").attr("style","color:#c13353");

@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>重新申請驗證信</title>
+<title>請到信箱收密碼修改信</title>
 
 <!-- Bootstrap Core CSS -->
 <link
@@ -48,18 +48,18 @@
 			<div class="col-md-4 col-md-offset-4">
 				<div class="login-panel panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">重新寄發驗證信</h3>
+						<h3 class="panel-title">寄發密碼信</h3>
 					</div>
 					<div class="panel-body">
 						<form role="form" method="post"
-							action="${pageContext.request.contextPath}/account/login">
+							action="${pageContext.request.contextPath}/account/registermailagain">
 							<fieldset>
 								<div class="form-group">
-									<label>感謝申請會員，
-									您將收到一封認證信，請點擊信中的認證網址完成會員申請：<br>
+									<label>親愛的會員，
+									您將收到一封密碼修改信，請點擊信中的認證網址完成密碼修改：<br>
 									寄件信箱：statementhorse@gmail.com<br>
 									信件主旨：歡迎來到財報馬<br>
-									若沒有收到會員認證信，請點選這裡</label>
+									若沒有收到密碼修改信，請點選這裡</label>
 								</div>
 								<div>
 								<button type="submit" class="btn btn-lg btn-primary btn-block">重發一封驗證信

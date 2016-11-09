@@ -749,6 +749,7 @@ a:link {
 
 					})
 				})
+<<<<<<< HEAD
 			</script>
 <!-- 獲利分析 -->
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -790,4 +791,11 @@ a:link {
 
 			
 			</body>
+=======
+
+				
+		</script>
+
+</body>
+>>>>>>> branch 'master' of https://github.com/EEIT89Team3/StatementHorse
 </html>

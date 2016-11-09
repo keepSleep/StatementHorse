@@ -19,6 +19,16 @@
 <script src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+<style>
+*{
+font-family:微軟正黑體;
+}
+dd{
+font-size:14px;
+}
+</style>
+
+
 
 <script>
 	$(function() {
@@ -35,7 +45,9 @@
 		var colNo = 0;
 		//增加欄位數量設定開關
 		var start = true;
-		//點選會計科目清單，加入/刪除欄位
+		//點選會計科目清單，加入/刪除欄位，點擊顏色變化
+		var c1 = {'color':'red'},
+			c2 = {'color':'black'};
 		$("dd").click(
 				function() {
 					var dd = $(this);
@@ -45,15 +57,27 @@
 						//刪除
 						dd.attr("flag", 'false');
 						$('td[name="' + dd.attr('name') + '"]').remove();
+						dd.css(c2);
 						colNo--;
 					} else {
 						//增加
 						dd.attr("flag", 'true');
 						$('thead td:last-child').after("<td name='" + dd.attr('name') + "'>" + dd.text() + "</td>");
 						$('tbody td:last-child').after("<td name='" + dd.attr('name') + "'></td>");
+						dd.css(c1);
 						colNo++;
 					}
 				});
+		//滑鼠移動會計科目動畫
+		$('dd').mouseover(over).mouseout(out);
+		var s1 = {'font-size':'16px'},
+			s2 = {'font-size':'14px'};
+		function over(){
+			$(this).css(s1);
+		}
+		function out(){
+			$(this).css(s2);
+		}
 		//刪除整列查詢列
 		$('#simpleTable').on('click', '.btn-danger', function() {
 			$(this).parents('tr').remove();
@@ -64,26 +88,26 @@
 						function() {
 							if (start) {
 								//尚未點選會計科目時，增加的查詢列
-								$('tbody')
+								$('#Fbody')
 										.append(
 												"<tr><td><a href='#' class='btn btn-danger'>刪除</a></td><td><input type='text' name='stockText' maxlength='4'/></td><td name='tr'></td></tr>");
 							} else {
 								//已點選會計科目時，依據增加的欄位數量，增加的查詢列
 								var tds;
-								$('thead td:gt(1)').each(
+								$('#Fhead td:gt(1)').each(
 										function() {
 											tds += "<td name='"
 													+ $(this).attr("name")
 													+ "'></td>";
 										})
-								$('tbody').append(
+								$('#Fbody').append(
 												"<tr><td><a href='#' class='btn btn-danger'>刪除</a></td><td><input type='text' name='stockText' maxlength='4'/></td>"
 												+ tds + "</tr>");
 							}
 						});
 		//清空整個頁面，還原到一開始進入的樣子
 		$('#clear').click(function() {
-			$('#simpleTable').empty().prepend('<thead><td class="col-md-1"></td><td class="col-md-3">股票號碼</td><td name="tr">+增加會計科目</td></thead><tbody><tr><td><a href="#" class="btn btn-danger">刪除</a></td><td><input type="text" name="stockText" maxlength="4"/></td><td name="tr"></td></tr></tbody>')
+			$('#simpleTable').empty().prepend('<thead id="Fhead"><td class="col-md-1"></td><td class="col-md-3">股票號碼</td><td name="tr">+增加會計科目</td></thead><tbody id="Fbody"><tr><td><a href="#" class="btn btn-danger">刪除</a></td><td><input type="text" name="stockText" maxlength="4"/></td><td name="tr"></td></tr></tbody>')
 			colNo = 0;
 			start = true;	
 		})
@@ -128,14 +152,15 @@
 </script>
 </head>
 <body>
+<%@include file="/top/Top.jsp"%>
 <p/>
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="col-md-1"></div>
-					<div class="col-md-3" >
+					<div class="col-md-3" ">
 						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="headingOne">
+								<div class="panel-heading" role="tab" id="headingOne"  style="background-color: lightblue">
 								<h2 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion"
 										href="#collapseOne" aria-expanded="true"
@@ -164,7 +189,7 @@
 							</div>
 						</div>
 						<div class="panel panel-default">
-							<div class="panel-heading" role="tab" id="headingTwo">
+							<div class="panel-heading" role="tab" id="headingTwo" style="background-color: lightblue">
 								<h2 class="panel-title">
 									<a class="collapsed" data-toggle="collapse"
 										data-parent="#accordion" href="#collapseTwo"
@@ -231,14 +256,14 @@
 						<div class="table table-responsive ">
 							<p/>
 								<table id="simpleTable" class="table table-bordered">
-									<thead>
+									<thead id="Fhead">
 										<tr>
 											<td class="col-md-1"></td>
-											<td class="col-md-3">股票號碼</td>
+											<td class="col-md-1">股票號碼</td>
 											<td name="tr">+增加會計科目</td>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="Fbody">
 										<tr>
 											<td><a href='#' class='btn btn-danger'>刪除</a></td>
 											<td><input type="text" name="stockText" maxlength="4"/></td>
