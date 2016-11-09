@@ -19,6 +19,16 @@
 <script src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+<style>
+*{
+font-family:微軟正黑體;
+}
+dd{
+font-size:14px;
+}
+</style>
+
+
 
 <script>
 	$(function() {
@@ -35,7 +45,9 @@
 		var colNo = 0;
 		//增加欄位數量設定開關
 		var start = true;
-		//點選會計科目清單，加入/刪除欄位
+		//點選會計科目清單，加入/刪除欄位，點擊顏色變化
+		var c1 = {'color':'red'},
+			c2 = {'color':'black'};
 		$("dd").click(
 				function() {
 					var dd = $(this);
@@ -45,15 +57,27 @@
 						//刪除
 						dd.attr("flag", 'false');
 						$('td[name="' + dd.attr('name') + '"]').remove();
+						dd.css(c2);
 						colNo--;
 					} else {
 						//增加
 						dd.attr("flag", 'true');
 						$('thead td:last-child').after("<td name='" + dd.attr('name') + "'>" + dd.text() + "</td>");
 						$('tbody td:last-child').after("<td name='" + dd.attr('name') + "'></td>");
+						dd.css(c1);
 						colNo++;
 					}
 				});
+		//滑鼠移動會計科目動畫
+		$('dd').mouseover(over).mouseout(out);
+		var s1 = {'font-size':'16px'},
+			s2 = {'font-size':'14px'};
+		function over(){
+			$(this).css(s1);
+		}
+		function out(){
+			$(this).css(s2);
+		}
 		//刪除整列查詢列
 		$('#simpleTable').on('click', '.btn-danger', function() {
 			$(this).parents('tr').remove();
@@ -235,7 +259,7 @@
 									<thead id="Fhead">
 										<tr>
 											<td class="col-md-1"></td>
-											<td class="col-md-3">股票號碼</td>
+											<td class="col-md-1">股票號碼</td>
 											<td name="tr">+增加會計科目</td>
 										</tr>
 									</thead>
