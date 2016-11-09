@@ -1,7 +1,11 @@
 package com.tojsonarray.model;
 
+import java.sql.Array;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
@@ -103,57 +107,39 @@ public class ToJsonArray {
 		return list;
 	}
 
-	public JSONArray balanceSheetToJson(Integer stock_no) {
-		BalanceSheetService balanceSheetSer = new BalanceSheetService();
-		List<BalanceSheetVO> balanceSheetList = balanceSheetSer.getByStockNo(stock_no);
-		List listAll = new LinkedList();
-		for (BalanceSheetVO element : balanceSheetList) {
-			List list = new LinkedList();
-			String str1 = element.getStatementDate();
-			Integer str2 = Integer.parseInt(str1) + 191100;
-			str1 = Integer.toString(str2);
-			// System.out.println(str1);
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
-			long millionSeconds = 0;
-			try {
-				millionSeconds = sdf.parse(str1).getTime();
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			// System.out.println(millionSeconds);
-
-
-
-		}
-
-		JSONArray list = new JSONArray(listAll);
-		return list;
-	}
-
 	public JSONArray incomeStatementToJson(Integer stock_no, String str) {
-		IncomeStatementService incomeStatementSer = new IncomeStatementService();
-		List<IncomeStatementVO> incomeStatementList = incomeStatementSer.getByStockNo(stock_no);
 		List listAll = new LinkedList();
-		for (IncomeStatementVO element : incomeStatementList) {
-			List list = new LinkedList();
-			String str1 = element.getStatementDate();
-			Integer str2 = Integer.parseInt(str1) + 191100;
-			str1 = Integer.toString(str2);
-			// System.out.println(str1);
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
-			long millionSeconds = 0;
-			try {
-				millionSeconds = sdf.parse(str1).getTime();
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			// System.out.println(millionSeconds);
+		FinancialStatementsService financialStatementsSvc = new FinancialStatementsService();
+		List<FinancialStatementsVO> financialStatementList=financialStatementsSvc.getOneStock(stock_no);
+		for(FinancialStatementsVO element:financialStatementList){
+			List list=new LinkedList();
+			Date str1 = element.getPostDate();
+			
+//			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+//			String str2=sdf.format(str1);
+			long millionSeconds=0;
+			millionSeconds=str1.getTime();
 			list.add(0, millionSeconds);
-			if ("earningPerShare".equals(str)) {
-				list.add(1, element.getEarningPerShare());
-				// System.out.println(element.getEarningPerShare());
+			
+			Set<IncomeStatementVO> incomestatementVO=element.getIncomeStatements();
+			for(IncomeStatementVO set:incomestatementVO){
+				if ("earningPerShare".equals(str)) {
+					list.add(1, set.getEarningPerShare());
+					// System.out.println(element.getEarningPerShare());
+				}if("operatingRevenue".equals(str)){
+					list.add(1, set.getOperatingRevenue());
+				}if("operatingMargain".equals(str)){
+					list.add(1, set.getOperatingMargain());
+				}if("operatingIncome".equals(str)){
+					list.add(1, set.getOperatingIncome());
+				}if("oibt".equals(str)){
+					list.add(1, set.getOibt());
+				}if("netIncome".equals(str)){
+					list.add(1,set.getNetIncome());
+				}
 			}
 			listAll.add(list);
+		
 
 		}
 
@@ -209,12 +195,131 @@ public class ToJsonArray {
 		return list;
 	
 	}
+	public JSONArray RevenueToJson(Integer stock_no){
+	IncomeStatementService incomeStatementSvc=new IncomeStatementService();
+	List<IncomeStatementVO> incomeStatementList=incomeStatementSvc.getByStockNo(stock_no);
+	List listAll=new ArrayList();
+	for(IncomeStatementVO element:incomeStatementList){
+		List list=new ArrayList();
+		Long revenue = element.getOperatingRevenue();
+		String date = element.getStatementDate();
+		list.add(0,date);
+		list.add(1, revenue);
+		listAll.add(list);
+	}
+	JSONArray list = new JSONArray(listAll);
+	return list;
+	
+	}
+	public JSONArray balanceSheetToJson(Integer stock_no,String str) {
+		List listAll = new LinkedList();
+		FinancialStatementsService financialStatementsSvc = new FinancialStatementsService();
+		List<FinancialStatementsVO> financialStatementList=financialStatementsSvc.getOneStock(stock_no);
+		List list2=new LinkedList();
+		for(FinancialStatementsVO element:financialStatementList){
+			List list = new LinkedList();
+			Date str1 = element.getPostDate();
+			long millionSeconds=0;
+			millionSeconds=str1.getTime();
+			list.add(0, millionSeconds);
+			Set<BalanceSheetVO> balanceSheetVO=element.getBalanceSheets();
+			for(BalanceSheetVO set:balanceSheetVO){
+				if ("balance".equals(str)) {
+					Double assets=set.getAssets().doubleValue();
+					Double liabilities=set.getLiabilities().doubleValue();
+					Double balance=liabilities/assets;
+					list.add(1,balance);
+				}
+			}
+			listAll.add(list);
+		}
+	
+		JSONArray list = new JSONArray(listAll);
+		return list;
+	}
+
+	public JSONArray ProfitToJson(Integer stock_no, String str){
+		List listAll = new LinkedList();
+		FinancialStatementsService financialStatementsSvc = new FinancialStatementsService();
+		List<FinancialStatementsVO> financialStatementList=financialStatementsSvc.getOneStock(stock_no);
+		List list2=new LinkedList();
+		list2.add(0, "季度");
+		list2.add(1, "毛利率");
+		list2.add(2,"稅後淨利率");
+//		list2.add(3, "operatingProfitMargin");
+		listAll.add(list2);
+		for(FinancialStatementsVO element:financialStatementList){
+			List list=new LinkedList();
+		
+			Date str1 = element.getPostDate();
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+			String str2=sdf.format(str1);
+			String str3=str2.substring(0,4)+str2.substring(5,7);
+			
+			long millionSeconds=0;
+			millionSeconds=str1.getTime();
+			list.add(0, str3);
+			
+			Set<IncomeStatementVO> incomestatementVO=element.getIncomeStatements();
+			for(IncomeStatementVO set:incomestatementVO){
+				Long revenueLong =set.getOperatingRevenue();
+				Double revenue=revenueLong.doubleValue();
+				Long cost=set.getOperatingCost();
+				Long expenses = set.getOperatingExpenses();
+				Long margain=set.getOperatingMargain();
+				if("grossMargin".equals(str)){
+					Double grossMargin=(revenue-cost)/revenue;
+					list.add(1, grossMargin);
+//					Double operatingProfitMargin=(revenue-cost-expenses)/revenue;
+//					list.add(3, operatingProfitMargin);
+					Double netProfitMargin= set.getNetIncome()/revenue;
+					list.add(2,netProfitMargin);
+				}
+			}
+			listAll.add(list);
+		}
+		JSONArray list = new JSONArray(listAll);
+		return list;
+	}
+	public JSONArray SafetyToJson(Integer stock_no,String str){
+		List listAll = new LinkedList();
+		FinancialStatementsService financialStatementsSvc = new FinancialStatementsService();
+		List<FinancialStatementsVO> financialStatementList=financialStatementsSvc.getOneStock(stock_no);
+		List list2=new LinkedList();
+		list2.add(0, "季度");
+		list2.add(1, "流動比");
+		list2.add(2, "速動比");
+//		list2.add(3, "operatingProfitMargin");
+		listAll.add(list2);
+		for(FinancialStatementsVO element:financialStatementList){
+			List list=new LinkedList();
+		
+			Date str1 = element.getPostDate();
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+			String str2=sdf.format(str1);
+			String str3=str2.substring(0,4)+str2.substring(5,7);
+			
+			long millionSeconds=0;
+			millionSeconds=str1.getTime();
+			list.add(0, str3);
+			
+			Set<BalanceSheetVO> balanceSheetVO=element.getBalanceSheets();
+			for(BalanceSheetVO set:balanceSheetVO){
+				
+				
+				
+			}
+		}
+		
+		JSONArray list = new JSONArray(listAll);
+		return list;
+	}
 	public static void main(String[] args) {
 		ToJsonArray test=new ToJsonArray();
 		test.PERToJson(2330);
 		
 	}
-	
+
 
 	
 	

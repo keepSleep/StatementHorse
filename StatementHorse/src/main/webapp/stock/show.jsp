@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <script
 	src="${pageContext.servletContext.contextPath}/js/jquery-3.1.1.min.js"></script>
 <link rel="stylesheet"
@@ -35,6 +36,7 @@
 
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+
 <style>
 a:link {
 	text-decoration: none
@@ -44,7 +46,7 @@ a:link {
 </head>
 <body>
 	<input type="hidden" id="stockno" value="${stockVO.stockNo}" />
-
+	<input type="hidden" id="stockname" value="${stockVO.stockName}" />
 	<%@include file="Top.jsp"%>
 	<div class="container">
 		<div class="page-header">
@@ -81,30 +83,21 @@ a:link {
 				<li><a href="#"><i class="fa fa-file-text fa-fw"></i>三大財務報表<span
 						class="fa arrow"></span></a>
 					<ul class="nav nav-second-level" style="padding-left: 30px">
-						<li><a href="#">損益表</a></li>
-						<li><a href="#">總資產</a></li>
-						<li><a href="#">負債與股東權益</a></li>
+						<li><a href="#" id="show_incomestatement">損益表</a></li>
+						<li><a href="#" id="show_balancesheet_1">總資產</a></li>
+						<li><a href="#" id="show_balancesheet_2">負債與股東權益</a></li>
 					</ul></li>
 				<li><a href="#"><i class="fa fa-wrench fa-fw"></i>獲利分析<span
 						class="fa arrow"></span></a>
 					<ul class="nav nav-second-level" style="padding-left: 30px">
-						<li><a href="#">利潤比率</a></li>
-						<li><a href="#">ROE/ROA</a></li>
-						<li><a href="#">杜邦分析</a></li>
-						<li><a href="#">經營週轉能力</a></li>
-						<li><a href="#">營運週轉天數</a></li>
-						<li><a href="#">營業現金流對淨利比</a></li>
-						<li><a href="#">現金股利發放率</a></li>
+						<li><a href="#" id="show_profit">利潤比率</a></li>
+					
 					</ul></li>
 				<li><a href="#"><i class="fa fa-wrench fa-fw"></i>安全性分析<span
 						class="fa arrow"></span></a>
 					<ul class="nav nav-second-level" style="padding-left: 30px">
-						<li><a href="#">財務結構比率</a></li>
-						<li><a href="#">流速動比率</a></li>
-						<li><a href="#">利息保障倍數</a></li>
-						<li><a href="#">現金流量分析</a></li>
-						<li><a href="#">營業現金流對淨利比</a></li>
-						<li><a href="#">盈餘再投資比</a></li>
+						<li><a href="#" id="show_balance">財務結構比率</a></li>
+						<li><a href="#" id="">流速動比率</a></li>
 					</ul></li>
 				<li></li>
 				<li></li>
@@ -113,7 +106,7 @@ a:link {
 			<!-- 					</div> -->
 
 			<!----------------------每頁不同從這裡開始----------------------------------------------------->
-<!--個股資料-->
+			<!--個股資料-->
 			<table border='3 bordercolor='
 				black'
 				style="text-indent: 20px; width: 800px; height: 500px; position: absolute; left: 300px; top: 0px; display:; font-size: x-large; margin-bottom: 50px"
@@ -165,7 +158,7 @@ a:link {
 
 				</tr>
 			</table>
-<!--個股最新動態 -->
+			<!--個股最新動態 -->
 			<div class="col-md-6"
 				style="width: 800px; position: absolute; left: 300px; top: 0px; display: none"
 				id="show_div_mgr">
@@ -193,24 +186,23 @@ a:link {
 					</div>
 				</div>
 			</div>
-<!-- 損益表 -->
-<div class="col-md-6"
+			<!-- 損益表 -->
+			<div class="col-md-6"
 				style="width: 800px; position: absolute; left: 300px; top: 0px; display: none"
-				id="show_div_mgr">
+				id="show_div_incomestatement">
 				<div class="panel with-nav-tabs panel-info">
 					<div class="panel-heading" style="background-color: lightblue">
 						<ul class="nav nav-tabs"
 							style="background-color: lightblue; font-size: x-large">
-							<li class="active"><a href="#tab1info" data-toggle="tab"
-								id="111">營收</a></li>
-							<li><a href="#tab2info" data-toggle="tab">毛利</a></li>
-							<li><a href="#tab3info" data-toggle="tab">營業利益</a></li>
-							<li><a href="#tab4info" data-toggle="tab">稅前淨利</a></li>
-							<li><a href="#tab5info" data-toggle="tab">稅後淨利</a></li>
+							<li class="active"><a href="#tab1info_1" data-toggle="tab">季營收</a></li>
+							<li><a href="#tab2info_1" data-toggle="tab">季毛利</a></li>
+							<li><a href="#tab3info_1" data-toggle="tab">營業利益</a></li>
+							<li><a href="#tab4info_1" data-toggle="tab">稅前淨利</a></li>
+							<li><a href="#tab5info_1" data-toggle="tab">稅後淨利</a></li>
 						</ul>
 					</div>
 					<div class="panel-body" style="height: 630px">
-						<div class="tab-content" id="container">
+						<div class="tab-content" id="container_1" >
 							<div class="tab-pane fade in active" id="tab1info_1"
 								style="width: 730px"></div>
 							<div class="tab-pane fade" id="tab2info_1" style="width: 730px"></div>
@@ -221,21 +213,163 @@ a:link {
 					</div>
 				</div>
 			</div>
+			<!-- 資產表 -->
+			<div class="col-md-6"
+				style="width: 800px; position: absolute; left: 300px; top: 0px; display: none"
+				id="show_div_balancesheet_1">
+				<div class="panel with-nav-tabs panel-info">
+					<div class="panel-heading" style="background-color: lightblue">
+						<ul class="nav nav-tabs"
+							style="background-color: lightblue; font-size: x-large">
+							<li class="active"><a href="#tab1info_2" data-toggle="tab">流動資產</a></li>
+							<li><a href="#tab2info_2" data-toggle="tab">固定資產</a></li>
+							<li><a href="#tab3info_2" data-toggle="tab">長期投資</a></li>
+							<li><a href="#tab4info_2" data-toggle="tab">總資產</a></li>
+						</ul>
+					</div>
+					<div class="panel-body" style="height: 630px">
+						<div class="tab-content" id="container_2">
+							<div class="tab-pane fade in active" id="tab1info_2"
+								style="width: 730px"></div>
+							<div class="tab-pane fade" id="tab2info_2" style="width: 730px"></div>
+							<div class="tab-pane fade" id="tab3info_2" style="width: 730px"></div>
+							<div class="tab-pane fade" id="tab4info_2" style="width: 730px"></div>
+							<div class="tab-pane fade" id="tab5info_2" style="width: 730px"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 負債表 -->
+			<div class="col-md-6"
+				style="width: 800px; position: absolute; left: 300px; top: 0px; display: none"
+				id="show_div_balancesheet_2">
+				<div class="panel with-nav-tabs panel-info">
+					<div class="panel-heading" style="background-color: lightblue">
+						<ul class="nav nav-tabs"
+							style="background-color: lightblue; font-size: x-large">
+							<li class="active"><a href="#tab1info_3" data-toggle="tab">流動負債</a></li>
+							<li><a href="#tab2info_3" data-toggle="tab">長期負債</a></li>
+							<li><a href="#tab3info_3" data-toggle="tab">淨值</a></li>
+							<li><a href="#tab4info_3" data-toggle="tab">總負債+淨值</a></li>
+						</ul>
+					</div>
+					<div class="panel-body" style="height: 630px">
+						<div class="tab-content" id="container_2">
+							<div class="tab-pane fade in active" id="tab1info_2"
+								style="width: 730px"></div>
+							<div class="tab-pane fade" id="tab2info_3" style="width: 730px"></div>
+							<div class="tab-pane fade" id="tab3info_3" style="width: 730px"></div>
+							<div class="tab-pane fade" id="tab4info_3" style="width: 730px"></div>
+							<div class="tab-pane fade" id="tab5info_3" style="width: 730px"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+<!--利潤比率  -->
+			<div class="col-md-6" style="border:3px solid lightblue;width: 780px; height:500px;padding:0px; position: absolute; left: 315px; top: 0px; display:none;margin-bottom: 50px" 
+				id="show_div_profit">
+			</div>
+<!-- 財務結構比率 -->
+			<div class="col-md-6" style="border:3px solid lightblue;width: 780px; height:500px;padding:0px; position: absolute; left: 315px; top: 0px; display:none;margin-bottom: 50px" 
+				id="show_div_balance">
+			</div>
+
+
+
+
+
+
+
+
+
 
 			<!----------------------每頁不同從這裡ㄐㄧㄝ----------------------------------------------------->
 
 			<!-- 			</tr> -->
 			</table>
+
 			<script>
+
+				
 				$(function() {
 					var stockno = $("#stockno").val();
+					var stockname = $("#stockname").val();
 					var url = "ShowStockServlet?action=stock&stock_no="
 							+ stockno;
 					$("#first_page").click(function() {
 						$("#show_div_mgr").css("display", "none");
+						$("#show_div_incomestatement").css("display", "none");
+						$("#show_div_balancesheet_1").css("display", "none");
+						$("#show_div_balancesheet_2").css("display", "none");
+						$("#show_div_profit").css("display", "none");
+						$("#show_div_balance").css("display", "none");
 						$("#show_stock").css("display", "");
 
 					})
+					$("#show_mgr").click(function() {
+						$("#show_stock").css("display", "none");
+						$("#show_div_incomestatement").css("display", "none");
+						$("#show_div_balancesheet_1").css("display", "none");
+						$("#show_div_balancesheet_2").css("display", "none");
+						$("#show_div_profit").css("display", "none");
+						$("#show_div_balance").css("display", "none");
+						$("#show_div_mgr").css("display", "");
+						
+					})
+					$("#show_incomestatement").click(function() {
+						$("#show_div_mgr").css("display", "none");
+						$("#show_stock").css("display", "none");
+						$("#show_div_balancesheet_1").css("display", "none");
+						$("#show_div_balancesheet_2").css("display", "none");
+						$("#show_div_profit").css("display", "none");
+						$("#show_div_balance").css("display", "none");
+						$("#show_div_incomestatement").css("display", "");
+
+					})
+					$("#show_balancesheet_1").click(function() {
+						$("#show_div_mgr").css("display", "none");
+						$("#show_stock").css("display", "none");
+						$("#show_div_incomestatement").css("display", "none");
+						$("#show_div_balancesheet_2").css("display", "none");
+						$("#show_div_profit").css("display", "none");
+						$("#show_div_balance").css("display", "none");
+						$("#show_div_balancesheet_1").css("display", "");
+
+					})
+					$("#show_balancesheet_2").click(function() {
+						$("#show_div_mgr").css("display", "none");
+						$("#show_stock").css("display", "none");
+						$("#show_div_incomestatement").css("display", "none");
+						$("#show_div_profit").css("display", "none");
+						$("#show_div_balancesheet_1").css("display", "none");
+						$("#show_div_balance").css("display", "none");
+						$("#show_div_balancesheet_2").css("display", "");
+
+					})
+					$("#show_profit").click(function(){
+						$("#show_div_mgr").css("display", "none");
+						$("#show_stock").css("display", "none");
+						$("#show_div_incomestatement").css("display", "none");
+						$("#show_div_balancesheet_1").css("display", "none");
+						$("#show_div_balancesheet_2").css("display", "none");
+						$("#show_div_balance").css("display", "none");
+						$("#show_div_profit").css("display", "");
+					
+					
+					
+					})
+					$("#show_balance").click(function(){
+						$("#show_div_mgr").css("display", "none");
+						$("#show_stock").css("display", "none");
+						$("#show_div_incomestatement").css("display", "none");
+						$("#show_div_balancesheet_1").css("display", "none");
+						$("#show_div_balancesheet_2").css("display", "none");
+						$("#show_div_profit").css("display", "none");
+						$("#show_div_balance").css("display", "");
+					
+					
+					})
+					
 					//判別checkbox
 
 					var list_no = $("#TrackListing_id>li>input:eq(0)").val();
@@ -292,8 +426,7 @@ a:link {
 						}
 					})
 					$("#show_mgr").click(function() {
-						$("#show_stock").css("display", "none");
-						$("#show_div_mgr").css("display", "");
+						
 						//mgrjson
 						var mgrurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=mgrjson&stock_no='
 								+ stockno;
@@ -307,7 +440,7 @@ a:link {
 									text : '月營收(' + stockno + ')'
 								},
 								series : [ {
-									name : 'AAPL',
+									name : stockname,
 									data : data,
 									tooltip : {
 										valueDecimals : 2
@@ -315,6 +448,10 @@ a:link {
 								} ]
 							});
 						});
+						
+						
+						
+						
 
 						//pricejson
 						var priceurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=pricejson&stock_no='
@@ -329,7 +466,7 @@ a:link {
 								},
 								series : [ {
 									type : 'candlestick',
-									name : 'AAPL Stock Price',
+									name : stockname,
 									data : data,
 									dataGrouping : {
 										units : [ [ 'week', // unit name
@@ -352,7 +489,7 @@ a:link {
 									text : '每股盈餘(' + stockno + ')'
 								},
 								series : [ {
-									name : 'AAPL',
+									name : stockname,
 									data : data,
 									tooltip : {
 										valueDecimals : 2
@@ -381,7 +518,7 @@ a:link {
 
 								series : [ {
 									type : 'column',
-									name : '股利',
+									name :"",
 									data : data,
 								//				                 dataGrouping: {
 								//				                     units: [[
@@ -400,23 +537,47 @@ a:link {
 								+ stockno;
 						$.getJSON(PERurl, function(data) {
 
-							// create the chart
 							$('#tab5info').highcharts('StockChart', {
+								rangeSelector : {
+									selected : 5
+								},
+								title : {
+									text : '本益比(' + stockno + ')'
+								},
+								series : [ {
+									name : stockname,
+									data : data,
+									tooltip : {
+										valueDecimals : 2
+									}
+								} ]
+							});
+						});
+					})
+					
+					$("#show_incomestatement").click(function() {
+						//incomestatementjson季營收
+						var revenuejsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingRevenue&stock_no='
+								+ stockno;
+						$.getJSON(revenuejsonurl, function(data) {
+
+							// creaㄅte the chart
+							$('#tab1info_1').highcharts('StockChart', {
 								chart : {
 									alignTicks : false
 								},
 
 								rangeSelector : {
-									selected : 3
+									selected : 5
 								},
 
 								title : {
-									text : '本益比(' + stockno + ')'
+									text : '季營收(' + stockno + ')'
 								},
 
 								series : [ {
 									type : 'column',
-									name : '本益比',
+									name :"",
 									data : data,
 								//				                 dataGrouping: {
 								//				                     units: [[
@@ -430,8 +591,203 @@ a:link {
 								} ]
 							});
 						});
+						//incomestatementjson季毛利
+						var operatingMargainjsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingMargain&stock_no='
+								+ stockno;
+						$.getJSON(operatingMargainjsonurl, function(data) {
+
+							// creaㄅte the chart
+							$('#tab2info_1').highcharts('StockChart', {
+								chart : {
+									alignTicks : false
+								},
+
+								rangeSelector : {
+									selected : 5
+								},
+
+								title : {
+									text : '季毛利(' + stockno + ')'
+								},
+
+								series : [ {
+									type : 'column',
+									name :"",
+									data : data,
+								//				                 dataGrouping: {
+								//				                     units: [[
+								//				                         'week', // unit name
+								//				                         [1] // allowed multiples
+								//				                     ], [
+								//				                         'month',
+								//				                         [1, 2, 3, 4, 6]
+								//				                     ]]
+								//				                 }
+								} ]
+							});
+						});
+					var operatingIncomejsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingIncome&stock_no='
+							+ stockno;
+					$.getJSON(operatingIncomejsonurl, function(data) {
+						// Create the chart
+						$('#tab3info_1').highcharts('StockChart', {
+							rangeSelector : {
+								selected : 5
+							},
+							title : {
+								text : '營業利益(' + stockno + ')'
+							},
+							series : [ {
+								name : stockname,
+								data : data,
+								tooltip : {
+									valueDecimals : 2
+								}
+							} ]
+						});
+					});
+					var oibtjsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=oibt&stock_no='
+						+ stockno;
+				$.getJSON(oibtjsonurl, function(data) {
+
+					// creaㄅte the chart
+					$('#tab4info_1').highcharts('StockChart', {
+						chart : {
+							alignTicks : false
+						},
+
+						rangeSelector : {
+							selected : 5
+						},
+
+						title : {
+							text : '稅前淨利(' + stockno + ')'
+						},
+
+						series : [ {
+							type : 'column',
+							name :"",
+							data : data,
+						//				                 dataGrouping: {
+						//				                     units: [[
+						//				                         'week', // unit name
+						//				                         [1] // allowed multiples
+						//				                     ], [
+						//				                         'month',
+						//				                         [1, 2, 3, 4, 6]
+						//				                     ]]
+						//				                 }
+						} ]
+					});
+				});
+						
+				var netIncomejsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=netIncome&stock_no='
+					+ stockno;
+				
+				 $.getJSON(netIncomejsonurl, function (data) {
+
+				        // Create the chart
+				        Highcharts.stockChart('tab5info_1', {
+
+
+				            rangeSelector: {
+				                selected: 5
+				            },
+
+				            title: {
+				                text: '稅後淨利(' + stockno + ')'
+				            },
+
+				            series: [{
+				                name: stockname,
+				                data: data,
+				                marker: {
+				                    enabled: true,
+				                    radius: 3
+				                },
+				                shadow: true,
+				                tooltip: {
+				                    valueDecimals: 2
+				                }
+				            }]
+				        });
+				    });
+
+					})	
+					$("#show_balance").click(function() {
+						balancejsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=balancesheetjson&need=balance&stock_no='
+							+ stockno;
+						
+						 $.getJSON(balancejsonurl, function (data) {
+
+						        // Create the chart
+						        Highcharts.stockChart('show_div_balance', {
+
+
+						            rangeSelector: {
+						                selected: 5
+						            },
+
+						            title: {
+						                text: '負債比(' + stockno + ')'
+						            },
+
+						            series: [{
+						                name: stockname,
+						                data: data,
+						                marker: {
+						                    enabled: true,
+						                    radius: 3
+						                },
+						                shadow: true,
+						                tooltip: {
+						                    valueDecimals: 2
+						                }
+						            }]
+						        });
+						    });
+
 					})
 				})
 			</script>
-</body>
+<!-- 獲利分析 -->
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ <script type="text/javascript">
+ 	$(function(){
+ 		var result=new Array();
+ 		var stockno = $("#stockno").val();
+ 		var stockname = $("#stockname").val();
+ 		$.getJSON("http://localhost:8081/StatementHorse/ShowStockServlet?json=profitjson&need=grossMargin&stock_no="+stockno,function(data){
+ 			result=data
+ 		})
+ 		$("#show_profit").click(function(){
+ 		
+ 		
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(result)
+        var options = {
+          title: stockname,
+          curveType: 'function',
+          legend: { position: 'bottom'}
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('show_div_profit'));
+
+        chart.draw(data, options);
+      }
+ 		})
+		
+ 	})
+    </script>
+
+			
+			
+
+
+			
+			</body>
 </html>

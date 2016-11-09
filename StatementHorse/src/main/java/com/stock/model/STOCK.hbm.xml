@@ -37,7 +37,7 @@
 			</key>
 			<one-to-many class="com.incomestatement.model.IncomeStatementVO" />
 		</set>
-		<set name="balanceSheets" table="BALANCE_SHEET" lazy="true" cascade="all"  inverse="true" order-by="statement_date desc" >			
+		<set name="balanceSheets" table="BALANCE_SHEET" lazy="true" cascade="all"  inverse="true" order-by="statement_date asc" >			
 			<key>
 				<column name="stock_no" />
 			</key>
