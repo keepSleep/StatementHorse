@@ -8,4 +8,5 @@ public interface BalanceSheet_interface {
     public void delete(BalanceSheetVO balanceSheetVO);
     public BalanceSheetVO findByPrimaryKey(BalanceSheetVO balanceSheetVO);
     public List<BalanceSheetVO> getAll();
+    public List<BalanceSheetVO> getByStockNo(Integer stockNo);
 }

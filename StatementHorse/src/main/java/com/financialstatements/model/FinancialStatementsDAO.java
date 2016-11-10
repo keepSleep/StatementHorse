@@ -13,16 +13,19 @@ import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.balancesheet.model.BalanceSheetHibernateDAO;
+import com.balancesheet.model.BalanceSheetDAO;
 import com.balancesheet.model.BalanceSheetVO;
-import com.incomestatement.model.IncomeStatementHibernateDAO;
+import com.incomestatement.model.IncomeStatementDAO;
 import com.incomestatement.model.IncomeStatementVO;
 
 import hibernate.util.HibernateUtil;
 
 public class FinancialStatementsDAO implements FinancialStatements_interface {
 	private static final String GET_ALL_STMT = "FROM FinancialStatementsVO ORDER BY stockNo , statementDate";
-
+	private static final String GET_BY_POST_DATE_STMT ="FROM FinancialStatementsVO where postDate=? order by postTime";
+	private static final String GET_DATE_BY_STOCK="FROM FinancialStatementsVO Where stockNo=? ORDER BY postDate desc";
+	private static final String GET_BY_STOCK="FROM FinancialStatementsVO Where stockNo=? ORDER BY postDate asc";
+	
 	@Override
 	public void insert(FinancialStatementsVO financialStatementsVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -48,6 +51,45 @@ public class FinancialStatementsDAO implements FinancialStatements_interface {
 			throw ex;
 		}
 	}
+
+	@Override
+	public List<FinancialStatementsVO> findByStockNo(Integer stockno) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		List<FinancialStatementsVO> list=null;
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GET_DATE_BY_STOCK);
+			query.setParameter(0, stockno);
+			list=query.list();
+			session.getTransaction().commit();			
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
+	}
+	
+
+	
+	@Override
+	public List<FinancialStatementsVO> getByStockNo(Integer stockno) {
+		
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			List<FinancialStatementsVO> list=null;
+			try {
+				session.beginTransaction();
+				Query query = session.createQuery(GET_BY_STOCK);
+				query.setParameter(0, stockno);
+				list=query.list();
+				session.getTransaction().commit();			
+			} catch (RuntimeException ex) {
+				session.getTransaction().rollback();
+				throw ex;
+			}
+			return list;
+		}
+
+	
 
 	@Override
 	public void delete(FinancialStatementsVO financialStatementsVO) {
@@ -108,5 +150,47 @@ public class FinancialStatementsDAO implements FinancialStatements_interface {
 		}
 		return list;
 	}
+	
+	@Override
+	public List<FinancialStatementsVO> getByPostDate(FinancialStatementsVO financialStatementsVO){
+		List<FinancialStatementsVO> list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try{
+			session.beginTransaction();
+			Query query = session.createQuery(GET_BY_POST_DATE_STMT);
+			query.setParameter(0, financialStatementsVO.getPostDate());
+			
+			list= query.list();
+			
+			session.getTransaction().commit();
+			
+		}catch(RuntimeException ex){
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		
+		return list;
+		
+	}
+
+	
+	//------------財報比較查詢全部statementDates---By葉哲-----------------
+	private static final String GET_ALL_SDs = "select statement_date FROM FINANCIAL_STATEMENTS GROUP BY statement_date ORDER BY statement_date desc";
+	@Override
+	public List<FinancialStatementsVO> getAllSDs() {
+		List<FinancialStatementsVO> list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try{
+			session.beginTransaction();
+			Query query = session.createSQLQuery(GET_ALL_SDs);
+			list= query.list();
+			session.getTransaction().commit();
+		}catch(RuntimeException ex){
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
+	}
+	
 	
 }
