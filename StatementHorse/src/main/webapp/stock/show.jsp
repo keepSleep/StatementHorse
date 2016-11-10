@@ -198,6 +198,7 @@ a:link {
 							<li><a href="#tab3info_1" data-toggle="tab">營業利益</a></li>
 							<li><a href="#tab4info_1" data-toggle="tab">稅前淨利</a></li>
 							<li><a href="#tab5info_1" data-toggle="tab">稅後淨利</a></li>
+							<li><a href="#tab6info_1" data-toggle="tab">損益表</a></li>
 						</ul>
 					</div>
 					<div class="panel-body" style="height: 630px">
@@ -208,6 +209,7 @@ a:link {
 							<div class="tab-pane fade" id="tab3info_1" style="width: 730px"></div>
 							<div class="tab-pane fade" id="tab4info_1" style="width: 730px"></div>
 							<div class="tab-pane fade" id="tab5info_1" style="width: 730px"></div>
+							<div class="tab-pane fade" id="tab6info_1" style="width: 730px"></div>
 						</div>
 					</div>
 				</div>
@@ -467,10 +469,10 @@ a:link {
 						            type: 'column'
 						        },
 						        title: {
-						            text: 'World\'s largest cities per 2014'
+						            text:  '每股盈餘'
 						        },
 						        subtitle: {
-						            text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+						            text:stockname+ "("+stockno+')'
 						        },
 						        xAxis: {
 						            type: 'category',
@@ -485,14 +487,14 @@ a:link {
 						        yAxis: {
 						            min: 0,
 						            title: {
-						                text: 'Population (millions)'
+						                text:  'earningPerShare'
 						            }
 						        },
 						        legend: {
 						            enabled: false
 						        },
 						        tooltip: {
-						            pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>'
+						            pointFormat: '每股盈餘: <b>{point.y:.1f}</b>'
 						        },
 						        series: [{
 						            name: 'Population',
@@ -545,36 +547,18 @@ a:link {
 					$("#show_incomestatement").click(
 							function() {
 					//incomestatementjson季營收
-					var revenuejsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingRevenue&stock_no='
-							+ stockno;
-// 					$.getJSON(revenuejsonurl,function(data) {
-// 									// creaㄅte the chart
-// 					     $('#tab1info_1').highcharts('StockChart',{chart : {alignTicks : false},
-// 									rangeSelector : {selected : 5},
-// 									title : {text : '季營收('+ stockno+ ')'},
-// 									series : [ {type : 'column',name : "",data : data,
-// 																				//				                 dataGrouping: {
-// 																				//				                     units: [[
-// 																				//				                         'week', // unit name
-// 																				//				                         [1] // allowed multiples
-// 																				//				                     ], [
-// 																				//				                         'month',
-// 																				//				                         [1, 2, 3, 4, 6]
-// 																				//				                     ]]
-// 																				//				                 }
-// 									} ]
-// 									});
-// 						});
-					$.getJSON("http://localhost:8081/StatementHorse/ShowStockServlet?json=profitjson&need=operatingRevenue&stock_no="+stockno,function(data) {
+					var revenuejsonurl ="http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingRevenue&stock_no="+stockno;
+
+					$.getJSON(revenuejsonurl,function(data) {
 						Highcharts.chart('tab1info_1', {
 					        chart: {
 					            type: 'column'
 					        },
 					        title: {
-					            text: 'World\'s largest cities per 2014'
+					            text: '季營收'
 					        },
 					        subtitle: {
-					            text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+					            text: stockname+'('+stockno+')'
 					        },
 					        xAxis: {
 					            type: 'category',
@@ -589,17 +573,17 @@ a:link {
 					        yAxis: {
 					            min: 0,
 					            title: {
-					                text: 'Population (millions)'
+					                text: 'Revenue(millions)'
 					            }
 					        },
 					        legend: {
 					            enabled: false
 					        },
 					        tooltip: {
-					            pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>'
+					            pointFormat: '營收: <b>{point.y:.1f}百萬</b>'
 					        },
 					        series: [{
-					            name: 'Population',
+					            name: 'Revenue',
 					            data:data,
 // 					            dataLabels: {
 // 					                enabled: true,
@@ -615,11 +599,6 @@ a:link {
 // 					            }
 					        }]
 					    });
-						
-						
-						
-						
-						
 					})
 							
 
@@ -630,67 +609,258 @@ a:link {
 					var operatingMargainjsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingMargain&stock_no='
 							+ stockno;
 					$.getJSON(operatingMargainjsonurl,function(data) {
-								// creaㄅte the chart
-							$('#tab2info_1').highcharts('StockChart',{chart : {alignTicks : false},
-											rangeSelector : {selected : 5},
-											title : {text : '季毛利('+ stockno+ ')'},
-											series : [ {type : 'column',name : "",data : data,
-																				//				                 dataGrouping: {
-																				//				                     units: [[
-																				//				                         'week', // unit name
-																				//				                         [1] // allowed multiples
-																				//				                     ], [
-																				//				                         'month',
-																				//				                         [1, 2, 3, 4, 6]
-																				//				                     ]]
-																				//				                 }
-										} ]
-								});
+						Highcharts.chart('tab2info_1', {
+					        chart: {
+					            type: 'column'
+					        },
+					        title: {
+					            text: '季毛利'
+					        },
+					        subtitle: {
+					            text: stockname+'('+stockno+')'
+					        },
+					        xAxis: {
+					            type: 'category',
+					            labels: {
+					                rotation: -45,
+					                style: {
+					                    fontSize: '13px',
+					                    fontFamily: 'Verdana, sans-serif'
+					                }
+					            }
+					        },
+					        yAxis: {
+					            min: 0,
+					            title: {
+					                text: 'Margain(millions)'
+					            }
+					        },
+					        legend: {
+					            enabled: false
+					        },
+					        tooltip: {
+					            pointFormat: '毛利: <b>{point.y:.1f}百萬</b>'
+					        },
+					        series: [{
+					            name: 'Margain',
+					            data:data,
+// 					            dataLabels: {
+// 					                enabled: true,
+// 					                rotation: -90,
+// 					                color: '#FFFFFF',
+// 					                align: 'right',
+// 					                format: '{point.y:.1f}', // one decimal
+// 					                y: 10, // 10 pixels down from the top
+// 					                style: {
+// 					                    fontSize: '13px',
+// 					                    fontFamily: 'Verdana, sans-serif'
+// 					                }
+// 					            }
+					        }]
+					    });
 						});
+					//稅前淨利
 						var operatingIncomejsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingIncome&stock_no='
 							+ stockno;
 						$.getJSON(operatingIncomejsonurl,function(data) {
-									// Create the chart
-								$('#tab3info_1').highcharts('StockChart',{rangeSelector : {selected : 5},
-												title : {text : '營業利益('+ stockno+ ')'},
-												series : [ {name : stockname,data : data,
-												tooltip : {valueDecimals : 2}
-										} ]
-								});
-						});
+							Highcharts.chart('tab3info_1', {
+						        chart: {
+						            type: 'column'
+						        },
+						        title: {
+						            text: '營業利益'
+						        },
+						        subtitle: {
+						            text: stockname+'('+stockno+')'
+						        },
+						        xAxis: {
+						            type: 'category',
+						            labels: {
+						                rotation: -45,
+						                style: {
+						                    fontSize: '13px',
+						                    fontFamily: 'Verdana, sans-serif'
+						                }
+						            }
+						        },
+						        yAxis: {
+						            min: 0,
+						            title: {
+						                text: 'operatingIncome(millions)'
+						            }
+						        },
+						        legend: {
+						            enabled: false
+						        },
+						        tooltip: {
+						            pointFormat: '營業利益: <b>{point.y:.1f}百萬</b>'
+						        },
+						        series: [{
+						            name: 'operatingIncome',
+						            data:data,
+//	 					            dataLabels: {
+//	 					                enabled: true,
+//	 					                rotation: -90,
+//	 					                color: '#FFFFFF',
+//	 					                align: 'right',
+//	 					                format: '{point.y:.1f}', // one decimal
+//	 					                y: 10, // 10 pixels down from the top
+//	 					                style: {
+//	 					                    fontSize: '13px',
+//	 					                    fontFamily: 'Verdana, sans-serif'
+//	 					                }
+//	 					            }
+						        }]
+						    });
+						})
 						var oibtjsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=oibt&stock_no='
-								+ stockno;
-						$.getJSON(oibtjsonurl, function(data) {
-							// creaㄅte the chart
-						$('#tab4info_1').highcharts('StockChart',{chart : {alignTicks : false},
-								rangeSelector : {selected : 5},
-								title : {text : '稅前淨利('+ stockno+ ')'},
-								series : [ {type : 'column',name : "",data : data,
-														//				                 dataGrouping: {
-														//				                     units: [[
-														//				                         'week', // unit name
-														//				                         [1] // allowed multiples
-														//				                     ], [
-														//				                         'month',
-														//				                         [1, 2, 3, 4, 6]
-														//				                     ]]
-														//				                 }
-										} ]
-								});
-						});
+							+ stockno;
+						$.getJSON(oibtjsonurl,function(data) {
+							Highcharts.chart('tab4info_1', {
+						        chart: {
+						            type: 'column'
+						        },
+						        title: {
+						            text: '稅前淨利'
+						        },
+						        subtitle: {
+						            text: stockname+'('+stockno+')'
+						        },
+						        xAxis: {
+						            type: 'category',
+						            labels: {
+						                rotation: -45,
+						                style: {
+						                    fontSize: '13px',
+						                    fontFamily: 'Verdana, sans-serif'
+						                }
+						            }
+						        },
+						        yAxis: {
+						            min: 0,
+						            title: {
+						                text: 'Profit(millions)'
+						            }
+						        },
+						        legend: {
+						            enabled: false
+						        },
+						        tooltip: {
+						            pointFormat: '稅前淨利: <b>{point.y:.1f}百萬</b>'
+						        },
+						        series: [{
+						            name: 'Profit',
+						            data:data,
+//	 					            dataLabels: {
+//	 					                enabled: true,
+//	 					                rotation: -90,
+//	 					                color: '#FFFFFF',
+//	 					                align: 'right',
+//	 					                format: '{point.y:.1f}', // one decimal
+//	 					                y: 10, // 10 pixels down from the top
+//	 					                style: {
+//	 					                    fontSize: '13px',
+//	 					                    fontFamily: 'Verdana, sans-serif'
+//	 					                }
+//	 					            }
+						        }]
+						    });
+						})
 					var netIncomejsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=netIncome&stock_no='
 							+ stockno;
-					$.getJSON(netIncomejsonurl,function(data) {
-							// Create the chart
-						Highcharts.stockChart('tab5info_1',{rangeSelector : {selected : 5},
-								title : {text : '稅後淨利('+ stockno+ ')'},
-								series : [ {name : stockname,data : data,
-								marker : {enabled : true,radius : 3},
-								shadow : true,tooltip : {valueDecimals : 2}} ]
-								});
-							});
-
+						$.getJSON(netIncomejsonurl,function(data) {
+							Highcharts.chart('tab5info_1', {
+						        chart: {
+						            type: 'column'
+						        },
+						        title: {
+						            text: '稅後淨利'
+						        },
+						        subtitle: {
+						            text: stockname+'('+stockno+')'
+						        },
+						        xAxis: {
+						            type: 'category',
+						            labels: {
+						                rotation: -45,
+						                style: {
+						                    fontSize: '13px',
+						                    fontFamily: 'Verdana, sans-serif'
+						                }
+						            }
+						        },
+						        yAxis: {
+						            min: 0,
+						            title: {
+						                text: 'Profit(millions)'
+						            }
+						        },
+						        legend: {
+						            enabled: false
+						        },
+						        tooltip: {
+						            pointFormat: '稅後淨利: <b>{point.y:.1f}百萬</b>'
+						        },
+						        series: [{
+						            name: 'Profit',
+						            data:data,
+//	 					            dataLabels: {
+//	 					                enabled: true,
+//	 					                rotation: -90,
+//	 					                color: '#FFFFFF',
+//	 					                align: 'right',
+//	 					                format: '{point.y:.1f}', // one decimal
+//	 					                y: 10, // 10 pixels down from the top
+//	 					                style: {
+//	 					                    fontSize: '13px',
+//	 					                    fontFamily: 'Verdana, sans-serif'
+//	 					                }
+//	 					            }
+						        }]
+						    });
+						})
+					//統整表
+					var incomejsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomejson&stock_no='+stockno;
+					$.getJSON(incomejsonurl,function(data){
+						 Highcharts.chart('tab6info_1', {
+					        title: {
+					            text:"損益表",
+					            x: -20 //center
+					        },
+					        subtitle: {
+					            text: stockname+"("+stockno+")",
+					            x: -20
+					        },
+					        xAxis: data[0],
+					        yAxis: {
+					            title: {
+					                text: ''
+					            },
+					            plotLines: [{
+					                value: 0,
+					                width: 1,
+					                color: '#808080'
+					            }]
+					        },
+					        tooltip: {
+					            valueSuffix: '元'
+					        },
+					        legend: {
+					            layout: 'vertical',
+					            align: 'right',
+					            verticalAlign: 'middle',
+					            borderWidth: 0
+					        },
+					        series: [data[1], data[2],data[4],data[5]]
+					    });
+					
+					
+					
+					
+					
 					})
+							})
+					
 				$("#show_balancesheet_1").click(function() {
 					var assetsjsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=assetsjson&stock_no='+stockno;
 					$.getJSON(assetsjsonurl,function(data){

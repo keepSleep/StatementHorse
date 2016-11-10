@@ -163,6 +163,13 @@ public class ShowStockServlet extends HttpServlet {
 			out.print(list);	
 			out.close();
 		}
+		if("incomejson".equals(json)){
+			PrintWriter out = resp.getWriter();
+			ToJsonArray tojson=new ToJsonArray();
+			JSONArray list=tojson.IncomeToJson(stockNo);
+			out.print(list);	
+			out.close();
+		}
 	}
 
 }
