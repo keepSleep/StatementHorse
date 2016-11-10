@@ -32,7 +32,7 @@
 
 	<table style="background-color: lightblue; height: 70px;width:100%">
 		<tr>
-			<td ><a href="">
+			<td ><a href="${pageContext.servletContext.contextPath}/MessageIndex.jsp">
 			<img src="${pageContext.servletContext.contextPath}/picture/statementhourse.png" class="img-circle" style="padding: 5px"></a></td>
 			<td>
 				<table>
@@ -168,7 +168,7 @@
 		var last=$("#true").text();
 // 		setInterval("refreshnews()",5000);
 		$("#tg").click(function(){
-			$("#tg").attr("style","color:#337ab7")
+			$("#tg").attr("style","color:#337ab7;width:65px")
 		})
 // 		for (var i=1; i<=last; i++) {
 // 			var stockno=$("#"+i).text();
@@ -232,7 +232,7 @@
 		console.log(data)
 		$("#newmessage").empty();
 		if($("#messagelength").val()!=data.length){
-			$("#tg").attr("style","color:#c13353");
+			$("#tg").attr("style","color:#c13353;width:65px");
 			}
 		$("#messagelength").val(data.length);
 		$.each(data,function(i,v){		
