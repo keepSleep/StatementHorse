@@ -42,7 +42,7 @@
 
 		$("#datepicker").change(function() {
 			console.log($("#datepicker").datepicker("getDate"))
-		})
+		});
 
 	</script>
 
