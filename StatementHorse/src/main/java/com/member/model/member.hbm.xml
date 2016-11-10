@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.member.model.MemberVO" table="MEMBER">
+
+		<id name="memberId" column="member_id" />
+
+		<property name="memberEmail" column="member_email" />
+		<property name="memberPassword" column="member_password" />
+		<property name="memberCheck" column="member_check"/>
+
+		<!-- <set name="msgVOs" table="MESSAGE" lazy="false" cascade="all" inverse="true" 
+			> -->
+		<!-- <key><column name="member_id"/></key> -->
+		<!-- <one-to-many class="com.message.model.MsgVO"/> -->
+		<!-- </set> -->
+
+		<!-- <set name="trackListingVOs" table="TRACK_LISTING" lazy="false" cascade="all" 
+			inverse="true" > -->
+		<!-- <key><column name="member_id"/></key> -->
+		<!-- <one-to-many class="com.tracklisting.model.TrackListingVO"/> -->
+		<!-- </set> -->
+
+	</class>
+</hibernate-mapping>
+

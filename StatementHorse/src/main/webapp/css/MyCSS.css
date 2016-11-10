@@ -1,0 +1,6 @@
+@CHARSET "BIG5";
+
+.changecolor:focus,
+.changecolor:hover{
+background-color: lightblue
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.dividend.model.DividendVO" table="DIVIDEND">
+		<composite-id>
+			<key-many-to-one name="StockVO" class="com.stock.model.StockVO" lazy="false">
+			<column name="stock_no" />
+			</key-many-to-one>
+			<key-property name="dividendYear" column="dividend_year" />
+		</composite-id>
+
+		<property name="dividend" column="dividend" />
+
+
+		
+
+	</class>
+</hibernate-mapping>
+
+		

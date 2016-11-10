@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+	<session-factory>
+
+		<!-- JDBC連線池 (預設會使用Hibernate內建的連線池)(不建議用在實際的專案) -->
+		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+		<property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;DatabaseName=StatementHorse</property>
+		<property name="hibernate.connection.username">sa</property>
+		<property name="hibernate.connection.password">P@ssw0rd</property>
+        
+		<!--SQL方言,以下使用SQLServer -->
+		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+
+		<!--是否要顯示實際操作資料庫時的SQL -->
+		<property name="hibernate.show_sql">true</property>
+
+        <!-- Disable the second-level cache -->
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+		<!--交易管理類型, 以下使用JDBC Transaction -->
+		<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+        
+        <!-- Enable Hibernate's automatic session context management -->
+		<property name="hibernate.current_session_context_class">thread</property>
+
+		<!--Java物件與資料庫表格的映射檔 -->
+		<mapping resource="com/messagelists/model/messagelist.hbm.xml" />
+		<mapping resource="com/message/model/message.hbm.xml" />
+		<mapping resource="com/member/model/member.hbm.xml" />
+		<mapping resource="com/tracklisting/model/TrackListing.hbm.xml" />
+		<mapping resource="com/listingdetails/model/ListingDetails.hbm.xml" />
+		<mapping resource="com/stock/model/STOCK.hbm.xml" />
+		<mapping resource="com/price/model/price.hbm.xml" />
+		<mapping resource="com/mgr/model/MGR.hbm.xml" />
+		<mapping resource="com/incomestatement/model/income_statement.hbm.xml" />
+		<mapping resource="com/financialstatements/model/financial_statements.hbm.xml" />
+		<mapping resource="com/balancesheet/model/balance_sheet.hbm.xml" />
+		<mapping resource="com/news/model/news.hbm.xml" />
+		<mapping resource="com/stocknews/model/stocknews.hbm.xml" />
+		<mapping resource="com/dividend/model/dividend.hbm.xml" />
+	</session-factory>
+	
+</hibernate-configuration>

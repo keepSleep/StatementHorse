@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.financialstatements.model.FinancialStatementsVO"
+		table="FINANCIAL_STATEMENTS">
+		<composite-id>
+			<key-property name="stockNo" column="stock_no" />
+			<key-property name="statementDate" column="statement_date"/>
+		</composite-id>
+
+		<property name="postDate" column="post_date"></property>
+		<property name="postTime" column="post_time"></property>
+
+		<set name="balanceSheets" table="BALANCE_SHEET" lazy="false" cascade="all" inverse="true" >
+        	<key><column name="stock_no"/><column name="statement_date"/></key>
+        	<one-to-many class="com.balancesheet.model.BalanceSheetVO"/>
+        </set>
+        <set name="incomeStatements" table="INCOME_STATEMENT" lazy="false" cascade="all" inverse="true" >
+        	<key><column name="stock_no"/><column name="statement_date"/></key>
+        	<one-to-many class="com.incomestatement.model.IncomeStatementVO"/>
+        </set>
+
+	</class>
+</hibernate-mapping>
