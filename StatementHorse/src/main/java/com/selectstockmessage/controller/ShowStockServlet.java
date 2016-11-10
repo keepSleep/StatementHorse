@@ -156,6 +156,12 @@ public class ShowStockServlet extends HttpServlet {
 			JSONArray list=tojson.balanceSheetToJson(stockNo,need);
 			out.print(list);	
 			out.close();
+		}if("assetsjson".equals(json)){
+			PrintWriter out = resp.getWriter();
+			ToJsonArray tojson=new ToJsonArray();
+			JSONArray list=tojson.AssetsToJson(stockNo);
+			out.print(list);	
+			out.close();
 		}
 	}
 
