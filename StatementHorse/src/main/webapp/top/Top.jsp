@@ -12,8 +12,8 @@
 
 <script
 	src="${pageContext.servletContext.contextPath}/js/jquery-3.1.1.min.js"></script>
-<script
-	src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script>
+ <script
+	src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script> 
 <style>
   .modal-header, h4, .close {
       background-color: #5cb85c;
