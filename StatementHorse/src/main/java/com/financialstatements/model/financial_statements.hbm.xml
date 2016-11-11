@@ -7,7 +7,7 @@
 		table="FINANCIAL_STATEMENTS">
 		<composite-id>
 			<key-property name="stockNo" column="stock_no" />
-			<key-property name="statementDate" column="statement_date" />
+			<key-property name="statementDate" column="statement_date"/>
 		</composite-id>
 
 		<property name="postDate" column="post_date"></property>

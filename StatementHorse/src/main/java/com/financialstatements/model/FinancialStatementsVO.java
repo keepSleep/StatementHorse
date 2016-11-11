@@ -1,6 +1,7 @@
 package com.financialstatements.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,7 +11,7 @@ import com.incomestatement.model.IncomeStatementVO;
 public class FinancialStatementsVO implements Serializable {
 	private Integer stockNo;
 	private String statementDate;
-	private String postDate;
+	private Date postDate;
 	private String postTime;
 	private Set<BalanceSheetVO> balanceSheets = new HashSet<BalanceSheetVO>();
 	private Set<IncomeStatementVO> incomeStatements = new HashSet<IncomeStatementVO>();
@@ -49,11 +50,11 @@ public class FinancialStatementsVO implements Serializable {
 		this.statementDate = statementDate;
 	}
 
-	public String getPostDate() {
+	public Date getPostDate() {
 		return postDate;
 	}
 
-	public void setPostDate(String postDate) {
+	public void setPostDate(Date postDate) {
 		this.postDate = postDate;
 	}
 

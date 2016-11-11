@@ -5,11 +5,10 @@
 <hibernate-mapping>
 	<class name="com.price.model.PriceVO" table="PRICE">
 		<composite-id>
-<!-- 			<key-property name="stockNo" column="stock_no"/> -->
-			<key-property name="priceDate" column="price_date"/>
 			<key-many-to-one name="StockVO" class="com.stock.model.StockVO" lazy="false">
             	<column name="stock_no" />
         	</key-many-to-one>
+			<key-property name="priceDate" column="price_date"/>
 		</composite-id>
 		
 		<property name="openPrice" column="open_price"/>
@@ -17,9 +16,5 @@
 		<property name="highestPrice" column="highest_price"/>
 		<property name="lowestPrice" column="lowest_price"/>
 		<property name="quantity" column="quantity"/>
-		
-<!-- 		<many-to-one name="StockVO" class="iii.stock.model.StockVO" lazy="false" insert="false" update="false"> -->
-<!--             <column name="stock_no" /> -->
-<!--         </many-to-one> -->
 	</class>
 </hibernate-mapping>

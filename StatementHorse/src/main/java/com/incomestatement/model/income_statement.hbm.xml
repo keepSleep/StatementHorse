@@ -5,27 +5,29 @@
 <hibernate-mapping>
 	<class name="com.incomestatement.model.IncomeStatementVO" table="INCOME_STATEMENT">
 		<composite-id>
-<!-- 			<key-property name="stockNo" column="stock_no" /> -->
-			<key-many-to-one name="StockVO" class="com.stock.model.StockVO" lazy="false">
+				<key-many-to-one name="StockVO" class="com.stock.model.StockVO" lazy="false">
             	<column name="stock_no" />
-        	</key-many-to-one>
-			<key-property name="statementDate" column="statement_date" />
+        		</key-many-to-one>
+			<key-property name="statementDate" column="statement_date"/>
 		</composite-id>
-
-		<property name="operatingRevenue" column="operating_revenue" />
-		<property name="operatingCost" column="operating_cost" />
-		<property name="operatingMargain" column="operating_margain" />
-		<property name="netOperatingMargain" column="net_operating_margain" />
-		<property name="operatingExpenses" column="operating_expenses" />
-		<property name="operatingIncome" column="operating_income" />
-		<property name="nonOperatingRevenue" column="non_operating_revenue" />
-		<property name="oibt" column="oibt" />
-		<property name="incomeTaxExpense" column="income_tax_expense" />
-		<property name="coiat" column="coiat" />
-		<property name="netIncome" column="net_income" />
-		<property name="oci" column="oci" />
-		<property name="currentProfitAndLoss" column="current_profit_and_loss" />
-		<property name="earningPerShare" column="earning_per_share" />
 		
+		<property name="operatingRevenue" column="operating_revenue"/>
+		<property name="operatingCost" column="operating_cost"/>
+		<property name="operatingMargain" column="operating_margain"/>
+		<property name="netOperatingMargain" column="net_operating_margain"/>
+		<property name="operatingExpenses" column="operating_expenses"/>
+		<property name="operatingIncome" column="operating_income"/>
+		<property name="nonOperatingRevenue" column="non_operating_revenue"/>
+		<property name="oibt" column="oibt"/>
+		<property name="incomeTaxExpense" column="income_tax_expense"/>
+		<property name="coiat" column="coiat"/>
+		<property name="netIncome" column="net_income"/>
+		<property name="oci" column="oci"/>
+		<property name="currentProfitAndLoss" column="current_profit_and_loss"/>
+		<property name="earningPerShare" column="earning_per_share"/>
+		
+<!-- 		<key-many-to-one name="FinancialStatementsVO" class="iii.FinancialStatements.model.FinancialStatementsVO" column="statement_date" lazy="false"> -->
+<!-- 				<column name="statement_date"/> -->
+<!-- 		</key-many-to-one> -->
 	</class>
 </hibernate-mapping>

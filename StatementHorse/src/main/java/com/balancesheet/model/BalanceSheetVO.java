@@ -3,39 +3,36 @@ package com.balancesheet.model;
 import java.io.Serializable;
 
 import com.financialstatements.model.FinancialStatementsVO;
+import com.stock.model.StockVO;
 
 public class BalanceSheetVO implements Serializable {
-	private Integer stockNo;
+	private StockVO stockVO;
 	private String statementDate;
-	private Long currentAssets;
-	private Long fixedAssets;
-	private Long assets;
-	private Long currentLiabilities;
-	private Long longTermLiabilities;
-	private Long liabilities;
-	private Long capitalStock;
-	private Long additionalPaidInCapital;
-	private Long retainedEarnings;
-	private Long otherEquity;
-	private Long consolidatedNetIncomeAttributedToStockholdersOfTheCompany;
-	private Long totalEquity;
+	private Long currentAssets;//流動資產
+	private Long fixedAssets;//非流動資產
+	private Long assets;//總資產
+	private Long currentLiabilities;//流動負債
+	private Long longTermLiabilities;//非流動負債
+	private Long liabilities;//總負債
+	private Long capitalStock;//股本
+	private Long additionalPaidInCapital;//資本公積
+	private Long retainedEarnings;//保留盈餘
+	private Long otherEquity;//其他權益
+	private Long consolidatedNetIncomeAttributedToStockholdersOfTheCompany;//母公司業主之權益
+	private Long totalEquity;//權益總計
 	private FinancialStatementsVO financialStatementsVO;
-	
-	
-	
-	
-	public FinancialStatementsVO getFinancialStatementsVO() {
+	public StockVO getStockVO() {
+		return stockVO;
+	}
+	public void setStockVO(StockVO stockVO) {
+		this.stockVO = stockVO;
+	}public FinancialStatementsVO getFinancialStatementsVO() {
 		return financialStatementsVO;
 	}
 	public void setFinancialStatementsVO(FinancialStatementsVO financialStatementsVO) {
 		this.financialStatementsVO = financialStatementsVO;
 	}
-	public Integer getStockNo() {
-		return stockNo;
-	}
-	public void setStockNo(Integer stockNo) {
-		this.stockNo = stockNo;
-	}
+	
 	public String getStatementDate() {
 		return statementDate;
 	}
@@ -114,7 +111,5 @@ public class BalanceSheetVO implements Serializable {
 	}
 	public void setTotalEquity(Long totalEquity) {
 		this.totalEquity = totalEquity;
-	}
-	
-	
+	}	
 }

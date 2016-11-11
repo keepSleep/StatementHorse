@@ -88,5 +88,28 @@ public class ListingDetailsHibernateDAO implements ListingDetails_Interface {
 			System.out.println();
 		}
 	}
+	
+	public ListingDetailsVO findByPrimaryKey(Integer listingNo,Integer stockNo){
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		ListingDetailsVO listingDetailsVO=null;
+		try {
+			session.beginTransaction();
+			listingDetailsVO=new ListingDetailsVO();
+			TrackListingVO trackListingVO=new TrackListingVO();
+			trackListingVO.setListingNo(listingNo);
+			listingDetailsVO.setTrackListingVO(trackListingVO);
+			StockVO stockVO=new StockVO();
+			stockVO.setStockNo(stockNo);
+			listingDetailsVO.setStockVO(stockVO);
+			listingDetailsVO = (ListingDetailsVO) session.get(ListingDetailsVO.class, listingDetailsVO);
+			
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		    return listingDetailsVO;
+		
+	}
 
 }
