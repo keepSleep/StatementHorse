@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.stock.model.StockVO" table="STOCK">
+
+		<id name="stockNo" column="stock_no"></id>
+
+		<property name="stockName" column="stock_name" />
+		<property name="industry" column="industry" />
+		<property name="chairman" column="chairman" />
+		<property name="companyEstablishDate" column="company_establish_date" />
+		<property name="companyTaxId" column="company_tax_id" />
+		<property name="listingDate" column="listing_date" />
+		<property name="stockholdersMeetingDate" column="stockholders_meeting_date" />
+		<property name="stockWebaddress" column="stock_webaddress" />
+		<property name="capital" column="capital" />
+		<property name="accountingFirm" column="accounting_firm" />
+
+		<set name="mgrs" table="MGR" lazy="true" cascade="all"  inverse="true" order-by="revenue_date desc" >			
+			<key>
+				<column name="stock_no" />
+			</key>
+			<one-to-many class="com.mgr.model.MGRVO" />
+			
+		</set>
+		<set name="prices" table="Price" lazy="true" cascade="all"  inverse="true" order-by="price_date desc" >			
+			<key>
+				<column name="stock_no" />
+			</key>
+			<one-to-many class="com.price.model.PriceVO" />
+		</set>
+		<set name="incomeStatements" table="INCOME_STATEMENT" lazy="true" cascade="all"  inverse="true" order-by="statement_date desc" >			
+			<key>
+				<column name="stock_no" />
+			</key>
+			<one-to-many class="com.incomestatement.model.IncomeStatementVO" />
+		</set>
+		<set name="balanceSheets" table="BALANCE_SHEET" lazy="true" cascade="all"  inverse="true" order-by="statement_date asc" >			
+			<key>
+				<column name="stock_no" />
+			</key>
+			<one-to-many class="com.balancesheet.model.BalanceSheetVO" />
+		</set>
+		<set name="message" table="MESSAGE" lazy="true" cascade="all"  inverse="true"  >			
+			<key>
+				<column name="stock_no" />
+			</key>
+			<one-to-many class="com.message.model.MsgVO" />
+		</set>
+		<set name="listingdetail" table="LISTING_DETAILS" lazy="true" cascade="all"  inverse="true"  >			
+			<key>
+				<column name="stock_no" />
+			</key>
+			<one-to-many class="com.listingdetails.model.ListingDetailsVO" />
+		</set>
+		<set name="stocknews" table="STOCK_NEWS" lazy="true" cascade="all"  inverse="true"  >			
+			<key>
+				<column name="stock_no" />
+			</key>
+			<one-to-many class="com.stocknews.model.StockNewsVO" />
+		</set>
+		<set name="dividends" table="DIVIDEND" lazy="true" cascade="all"  inverse="true"  >			
+			<key>
+				<column name="stock_no" />
+			</key>
+			<one-to-many class="com.dividend.model.DividendVO" />
+		</set>
+		
+	</class>
+</hibernate-mapping>
+

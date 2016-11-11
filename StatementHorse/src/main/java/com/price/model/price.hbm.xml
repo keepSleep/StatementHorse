@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.price.model.PriceVO" table="PRICE">
+		<composite-id>
+			<key-many-to-one name="StockVO" class="com.stock.model.StockVO" lazy="false">
+            	<column name="stock_no" />
+        	</key-many-to-one>
+			<key-property name="priceDate" column="price_date"/>
+		</composite-id>
+		
+		<property name="openPrice" column="open_price"/>
+		<property name="closePrice" column="close_price"/>
+		<property name="highestPrice" column="highest_price"/>
+		<property name="lowestPrice" column="lowest_price"/>
+		<property name="quantity" column="quantity"/>
+		
+	
+
+	</class>
+</hibernate-mapping>

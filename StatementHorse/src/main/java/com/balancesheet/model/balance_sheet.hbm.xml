@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.balancesheet.model.BalanceSheetVO" table="BALANCE_SHEET">
+		<composite-id>
+				<key-many-to-one name="StockVO" class="com.stock.model.StockVO" lazy="false">
+            	<column name="stock_no" />
+        		</key-many-to-one>
+			<key-property name="statementDate" column="statement_date"/>
+		</composite-id>
+		
+		<property name="currentAssets" column="current_assets"/>
+		<property name="fixedAssets" column="fixed_assets"/>
+		<property name="assets" column="assets"/>
+		<property name="currentLiabilities" column="current_liabilities"/>
+		<property name="longTermLiabilities" column="long_term_liabilities"/>
+		<property name="liabilities" column="liabilities"/>
+		<property name="capitalStock" column="capital_stock"/>
+		<property name="additionalPaidInCapital" column="additional_paid_in_capital"/>
+		<property name="retainedEarnings" column="retained_earnings"/>
+		<property name="otherEquity" column="other_equity"/>
+		<property name="consolidatedNetIncomeAttributedToStockholdersOfTheCompany" column="Consolidated_Net_Income_Attributed_to_Stockholders_of_the_Company"/>
+						
+		<property name="totalEquity" column="total_equity"/>
+
+
+	</class>
+</hibernate-mapping>
