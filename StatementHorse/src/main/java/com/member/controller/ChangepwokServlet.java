@@ -65,7 +65,7 @@ public class ChangepwokServlet extends HttpServlet {
 		}
 		mem.setMemberPassword(memberPassword);
 		rs.insertMember(mem);
-		RequestDispatcher rd = request.getRequestDispatcher("/message/Message.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/message/Message.jsp");//是否要改成密碼修改完成頁面
 		rd.forward(request, response);
 		return;
 	}

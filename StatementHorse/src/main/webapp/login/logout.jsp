@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>重新寄發驗證信</title>
+<title>登出成功</title>
 
 <!-- Bootstrap Core CSS -->
 <link
@@ -48,32 +48,17 @@
 			<div class="col-md-4 col-md-offset-4">
 				<div class="login-panel panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">重新寄發驗證信</h3>
+						<h3 class="panel-title">歡迎您再次使用</h3>
 					</div>
 					<div class="panel-body">
 						<form role="form" method="post"
-							action="${pageContext.request.contextPath}/account/changepw">
+							action="${pageContext.request.contextPath}/login/login.jsp">
 							<fieldset>
-								<div class="form-group">
-									<label>
-									感謝申請會員， 您再將收到一封認證信，請點擊信中的認證網址完成會員申請：<br>
-									寄件信箱：statementhorse@gmail.com<br>
-									信件主旨：財報馬會員認證<br>
-									若沒有收到會員認證信，請點選這裡<br>
-									並輸入註冊時的電子信箱：<br>
-									</label> <input class="form-control"
-										placeholder="E-mail" name="email" type="email" autofocus>
-								</div>
 								<div>
 								<!-- Change this to a button or input when using this as a form -->
 								<button type="submit" class="btn btn-lg btn-info btn-block">
-									<label>寄驗證信給我</label>
-								</div>
-									<div>
-									<a href="${pageContext.request.contextPath}/login/login.jsp">
 									<label>回到登入頁</label>
-									</div>
-								</a>
+								</div>
 							</fieldset>
 						</form>
 					</div>
