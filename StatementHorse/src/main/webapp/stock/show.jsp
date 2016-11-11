@@ -3,12 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<%@include file="/top/Top.jsp"%>
+	
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<script
-	src="${pageContext.servletContext.contextPath}/js/jquery-3.1.1.min.js"></script>
+<%@include file="/top/Top.jsp"%>
 <link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath}/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -23,9 +21,9 @@
 	href="${pageContext.servletContext.contextPath}/css/morris.css">
 <link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath}/css/metisMenu2.min.css">
+<%-- <script src="${pageContext.servletContext.contextPath}/js/jquery-3.1.1.min.js"></script> --%>
 <%-- <script src="${pageContext.servletContext.contextPath}/js/jquery.min.js"></script> --%>
-<script
-	src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script>
+<%-- <script	src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script> --%>
 <script
 	src="${pageContext.servletContext.contextPath}/js/metisMenu.min.js"></script>
 <script
@@ -46,6 +44,7 @@ a:link {
 <title>Insert title here</title>
 </head>
 <body>
+
 	<input type="hidden" id="stockno" value="${stockVO.stockNo}" />
 	<input type="hidden" id="stockname" value="${stockVO.stockName}" />
 	<div class="container">
@@ -58,7 +57,7 @@ a:link {
 
 					<div class="btn-group">
 						<button type="button" class="btn btn-info btn-xs dropdown-toggle"
-							data-toggle="dropdown" style="font-size: x-large;">
+							data-toggle="dropdown" style="font-size: x-large; id="listing">
 							加入追蹤 <span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu pull-right" role="menu"
@@ -199,6 +198,7 @@ a:link {
 							<li><a href="#tab3info_1" data-toggle="tab">營業利益</a></li>
 							<li><a href="#tab4info_1" data-toggle="tab">稅前淨利</a></li>
 							<li><a href="#tab5info_1" data-toggle="tab">稅後淨利</a></li>
+							<li><a href="#tab6info_1" data-toggle="tab">損益表</a></li>
 						</ul>
 					</div>
 					<div class="panel-body" style="height: 630px">
@@ -209,6 +209,7 @@ a:link {
 							<div class="tab-pane fade" id="tab3info_1" style="width: 730px"></div>
 							<div class="tab-pane fade" id="tab4info_1" style="width: 730px"></div>
 							<div class="tab-pane fade" id="tab5info_1" style="width: 730px"></div>
+							<div class="tab-pane fade" id="tab6info_1" style="width: 730px"></div>
 						</div>
 					</div>
 				</div>
@@ -223,8 +224,8 @@ a:link {
 							style="background-color: lightblue; font-size: x-large">
 							<li class="active"><a href="#tab1info_2" data-toggle="tab">流動資產</a></li>
 							<li><a href="#tab2info_2" data-toggle="tab">固定資產</a></li>
-							<li><a href="#tab3info_2" data-toggle="tab">長期投資</a></li>
-							<li><a href="#tab4info_2" data-toggle="tab">總資產</a></li>
+							<li><a href="#tab3info_2" data-toggle="tab">總資產</a></li>
+							<li><a href="#tab4info_2" data-toggle="tab">綜合比較</a></li>
 						</ul>
 					</div>
 					<div class="panel-body" style="height: 630px">
@@ -371,44 +372,49 @@ a:link {
 					})
 					
 					//判別checkbox
+					
+			
+								var list_no = $(
+										"#TrackListing_id>li>input:eq(0)")
+										.val();
+								// 					console.log(i)
+								$.get("ShowStockServlet", {
+									"listNo" : list_no,
+									"stock_no" : stockno,
+									"insert_or_delete" : "select"
+								}, function(data) {
+									console.log(data)
 
-					var list_no = $("#TrackListing_id>li>input:eq(0)").val();
-					// 					console.log(i)
-					$.get("ShowStockServlet", {
-						"listNo" : list_no,
-						"stock_no" : stockno,
-						"insert_or_delete" : "select"
-					}, function(data) {
-						console.log(data)
+									if (data == stockno) {
+										$("#TrackListing_id>li>input:eq(0)")
+												.prop("checked", true)
+									} else {
+										$("#TrackListing_id>li>input:eq(0)")
+												.prop("checked", false)
+										// 							console.log(i);
+									}
+								})
+								var list_no = $(
+										"#TrackListing_id>li>input:eq(1)")
+										.val();
+								// 					console.log(i)
+								$.get("ShowStockServlet", {
+									"listNo" : list_no,
+									"stock_no" : stockno,
+									"insert_or_delete" : "select"
+								}, function(data) {
+									console.log(data)
 
-						if (data == stockno) {
-							$("#TrackListing_id>li>input:eq(0)").prop(
-									"checked", true)
-						} else {
-							$("#TrackListing_id>li>input:eq(0)").prop(
-									"checked", false)
-							// 							console.log(i);
-						}
-					})
-					var list_no = $("#TrackListing_id>li>input:eq(1)").val();
-					// 					console.log(i)
-					$.get("ShowStockServlet", {
-						"listNo" : list_no,
-						"stock_no" : stockno,
-						"insert_or_delete" : "select"
-					}, function(data) {
-						console.log(data)
-
-						if (data == stockno) {
-							$("#TrackListing_id>li>input:eq(1)").prop(
-									"checked", true)
-						} else {
-							$("#TrackListing_id>li>input:eq(1)").prop(
-									"checked", false)
-							// 							console.log(i);
-						}
-					})
-
+									if (data == stockno) {
+										$("#TrackListing_id>li>input:eq(1)")
+												.prop("checked", true)
+									} else {
+										$("#TrackListing_id>li>input:eq(1)")
+												.prop("checked", false)
+										// 							console.log(i);
+									}
+								})
+							
 					//加入追蹤清單
 					$("#TrackListing_id>li>input").change(function() {
 						if ($(this).prop("checked")) {
@@ -426,364 +432,496 @@ a:link {
 						}
 					})
 					$("#show_mgr").click(function() {
-						
-						//mgrjson
-						var mgrurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=mgrjson&stock_no='
-								+ stockno;
-						$.getJSON(mgrurl, function(data) {
-
-							$('#tab1info').highcharts('StockChart', {
-								rangeSelector : {
-									selected : 5
-								},
-								title : {
-									text : '月營收(' + stockno + ')'
-								},
-								series : [ {
-									name : stockname,
-									data : data,
-									tooltip : {
-										valueDecimals : 2
-									}
-								} ]
-							});
+					//mgrjson
+					var mgrurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=mgrjson&stock_no='+ stockno;
+					$.getJSON(mgrurl,function(data) {
+						$('#tab1info').highcharts('StockChart',{
+							rangeSelector : {selected : 5},title : {text : '月營收('+ stockno+ ')'},
+							series : [ {name : stockname,data : data,tooltip : {valueDecimals : 2}} ]
 						});
-						
-						
-						
-						
-
-						//pricejson
-						var priceurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=pricejson&stock_no='
-								+ stockno
-						$.getJSON(priceurl, function(data) {
-							$('#tab3info').highcharts('StockChart', {
-								rangeSelector : {
-									selected : 1
-								},
-								title : {
-									text : '股價(' + stockno + ')'
-								},
-								series : [ {
-									type : 'candlestick',
+					});
+					//pricejson
+					var priceurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=pricejson&stock_no='+ stockno
+					$.getJSON(priceurl,function(data) {$('#tab3info').highcharts('StockChart',{
+						rangeSelector : {selected : 5},title : {text : '股價('+ stockno+ ')'},
+						series : [ {type : 'candlestick',
 									name : stockname,
-									data : data,
-									dataGrouping : {
-										units : [ [ 'week', // unit name
-										[ 1 ] // allowed multiples
-										], [ 'month', [ 1, 2, 3, 4, 6 ] ] ]
-									}
-								} ]
+									data : data,dataGrouping : {units : ['week', ['month',[1,2,3,4,6 ] ] ]}
+// 									                                      unit name[ 1 ] allowed multiples],
+									}]
+								} )
 							});
+					
+					//incomestatementjson
+					var incomestatementjsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=earningPerShare&stock_no='
+							+ stockno;
+					$.getJSON(incomestatementjsonurl,function(data) {
+															// Create the chart
+// 						$('#tab2info').highcharts('StockChart',{rangeSelector : {selected : 5},
+// 										title : {text : '每股盈餘('+ stockno+ ')'},
+// 										series : [ {name : stockname,data : data,tooltip : {
+// 										valueDecimals : 2}
+// 										} ]
+// 								});
+															
+						 Highcharts.chart('tab2info', {
+						        chart: {
+						            type: 'column'
+						        },
+						        title: {
+						            text:  '每股盈餘'
+						        },
+						        subtitle: {
+						            text:stockname+ "("+stockno+')'
+						        },
+						        xAxis: {
+						            type: 'category',
+						            labels: {
+						                rotation: -45,
+						                style: {
+						                    fontSize: '13px',
+						                    fontFamily: 'Verdana, sans-serif'
+						                }
+						            }
+						        },
+						        yAxis: {
+						            min: 0,
+						            title: {
+						                text:  'earningPerShare'
+						            }
+						        },
+						        legend: {
+						            enabled: false
+						        },
+						        tooltip: {
+						            pointFormat: '每股盈餘: <b>{point.y:.1f}</b>'
+						        },
+						        series: [{
+						            name: 'Population',
+						            data: data
+// 						            dataLabels: {
+// 						                enabled: true,
+// 						                rotation: -90,
+// 						                color: '#FFFFFF',
+// 						                align: 'right',
+// 						                format: '{point.y:.1f}', // one decimal
+// 						                y: 10, // 10 pixels down from the top
+// 						                style: {
+// 						                    fontSize: '13px',
+// 						                    fontFamily: 'Verdana, sans-serif'
+// 						                }
+// 						            }
+						        }]
+						    });								
+															
 						});
-						//incomestatementjson
-						var incomestatementjsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=earningPerShare&stock_no='
-								+ stockno;
-						$.getJSON(incomestatementjsonurl, function(data) {
-							// Create the chart
-							$('#tab2info').highcharts('StockChart', {
-								rangeSelector : {
-									selected : 5
-								},
-								title : {
-									text : '每股盈餘(' + stockno + ')'
-								},
-								series : [ {
-									name : stockname,
-									data : data,
-									tooltip : {
-										valueDecimals : 2
-									}
-								} ]
-							});
-						});
-						//divident 股利
-						var dividenturl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=dividendjson&stock_no='
-								+ stockno;
-						$.getJSON(dividenturl, function(data) {
-
-							// create the chart
-							$('#tab4info').highcharts('StockChart', {
-								chart : {
-									alignTicks : false
-								},
-
-								rangeSelector : {
-									selected : 3
-								},
-
-								title : {
-									text : '股利(' + stockno + ')'
-								},
-
-								series : [ {
-									type : 'column',
-									name :"",
-									data : data,
-								//				                 dataGrouping: {
-								//				                     units: [[
-								//				                         'week', // unit name
-								//				                         [1] // allowed multiples
-								//				                     ], [
-								//				                         'month',
-								//				                         [1, 2, 3, 4, 6]
-								//				                     ]]
-								//				                 }
-								} ]
-							});
+					
+					
+					//divident 股利
+					var dividenturl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=dividendjson&stock_no='
+							+ stockno;
+					$.getJSON(dividenturl, function(data) {
+									// create the chart
+						$('#tab4info').highcharts('StockChart',{
+										chart : {alignTicks : false},
+										rangeSelector : {selected : 3},
+										title : {text : '股利('+ stockno+ ')'},
+										series : [ {type : 'column',name : "",data : data,
+														//				                 dataGrouping: {units: [['week', // unit name [1] // allowed multiples
+														//				                     ], ['month', [1, 2, 3, 4, 6] ]] }
+										} ]
+								});
 						});
 						//本益比JSON
-						var PERurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=PERjson&stock_no='
-								+ stockno;
-						$.getJSON(PERurl, function(data) {
-
-							$('#tab5info').highcharts('StockChart', {
-								rangeSelector : {
-									selected : 5
-								},
-								title : {
-									text : '本益比(' + stockno + ')'
-								},
-								series : [ {
-									name : stockname,
-									data : data,
-									tooltip : {
-										valueDecimals : 2
-									}
-								} ]
+					var PERurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=PERjson&stock_no='
+							+ stockno;
+						$.getJSON(PERurl,function(data) {
+								$('#tab5info').highcharts('StockChart',{
+										rangeSelector : {selected : 5},
+										title : {text : '本益比('+ stockno+ ')'},
+										series : [ {name : stockname,data : data,tooltip : {valueDecimals : 2}} ]
+									});
 							});
+					})
+
+					$("#show_incomestatement").click(
+							function() {
+					//incomestatementjson季營收
+					var revenuejsonurl ="http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingRevenue&stock_no="+stockno;
+
+					$.getJSON(revenuejsonurl,function(data) {
+						Highcharts.chart('tab1info_1', {
+					        chart: {
+					            type: 'column'
+					        },
+					        title: {
+					            text: '季營收'
+					        },
+					        subtitle: {
+					            text: stockname+'('+stockno+')'
+					        },
+					        xAxis: {
+					            type: 'category',
+					            labels: {
+					                rotation: -45,
+					                style: {
+					                    fontSize: '13px',
+					                    fontFamily: 'Verdana, sans-serif'
+					                }
+					            }
+					        },
+					        yAxis: {
+					            min: 0,
+					            title: {
+					                text: 'Revenue(millions)'
+					            }
+					        },
+					        legend: {
+					            enabled: false
+					        },
+					        tooltip: {
+					            pointFormat: '營收: <b>{point.y:.1f}百萬</b>'
+					        },
+					        series: [{
+					            name: 'Revenue',
+					            data:data,
+// 					            dataLabels: {
+// 					                enabled: true,
+// 					                rotation: -90,
+// 					                color: '#FFFFFF',
+// 					                align: 'right',
+// 					                format: '{point.y:.1f}', // one decimal
+// 					                y: 10, // 10 pixels down from the top
+// 					                style: {
+// 					                    fontSize: '13px',
+// 					                    fontFamily: 'Verdana, sans-serif'
+// 					                }
+// 					            }
+					        }]
+					    });
+					})
+							
+
+
+
+
+					//incomestatementjson季毛利
+					var operatingMargainjsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingMargain&stock_no='
+							+ stockno;
+					$.getJSON(operatingMargainjsonurl,function(data) {
+						Highcharts.chart('tab2info_1', {
+					        chart: {
+					            type: 'column'
+					        },
+					        title: {
+					            text: '季毛利'
+					        },
+					        subtitle: {
+					            text: stockname+'('+stockno+')'
+					        },
+					        xAxis: {
+					            type: 'category',
+					            labels: {
+					                rotation: -45,
+					                style: {
+					                    fontSize: '13px',
+					                    fontFamily: 'Verdana, sans-serif'
+					                }
+					            }
+					        },
+					        yAxis: {
+					            min: 0,
+					            title: {
+					                text: 'Margain(millions)'
+					            }
+					        },
+					        legend: {
+					            enabled: false
+					        },
+					        tooltip: {
+					            pointFormat: '毛利: <b>{point.y:.1f}百萬</b>'
+					        },
+					        series: [{
+					            name: 'Margain',
+					            data:data,
+// 					            dataLabels: {
+// 					                enabled: true,
+// 					                rotation: -90,
+// 					                color: '#FFFFFF',
+// 					                align: 'right',
+// 					                format: '{point.y:.1f}', // one decimal
+// 					                y: 10, // 10 pixels down from the top
+// 					                style: {
+// 					                    fontSize: '13px',
+// 					                    fontFamily: 'Verdana, sans-serif'
+// 					                }
+// 					            }
+					        }]
+					    });
 						});
+					//稅前淨利
+						var operatingIncomejsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingIncome&stock_no='
+							+ stockno;
+						$.getJSON(operatingIncomejsonurl,function(data) {
+							Highcharts.chart('tab3info_1', {
+						        chart: {
+						            type: 'column'
+						        },
+						        title: {
+						            text: '營業利益'
+						        },
+						        subtitle: {
+						            text: stockname+'('+stockno+')'
+						        },
+						        xAxis: {
+						            type: 'category',
+						            labels: {
+						                rotation: -45,
+						                style: {
+						                    fontSize: '13px',
+						                    fontFamily: 'Verdana, sans-serif'
+						                }
+						            }
+						        },
+						        yAxis: {
+						            min: 0,
+						            title: {
+						                text: 'operatingIncome(millions)'
+						            }
+						        },
+						        legend: {
+						            enabled: false
+						        },
+						        tooltip: {
+						            pointFormat: '營業利益: <b>{point.y:.1f}百萬</b>'
+						        },
+						        series: [{
+						            name: 'operatingIncome',
+						            data:data,
+//	 					            dataLabels: {
+//	 					                enabled: true,
+//	 					                rotation: -90,
+//	 					                color: '#FFFFFF',
+//	 					                align: 'right',
+//	 					                format: '{point.y:.1f}', // one decimal
+//	 					                y: 10, // 10 pixels down from the top
+//	 					                style: {
+//	 					                    fontSize: '13px',
+//	 					                    fontFamily: 'Verdana, sans-serif'
+//	 					                }
+//	 					            }
+						        }]
+						    });
+						})
+						var oibtjsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=oibt&stock_no='
+							+ stockno;
+						$.getJSON(oibtjsonurl,function(data) {
+							Highcharts.chart('tab4info_1', {
+						        chart: {
+						            type: 'column'
+						        },
+						        title: {
+						            text: '稅前淨利'
+						        },
+						        subtitle: {
+						            text: stockname+'('+stockno+')'
+						        },
+						        xAxis: {
+						            type: 'category',
+						            labels: {
+						                rotation: -45,
+						                style: {
+						                    fontSize: '13px',
+						                    fontFamily: 'Verdana, sans-serif'
+						                }
+						            }
+						        },
+						        yAxis: {
+						            min: 0,
+						            title: {
+						                text: 'Profit(millions)'
+						            }
+						        },
+						        legend: {
+						            enabled: false
+						        },
+						        tooltip: {
+						            pointFormat: '稅前淨利: <b>{point.y:.1f}百萬</b>'
+						        },
+						        series: [{
+						            name: 'Profit',
+						            data:data,
+//	 					            dataLabels: {
+//	 					                enabled: true,
+//	 					                rotation: -90,
+//	 					                color: '#FFFFFF',
+//	 					                align: 'right',
+//	 					                format: '{point.y:.1f}', // one decimal
+//	 					                y: 10, // 10 pixels down from the top
+//	 					                style: {
+//	 					                    fontSize: '13px',
+//	 					                    fontFamily: 'Verdana, sans-serif'
+//	 					                }
+//	 					            }
+						        }]
+						    });
+						})
+					var netIncomejsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=netIncome&stock_no='
+							+ stockno;
+						$.getJSON(netIncomejsonurl,function(data) {
+							Highcharts.chart('tab5info_1', {
+						        chart: {
+						            type: 'column'
+						        },
+						        title: {
+						            text: '稅後淨利'
+						        },
+						        subtitle: {
+						            text: stockname+'('+stockno+')'
+						        },
+						        xAxis: {
+						            type: 'category',
+						            labels: {
+						                rotation: -45,
+						                style: {
+						                    fontSize: '13px',
+						                    fontFamily: 'Verdana, sans-serif'
+						                }
+						            }
+						        },
+						        yAxis: {
+						            min: 0,
+						            title: {
+						                text: 'Profit(millions)'
+						            }
+						        },
+						        legend: {
+						            enabled: false
+						        },
+						        tooltip: {
+						            pointFormat: '稅後淨利: <b>{point.y:.1f}百萬</b>'
+						        },
+						        series: [{
+						            name: 'Profit',
+						            data:data,
+//	 					            dataLabels: {
+//	 					                enabled: true,
+//	 					                rotation: -90,
+//	 					                color: '#FFFFFF',
+//	 					                align: 'right',
+//	 					                format: '{point.y:.1f}', // one decimal
+//	 					                y: 10, // 10 pixels down from the top
+//	 					                style: {
+//	 					                    fontSize: '13px',
+//	 					                    fontFamily: 'Verdana, sans-serif'
+//	 					                }
+//	 					            }
+						        }]
+						    });
+						})
+					//統整表
+					var incomejsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomejson&stock_no='+stockno;
+					$.getJSON(incomejsonurl,function(data){
+						 Highcharts.chart('tab6info_1', {
+					        title: {
+					            text:"損益表",
+					            x: -20 //center
+					        },
+					        subtitle: {
+					            text: stockname+"("+stockno+")",
+					            x: -20
+					        },
+					        xAxis: data[0],
+					        yAxis: {
+					            title: {
+					                text: ''
+					            },
+					            plotLines: [{
+					                value: 0,
+					                width: 1,
+					                color: '#808080'
+					            }]
+					        },
+					        tooltip: {
+					            valueSuffix: '元'
+					        },
+					        legend: {
+					            layout: 'vertical',
+					            align: 'right',
+					            verticalAlign: 'middle',
+					            borderWidth: 0
+					        },
+					        series: [data[1], data[2],data[4],data[5]]
+					    });
+					
+					
+					
+					
+					
+					})
+							})
+					
+				$("#show_balancesheet_1").click(function() {
+					var assetsjsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=assetsjson&stock_no='+stockno;
+					$.getJSON(assetsjsonurl,function(data){
+						 Highcharts.chart('tab4info_2', {
+					        title: {
+					            text:"資產("+stockno+")",
+					            x: -20 //center
+					        },
+					        subtitle: {
+					            text: "",
+					            x: -20
+					        },
+					        xAxis: data[0],
+					        yAxis: {
+					            title: {
+					                text: ''
+					            },
+					            plotLines: [{
+					                value: 0,
+					                width: 1,
+					                color: '#808080'
+					            }]
+					        },
+					        tooltip: {
+					            valueSuffix: '元'
+					        },
+					        legend: {
+					            layout: 'vertical',
+					            align: 'right',
+					            verticalAlign: 'middle',
+					            borderWidth: 0
+					        },
+					        series: [data[1], data[2],data[3]]
+					    });
+					
+					
+					
+					
+					
 					})
 					
-					$("#show_incomestatement").click(function() {
-						//incomestatementjson季營收
-						var revenuejsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingRevenue&stock_no='
-								+ stockno;
-						$.getJSON(revenuejsonurl, function(data) {
-
-							// creaㄅte the chart
-							$('#tab1info_1').highcharts('StockChart', {
-								chart : {
-									alignTicks : false
-								},
-
-								rangeSelector : {
-									selected : 5
-								},
-
-								title : {
-									text : '季營收(' + stockno + ')'
-								},
-
-								series : [ {
-									type : 'column',
-									name :"",
-									data : data,
-								//				                 dataGrouping: {
-								//				                     units: [[
-								//				                         'week', // unit name
-								//				                         [1] // allowed multiples
-								//				                     ], [
-								//				                         'month',
-								//				                         [1, 2, 3, 4, 6]
-								//				                     ]]
-								//				                 }
-								} ]
-							});
-						});
-						//incomestatementjson季毛利
-						var operatingMargainjsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingMargain&stock_no='
-								+ stockno;
-						$.getJSON(operatingMargainjsonurl, function(data) {
-
-							// creaㄅte the chart
-							$('#tab2info_1').highcharts('StockChart', {
-								chart : {
-									alignTicks : false
-								},
-
-								rangeSelector : {
-									selected : 5
-								},
-
-								title : {
-									text : '季毛利(' + stockno + ')'
-								},
-
-								series : [ {
-									type : 'column',
-									name :"",
-									data : data,
-								//				                 dataGrouping: {
-								//				                     units: [[
-								//				                         'week', // unit name
-								//				                         [1] // allowed multiples
-								//				                     ], [
-								//				                         'month',
-								//				                         [1, 2, 3, 4, 6]
-								//				                     ]]
-								//				                 }
-								} ]
-							});
-						});
-					var operatingIncomejsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingIncome&stock_no='
-							+ stockno;
-					$.getJSON(operatingIncomejsonurl, function(data) {
-						// Create the chart
-						$('#tab3info_1').highcharts('StockChart', {
-							rangeSelector : {
-								selected : 5
-							},
-							title : {
-								text : '營業利益(' + stockno + ')'
-							},
-							series : [ {
-								name : stockname,
-								data : data,
-								tooltip : {
-									valueDecimals : 2
-								}
-							} ]
-						});
-					});
-					var oibtjsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=oibt&stock_no='
-						+ stockno;
-				$.getJSON(oibtjsonurl, function(data) {
-
-					// creaㄅte the chart
-					$('#tab4info_1').highcharts('StockChart', {
-						chart : {
-							alignTicks : false
-						},
-
-						rangeSelector : {
-							selected : 5
-						},
-
-						title : {
-							text : '稅前淨利(' + stockno + ')'
-						},
-
-						series : [ {
-							type : 'column',
-							name :"",
-							data : data,
-						//				                 dataGrouping: {
-						//				                     units: [[
-						//				                         'week', // unit name
-						//				                         [1] // allowed multiples
-						//				                     ], [
-						//				                         'month',
-						//				                         [1, 2, 3, 4, 6]
-						//				                     ]]
-						//				                 }
-						} ]
-					});
-				});
-						
-				var netIncomejsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=incomestatementjson&need=netIncome&stock_no='
-					+ stockno;
-				
-				 $.getJSON(netIncomejsonurl, function (data) {
-
-				        // Create the chart
-				        Highcharts.stockChart('tab5info_1', {
-
-
-				            rangeSelector: {
-				                selected: 5
-				            },
-
-				            title: {
-				                text: '稅後淨利(' + stockno + ')'
-				            },
-
-				            series: [{
-				                name: stockname,
-				                data: data,
-				                marker: {
-				                    enabled: true,
-				                    radius: 3
-				                },
-				                shadow: true,
-				                tooltip: {
-				                    valueDecimals: 2
-				                }
-				            }]
-				        });
-				    });
-
-					})	
-					$("#show_balance").click(function() {
+				})
+					
+					
+				$("#show_balance").click(function() {
 						balancejsonurl = 'http://localhost:8081/StatementHorse/ShowStockServlet?json=balancesheetjson&need=balance&stock_no='
 							+ stockno;
-						
-						 $.getJSON(balancejsonurl, function (data) {
+						$.getJSON(balancejsonurl,function(data) {
+									// Create the chart
+							Highcharts.stockChart('show_div_balance',{
+								rangeSelector : {selected : 5},
+									title : {text : '負債比('+ stockno+ ')'},
+									series : [ {name : stockname,data : data,
+									marker : {enabled : true,radius : 3},
+									shadow : true,tooltip : {valueDecimals : 2}} ]
+									});
+								});
 
-						        // Create the chart
-						        Highcharts.stockChart('show_div_balance', {
-
-
-						            rangeSelector: {
-						                selected: 5
-						            },
-
-						            title: {
-						                text: '負債比(' + stockno + ')'
-						            },
-
-						            series: [{
-						                name: stockname,
-						                data: data,
-						                marker: {
-						                    enabled: true,
-						                    radius: 3
-						                },
-						                shadow: true,
-						                tooltip: {
-						                    valueDecimals: 2
-						                }
-						            }]
-						        });
-						    });
-
-					})
+						})
 				})
-
 			</script>
-<!-- 獲利分析 -->
- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
- <script type="text/javascript">
- 	$(function(){
- 		var result=new Array();
- 		var stockno = $("#stockno").val();
- 		var stockname = $("#stockname").val();
- 		$.getJSON("http://localhost:8081/StatementHorse/ShowStockServlet?json=profitjson&need=grossMargin&stock_no="+stockno,function(data){
- 			result=data
- 		})
- 		$("#show_profit").click(function(){
- 		
- 		
-
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable(result)
-        var options = {
-          title: stockname,
-          curveType: 'function',
-          legend: { position: 'bottom'}
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('show_div_profit'));
-
-        chart.draw(data, options);
-      }
- 		})
-		
- 	})
-    </script>
 
 			
 			

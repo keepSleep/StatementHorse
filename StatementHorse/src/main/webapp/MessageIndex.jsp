@@ -14,7 +14,7 @@
 
 <table border='1'  cellspacing='0' width='400'>
 <tr><td><a href="MsgServlet?member_id=Charizard">通知顯示</a></td></tr>
-<tr><td><a href="NewsServlet?member_id=Charizard">新聞顯示</a></td></tr>
+<!-- <tr><td><a href="NewsServlet?member_id=Charizard">新聞顯示</a></td></tr> -->
 </table>
 </body>
 </html>

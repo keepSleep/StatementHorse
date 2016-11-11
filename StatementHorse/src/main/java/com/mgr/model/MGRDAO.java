@@ -19,7 +19,7 @@ public class MGRDAO implements MGRDAO_interface {
 			"from MGRVO where stock_no=:stockVO order by Revenue_Date ";
 	private static final String DELETE_BY_STOCKNO=
 			"delete from MGRVO where stock_no=:stockVO";
-	private static final String GET_DATE_BY_STOCK="FROM MGRVO Where stock_no=? ORDER BY postDate desc";
+	private static final String GET_DATE_BY_STOCK="FROM MGRVO Where stock_no=:stockVO ORDER BY postDate desc";
 	
 	
 	@Override
@@ -129,7 +129,11 @@ public class MGRDAO implements MGRDAO_interface {
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(GET_DATE_BY_STOCK);
-			query.setParameter(0, stockno);
+			MGRVO mgrVO=new MGRVO();
+			StockVO stockVO=new StockVO();
+			stockVO.setStockNo(stockno);
+			mgrVO.setStockVO(stockVO);
+			query.setProperties(mgrVO);
 			list=query.list();
 			session.getTransaction().commit();			
 		} catch (RuntimeException ex) {
@@ -137,8 +141,7 @@ public class MGRDAO implements MGRDAO_interface {
 			throw ex;
 		}
 		return list;
-	}
-	
+	}	
 	@Override
 	public List<MGRVO> getAll() {
 		List<MGRVO> list = null;
@@ -155,6 +158,8 @@ public class MGRDAO implements MGRDAO_interface {
 		return list;
 	}
 
+
+	
 //	public static void main(String[] args) {
 //		MGRDAO dao=new MGRDAO(); 
         //新增(舊股號新增測試ok，新股號)
