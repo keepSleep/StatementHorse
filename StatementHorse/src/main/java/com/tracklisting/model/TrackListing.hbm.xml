@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.tracklisting.model.TrackListingVO" table="TRACK_LISTING">
+	
+	<id name="listingNo" column="listing_no">
+		<generator class="identity"></generator>
+	</id>
+	
+	<property name="listingName" column="listing_name"></property>
+	
+	<many-to-one name="memberVO" class="com.member.model.MemberVO" lazy="false">
+		<column name="member_id"></column>
+	</many-to-one>
+	
+	<set name="lds" table="LISTING_DETAILS" lazy="false" cascade="all" inverse="true" order-by="listing_no asc">
+		<key>
+			<column name="listing_no"></column>
+		</key>
+		<one-to-many class="com.listingdetails.model.ListingDetailsVO"/>
+	</set>
+	
+	
+	
+	</class>
+</hibernate-mapping>
