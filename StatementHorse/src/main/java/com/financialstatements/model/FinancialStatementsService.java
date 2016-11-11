@@ -23,6 +23,7 @@ public class FinancialStatementsService {
 	}
 	public FinancialStatementsVO addFinancialStatements(Integer stockNo,String statementDate, Date postDate, String postTime
 			){
+			
 		FinancialStatementsVO financialStatementsVO = new FinancialStatementsVO();
 		financialStatementsVO.setStockNo(stockNo);
 		financialStatementsVO.setStatementDate(statementDate);
@@ -48,12 +49,14 @@ public class FinancialStatementsService {
 	}
 	public void deleteFinancialStatements(Integer stockNo, String statementDate){
 		FinancialStatementsVO financialStatementsVO = new FinancialStatementsVO();
+		
 		financialStatementsVO.setStockNo(stockNo);
 		financialStatementsVO.setStatementDate(statementDate);
 		dao.delete(financialStatementsVO);
 	}
 	public FinancialStatementsVO getOneFinancialStatements(Integer stockNo, String statementDate){
 		FinancialStatementsVO financialStatementsVO = new FinancialStatementsVO();
+		
 		financialStatementsVO.setStockNo(stockNo);
 		financialStatementsVO.setStatementDate(statementDate);
 		return dao.findByPrimaryKey(financialStatementsVO);
@@ -127,6 +130,7 @@ public class FinancialStatementsService {
 	//-----------新增財報比較查詢一筆----By葉哲--------
 	public FinancialStatementsVO getStockFS(Integer stockNo ,String statementDate){
 		FinancialStatementsVO fsVO = new FinancialStatementsVO();
+		
 		fsVO.setStockNo(stockNo);
 		fsVO.setStatementDate(statementDate);
 		return dao.findByPrimaryKey(fsVO);

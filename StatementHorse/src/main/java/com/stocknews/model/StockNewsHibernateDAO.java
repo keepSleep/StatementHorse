@@ -99,5 +99,24 @@ private static final String GET_ALL_STMT = "from Stock_News_VO order by stockno"
 		}
 		return list;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<StockNewsVO> getAllByStockNo(Integer stockno) {
+		
+		List<StockNewsVO> snVO = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			snVO = (List<StockNewsVO>) session.createQuery("from StockNewsVO where stock_no=?")
+					.setParameter(0,stockno).list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return snVO;
+		
+	}
 
 }

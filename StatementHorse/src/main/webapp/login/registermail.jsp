@@ -52,17 +52,17 @@
 					</div>
 					<div class="panel-body">
 						<form role="form" method="post"
-							action="${pageContext.request.contextPath}/account/registermailagain">
+							action="${pageContext.request.contextPath}/login/registermailagain.jsp">
 							<fieldset>
 								<div class="form-group">
 									<label>感謝申請會員，
 									您將收到一封認證信，請點擊信中的認證網址完成會員申請：<br>
-									寄件信箱：service@statementhorse.com<br>
-									信件主旨：歡迎來到財報馬<br>
+									寄件信箱：statementhorse@gmail.com<br>
+									信件主旨：財報馬會員認證<br>
 									若沒有收到會員認證信，請點選這裡</label>
 								</div>
 								<div>
-								<button type="submit" class="btn btn-lg btn-primary btn-block">重發一封驗證信
+								<button type="submit" class="btn btn-lg btn-info btn-block">重發一封驗證信
 								</div>
 							</fieldset>
 						</form>

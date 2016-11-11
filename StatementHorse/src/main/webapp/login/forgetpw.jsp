@@ -63,11 +63,11 @@
 								</div>
 								<div>
 								<!-- Change this to a button or input when using this as a form -->
-								<button type="submit" class="btn btn-lg btn-primary btn-block">
+								<button type="submit" class="btn btn-lg btn-info btn-block">
 									<label>記密碼更改信給我</label>
 								</div>
 									<div>
-									<a href="${pageContext.request.contextPath}/account/forget">
+									<a href="${pageContext.request.contextPath}/login/login.jsp">
 									<label>回到登入頁</label>
 									</div>
 								</a>

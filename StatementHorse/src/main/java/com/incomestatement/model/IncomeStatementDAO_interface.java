@@ -1,7 +1,6 @@
 package com.incomestatement.model;
 
 import java.util.*;
-
 import com.stock.model.StockVO;
 
 public interface IncomeStatementDAO_interface {
@@ -12,6 +11,4 @@ public interface IncomeStatementDAO_interface {
 	public IncomeStatementVO findByPrimaryKey(IncomeStatementVO incomeStatementVO);
 	public List<IncomeStatementVO> getAll();
 	public List<IncomeStatementVO> getByStockNo(Integer stockNo);
-	
-	
 }

@@ -3,6 +3,7 @@ package com.member.controller;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -30,6 +31,11 @@ public class CheckMailServlet extends HttpServlet {
 		String memberEmail = new String(Base64.getDecoder().decode(request.getParameter("confirmation_token")));
 		MemberService rs = new MemberService();
 		MemberVO mem = rs.findMember(memberEmail);
+		if ((new Date().getTime() - mem.getCreatetime().getTime()) > 6 * 60 * 60 * 1000) {
+			RequestDispatcher rd = request.getRequestDispatcher("/login/registermailagain.jsp");
+			rd.forward(request, response);
+			return;
+		}
 		mem.setMemberCheck(1);
 		rs.insertMember(mem);
 		RequestDispatcher rd = request.getRequestDispatcher("/login/registermailok.jsp");

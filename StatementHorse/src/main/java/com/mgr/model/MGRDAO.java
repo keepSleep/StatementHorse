@@ -19,8 +19,7 @@ public class MGRDAO implements MGRDAO_interface {
 			"from MGRVO where stock_no=:stockVO order by Revenue_Date ";
 	private static final String DELETE_BY_STOCKNO=
 			"delete from MGRVO where stock_no=:stockVO";
-	private static final String GET_DATE_BY_STOCK="FROM MGRVO Where stock_no=:stockVO ORDER BY postDate desc";
-	
+	private static final String GET_DATE_BY_STOCK="FROM MGRVO Where stock_no=:stockVO ORDER BY postDate desc";	
 	
 	@Override
 	public List<MGRVO> getByStockNo(Integer stockNo) {
@@ -158,8 +157,6 @@ public class MGRDAO implements MGRDAO_interface {
 		return list;
 	}
 
-
-	
 //	public static void main(String[] args) {
 //		MGRDAO dao=new MGRDAO(); 
         //新增(舊股號新增測試ok，新股號)

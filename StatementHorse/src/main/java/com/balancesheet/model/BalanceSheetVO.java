@@ -111,8 +111,5 @@ public class BalanceSheetVO implements Serializable {
 	}
 	public void setTotalEquity(Long totalEquity) {
 		this.totalEquity = totalEquity;
-	}
-
-	
-	
+	}	
 }
