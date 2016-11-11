@@ -74,10 +74,14 @@ public class FinancialStatementsServlet extends HttpServlet {
 			 * 3.查詢完成,準備轉交(Send the Success view)
 			 *************/
 			if(!financialStatementsVO.isEmpty()){
-				req.setAttribute("financialStatementsVO", financialStatementsVO);
-				String url = "listFinancialStatements.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, res);
+				out.println(financialStatementsVO);
+				out.close();
+				
+				
+//				req.setAttribute("financialStatementsVO", financialStatementsVO);
+//				String url = "listFinancialStatements.jsp";
+//				RequestDispatcher successView = req.getRequestDispatcher(url);
+//				successView.forward(req, res);
 			} else{
 				String url = "NullFinancialStatementsDate.jsp";
 				RequestDispatcher nullView = req.getRequestDispatcher(url);

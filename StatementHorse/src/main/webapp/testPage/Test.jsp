@@ -29,9 +29,22 @@
             </div>
         </div>
         <script type="text/javascript">
+        
             $(function () {
+
+			
+            	
                 $('#datetimepicker5').datetimepicker({
-                	Default: false;
+//                 	 minView: "month", //选择日期后，不会再跳转去选择时分秒 
+//                 	    language:  'zh-CN',
+//                 	    format: 'yyyy-mm-dd',
+//                 	    todayBtn:  1,
+//                 	    autoclose: 1
+  
+//                 	 format: 'yyyy-MM-dd'
+//                 	 todayBtn:  true,
+//                 	 autoclose: true
+                
                 	defaultDate: "11/1/2013",
                     disabledDates: [
                         //moment("12/25/2013"),
@@ -40,6 +53,8 @@
                     ]
                 });
             });
+            
+            DateTimePicker.Format(yyyy/MM/dd);
         </script>
     </div>
 </div>
