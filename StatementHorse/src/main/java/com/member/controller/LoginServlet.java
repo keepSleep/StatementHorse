@@ -81,6 +81,7 @@ public class LoginServlet extends HttpServlet {
 			} else {
 				// 導向 contextPath + "/index.jsp"
 				// response.sendRedirect(contextPath + "/index.jsp");
+				session.setAttribute("member_id", "whiteyushi"); //set使用者ID
 				response.sendRedirect(response.encodeRedirectURL(contextPath + "/message/Message.jsp"));
 			}
 			return;

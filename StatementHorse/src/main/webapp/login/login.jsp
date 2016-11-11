@@ -13,23 +13,19 @@
 <title>登入財報馬</title>
 
 <!-- Bootstrap Core CSS -->
-<link
-	href="${pageContext.request.contextPath}/css/bootstrap.min.css"
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- MetisMenu CSS -->
-<link
-	href="${pageContext.request.contextPath}/css/metisMenu.min.css"
+<link href="${pageContext.request.contextPath}/css/metisMenu.min.css"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
-<link
-	href="${pageContext.request.contextPath}/css/sb-admin-2.css"
+<link href="${pageContext.request.contextPath}/css/sb-admin-2.css"
 	rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link
-	href="${pageContext.request.contextPath}/css/font-awesome.min.css"
+<link href="${pageContext.request.contextPath}/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -42,7 +38,7 @@
 </head>
 
 <body>
-
+<%@include file="/top/Top.jsp"%>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
@@ -54,6 +50,19 @@
 						<form role="form" method="post"
 							action="${pageContext.request.contextPath}/account/login">
 							<fieldset>
+								<div class="row form-group">
+									<div class="col-lg-6">
+										<button type="button" class="btn btn-info btn-block">
+											<span class="fa fa-facebook-square  "></span> FACEBOOK登入
+										</button>
+									</div>
+									<div class="col-lg-6">
+										<button type="button" class="btn btn-info btn-block">
+											<span class="fa fa-google  "></span> GOOGLE登入
+										</button>
+									</div>
+								</div>
+
 								<div class="form-group">
 									<label>帳號：</label> <input class="form-control"
 										placeholder="E-mail" name="email" type="email" autofocus>
@@ -68,18 +77,20 @@
 								</div>
 								<div class="checkbox">
 									<label> <input name="remember" type="checkbox"
-										value="Remember Me">記住我的帳號資訊
-									</label>
+										value="Remember Me">Remember Me
+									</label> <a
+										href="${pageContext.request.contextPath}/login/forgetpw.jsp">
+										<label>忘記密碼</label>
+									</a> <a
+										href="${pageContext.request.contextPath}/login/register.jsp">
+										<label>註冊財報馬</label>
+									</a>
 								</div>
 								<div>
-								<a href="${pageContext.request.contextPath}/login/forgetpw.jsp">
-									<label>忘記密碼</label>
-								</a>
+									<!-- Change this to a button or input when using this as a form -->
+									<button type="submit" class="btn btn-lg btn-info btn-block">
+										登入
 								</div>
-								<div>
-								<!-- Change this to a button or input when using this as a form -->
-								<button type="submit" class="btn btn-lg btn-primary btn-block">
-									登入</div>
 							</fieldset>
 						</form>
 					</div>
@@ -89,20 +100,16 @@
 	</div>
 
 	<!-- jQuery -->
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script
-		src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
-	<script
-		src="${pageContext.request.contextPath}/js/metisMenu.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/metisMenu.min.js"></script>
 
 	<!-- Custom Theme JavaScript -->
-	<script
-		src="${pageContext.request.contextPath}/js/sb-admin-2.js"></script>
+	<script src="${pageContext.request.contextPath}/js/sb-admin-2.js"></script>
 
 </body>
 

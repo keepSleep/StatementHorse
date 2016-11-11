@@ -10,6 +10,7 @@
 		<property name="memberEmail" column="member_email" />
 		<property name="memberPassword" column="member_password" />
 		<property name="memberCheck" column="member_check"/>
+		<property name="createtime" column="create_time"/>
 
 		<!-- <set name="msgVOs" table="MESSAGE" lazy="false" cascade="all" inverse="true" 
 			> -->

@@ -52,7 +52,7 @@
 					</div>
 					<div class="panel-body">
 						<form role="form" method="post"
-							action="${pageContext.request.contextPath}/account/login">
+							action="${pageContext.request.contextPath}/message/Message.jsp">
 							<fieldset>
 								<div class="form-group">
 									<label>感謝申請會員
@@ -60,8 +60,8 @@
 								</div>
 								<div>
 								<!-- Change this to a button or input when using this as a form -->
-								<button type="submit" class="btn btn-lg btn-primary btn-block">
-									開始使用財報馬</div>
+								<button type="submit" class="btn btn-lg btn-info btn-block">
+									進入財報馬</div>
 							</fieldset>
 						</form>
 					</div>

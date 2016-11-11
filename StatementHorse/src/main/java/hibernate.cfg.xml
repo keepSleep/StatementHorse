@@ -9,8 +9,8 @@
 		<!-- JDBC連線池 (預設會使用Hibernate內建的連線池)(不建議用在實際的專案) -->
 		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
 		<property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;DatabaseName=StatementHorse</property>
-		<property name="hibernate.connection.username">sa</property>
-		<property name="hibernate.connection.password">P@ssw0rd</property>
+		<property name="hibernate.connection.username">stock</property>
+		<property name="hibernate.connection.password">password</property>
         
 		<!--SQL方言,以下使用SQLServer -->
 		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>

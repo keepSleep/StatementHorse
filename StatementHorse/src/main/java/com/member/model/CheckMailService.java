@@ -34,14 +34,14 @@ public class CheckMailService {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("statementhorse@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-			message.setSubject("財報狗會員認證");
+			message.setSubject("財報馬會員認證");
 			message.setText(
-					"親愛的使用者你好:\n請點選下面以完成會員申請.\n認證網址\n如認證網址無法點擊，請複製以下網址，貼至瀏覽器：\nhttp://localhost:8080/StatementHorse/account/registermailok?confirmation_token="
+					"親愛的使用者你好:\n請於6小時內點選下面以完成會員申請\n如認證網址無法點擊，請複製以下網址，貼至瀏覽器：\nhttp://localhost:8080/StatementHorse/account/registermailok?confirmation_token="
 							+ Base64.getEncoder().encodeToString(email.getBytes()));
 
 			Transport.send(message);
 
-			System.out.println("寄送email結束.");
+			System.out.println("寄送email結束");
 
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
@@ -68,14 +68,14 @@ public class CheckMailService {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("statementhorse@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-			message.setSubject("財報狗會員認證");
+			message.setSubject("財報馬會員密碼修改");
 			message.setText(
-					"親愛的使用者你好:\n請點選下面連結完成密碼修改.\n認證網址\n如認證網址無法點擊，請複製以下網址，貼至瀏覽器：\nhttp://localhost:8080/StatementHorse/login/changepw.jsp?confirmation_token="
+					"親愛的使用者你好:\n請於6小時內點選下面連結完成密碼修改\n認證網址\n如認證網址無法點擊，請複製以下網址，貼至瀏覽器：\nhttp://localhost:8080/StatementHorse/login/changepw.jsp?confirmation_token="
 							+ Base64.getEncoder().encodeToString(email.getBytes()));
 
 			Transport.send(message);
 
-			System.out.println("寄送email結束.");
+			System.out.println("寄送email結束");
 
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);

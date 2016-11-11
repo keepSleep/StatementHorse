@@ -52,7 +52,7 @@
 						</td>			
 						<td class="col-sm-1 col-md-offset-8">
 						<c:if test="${empty member_id}">
-						 <button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none" id="login"><i class="fa fa-user fa-fw"></i>登入</button>
+						 <a href="${pageContext.request.contextPath}/login/login.jsp"><button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none" id="login"><i class="fa fa-user fa-fw"></i>登入</button></a>
 						</c:if>
 						<c:if test="${!empty member_id}">
 						 <button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none " id="logout"><i class="fa fa-user fa-fw"></i>登出</button>
@@ -99,7 +99,7 @@
 			                        <li><a  id="setting" style="cursor:pointer"><i class="fa fa-gear fa-fw"></i>通知設定</a>
 			                        </li>
 			                        <li class="divider"></li>
-			                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+			                        <li><a href="logout.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 			                        </li>
 			                    </ul>
 			                </li>

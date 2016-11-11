@@ -1,5 +1,6 @@
 package com.member.model;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -19,6 +20,16 @@ public class MemberVO implements java.io.Serializable {
 	private String memberEmail;//會員E-mail(帳號)
 	private String memberPassword;//會員密碼
 	private Integer memberCheck;//驗證狀態，0為未驗證，1為已驗證
+	private Date createtime;//驗證信時間戳記
+	private Date sendpwmailtime;
+	public Date getSendpwmailtime() {
+		return sendpwmailtime;
+	}
+
+	public void setSendpwmailtime(Date sendpwmailtime) {
+		this.sendpwmailtime = sendpwmailtime;
+	}
+
 	private Set<MsgVO> msgVOs; //連結通知明細VO
 	private Set<TrackListingVO> trackListingVOs;//連結追蹤清單VO
 
@@ -70,6 +81,14 @@ public class MemberVO implements java.io.Serializable {
 
 	public void setMemberCheck(Integer memberCheck) {
 		this.memberCheck = memberCheck;
+	}
+
+	public Date getCreatetime() {
+		return createtime;
+	}
+
+	public void setCreatetime(Date createtime) {
+		this.createtime = createtime;
 	}
 
 }
