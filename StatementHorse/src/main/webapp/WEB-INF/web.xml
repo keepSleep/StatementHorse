@@ -44,6 +44,13 @@
 		<servlet-name>MsgIUDServlet</servlet-name>
 		<servlet-class>com.message.controller.MsgIUDServlet</servlet-class>
 	</servlet>
+		<servlet>
+		<description>
+		</description>
+		<display-name>ChangePassword</display-name>
+		<servlet-name>ChangePassword</servlet-name>
+		<servlet-class>com.member.controller.ChangePassword</servlet-class>
+	</servlet>
 	<servlet>
 		<description>
 		</description>
@@ -65,13 +72,6 @@
 		<display-name>GetNewsMsgServlet</display-name>
 		<servlet-name>GetNewsMsgServlet</servlet-name>
 		<servlet-class>com.message.controller.GetNewsMsgServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>ChangePassword</display-name>
-		<servlet-name>ChangePassword</servlet-name>
-		<servlet-class>com.member.controller.ChangePassword</servlet-class>
 	</servlet>
 
 	<servlet-mapping>

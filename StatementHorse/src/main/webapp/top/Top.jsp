@@ -32,7 +32,7 @@
 
 	<table style="background-color: lightblue; height: 70px;width:100%">
 		<tr>
-			<td ><a href="">
+			<td ><a href="${pageContext.servletContext.contextPath}/MessageIndex.jsp">
 			<img src="${pageContext.servletContext.contextPath}/picture/statementhourse.png" class="img-circle" style="padding: 5px"></a></td>
 			<td>
 				<table>
@@ -52,7 +52,7 @@
 						</td>			
 						<td class="col-sm-1 col-md-offset-8">
 						<c:if test="${empty member_id}">
-						 <button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none" id="login"><i class="fa fa-user fa-fw"></i>登入</button>
+						 <a href="${pageContext.request.contextPath}/login/login.jsp"><button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none" id="login"><i class="fa fa-user fa-fw"></i>登入</button></a>
 						</c:if>
 						<c:if test="${!empty member_id}">
 						 <button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none " id="logout"><i class="fa fa-user fa-fw"></i>登出</button>
@@ -99,7 +99,7 @@
 			                        <li><a  id="setting" style="cursor:pointer"><i class="fa fa-gear fa-fw"></i>通知設定</a>
 			                        </li>
 			                        <li class="divider"></li>
-			                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+			                        <li><a href="logout.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 			                        </li>
 			                    </ul>
 			                </li>
@@ -168,7 +168,7 @@
 		var last=$("#true").text();
 // 		setInterval("refreshnews()",5000);
 		$("#tg").click(function(){
-			$("#tg").attr("style","color:#337ab7")
+			$("#tg").attr("style","color:#337ab7;width:65px")
 		})
 // 		for (var i=1; i<=last; i++) {
 // 			var stockno=$("#"+i).text();
@@ -232,7 +232,7 @@
 		console.log(data)
 		$("#newmessage").empty();
 		if($("#messagelength").val()!=data.length){
-			$("#tg").attr("style","color:#c13353");
+			$("#tg").attr("style","color:#c13353;width:65px");
 			}
 		$("#messagelength").val(data.length);
 		$.each(data,function(i,v){		

@@ -10,6 +10,7 @@
 		<property name="memberEmail" column="member_email" />
 		<property name="memberPassword" column="member_password" />
 		<property name="memberCheck" column="member_check"/>
+		<property name="createtime" column="create_time"/>
 
 		<!-- <set name="msgVOs" table="MESSAGE" lazy="false" cascade="all" inverse="true" 
 			> -->
@@ -17,11 +18,12 @@
 		<!-- <one-to-many class="com.message.model.MsgVO"/> -->
 		<!-- </set> -->
 
-		<!-- <set name="trackListingVOs" table="TRACK_LISTING" lazy="false" cascade="all" 
-			inverse="true" > -->
-		<!-- <key><column name="member_id"/></key> -->
-		<!-- <one-to-many class="com.tracklisting.model.TrackListingVO"/> -->
-		<!-- </set> -->
+		 <set name="trackListingVOs" table="TRACK_LISTING" lazy="false" cascade="all" 
+			inverse="true" > 
+		<key><column name="member_id"/></key>
+		<one-to-many class="com.tracklisting.model.TrackListingVO"/>
+		</set>
+
 
 	</class>
 </hibernate-mapping>

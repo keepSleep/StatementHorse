@@ -70,7 +70,7 @@
 								</div>
 								<div>
 									<!-- Change this to a button or input when using this as a form -->
-									<button type="submit" class="btn btn-lg btn-primary btn-block">
+									<button type="submit" class="btn btn-lg btn-info btn-block">
 										<label>確認</label>
 								</div>
 							</fieldset>
