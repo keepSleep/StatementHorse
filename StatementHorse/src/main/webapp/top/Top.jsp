@@ -12,8 +12,8 @@
 
 <script
 	src="${pageContext.servletContext.contextPath}/js/jquery-3.1.1.min.js"></script>
-<script
-	src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script>
+ <script
+	src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script> 
 <style>
   .modal-header, h4, .close {
       background-color: #5cb85c;
@@ -32,12 +32,12 @@
 
 	<table style="background-color: lightblue; height: 70px;width:100%">
 		<tr>
-			<td ><a href="">
+			<td ><a href="${pageContext.servletContext.contextPath}/MessageIndex.jsp">
 			<img src="${pageContext.servletContext.contextPath}/picture/statementhourse.png" class="img-circle" style="padding: 5px"></a></td>
 			<td>
 				<table>
 					<tr>
-						<td class="col-sm-1"> <button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >個股資料</button></td>
+						<td class="col-sm-1"><a href="${pageContext.servletContext.contextPath}/ShowStockServlet?action=stock&stock_no=2330&member_id=Blastoise"> <button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >個股資料</button></td>
 						<td class="col-sm-1"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報日期</button></td>
 						<td class="col-sm-1"><a href="${pageContext.servletContext.contextPath}/financialstatements/FinancialContrastList.jsp"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報比較</button></a></td>
 						<td class="col-sm-4">
@@ -168,7 +168,7 @@
 		var last=$("#true").text();
 // 		setInterval("refreshnews()",5000);
 		$("#tg").click(function(){
-			$("#tg").attr("style","color:#337ab7")
+			$("#tg").attr("style","color:#337ab7;width:65px")
 		})
 // 		for (var i=1; i<=last; i++) {
 // 			var stockno=$("#"+i).text();
@@ -232,7 +232,7 @@
 		console.log(data)
 		$("#newmessage").empty();
 		if($("#messagelength").val()!=data.length){
-			$("#tg").attr("style","color:#c13353");
+			$("#tg").attr("style","color:#c13353;width:65px");
 			}
 		$("#messagelength").val(data.length);
 		$.each(data,function(i,v){		

@@ -18,11 +18,11 @@
 		<!-- <one-to-many class="com.message.model.MsgVO"/> -->
 		<!-- </set> -->
 
-		<!-- <set name="trackListingVOs" table="TRACK_LISTING" lazy="false" cascade="all" 
-			inverse="true" > -->
-		<!-- <key><column name="member_id"/></key> -->
-		<!-- <one-to-many class="com.tracklisting.model.TrackListingVO"/> -->
-		<!-- </set> -->
+		 <set name="trackListingVOs" table="TRACK_LISTING" lazy="false" cascade="all" 
+			inverse="true" > 
+		<key><column name="member_id"/></key>
+		<one-to-many class="com.tracklisting.model.TrackListingVO"/>
+		</set>
 
 	</class>
 </hibernate-mapping>

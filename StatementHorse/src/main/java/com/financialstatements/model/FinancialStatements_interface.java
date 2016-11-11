@@ -14,6 +14,7 @@ public interface FinancialStatements_interface {
     public List<FinancialStatementsVO> getAll();
     public List<FinancialStatementsVO> findByStockNo(Integer stockno);
     public List<FinancialStatementsVO> getByPostDate(FinancialStatementsVO financialStatementsVO);
+    public List<FinancialStatementsVO> getByStockNo(Integer stockno);
     //------------財報比較查詢全部statementDates---By葉哲-----------------
     public List<FinancialStatementsVO> getAllSDs();
     

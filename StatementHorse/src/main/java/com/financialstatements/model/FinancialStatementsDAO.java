@@ -24,6 +24,7 @@ public class FinancialStatementsDAO implements FinancialStatements_interface {
 	private static final String GET_ALL_STMT = "FROM FinancialStatementsVO ORDER BY stockNo , statementDate";
 	private static final String GET_BY_POST_DATE_STMT ="FROM FinancialStatementsVO where postDate=? order by postTime";
 	private static final String GET_DATE_BY_STOCK="FROM FinancialStatementsVO Where stockNo=? ORDER BY postDate desc";
+	private static final String GET_BY_STOCK="FROM FinancialStatementsVO Where stockNo=? ORDER BY postDate asc";
 	
 	@Override
 	public void insert(FinancialStatementsVO financialStatementsVO) {
@@ -68,6 +69,28 @@ public class FinancialStatementsDAO implements FinancialStatements_interface {
 		return list;
 	}
 	
+
+	
+	@Override
+	public List<FinancialStatementsVO> getByStockNo(Integer stockno) {
+		
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			List<FinancialStatementsVO> list=null;
+			try {
+				session.beginTransaction();
+				Query query = session.createQuery(GET_BY_STOCK);
+				query.setParameter(0, stockno);
+				list=query.list();
+				session.getTransaction().commit();			
+			} catch (RuntimeException ex) {
+				session.getTransaction().rollback();
+				throw ex;
+			}
+			return list;
+		}
+
+	
+
 	@Override
 	public void delete(FinancialStatementsVO financialStatementsVO) {
 //		IncomeStatementHibernateDAO isDao = new IncomeStatementHibernateDAO();

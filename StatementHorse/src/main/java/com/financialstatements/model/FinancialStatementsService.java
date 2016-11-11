@@ -119,6 +119,12 @@ public class FinancialStatementsService {
 	public List<FinancialStatementsVO> getAllSDs(){
 		return dao.getAllSDs();
 	}
+	public List<FinancialStatementsVO> getOneStock(Integer stock_no){
+//		FinancialStatementsVO financialStatementsVO=new FinancialStatementsVO();
+//		financialStatementsVO.setStockNo(stock_no);
+		return dao.getByStockNo(stock_no);
+		 
+	}
 
 	//快速測試程式碼
 //	public static final void main(String args[]) throws ParseException{

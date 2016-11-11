@@ -32,6 +32,7 @@ public class ShowStockServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		req.setCharacterEncoding("UTF-8");
+		resp.setHeader("content-type", "text/html;charset=UTF-8");
 		String action = req.getParameter("action");
 		String json = req.getParameter("json");
 		String need = req.getParameter("need");
@@ -132,6 +133,40 @@ public class ShowStockServlet extends HttpServlet {
 			PrintWriter out = resp.getWriter();
 			ToJsonArray tojson=new ToJsonArray();
 			JSONArray list=tojson.PERToJson(stockNo);
+			out.print(list);	
+			out.close();
+		}
+		if("operatingRevenuejson".equals(json)){
+			PrintWriter out = resp.getWriter();
+			ToJsonArray tojson=new ToJsonArray();
+			JSONArray list=tojson.incomeStatementToJson(stockNo,need);
+			out.print(list);	
+			out.close();
+		}
+		if("profitjson".equals(json)){
+			PrintWriter out = resp.getWriter();
+			ToJsonArray tojson=new ToJsonArray();
+			JSONArray list=tojson.ProfitToJson(stockNo,need);
+			out.print(list);	
+			out.close();
+		}
+		if("balancesheetjson".equals(json)){
+			PrintWriter out = resp.getWriter();
+			ToJsonArray tojson=new ToJsonArray();
+			JSONArray list=tojson.balanceSheetToJson(stockNo,need);
+			out.print(list);	
+			out.close();
+		}if("assetsjson".equals(json)){
+			PrintWriter out = resp.getWriter();
+			ToJsonArray tojson=new ToJsonArray();
+			JSONArray list=tojson.AssetsToJson(stockNo);
+			out.print(list);	
+			out.close();
+		}
+		if("incomejson".equals(json)){
+			PrintWriter out = resp.getWriter();
+			ToJsonArray tojson=new ToJsonArray();
+			JSONArray list=tojson.IncomeToJson(stockNo);
 			out.print(list);	
 			out.close();
 		}
