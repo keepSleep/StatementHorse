@@ -1,7 +1,6 @@
 package com.incomestatement.model;
 
 import java.io.Serializable;
-
 import com.stock.model.StockVO;
 
 public class IncomeStatementVO implements Serializable {
@@ -117,7 +116,4 @@ public class IncomeStatementVO implements Serializable {
 	public void setEarningPerShare(Double earningPerShare) {
 		this.earningPerShare = earningPerShare;
 	}
-	
-
-	
 }

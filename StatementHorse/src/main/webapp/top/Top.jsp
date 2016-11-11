@@ -38,7 +38,7 @@
 				<table>
 					<tr>
 						<td class="col-sm-1"><a href="${pageContext.servletContext.contextPath}/ShowStockServlet?action=stock&stock_no=2330&member_id=Blastoise"> <button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >個股資料</button></td>
-						<td class="col-sm-1"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報日期</button></td>
+						<td class="col-sm-1"><a href="${pageContext.servletContext.contextPath}/financialstatements/ListStatementsDate.jsp"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報日期</button></a></td>
 						<td class="col-sm-1"><a href="${pageContext.servletContext.contextPath}/financialstatements/FinancialContrastList.jsp"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報比較</button></a></td>
 						<td class="col-sm-4">
 							<div class="input-group custom-search-form">
@@ -52,7 +52,7 @@
 						</td>			
 						<td class="col-sm-1 col-md-offset-8">
 						<c:if test="${empty member_id}">
-						 <a href="${pageContext.request.contextPath}/login/login.jsp"><button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none" id="login"><i class="fa fa-user fa-fw"></i>登入</button></a>
+						 <button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none" id="login"><i class="fa fa-user fa-fw"></i>登入</button>
 						</c:if>
 						<c:if test="${!empty member_id}">
 						 <button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none " id="logout"><i class="fa fa-user fa-fw"></i>登出</button>
@@ -99,7 +99,7 @@
 			                        <li><a  id="setting" style="cursor:pointer"><i class="fa fa-gear fa-fw"></i>通知設定</a>
 			                        </li>
 			                        <li class="divider"></li>
-			                        <li><a href="logout.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+			                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 			                        </li>
 			                    </ul>
 			                </li>
@@ -134,6 +134,12 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:if test="${empty memberlistno}">
+					<tr>
+					<td colspan="3"><h3>您目前沒有追蹤股號，請至<a href="">追蹤清單</a>新增</h3></td>
+					</tr>
+					</c:if>
+					<c:if test="${!empty memberlistno}">
 					<c:forEach var="stock" items="${memberlistno}" varStatus="count">
 						<tr>
 							<td>${stock[0]}</td>
@@ -143,18 +149,14 @@
 						<div style="display:none" id="${count.count}">${stock[0]}</div>
 						<div style="display:none" id="${count.last}">${count.count}</div>
 					</c:forEach>
-					
+					</c:if>
+					<tr><td colspan="3" align="center"><div style="display:none;margin:0px auto" id="followok" ><h3>你已更新成功!!!</h3></div></td></tr>
 					</tbody>
 		 		</table>
               <button type="button" class="btn btn-success btn-block" style="border:0px;" id="updatemessage"><span  class="glyphicon glyphicon-floppy-disk"></span> 完成更新</button>
  			       
 <!--           </form> -->
           
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-          <p>Not a member? <a href="#">Sign Up</a></p>
-          <p>Forgot <a href="#">Password?</a></p>
         </div>
       </div>
       
@@ -180,6 +182,7 @@
 	        $("#myModal").modal();
 	    });
 	    $("#updatemessage").click(function(){
+	    	$("#followok").attr("style","color:red")
 	    	var stockcheck1="";
 	    	for (var i=1; i<=last; i++) {
 				var stockno=$("#"+i).text();

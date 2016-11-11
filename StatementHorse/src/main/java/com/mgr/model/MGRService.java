@@ -1,7 +1,5 @@
 package com.mgr.model;
 
-
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -101,7 +99,4 @@ public class MGRService {
 	public void deleteByStockNO(Integer stockNo){
 	dao.deleteByStockNo(stockNo);
 	}
-	
-	
-	
 }

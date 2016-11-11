@@ -24,6 +24,7 @@
 		<one-to-many class="com.tracklisting.model.TrackListingVO"/>
 		</set>
 
+
 	</class>
 </hibernate-mapping>
 
