@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONValue;
 
-import com.financialstatements.model.FinancialStatementsHibernateDAO;
+import com.financialstatements.model.FinancialStatementsDAO;
 import com.financialstatements.model.FinancialStatementsVO;
 import com.listingdetails.model.ListingDetailsHibernateDAO;
 import com.listingdetails.model.ListingDetailsVO;
@@ -44,7 +44,7 @@ public class SearchFinancialStatements extends HttpServlet {
 		
 		//使用到的 DAO
 		ListingDetailsHibernateDAO lddao = new ListingDetailsHibernateDAO();
-		FinancialStatementsHibernateDAO fsdao = new FinancialStatementsHibernateDAO();
+		FinancialStatementsDAO fsdao = new FinancialStatementsDAO();
 		
 		//使用到的集合
 		ArrayList l1 = new ArrayList();

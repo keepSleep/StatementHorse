@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.listingdetails.model.ListingDetailsHibernateDAO;
 import com.listingdetails.model.ListingDetailsVO;
+import com.member.model.MemberVO;
 import com.tracklisting.model.TrackListingHibernateDAO;
 import com.tracklisting.model.TrackListingVO;
 
@@ -42,8 +43,10 @@ public class GetTrackListing extends HttpServlet {
 		if (tlVO.size() == 0){
 
 			TrackListingVO tlvo = new TrackListingVO();
+			MemberVO mvo = new MemberVO();
+			mvo.setMemberId(memberId);
 			
-			tlvo.setMemberId(memberId);
+			tlvo.setMemberVO(mvo);
 			tlvo.setListingName("我的追蹤清單");
 			tldao.insert(tlvo);
 			
@@ -60,7 +63,7 @@ public class GetTrackListing extends HttpServlet {
 		
 		for (TrackListingVO tlVO2 : tlVO) {
 			
-			mId.add(tlVO2.getMemberId());
+			mId.add(tlVO2.getMemberVO().getMemberId());
 			tlName.add(tlVO2.getListingName());
 			tlNo.add(tlVO2.getListingNo());
 							

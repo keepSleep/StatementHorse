@@ -39,12 +39,15 @@ public class CreateStock extends HttpServlet {
 		
 		try{
 			
-		svo.setStockNo(Integer.parseInt(stockNo.substring(0, 4)));
-		ldvo.setListingNo(Integer.parseInt(listingNo));
-		ldvo.setStockVO(svo);;
-		lddao.insert(ldvo);
+			TrackListingVO tlvo = new TrackListingVO();
+			tlvo.setListingNo(Integer.parseInt(listingNo));
+				
+			svo.setStockNo(Integer.parseInt(stockNo.substring(0, 4)));
+			ldvo.setTrackListingVO(tlvo);
+			ldvo.setStockVO(svo);;
+			lddao.insert(ldvo);
 		
-		response.getWriter().write("追蹤個股成功");
+			response.getWriter().write("追蹤個股成功");
 
 		}catch(Exception e){
 			

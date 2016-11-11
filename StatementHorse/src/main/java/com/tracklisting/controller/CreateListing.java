@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.listingdetails.model.ListingDetailsHibernateDAO;
 import com.listingdetails.model.ListingDetailsVO;
+import com.member.model.MemberVO;
 import com.tracklisting.model.TrackListingHibernateDAO;
 import com.tracklisting.model.TrackListingVO;
 
@@ -40,11 +41,14 @@ public class CreateListing extends HttpServlet {
 		
 		else{
 				
-		tlvo.setMemberId(memberId);
-		tlvo.setListingName(listingName);
-		tldao.insert(tlvo);
+			MemberVO mvo = new MemberVO();
+			mvo.setMemberId(memberId);
+			
+			tlvo.setMemberVO(mvo);;
+			tlvo.setListingName(listingName);
+			tldao.insert(tlvo);
 		
-		response.getWriter().write("新增追蹤清單成功");
+			response.getWriter().write("新增追蹤清單成功");
 		
 		}
 		

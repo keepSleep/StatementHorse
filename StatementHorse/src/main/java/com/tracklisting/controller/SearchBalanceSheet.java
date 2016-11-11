@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONValue;
 
-import com.balancesheet.model.BalanceSheetHibernateDAO;
+import com.balancesheet.model.BalanceSheetDAO;
 import com.balancesheet.model.BalanceSheetVO;
 import com.listingdetails.model.ListingDetailsHibernateDAO;
 import com.listingdetails.model.ListingDetailsVO;
@@ -43,7 +43,7 @@ public class SearchBalanceSheet extends HttpServlet {
 		
 		//使用到的 DAO
 		ListingDetailsHibernateDAO lddao = new ListingDetailsHibernateDAO();
-		BalanceSheetHibernateDAO bsdao = new BalanceSheetHibernateDAO();
+		BalanceSheetDAO bsdao = new BalanceSheetDAO();
 		
 		//使用到的集合
 		ArrayList l1 = new ArrayList();

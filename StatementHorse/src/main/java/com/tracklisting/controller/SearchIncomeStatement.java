@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONValue;
 
 import com.financialstatements.model.FinancialStatementsVO;
-import com.incomestatement.model.IncomeStatementHibernateDAO;
+import com.incomestatement.model.IncomeStatementDAO;
 import com.incomestatement.model.IncomeStatementVO;
 import com.listingdetails.model.ListingDetailsHibernateDAO;
 import com.listingdetails.model.ListingDetailsVO;
@@ -44,7 +44,7 @@ public class SearchIncomeStatement extends HttpServlet {
 		
 		//使用到的 DAO
 		ListingDetailsHibernateDAO lddao = new ListingDetailsHibernateDAO();
-		IncomeStatementHibernateDAO isdao = new IncomeStatementHibernateDAO();
+		IncomeStatementDAO isdao = new IncomeStatementDAO();
 		
 		//使用到的集合
 		ArrayList l1 = new ArrayList();

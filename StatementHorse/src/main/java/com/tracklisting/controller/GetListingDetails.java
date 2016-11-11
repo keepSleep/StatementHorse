@@ -47,7 +47,7 @@ public class GetListingDetails extends HttpServlet {
 
 			
 			Map m1 = new HashMap();
-			m1.put("ListingNo", tdVO2.getListingNo());
+			m1.put("ListingNo", tdVO2.getTrackListingVO().getListingNo());
 			m1.put("StockNo", tdVO2.getStockVO().getStockNo());
 			m1.put("StockName", tdVO2.getStockVO().getStockName());
 			l1.add(m1);

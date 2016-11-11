@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.member.model.MemberVO;
 import com.tracklisting.model.TrackListingHibernateDAO;
 import com.tracklisting.model.TrackListingVO;
 
@@ -38,13 +39,16 @@ public class ChangeName extends HttpServlet {
 		}
 		
 		else{
-			
-		tlvo.setListingNo(Integer.parseInt(listingNo));
-		tlvo.setMemberId(memberId);
-		tlvo.setListingName(listingName);
-		tldao.update(tlvo);
 		
-		response.getWriter().write("修改追蹤清單名稱成功");
+			MemberVO mvo = new MemberVO();
+			mvo.setMemberId(memberId);
+			
+			tlvo.setListingNo(Integer.parseInt(listingNo));
+			tlvo.setMemberVO(mvo);;
+			tlvo.setListingName(listingName);
+			tldao.update(tlvo);
+		
+			response.getWriter().write("修改追蹤清單名稱成功");
 		
 		}
 		
