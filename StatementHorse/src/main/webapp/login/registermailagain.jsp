@@ -67,7 +67,7 @@
 								<div>
 								<!-- Change this to a button or input when using this as a form -->
 								<button type="submit" class="btn btn-lg btn-info btn-block">
-									<label>記驗證信給我</label>
+									<label>寄驗證信給我</label>
 								</div>
 									<div>
 									<a href="${pageContext.request.contextPath}/login/login.jsp">
