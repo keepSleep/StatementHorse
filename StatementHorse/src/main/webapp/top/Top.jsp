@@ -55,7 +55,7 @@
 						 <button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none" id="login"><i class="fa fa-user fa-fw"></i>登入</button>
 						</c:if>
 						<c:if test="${!empty member_id}">
-						 <button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none " id="logout"><i class="fa fa-user fa-fw"></i>登出</button>
+						 <button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none " id="logout"><i class="fa fa-user fa-fw"></i>追蹤清單</button>
 						</c:if>
 						<c:if test="${!empty member_id}">
 						</td>
@@ -89,7 +89,7 @@
 						</td>
 						<td  class="col-sm-1">
 							<ul class="nav navbar-top-links navbar-right ">
-							<li class="dropdown">
+							<li class="dropdown" id="allsetting">
 			                    <a class="dropdown-toggle btn-lg" data-toggle="dropdown" href="" style="width:65px">
 			                        <i class="fa fa-gear fa-fw"></i><i class="fa fa-caret-down"></i>
 			                    </a>
@@ -176,11 +176,16 @@
 // 			var stockno=$("#"+i).text();
 // 			stockcheck1+=$("#"+i).text()+","+$("#"+stockno+"1").prop("checked")+","+$("#"+stockno+"2").prop("checked")+";"
 // 		}
+		$("#allsetting").click(function(){
+			$("#followok").attr("style","display:none")
+		})
 		
 		
 	    $("#setting").click(function(){
 	        $("#myModal").modal();
 	    });
+	    
+	    
 	    $("#updatemessage").click(function(){
 	    	$("#followok").attr("style","color:red")
 	    	var stockcheck1="";
