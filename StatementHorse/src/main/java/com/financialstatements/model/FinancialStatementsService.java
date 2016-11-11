@@ -23,6 +23,7 @@ public class FinancialStatementsService {
 	}
 	public FinancialStatementsVO addFinancialStatements(Integer stockNo,String statementDate, Date postDate, String postTime
 			){
+			
 		FinancialStatementsVO financialStatementsVO = new FinancialStatementsVO();
 		financialStatementsVO.setStockNo(stockNo);
 		financialStatementsVO.setStatementDate(statementDate);
@@ -48,12 +49,14 @@ public class FinancialStatementsService {
 	}
 	public void deleteFinancialStatements(Integer stockNo, String statementDate){
 		FinancialStatementsVO financialStatementsVO = new FinancialStatementsVO();
+		
 		financialStatementsVO.setStockNo(stockNo);
 		financialStatementsVO.setStatementDate(statementDate);
 		dao.delete(financialStatementsVO);
 	}
 	public FinancialStatementsVO getOneFinancialStatements(Integer stockNo, String statementDate){
 		FinancialStatementsVO financialStatementsVO = new FinancialStatementsVO();
+		
 		financialStatementsVO.setStockNo(stockNo);
 		financialStatementsVO.setStatementDate(statementDate);
 		return dao.findByPrimaryKey(financialStatementsVO);
@@ -63,11 +66,28 @@ public class FinancialStatementsService {
 		return dao.getAll();
 	}
 	
-	public List<FinancialStatementsVO> getByPostDate(Date postDate ){
+	public List getByPostDate(Date postDate ){
+		List listAll=new LinkedList();
 		FinancialStatementsVO financialStatementsVO = new FinancialStatementsVO();
 		financialStatementsVO.setPostDate(postDate);
-		return dao.getByPostDate(financialStatementsVO);
+		List<FinancialStatementsVO> list=dao.getByPostDate(financialStatementsVO);
+		List list1=null;
+		for(FinancialStatementsVO element:list){
+			list1=new LinkedList();
+			Integer stockno = element.getStockNo();
+			StockService stockSvc=new StockService();
+			StockVO stockVO=stockSvc.getOneStock(stockno);
+			String stockname = stockVO.getStockName();
+			list1.add(stockno);
+			list1.add(stockname);
+			list1.add(element.getPostDate());
+			list1.add(element.getPostTime());
+			listAll.add(list1);
+		}
+		
+		return  listAll;
 	}
+	
 	public List<FinancialStatementsVO> checkinsert(Integer stockno,Date lastdateandtime){
 		List<FinancialStatementsVO> returnlist = new LinkedList<>();
 		List<FinancialStatementsVO> list = dao.findByStockNo(stockno);
@@ -110,6 +130,7 @@ public class FinancialStatementsService {
 	//-----------新增財報比較查詢一筆----By葉哲--------
 	public FinancialStatementsVO getStockFS(Integer stockNo ,String statementDate){
 		FinancialStatementsVO fsVO = new FinancialStatementsVO();
+		
 		fsVO.setStockNo(stockNo);
 		fsVO.setStatementDate(statementDate);
 		return dao.findByPrimaryKey(fsVO);
@@ -161,6 +182,8 @@ public class FinancialStatementsService {
 	
 	
 //	}
+	
+	//----------------
 	
 	
 }

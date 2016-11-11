@@ -48,16 +48,17 @@
 			<div class="col-md-4 col-md-offset-4">
 				<div class="login-panel panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">登入財報馬</h3>
+						<h3 class="panel-title">歡迎您再次使用</h3>
 					</div>
 					<div class="panel-body">
 						<form role="form" method="post"
-							action="${pageContext.request.contextPath}/account/login">
+							action="${pageContext.request.contextPath}/login/login.jsp">
 							<fieldset>
-								<div class="form-group">
-									<label>感謝您使用財報馬</label>
+								<div>
+								<!-- Change this to a button or input when using this as a form -->
+								<button type="submit" class="btn btn-lg btn-info btn-block">
+									<label>回到登入頁</label>
 								</div>
-
 							</fieldset>
 						</form>
 					</div>

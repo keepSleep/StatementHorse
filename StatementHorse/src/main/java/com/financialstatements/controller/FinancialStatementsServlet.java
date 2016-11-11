@@ -57,14 +57,10 @@ public class FinancialStatementsServlet extends HttpServlet {
 
 			/*************************** 2.開始查詢資料 *****************************************/
 			FinancialStatementsService financialStatementsSvc = new FinancialStatementsService();
-			StockService stockSvc = new StockService();
+			List statementsData=null;
 			
-			List<FinancialStatementsVO> financialStatementsVO=null;
-					
 			try{
-			financialStatementsVO = financialStatementsSvc.getByPostDate(dateParse);
-//			financialStatementsVO
-			
+				statementsData = financialStatementsSvc.getByPostDate(dateParse);
 			}catch(org.hibernate.exception.SQLGrammarException e){
 				String url = "InputDate.jsp";
 				RequestDispatcher nothingHappend =req.getRequestDispatcher(url);
@@ -73,11 +69,18 @@ public class FinancialStatementsServlet extends HttpServlet {
 			/***************************
 			 * 3.查詢完成,準備轉交(Send the Success view)
 			 *************/
-			if(!financialStatementsVO.isEmpty()){
-				req.setAttribute("financialStatementsVO", financialStatementsVO);
-				String url = "listFinancialStatements.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, res);
+			
+			JSONArray json = new JSONArray(statementsData);
+			
+			if(!statementsData.isEmpty()){
+				out.println(json);
+				out.close();
+				
+				
+//				req.setAttribute("financialStatementsVO", financialStatementsVO);
+//				String url = "listFinancialStatements.jsp";
+//				RequestDispatcher successView = req.getRequestDispatcher(url);
+//				successView.forward(req, res);
 			} else{
 				String url = "NullFinancialStatementsDate.jsp";
 				RequestDispatcher nullView = req.getRequestDispatcher(url);

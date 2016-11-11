@@ -16,8 +16,5 @@
 		<property name="highestPrice" column="highest_price"/>
 		<property name="lowestPrice" column="lowest_price"/>
 		<property name="quantity" column="quantity"/>
-		
-	
-
 	</class>
 </hibernate-mapping>

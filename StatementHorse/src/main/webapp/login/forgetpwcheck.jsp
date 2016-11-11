@@ -52,7 +52,7 @@
 					</div>
 					<div class="panel-body">
 						<form role="form" method="post"
-							action="${pageContext.request.contextPath}/account/registermailagain">
+							action="${pageContext.request.contextPath}/login/forgetpw.jsp">
 							<fieldset>
 								<div class="form-group">
 									<label>親愛的會員，
@@ -62,7 +62,7 @@
 									若沒有收到密碼修改信，請點選這裡</label>
 								</div>
 								<div>
-								<button type="submit" class="btn btn-lg btn-primary btn-block">重發一封驗證信
+								<button type="submit" class="btn btn-lg btn-info btn-block">重發一封密碼信
 								</div>
 							</fieldset>
 						</form>

@@ -53,9 +53,5 @@ public class PriceVO implements Serializable {
 	}
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
-	}
-
-	
-	
-	
+	}	
 }

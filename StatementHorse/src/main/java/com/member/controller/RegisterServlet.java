@@ -2,6 +2,7 @@ package com.member.controller;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -79,6 +80,7 @@ public class RegisterServlet extends HttpServlet {
 				mem.setMemberEmail(memberEmail);
 				mem.setMemberPassword(memberPassword);
 				mem.setMemberCheck(0);
+				mem.setCreatetime(new Date());
 				rs.insertMember(mem);
 				msgOK.put("InsertOK", "新增成功");
 				CheckMailService checkMailService = new CheckMailService();

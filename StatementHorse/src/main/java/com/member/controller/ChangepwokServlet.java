@@ -3,6 +3,7 @@ package com.member.controller;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -57,9 +58,14 @@ public class ChangepwokServlet extends HttpServlet {
 		}
 		MemberService rs = new MemberService();
 		MemberVO mem = rs.findMember(memberEmail);
+		if ((new Date().getTime() - mem.getCreatetime().getTime()) > 6 * 60 * 60 * 1000) {
+			RequestDispatcher rd = request.getRequestDispatcher("/login/registermailagain.jsp");
+			rd.forward(request, response);
+			return;
+		}
 		mem.setMemberPassword(memberPassword);
 		rs.insertMember(mem);
-		RequestDispatcher rd = request.getRequestDispatcher("/login/registermailok.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/message/Message.jsp");//是否要改成密碼修改完成頁面
 		rd.forward(request, response);
 		return;
 	}

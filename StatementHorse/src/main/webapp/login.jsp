@@ -4,11 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>會員登入</title>
 </head>
 <body>
-
-本日無財報公布唷
-
+<h1>會員登入</h1>
+<form method="POST" action="GetTrackListing">
+會員ID:<br>
+<input type="text" name="id"><br>
+Password:<br>
+<input type="text">
+<br>
+<input type="submit" value="登入">
+</form>
 </body>
 </html>
