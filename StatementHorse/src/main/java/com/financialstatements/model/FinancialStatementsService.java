@@ -23,12 +23,9 @@ public class FinancialStatementsService {
 	}
 	public FinancialStatementsVO addFinancialStatements(Integer stockNo,String statementDate, Date postDate, String postTime
 			){
-		
-		StockVO svo = new StockVO();
-		svo.setStockNo(stockNo);
-		
+			
 		FinancialStatementsVO financialStatementsVO = new FinancialStatementsVO();
-		financialStatementsVO.setStockVO(svo);
+		financialStatementsVO.setStockNo(stockNo);
 		financialStatementsVO.setStatementDate(statementDate);
 		financialStatementsVO.setPostDate(postDate);
 		financialStatementsVO.setPostTime(postTime);
@@ -41,11 +38,8 @@ public class FinancialStatementsService {
 	public FinancialStatementsVO updateFinancialStatements(Integer stockNo,String statementDate, Date postDate, String postTime
 			){
 		
-		StockVO svo = new StockVO();
-		svo.setStockNo(stockNo);
-		
 		FinancialStatementsVO financialStatementsVO = new FinancialStatementsVO();
-		financialStatementsVO.setStockVO(svo);
+		financialStatementsVO.setStockNo(stockNo);
 		financialStatementsVO.setStatementDate(statementDate);
 		financialStatementsVO.setPostDate(postDate);
 		financialStatementsVO.setPostTime(postTime);
@@ -56,20 +50,14 @@ public class FinancialStatementsService {
 	public void deleteFinancialStatements(Integer stockNo, String statementDate){
 		FinancialStatementsVO financialStatementsVO = new FinancialStatementsVO();
 		
-		StockVO svo = new StockVO();
-		svo.setStockNo(stockNo);
-		
-		financialStatementsVO.setStockVO(svo);
+		financialStatementsVO.setStockNo(stockNo);
 		financialStatementsVO.setStatementDate(statementDate);
 		dao.delete(financialStatementsVO);
 	}
 	public FinancialStatementsVO getOneFinancialStatements(Integer stockNo, String statementDate){
 		FinancialStatementsVO financialStatementsVO = new FinancialStatementsVO();
 		
-		StockVO svo = new StockVO();
-		svo.setStockNo(stockNo);
-		
-		financialStatementsVO.setStockVO(svo);
+		financialStatementsVO.setStockNo(stockNo);
 		financialStatementsVO.setStatementDate(statementDate);
 		return dao.findByPrimaryKey(financialStatementsVO);
 		
@@ -107,7 +95,7 @@ public class FinancialStatementsService {
 	}
 
 	public List<FinancialStatementsVO> insert(FinancialStatementsVO financialStatementsVO){
-		List<FinancialStatementsVO> list = dao.findByStockNo(financialStatementsVO.getStockVO().getStockNo());
+		List<FinancialStatementsVO> list = dao.findByStockNo(financialStatementsVO.getStockNo());
 		FinancialStatementsVO lastvo = list.get(0);
 		Date lastdate = lastvo.getPostDate();
 		String lasttime = lastvo.getPostTime();
@@ -119,17 +107,14 @@ public class FinancialStatementsService {
 			e.printStackTrace();
 		}
 		dao.insert(financialStatementsVO);
-		return checkinsert(financialStatementsVO.getStockVO().getStockNo(),(java.sql.Date)lastdateandtime);
+		return checkinsert(financialStatementsVO.getStockNo(),(java.sql.Date)lastdateandtime);
 	}
 	
 	//-----------新增財報比較查詢一筆----By葉哲--------
 	public FinancialStatementsVO getStockFS(Integer stockNo ,String statementDate){
 		FinancialStatementsVO fsVO = new FinancialStatementsVO();
 		
-		StockVO svo = new StockVO();
-		svo.setStockNo(stockNo);
-		
-		fsVO.setStockVO(svo);
+		fsVO.setStockNo(stockNo);
 		fsVO.setStatementDate(statementDate);
 		return dao.findByPrimaryKey(fsVO);
 	}

@@ -17,6 +17,7 @@ import com.balancesheet.model.BalanceSheetDAO;
 import com.balancesheet.model.BalanceSheetVO;
 import com.incomestatement.model.IncomeStatementDAO;
 import com.incomestatement.model.IncomeStatementVO;
+import com.stock.model.StockVO;
 
 import hibernate.util.HibernateUtil;
 

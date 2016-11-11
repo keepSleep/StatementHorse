@@ -7,6 +7,9 @@
 		table="FINANCIAL_STATEMENTS">
 		<composite-id>
 			<key-property name="stockNo" column="stock_no" />
+<!-- 			<key-many-to-one name="StockVO" class="com.stock.model.StockVO" lazy="false"> -->
+<!--             	<column name="stock_no" /> -->
+<!--         	</key-many-to-one> -->
 			<key-property name="statementDate" column="statement_date"/>
 		</composite-id>
 

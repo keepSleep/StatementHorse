@@ -18,6 +18,8 @@ import com.financialstatements.model.FinancialStatementsDAO;
 import com.financialstatements.model.FinancialStatementsVO;
 import com.listingdetails.model.ListingDetailsHibernateDAO;
 import com.listingdetails.model.ListingDetailsVO;
+import com.stock.model.StockService;
+import com.stock.model.StockVO;
 
 @WebServlet("/SearchFinancialStatements")
 public class SearchFinancialStatements extends HttpServlet {
@@ -25,7 +27,7 @@ public class SearchFinancialStatements extends HttpServlet {
        
     public SearchFinancialStatements() {
     	
-        super();       
+        super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -57,8 +59,12 @@ public class SearchFinancialStatements extends HttpServlet {
 		for (FinancialStatementsVO fsvo2 : fsvo) {
 			
 			Map m1 = new HashMap();
-			m1.put("StockNo", fsvo2.getStockVO().getStockNo());
-			m1.put("StockName", fsvo2.getStockVO().getStockName());
+			m1.put("StockNo", fsvo2.getStockNo());
+			
+			StockService sS = new StockService();
+			StockVO sVO = sS.getOneStock(fsvo2.getStockNo()); 
+			
+			m1.put("StockName", sVO.getStockName());
 			m1.put("StatementDate", fsvo2.getStatementDate());
 			m1.put("PostDate", fsvo2.getPostDate());
 			m1.put("PostTime", fsvo2.getPostTime());
