@@ -74,6 +74,7 @@
 									<td class="col-md-3">公布日期</td>
 									<td class="col-md-3">公布時間</td>
 								</tr>
+								
 							</thead>
 							<tbody id="Fbody">
 
@@ -98,9 +99,20 @@ toggleActive : true
 });
 
 $('#datepicker').change(function(){
-	alert($(this).val())
+// 	alert($(this).val())
+	$('#Fbody').empty();
+	
 	$.getJSON("financialstatements.do",{"action":"financialstatements","date":$(this).val()},function(data){
-		alert(data)
+		$.each(data,function(key){
+ 			$('#Fbody').append("<tr border=1><td></td><td>"+data[key][0]+"</td><td>"+data[key][1]+"</td><td>"+data[key][2].substring(0,10)+"</td><td>"+data[key][3]+"</td></tr>")
+			
+// 			高明寫法 by 葉哲
+// 			$('#Fbody').append("<tr border=1><td></td></tr>")
+// 			$.each(cc,function(aa,value){
+// 				$('#Fbody tr:eq('+key+')').append("<td>"+value+"</td>")
+// 			})
+			
+		})
 		
 	})
 });
