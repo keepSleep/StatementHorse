@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Model {
 	private ArrayList<String> categories;
 	private String name;
-	private ArrayList<Long> data;
+	private ArrayList data;
 	public ArrayList<String> getCategories() {
 		return categories;
 	}
@@ -18,10 +18,10 @@ public class Model {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public ArrayList<Long> getData() {
+	public ArrayList getData() {
 		return data;
 	}
-	public void setData(ArrayList<Long> data) {
+	public void setData(ArrayList data) {
 		this.data = data;
 	}
 

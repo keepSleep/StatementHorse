@@ -143,13 +143,7 @@ public class ShowStockServlet extends HttpServlet {
 			out.print(list);	
 			out.close();
 		}
-		if("profitjson".equals(json)){
-			PrintWriter out = resp.getWriter();
-			ToJsonArray tojson=new ToJsonArray();
-			JSONArray list=tojson.ProfitToJson(stockNo,need);
-			out.print(list);	
-			out.close();
-		}
+
 		if("balancesheetjson".equals(json)){
 			PrintWriter out = resp.getWriter();
 			ToJsonArray tojson=new ToJsonArray();
@@ -159,14 +153,14 @@ public class ShowStockServlet extends HttpServlet {
 		}if("assetsjson".equals(json)){
 			PrintWriter out = resp.getWriter();
 			ToJsonArray tojson=new ToJsonArray();
-			JSONArray list=tojson.AssetsToJson(stockNo);
+			JSONArray list=tojson.AssetsToJson(stockNo,need);
 			out.print(list);	
 			out.close();
 		}
 		if("incomejson".equals(json)){
 			PrintWriter out = resp.getWriter();
 			ToJsonArray tojson=new ToJsonArray();
-			JSONArray list=tojson.IncomeToJson(stockNo);
+			JSONArray list=tojson.IncomeToJson(stockNo,need);
 			out.print(list);	
 			out.close();
 		}
