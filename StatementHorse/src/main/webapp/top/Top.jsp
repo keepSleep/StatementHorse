@@ -153,8 +153,12 @@
 					<tr><td colspan="3" align="center"><div style="display:none;margin:0px auto" id="followok" ><h3>你已更新成功!!!</h3></div></td></tr>
 					</tbody>
 		 		</table>
+		 		<c:if test="${!empty memberlistno}">
               <button type="button" class="btn btn-success btn-block" style="border:0px;" id="updatemessage"><span  class="glyphicon glyphicon-floppy-disk"></span> 完成更新</button>
- 			       
+ 			   </c:if>
+ 			   <c:if test="${empty memberlistno}">
+ 			   <button type="button" class="btn btn-success btn-block" style="border:0px;" id="updatemessage" disabled="disabled"><span  class="glyphicon glyphicon-floppy-disk"></span> 完成更新</button>
+ 			   </c:if>    
 <!--           </form> -->
           
         </div>
