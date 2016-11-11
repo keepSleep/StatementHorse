@@ -38,7 +38,7 @@
 				<table>
 					<tr>
 						<td class="col-sm-1"><a href="${pageContext.servletContext.contextPath}/ShowStockServlet?action=stock&stock_no=2330&member_id=Blastoise"> <button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >個股資料</button></td>
-						<td class="col-sm-1"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報日期</button></td>
+						<td class="col-sm-1"><a href="${pageContext.servletContext.contextPath}/financialstatements/ListStatementsDate.jsp"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報日期</button></a></td>
 						<td class="col-sm-1"><a href="${pageContext.servletContext.contextPath}/financialstatements/FinancialContrastList.jsp"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報比較</button></a></td>
 						<td class="col-sm-4">
 							<div class="input-group custom-search-form">
