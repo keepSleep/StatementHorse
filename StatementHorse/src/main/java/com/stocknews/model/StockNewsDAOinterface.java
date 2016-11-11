@@ -10,5 +10,5 @@ public interface StockNewsDAOinterface {
           public void delete(Integer stockno ,Integer newsid);
           public StockNewsVO findByPrimaryKey(Integer stockno);
 	      public List<StockNewsVO> getAll();
-
+	      public List<StockNewsVO> getAllByStockNo(Integer stockno);
 }

@@ -417,7 +417,7 @@ public class ToJsonArray {
 	//-------------財報比較查詢結果轉JSON--開始--by葉哲-----------------
 	public JSONObject getFSToJSON(FinancialStatementsVO FSVO){
 		Map map = new Hashtable();
-		map.put("stockNo", FSVO.getStockNo());
+		map.put("stockNo", FSVO.getStockVO().getStockNo());
 		for(BalanceSheetVO BSVO :FSVO.getBalanceSheets()){
 			map.put("currentAssets", BSVO.getCurrentAssets());
 			map.put("fixedAssets", BSVO.getFixedAssets());

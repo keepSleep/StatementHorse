@@ -7,6 +7,7 @@
 	<session-factory>
 
 		<!-- JDBC連線池 (預設會使用Hibernate內建的連線池)(不建議用在實際的專案) -->
+
 		
 <!-- 	localhost端DB -->
 <!-- 		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> -->

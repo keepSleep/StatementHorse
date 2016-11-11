@@ -24,7 +24,5 @@
 		<property name="consolidatedNetIncomeAttributedToStockholdersOfTheCompany" column="Consolidated_Net_Income_Attributed_to_Stockholders_of_the_Company"/>
 						
 		<property name="totalEquity" column="total_equity"/>
-
-
 	</class>
 </hibernate-mapping>

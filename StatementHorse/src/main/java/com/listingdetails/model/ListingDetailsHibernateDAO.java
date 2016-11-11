@@ -88,6 +88,7 @@ public class ListingDetailsHibernateDAO implements ListingDetails_Interface {
 			System.out.println();
 		}
 	}
+	
 	public ListingDetailsVO findByPrimaryKey(Integer listingNo,Integer stockNo){
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		ListingDetailsVO listingDetailsVO=null;
