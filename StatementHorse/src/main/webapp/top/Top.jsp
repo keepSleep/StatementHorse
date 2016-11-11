@@ -38,7 +38,8 @@
 				<table>
 					<tr>
 						<td class="col-sm-1"> <button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >個股資料</button></td>
-						<td class="col-sm-1"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報比較</button></td>
+						<td class="col-sm-1"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報日期</button></td>
+						<td class="col-sm-1"><a href="${pageContext.servletContext.contextPath}/financialstatements/FinancialContrastList.jsp"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報比較</button></a></td>
 						<td class="col-sm-4">
 							<div class="input-group custom-search-form">
                                 <input type="text" style="width:500px;height:auto" class="form-control" placeholder="輸入股號或股名...">
@@ -56,12 +57,13 @@
 						<c:if test="${!empty member_id}">
 						 <button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none " id="logout"><i class="fa fa-user fa-fw"></i>登出</button>
 						</c:if>
+						<c:if test="${!empty member_id}">
 						</td>
 						<td class="col-sm-1">
  							<ul class="nav navbar-top-links navbar-right ">
             				    <li class="dropdown ">
                					  <a id="tg" class="dropdown-toggle btn-lg " data-toggle="dropdown" href="" style="width:65px">
-                   				     <i class="fa fa-bell "><i class="fa fa-caret-down"><i class="badge" id="newsnumber"></i></i></i>
+                   				     <i class="fa fa-bell "></i> <i class="fa fa-caret-down"></i>
                   				  </a>
                    					 <ul class="dropdown-menu dropdown-messages">
                        					 <li>
@@ -71,8 +73,7 @@
 						                            <ul class="chat" id="newmessage">
 						                            </ul>
 						                        </div> 
-						                        <div style="display:none" id="messagelength"></div> 
-						                        
+						                        <div style="display:none" id="messagelength"></div>      
 						                        <!-- /.panel-footer -->
 						                    	</div>
 	                        			 </li>             
@@ -93,9 +94,9 @@
 			                        <i class="fa fa-gear fa-fw"></i><i class="fa fa-caret-down"></i>
 			                    </a>
 			                    <ul class="dropdown-menu dropdown-user">
-			                        <li><a style="cursor:pointer"><i class="fa fa-user fa-fw"></i> User Profile</a>
+			                        <li><a  href="${pageContext.servletContext.contextPath}/changepassword/changepassword.jsp" style="cursor:pointer"><i class="fa fa-user fa-fw"></i>更改密碼</a>
 			                        </li>
-			                        <li><a  id="setting" style="cursor:pointer"><i class="fa fa-gear fa-fw"></i> Settings</a>
+			                        <li><a  id="setting" style="cursor:pointer"><i class="fa fa-gear fa-fw"></i>通知設定</a>
 			                        </li>
 			                        <li class="divider"></li>
 			                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -104,6 +105,7 @@
 			                </li>
 			                </ul>
 						</td>
+						</c:if>
 					</tr>
 				</table>
 			</td>
@@ -144,6 +146,7 @@
 					
 					</tbody>
 		 		</table>
+		 	<div id="clickmessage" style="display:none">你已更新成功!!!!</div>
               <button type="button" class="btn btn-success btn-block" style="border:0px;" id="updatemessage"><span  class="glyphicon glyphicon-floppy-disk"></span> 完成更新</button>
  			       
 <!--           </form> -->
@@ -167,8 +170,6 @@
 // 		setInterval("refreshnews()",5000);
 		$("#tg").click(function(){
 			$("#tg").attr("style","color:#337ab7;width:65px")
-			$("#newsnumber").empty();
-// 			$("#newslength").val($("#messagelength").val);
 		})
 // 		for (var i=1; i<=last; i++) {
 // 			var stockno=$("#"+i).text();
@@ -180,6 +181,7 @@
 	        $("#myModal").modal();
 	    });
 	    $("#updatemessage").click(function(){
+	    	$("#clickmessage").attr("style","color:red")
 	    	var stockcheck1="";
 	    	for (var i=1; i<=last; i++) {
 				var stockno=$("#"+i).text();
@@ -231,11 +233,8 @@
 	$.getJSON("GetNewsMsgServlet",function(data){
 		console.log(data)
 		$("#newmessage").empty();
-		
 		if($("#messagelength").val()!=data.length){
 			$("#tg").attr("style","color:#c13353;width:65px");
-			$("#newsnumber").empty();
-			$("#newsnumber").append(data.length);
 			}
 		$("#messagelength").val(data.length);
 		$.each(data,function(i,v){		
