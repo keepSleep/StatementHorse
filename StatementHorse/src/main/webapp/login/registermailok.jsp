@@ -51,8 +51,8 @@
 						<h3 class="panel-title">${title}</h3>
 					</div>
 					<div class="panel-body">
-						<form role="form" method="post"
-							action="${pageContext.request.contextPath}/message/Message.jsp">
+						<form role="form" method="get"
+							action="${pageContext.request.contextPath}/${url}">
 							<fieldset>
 								<div class="form-group">
 									<label>${content}

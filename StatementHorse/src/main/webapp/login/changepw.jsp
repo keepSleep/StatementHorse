@@ -66,7 +66,7 @@
 										value="">
 								</div>
 								<div>
-									<label>錯誤訊息：${ErrorMsgKey.registerError}</label>
+									<label>錯誤訊息：${errormsg}</label>
 								</div>
 								<div>
 									<!-- Change this to a button or input when using this as a form -->

@@ -90,6 +90,7 @@ public class MemberController {
 		memberService.insertMember(mem);
 		modelmap.addAttribute("title", "成功加入財報馬 ");
 		modelmap.addAttribute("content", "感謝申請會員");
+		modelmap.addAttribute("url", "message/Message.jsp");
 		return "login/registermailok";
 	}
 
@@ -139,6 +140,7 @@ public class MemberController {
 
 		MemberVO memberVO = memberService.findMember(memberEmail);
 		if (memberVO != null) {
+			//登入session
 			if (memberVO.getMemberPassword().equals(PasswordEncorder.encrypt(password)))
 				request.getSession().setAttribute("user", memberVO);
 			else {
@@ -260,7 +262,7 @@ public class MemberController {
 			@RequestParam(name = "password2", required = true) String memberPassword2, ModelMap modelmap) {
 		String memberEmail = new String(Base64.getDecoder().decode(token));
 
-		String path = "login/changepw?confirmation_token=" + token;
+		String path = "account/changepw?confirmation_token=" + token;
 
 		if (memberPassword == null || memberPassword.trim().length() == 0) {
 			modelmap.addAttribute("errormsg", "密碼欄不可空白");
@@ -292,6 +294,16 @@ public class MemberController {
 		memberService.insertMember(mem);
 		modelmap.addAttribute("title", "修改密碼成功 ");
 		modelmap.addAttribute("content", "歡迎使用財報馬");
+		modelmap.addAttribute("url","account/login");
+		return "login/registermailok";
+	}
+	//logout
+	@GetMapping("/logout")
+	public String logoutPage(ModelMap modelmap,HttpServletRequest request) {
+		request.getSession().removeAttribute("user");;
+		modelmap.addAttribute("title", "登出成功 ");
+		modelmap.addAttribute("content", "歡迎再次使用財報馬");
+		modelmap.addAttribute("url","account/login");
 		return "login/registermailok";
 	}
 

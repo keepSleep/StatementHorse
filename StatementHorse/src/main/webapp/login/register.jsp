@@ -37,6 +37,7 @@
     <![endif]-->
 </head>
 <body>
+	<%@include file="/top/Top.jsp"%>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
@@ -51,12 +52,12 @@
 								<div class="row form-group">
 									<div class="col-lg-6">
 										<button type="button" class="btn btn-info btn-block">
-											<span class="fa fa-facebook-square  "></span> FACEBOOK註冊
+											<span class="fa fa-facebook-square  "></span> FACEBOOK登入
 										</button>
 									</div>
 									<div class="col-lg-6">
 										<button type="button" class="btn btn-info btn-block">
-											<span class="fa fa-google  "></span> GOOGLE註冊
+											<span class="fa fa-google  "></span> GOOGLE登入
 										</button>
 									</div>
 								</div>
@@ -87,14 +88,14 @@
 								</div>
 								<div class="row form-group">
 									<div class="col-lg-6">
-										<a
+										<label> <a
 											href="${pageContext.request.contextPath}/login/registermailagain.jsp">
-											<label>沒有收到註冊信 </label>
+												沒有收到註冊信</a></label>
 									</div>
 									<div class="col-lg-6">
-										</a> <a href="${pageContext.request.contextPath}/login/login.jsp">
-											<label>登入財報馬</label>
-										</a>
+										<label><a
+											href="${pageContext.request.contextPath}/login/login.jsp">
+												登入財報馬 </a></label>
 									</div>
 
 								</div>

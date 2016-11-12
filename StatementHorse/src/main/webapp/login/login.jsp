@@ -50,22 +50,26 @@
 					</div>
 					<div class="panel-body">
 						<form id="loginForm" role="form" method="post"
-							action="${pageContext.request.contextPath}/account/logint">
+							action="${pageContext.request.contextPath}/account/login">
 							<fieldset>
 								<div class="row form-group">
 									<div class="form-group col-lg-6">
-										<div class="fb-login-button" data-max-rows="1"
-											data-size="large" data-show-faces="false"
-											data-auto-logout-link="false"></div>
-										<!-- 										<button type="button" class="btn btn-info btn-block"> -->
-										<!-- 											<span class="fa fa-facebook-square  "></span> FACEBOOK登入 -->
-										<!-- 										</button> -->
+										<!-- 										<div class="fb-login-button" data-max-rows="1" -->
+										<!-- 											data-size="large" data-show-faces="false" -->
+										<!-- 											data-auto-logout-link="false" data-scope="email" -->
+										<!-- 											onlogin="fblogin"></div> -->
+										<button id="fbLoginBtn" type="button"
+											class="btn btn-info btn-block">
+											<span class="fa fa-facebook-square"></span> FACEBOOK登入
+										</button>
 									</div>
-									<div class="form-group col-lg-6 g-signin2"
-										data-onsuccess="onSignIn">
-										<!-- 										<button type="button" class="btn btn-info btn-block"> -->
-										<!-- 											<span class="fa fa-google  "></span> GOOGLE登入 -->
-										<!-- 										</button> -->
+									<!-- 									<div class="form-group col-lg-6 g-signin2" -->
+									<!-- 										data-onsuccess="onSignIn"> -->
+									<div class="form-group col-lg-6">
+										<button id="googleLoginBtn" type="button"
+											class="btn btn-info btn-block">
+											<span class="fa fa-google"></span> GOOGLE登入
+										</button>
 									</div>
 								</div>
 
@@ -79,34 +83,42 @@
 										placeholder="Password" name="password" type="password"
 										value="">
 								</div>
-								<c:if test="${not empty errormsg}">
-									<div id="ErrorMsg" class="alert alert-danger">${errormsg}</div>
-								</c:if>
-								<div class="checkbox">
-									<label> <input name="remember" type="checkbox"
-										value="Remember Me">Remember Me
-									</label> <a href="${pageContext.request.contextPath}/account/forgetpw">
-										<label>忘記密碼</label>
-									</a> <a href="${pageContext.request.contextPath}/account/register">
-										<label>註冊財報馬</label>
-									</a>
+								<div class="form-group">
+									<c:if test="${not empty errormsg}">
+										<div id="ErrorMsg" class="alert alert-danger">${errormsg}</div>
+									</c:if>
 								</div>
-								<div>
-									<!-- Change this to a button or input when using this as a form -->
-									<button type="submit" class="btn btn-lg btn-info btn-block">
-										登入
+								<div class="form-group">
+									<div class="col-lg-6">
+										<!-- 								<div class="checkbox"> -->
+										<!-- 									<label> <input name="remember" type="checkbox" -->
+										<!-- 										value="Remember Me">保持登入 -->
+										<!-- 								</label> -->
+										<label><a
+											href="${pageContext.request.contextPath}/account/forgetpw">
+												忘記密碼 </a></label>
+									</div>
+									<div class="col-lg-6">
+										<label> <a
+											href="${pageContext.request.contextPath}/account/register">
+												註冊財報馬 </a>
+										</label>
+									</div>
+
 								</div>
-							</fieldset>
-						</form>
 					</div>
+					<div>
+						<!-- Change this to a button or input when using this as a form -->
+						<button type="submit" class="btn btn-lg btn-info btn-block">
+							登入
+					</div>
+					</fieldset>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 	<div id="fb-root"> -->
-	<!-- 		<div class="fb-login-button" data-max-rows="1" data-size="medium" -->
-	<!-- 			data-show-faces="false" data-auto-logout-link="false"></div> -->
-	<!-- 	</div> -->
+	</div>
 	<script>
 		window.fbAsyncInit = function() {
 			FB.init({
@@ -114,31 +126,16 @@
 				xfbml : true,
 				version : 'v2.8'
 			});
-// 			FB.getLoginStatus(function(response) {
-// 				if (response.status === 'connected') {
-// 					FB.api('/me', {
-// 						fields : 'name, email'
-// 					}, function(response) {
-// 						console.log(response);
-// 						$.post('fblogin', {
-// 							email : response.email
-// 						}, function(msg, status) {
-// 							document.open();
-// 							document.write(msg);
-// 							document.close();
-// 						})
-// // 						FB.logout(function(response) {
-// // 							   // Person is now logged out
-// // 							});
-// 					});
-// 				}
-// 			});
 
+		};
+
+		$('#fbLoginBtn').on('click', function(e) {
 			FB.login(function(response) {
 				console.log('Welcome!  Fetching your information.... ');
 				FB.api('/me', {
 					fields : 'name, email'
 				}, function(response) {
+
 					console.log(response);
 					$.post('fblogin', {
 						email : response.email
@@ -147,12 +144,12 @@
 						document.write(msg);
 						document.close();
 					})
+
 				});
 			}, {
 				scope : 'email'
 			});
-
-		};
+		});
 
 		(function(d, s, id) {
 			var js, fjs = d.getElementsByTagName(s)[0];
@@ -188,6 +185,7 @@
 
 	<!-- Google登入驗證 -->
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="https://apis.google.com/js/api:client.js"></script>
 
 	<script>
 		function onSignIn(googleUser) {
@@ -196,13 +194,43 @@
 			console.log('Name: ' + profile.getName());
 			console.log('Image URL: ' + profile.getImageUrl());
 			console.log('Email: ' + profile.getEmail());
-			// 			$.post('googlelogin', {
-			// 				email : profile.getEmail()
-			// 			}, function(msg, status) {
-			// 				document.open();
-			// 				document.write(msg);
-			// 				document.close();
-			// 			})
+
+			$.post('googlelogin', {
+				email : profile.getEmail()
+			}, function(msg, status) {
+				document.open();
+				document.write(msg);
+				document.close();
+			})
+		}
+		function signOut() {
+			var auth2 = gapi.auth2.getAuthInstance();
+			auth2.signOut().then(function() {
+				console.log('User signed out.');
+			});
+		}
+		gapi
+				.load(
+						'auth2',
+						function() {
+							// Retrieve the singleton for the GoogleAuth library and set up the client.
+							auth2 = gapi.auth2
+									.init({
+										client_id : '241585761463-5rgcpko29g39k2kjseog6ursgpnhnve7.apps.googleusercontent.com',
+										cookiepolicy : 'single_host_origin',
+									// Request scopes in addition to 'profile' and 'email'
+									//scope: 'additional_scope'
+									});
+							attachSignin(document
+									.getElementById('googleLoginBtn'));
+						});
+		function attachSignin(element) {
+			console.log(element.id);
+			auth2.attachClickHandler(element, {}, function(googleUser) {
+				onSignIn(googleUser);
+			}, function(error) {
+				alert(JSON.stringify(error, undefined, 2));
+			});
 		}
 	</script>
 
