@@ -22,8 +22,9 @@ import org.omg.CORBA_2_3.portable.InputStream;
 import com.member.model.CheckMailService;
 import com.member.model.MemberService;
 import com.member.model.MemberVO;
+import com.member.model.PasswordEncorder;
 
-@WebServlet("/account/register")
+//@WebServlet("/account/register")
 public class RegisterServlet extends HttpServlet {
 	@SuppressWarnings("unused")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -78,7 +79,7 @@ public class RegisterServlet extends HttpServlet {
 				String memberId = memberEmail.split("@")[0];
 				mem.setMemberId(memberId);
 				mem.setMemberEmail(memberEmail);
-				mem.setMemberPassword(memberPassword);
+				mem.setMemberPassword(PasswordEncorder.encrypt(memberPassword));
 				mem.setMemberCheck(0);
 				mem.setCreatetime(new Date());
 				rs.insertMember(mem);

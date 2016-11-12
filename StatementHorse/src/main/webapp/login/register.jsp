@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -44,7 +45,7 @@
 						<h3 class="panel-title">免費加入財報馬</h3>
 					</div>
 					<div class="panel-body">
-						<form role="form" method="post"
+						<form id="registerForm" role="form" method="post"
 							action="${pageContext.request.contextPath}/account/register">
 							<fieldset>
 								<div class="row form-group">
@@ -62,7 +63,8 @@
 								<div class="form-group">
 									<label>帳號：</label> <input class="form-control"
 										placeholder="輸入E-mail做為您的帳號" name="email" type="email"
-										autofocus>
+										autofocus data-toggle="popover" data-placement="bottom"
+										value="${email}">
 								</div>
 								<div class="form-group">
 									<label>密碼：</label> <input class="form-control"
@@ -78,26 +80,27 @@
 									<label>輸入驗證碼： </label> <input class="form-control"
 										placeholder="請輸入4位數驗證碼" name="checkword" type="checkword"
 										value=""> <br> <img
-										src="${pageContext.request.contextPath}/account/IdentityServlet"
+										src="${pageContext.request.contextPath}/account/identityServlet"
 										id="identity" onload="btn.disabled = false;" /> <span
 										id="btn" style="cursor: pointer;" class="fa fa-refresh"
 										onclick="reloadImage()"></span>
 								</div>
 								<div class="row form-group">
-								<div class="col-lg-6">
-									<a
-										href="${pageContext.request.contextPath}/login/registermailagain.jsp">
-										<label>沒有收到註冊信 </label>
+									<div class="col-lg-6">
+										<a
+											href="${pageContext.request.contextPath}/login/registermailagain.jsp">
+											<label>沒有收到註冊信 </label>
+									</div>
+									<div class="col-lg-6">
+										</a> <a href="${pageContext.request.contextPath}/login/login.jsp">
+											<label>登入財報馬</label>
+										</a>
+									</div>
+
 								</div>
-								<div class="col-lg-6">
-									</a> <a href="${pageContext.request.contextPath}/login/login.jsp">
-										<label>登入財報馬</label>
-									</a>
-								</div>
-								<div>
-									  <label>錯誤訊息：${ErrorMsgKey.registerError}</label>
-								</div>
-								</div>
+								<c:if test="${not empty errormsg}">
+									<div id="ErrorMsg" class="alert alert-danger">${errormsg}</div>
+								</c:if>
 								<div>
 									<!-- Change this to a button or input when using this as a form -->
 									<button type="submit" class="btn btn-lg btn-info btn-block">
@@ -126,9 +129,17 @@
 	<script>
 		function reloadImage() {
 			document.getElementById('btn').disabled = true;
-			document.getElementById('identity').src = '${pageContext.request.contextPath}/account/IdentityServlet?ts'
+			document.getElementById('identity').src = '${pageContext.request.contextPath}/account/identityServlet?ts'
 					+ new Date().getTime();
 		}
+		$("#registerForm").on("submit", function(event) {
+			event.preventDefault();
+			$.post('register', $(this).serialize(), function(msg, status) {
+				document.open();
+				document.write(msg);
+				document.close();
+			})
+		})
 	</script>
 </body>
 

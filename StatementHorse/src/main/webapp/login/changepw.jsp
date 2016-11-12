@@ -48,7 +48,7 @@
 					</div>
 					<div class="panel-body">
 						<form role="form" method="post"
-							action="${pageContext.request.contextPath}/account/changepwok">
+							action="${pageContext.request.contextPath}/account/changepw">
 							<fieldset>
 								<div class="form-group" hidden>
 									<input class="form-control"

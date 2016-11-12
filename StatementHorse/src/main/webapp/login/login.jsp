@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -34,11 +35,10 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body>
-<%@include file="/top/Top.jsp"%>
+	<%@include file="/top/Top.jsp"%>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
@@ -47,16 +47,16 @@
 						<h3 class="panel-title">登入財報馬</h3>
 					</div>
 					<div class="panel-body">
-						<form role="form" method="post"
-							action="${pageContext.request.contextPath}/account/login">
+						<form id="loginForm" role="form" method="post"
+							action="${pageContext.request.contextPath}/account/logint">
 							<fieldset>
 								<div class="row form-group">
-									<div class="col-lg-6">
+									<div class="form-group col-lg-6">
 										<button type="button" class="btn btn-info btn-block">
 											<span class="fa fa-facebook-square  "></span> FACEBOOK登入
 										</button>
 									</div>
-									<div class="col-lg-6">
+									<div class="form-group col-lg-6">
 										<button type="button" class="btn btn-info btn-block">
 											<span class="fa fa-google  "></span> GOOGLE登入
 										</button>
@@ -65,24 +65,25 @@
 
 								<div class="form-group">
 									<label>帳號：</label> <input class="form-control"
-										placeholder="E-mail" name="email" type="email" autofocus>
+										placeholder="E-mail" name="email" type="email" autofocus
+										data-toggle="popover" data-placement="bottom" value="${email}">
 								</div>
 								<div class="form-group">
 									<label>密碼：</label> <input class="form-control"
 										placeholder="Password" name="password" type="password"
 										value="">
 								</div>
-								<div>
-									<label>錯誤訊息：${ErrorMsgKey.LoginError}</label>
-								</div>
+								<c:if test="${not empty errormsg}">
+									<div id="ErrorMsg" class="alert alert-danger">${errormsg}</div>
+								</c:if>
 								<div class="checkbox">
 									<label> <input name="remember" type="checkbox"
 										value="Remember Me">Remember Me
 									</label> <a
-										href="${pageContext.request.contextPath}/login/forgetpw.jsp">
+										href="${pageContext.request.contextPath}/account/forgetpw">
 										<label>忘記密碼</label>
 									</a> <a
-										href="${pageContext.request.contextPath}/login/register.jsp">
+										href="${pageContext.request.contextPath}/account/register">
 										<label>註冊財報馬</label>
 									</a>
 								</div>
@@ -98,7 +99,6 @@
 			</div>
 		</div>
 	</div>
-
 	<!-- jQuery -->
 	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 
@@ -111,6 +111,16 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="${pageContext.request.contextPath}/js/sb-admin-2.js"></script>
 
+	<script>
+		$("#loginForm").on("submit", function(event) {
+			event.preventDefault();
+			$.post('login', $(this).serialize(), function(msg, status) {
+				document.open();
+				document.write(msg);
+				document.close();
+			})
+		})
+	</script>
 </body>
 
 </html>

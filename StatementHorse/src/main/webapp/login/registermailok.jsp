@@ -48,14 +48,14 @@
 			<div class="col-md-4 col-md-offset-4">
 				<div class="login-panel panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">成功加入財報馬</h3>
+						<h3 class="panel-title">${title}</h3>
 					</div>
 					<div class="panel-body">
 						<form role="form" method="post"
 							action="${pageContext.request.contextPath}/message/Message.jsp">
 							<fieldset>
 								<div class="form-group">
-									<label>感謝申請會員
+									<label>${content}
 									</label>
 								</div>
 								<div>

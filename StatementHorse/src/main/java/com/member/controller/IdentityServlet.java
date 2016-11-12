@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
-@WebServlet("/account/IdentityServlet")
+//@WebServlet("/account/IdentityServlet")
 public class IdentityServlet extends HttpServlet {
 
 	public static final char[] CHARS = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };

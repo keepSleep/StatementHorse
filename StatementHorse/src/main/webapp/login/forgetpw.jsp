@@ -52,7 +52,7 @@
 					</div>
 					<div class="panel-body">
 						<form role="form" method="post"
-							action="${pageContext.request.contextPath}/account/changepw">
+							action="${pageContext.request.contextPath}/account/changepwmail">
 							<fieldset>
 								<div class="form-group">
 									<label>

@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>會員登入</h1>
-<form method="POST" action="GetTrackListing">
+<form method="POST" action="${pageContext.request.contextPath}/GetTrackListing">
 會員ID:<br>
 <input type="text" name="id"><br>
 Password:<br>

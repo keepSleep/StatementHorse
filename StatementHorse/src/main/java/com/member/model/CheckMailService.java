@@ -37,7 +37,7 @@ public class CheckMailService {
 
 			message.setSubject("財報馬會員認證");
 			message.setText(
-					"親愛的使用者你好:\n請於6小時內點選下面以完成會員申請\n如認證網址無法點擊，請複製以下網址，貼至瀏覽器：\nhttp://localhost:8080/StatementHorse/account/registermailok?confirmation_token="
+					"親愛的使用者你好:\n請於6小時內點選下面以完成會員申請\n如認證網址無法點擊，請複製以下網址，貼至瀏覽器：\nhttp://localhost:8080/StatementHorse/account/registerchecker?confirmation_token="
 							+ Base64.getEncoder().encodeToString(email.getBytes()));
 
 			Transport.send(message);
@@ -71,7 +71,7 @@ public class CheckMailService {
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
 			message.setSubject("財報馬會員密碼修改");
 			message.setText(
-					"親愛的使用者你好:\n請於6小時內點選下面連結完成密碼修改\n認證網址\n如認證網址無法點擊，請複製以下網址，貼至瀏覽器：\nhttp://localhost:8080/StatementHorse/login/changepw.jsp?confirmation_token="
+					"親愛的使用者你好:\n請於6小時內點選下面連結完成密碼修改\n認證網址\n如認證網址無法點擊，請複製以下網址，貼至瀏覽器：\nhttp://localhost:8080/StatementHorse/account/changepw?confirmation_token="
 							+ Base64.getEncoder().encodeToString(email.getBytes()));
 
 			Transport.send(message);
