@@ -152,14 +152,54 @@ public class MemberController {
 		return "redirect:/message/Message.jsp";
 	}
 
+	// login
+	@PostMapping("/googlelogin")
+	public String googlelogin(@RequestParam(name = "email", required = true) String memberEmail,
+			HttpServletRequest request) {
+		MemberVO memberVO = memberService.findMember(memberEmail);
+		if (memberVO == null) {
+			memberVO = new MemberVO();
+			String memberId = memberEmail.split("@")[0];
+			memberVO.setMemberId(memberId);
+			memberVO.setMemberEmail(memberEmail);
+			memberVO.setMemberPassword(PasswordEncorder.encrypt(""));
+			memberVO.setMemberCheck(1);
+			memberVO.setCreatetime(new Date());
+			memberService.insertMember(memberVO);
+			memberVO = memberService.findMember(memberEmail);
+		}
+		request.getSession().setAttribute("user", memberVO);
+		return "redirect:/message/Message.jsp";
+	}
+
+	@PostMapping("/fblogin")
+	public String fblogin(@RequestParam(name = "email", required = true) String memberEmail,
+			HttpServletRequest request) {
+		MemberVO memberVO = memberService.findMember(memberEmail);
+		if (memberVO == null) {
+			memberVO = new MemberVO();
+			String memberId = memberEmail.split("@")[0];
+			memberVO.setMemberId(memberId);
+			memberVO.setMemberEmail(memberEmail);
+			memberVO.setMemberPassword(PasswordEncorder.encrypt(""));
+			memberVO.setMemberCheck(1);
+			memberVO.setCreatetime(new Date());
+			memberService.insertMember(memberVO);
+			memberVO = memberService.findMember(memberEmail);
+		}
+		request.getSession().setAttribute("user", memberVO);
+		return "redirect:/message/Message.jsp";
+	}
+
 	// 註冊
 	@PostMapping("/register")
 	public String register(@RequestParam(name = "email", required = true) String memberEmail,
 			@RequestParam(name = "password", required = true) String memberPassword,
-			@RequestParam(name = "password2", required = true) String memberPassword2,@RequestParam(name = "checkword", required = true) String checkword,@SessionAttribute String randomString, HttpServletRequest request,
-			ModelMap modelmap) {
+			@RequestParam(name = "password2", required = true) String memberPassword2,
+			@RequestParam(name = "checkword", required = true) String checkword, @SessionAttribute String randomString,
+			HttpServletRequest request, ModelMap modelmap) {
 		modelmap.addAttribute("email", memberEmail);
-		if (!checkword.equals(randomString)){
+		if (!checkword.equals(randomString)) {
 			modelmap.addAttribute("errormsg", "驗證碼錯誤");
 			return "login/register";
 		}

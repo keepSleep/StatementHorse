@@ -10,6 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
+<meta name="google-signin-client_id"
+	content="241585761463-5rgcpko29g39k2kjseog6ursgpnhnve7.apps.googleusercontent.com">
 
 <title>登入財報馬</title>
 
@@ -52,14 +54,18 @@
 							<fieldset>
 								<div class="row form-group">
 									<div class="form-group col-lg-6">
-										<button type="button" class="btn btn-info btn-block">
-											<span class="fa fa-facebook-square  "></span> FACEBOOK登入
-										</button>
+										<div class="fb-login-button" data-max-rows="1"
+											data-size="large" data-show-faces="false"
+											data-auto-logout-link="false"></div>
+										<!-- 										<button type="button" class="btn btn-info btn-block"> -->
+										<!-- 											<span class="fa fa-facebook-square  "></span> FACEBOOK登入 -->
+										<!-- 										</button> -->
 									</div>
-									<div class="form-group col-lg-6">
-										<button type="button" class="btn btn-info btn-block">
-											<span class="fa fa-google  "></span> GOOGLE登入
-										</button>
+									<div class="form-group col-lg-6 g-signin2"
+										data-onsuccess="onSignIn">
+										<!-- 										<button type="button" class="btn btn-info btn-block"> -->
+										<!-- 											<span class="fa fa-google  "></span> GOOGLE登入 -->
+										<!-- 										</button> -->
 									</div>
 								</div>
 
@@ -79,11 +85,9 @@
 								<div class="checkbox">
 									<label> <input name="remember" type="checkbox"
 										value="Remember Me">Remember Me
-									</label> <a
-										href="${pageContext.request.contextPath}/account/forgetpw">
+									</label> <a href="${pageContext.request.contextPath}/account/forgetpw">
 										<label>忘記密碼</label>
-									</a> <a
-										href="${pageContext.request.contextPath}/account/register">
+									</a> <a href="${pageContext.request.contextPath}/account/register">
 										<label>註冊財報馬</label>
 									</a>
 								</div>
@@ -99,6 +103,77 @@
 			</div>
 		</div>
 	</div>
+	<!-- 	<div id="fb-root"> -->
+	<!-- 		<div class="fb-login-button" data-max-rows="1" data-size="medium" -->
+	<!-- 			data-show-faces="false" data-auto-logout-link="false"></div> -->
+	<!-- 	</div> -->
+	<script>
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId : '1663652687259440',
+				xfbml : true,
+				version : 'v2.8'
+			});
+// 			FB.getLoginStatus(function(response) {
+// 				if (response.status === 'connected') {
+// 					FB.api('/me', {
+// 						fields : 'name, email'
+// 					}, function(response) {
+// 						console.log(response);
+// 						$.post('fblogin', {
+// 							email : response.email
+// 						}, function(msg, status) {
+// 							document.open();
+// 							document.write(msg);
+// 							document.close();
+// 						})
+// // 						FB.logout(function(response) {
+// // 							   // Person is now logged out
+// // 							});
+// 					});
+// 				}
+// 			});
+
+			FB.login(function(response) {
+				console.log('Welcome!  Fetching your information.... ');
+				FB.api('/me', {
+					fields : 'name, email'
+				}, function(response) {
+					console.log(response);
+					$.post('fblogin', {
+						email : response.email
+					}, function(msg, status) {
+						document.open();
+						document.write(msg);
+						document.close();
+					})
+				});
+			}, {
+				scope : 'email'
+			});
+
+		};
+
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) {
+				return;
+			}
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id))
+				return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.8&appId=1663652687259440";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
 	<!-- jQuery -->
 	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 
@@ -111,16 +186,26 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="${pageContext.request.contextPath}/js/sb-admin-2.js"></script>
 
+	<!-- Google登入驗證 -->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 	<script>
-		$("#loginForm").on("submit", function(event) {
-			event.preventDefault();
-			$.post('login', $(this).serialize(), function(msg, status) {
-				document.open();
-				document.write(msg);
-				document.close();
-			})
-		})
+		function onSignIn(googleUser) {
+			var profile = googleUser.getBasicProfile();
+			console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+			console.log('Name: ' + profile.getName());
+			console.log('Image URL: ' + profile.getImageUrl());
+			console.log('Email: ' + profile.getEmail());
+			// 			$.post('googlelogin', {
+			// 				email : profile.getEmail()
+			// 			}, function(msg, status) {
+			// 				document.open();
+			// 				document.write(msg);
+			// 				document.close();
+			// 			})
+		}
 	</script>
+
 </body>
 
 </html>
