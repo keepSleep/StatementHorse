@@ -27,6 +27,11 @@ public class StockService {
 //	private Integer capital;//資本額
 //	private String accountingFirm;//簽證會機師
 	
+	public void insert(Integer stockNo){
+		StockVO stockVO=new StockVO();
+		stockVO.setStockNo(stockNo);
+		dao.insert(stockVO);
+	}
 	
 	public void insertstock(Integer stockNo,String stockName,String industry,
 		String chairman,Date companyEstablishDate,String companyTaxId,Date listingDate,

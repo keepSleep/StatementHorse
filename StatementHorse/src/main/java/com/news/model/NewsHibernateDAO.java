@@ -27,7 +27,7 @@ import java.util.*;
 public class NewsHibernateDAO implements NewsDAOinterface {
 
 	private static final String GET_ALL_STMT = "from NewsVO order by newsId";
-
+	private static final String GET_ONE_BY_TITLE = "from NewsVO where news_title=?";
 	@Override
 	public void insert(NewsVO newsVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -100,6 +100,23 @@ public class NewsHibernateDAO implements NewsDAOinterface {
 		return list;
 	}
 
+	@Override
+	public List<NewsVO> getOneByTitle(String title) {
+		List<NewsVO> list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GET_ONE_BY_TITLE);
+			query.setParameter(0, title);
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
+	}
+	
 	@Override
 	public NewsVO findByPrimaryKey(Integer newsId) {
 		NewsVO newsVO = null;
