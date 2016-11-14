@@ -90,7 +90,7 @@ public class MemberController {
 		memberService.insertMember(mem);
 		modelmap.addAttribute("title", "成功加入財報馬 ");
 		modelmap.addAttribute("content", "感謝申請會員");
-		modelmap.addAttribute("url", "message/Message.jsp");
+		modelmap.addAttribute("url", "tracklisting/memberhomePage.jsp");
 		return "login/registermailok";
 	}
 
@@ -154,7 +154,7 @@ public class MemberController {
 			modelmap.addAttribute("errormsg", "該帳號不存在");
 			return "login/login";
 		}
-		return "redirect:/message/Message.jsp";
+		return "redirect:/tracklisting/memberhomePage.jsp";
 	}
 
 	// login
@@ -174,7 +174,7 @@ public class MemberController {
 			memberVO = memberService.findMember(memberEmail);
 		}
 		request.getSession().setAttribute("user", memberVO);
-		return "redirect:/message/Message.jsp";
+		return "redirect:/tracklisting/memberhomePage.jsp";
 	}
 
 	@PostMapping("/fblogin")
@@ -193,7 +193,7 @@ public class MemberController {
 			memberVO = memberService.findMember(memberEmail);
 		}
 		request.getSession().setAttribute("user", memberVO);
-		return "redirect:/message/Message.jsp";
+		return "redirect://tracklisting/memberhomePage.jsp";
 	}
 
 	// 註冊
