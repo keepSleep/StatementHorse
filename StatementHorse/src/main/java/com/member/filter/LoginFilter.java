@@ -46,7 +46,7 @@ public class LoginFilter implements Filter {
 
 	private boolean checkLogin(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		MemberVO loginToken = (MemberVO) session.getAttribute("LoginOK");
+		MemberVO loginToken = (MemberVO) session.getAttribute("user");
 		if (loginToken == null) {
 			return false;
 		} else {

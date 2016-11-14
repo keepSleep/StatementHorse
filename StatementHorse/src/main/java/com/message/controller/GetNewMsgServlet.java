@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.financialstatements.model.FinancialStatementsDAO;
 import com.financialstatements.model.FinancialStatementsVO;
+import com.member.model.MemberVO;
 import com.message.model.MsgService;
 import com.mgr.model.MGRDAO;
 import com.mgr.model.MGRVO;
@@ -32,12 +33,9 @@ public class GetNewMsgServlet extends HttpServlet {
 		MGRDAO mgdao = new MGRDAO();
 
 		// 傳入追蹤者的id為何
-		String member_id1 = (String) request.getParameter("member_id");
-		if (member_id1 != null) {
-			session.setAttribute("member_id", member_id1);
-		}
-		String member_id = (String) session.getAttribute("member_id");
-
+		MemberVO membervo = (MemberVO) session.getAttribute("user");
+		String member_id = membervo.getMemberId();
+		
 		// 取得會員追蹤的股號
 		List<Integer> memberstockno = msgservicedao.findStockNo(member_id);
 		for (Integer stockno : memberstockno) {
