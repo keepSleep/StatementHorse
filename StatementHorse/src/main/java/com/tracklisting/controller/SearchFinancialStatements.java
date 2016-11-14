@@ -66,7 +66,7 @@ public class SearchFinancialStatements extends HttpServlet {
 			
 			m1.put("StockName", sVO.getStockName());
 			m1.put("StatementDate", fsvo2.getStatementDate());
-			m1.put("PostDate", fsvo2.getPostDate());
+			m1.put("PostDate", fsvo2.getPostDate().toString().substring(0,10));
 			m1.put("PostTime", fsvo2.getPostTime());
 			l1.add(m1);
 			
