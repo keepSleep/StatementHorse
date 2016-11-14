@@ -40,9 +40,9 @@ public class ShowStockServlet extends HttpServlet {
 		String listNo = req.getParameter("listNo");
 		String insert_or_delete = req.getParameter("insert_or_delete");
 		Integer stockNo = new Integer(req.getParameter("stock_no"));
-	
+		String selectstock=req.getParameter("selectstock");
 
-	
+		
 		if ("stock".equals(action)) {
 			StockService stockService=new StockService();
 			StockVO stockVO=new StockVO();
@@ -108,6 +108,15 @@ public class ShowStockServlet extends HttpServlet {
 				out.close();
 			
 			}
+		}
+		if("getVO".equals(json)){
+			PrintWriter out = resp.getWriter();
+			ToJsonArray tojson=new ToJsonArray();
+			JSONArray list=tojson.getVO(stockNo,need);
+			out.print(list);	
+			out.close();
+			
+			
 		}
 		if ("mgrjson".equals(json)) {
 			PrintWriter out = resp.getWriter();

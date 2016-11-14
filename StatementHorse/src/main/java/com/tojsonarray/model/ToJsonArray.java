@@ -30,6 +30,26 @@ import com.price.model.PriceVO;
 import com.stock.model.StockService;
 
 public class ToJsonArray {
+	public JSONArray getVO(Integer stock_no,String str){
+		List<Map<String,String>> listAll = new LinkedList<Map<String,String>>();
+		if(str.equals("getMGRVO")){
+			MGRService mgrSvc=new MGRService();
+			List<MGRVO> MGRList =mgrSvc.getByStockNo(stock_no);
+			for(MGRVO element:MGRList){
+				Map map = new Hashtable();
+				String revenueDate=element.getRevenueDate();
+				Integer revenue_int=element.getRevenue();
+				String revenue=Integer.toString(revenue_int);
+				map.put("RevenueDate",revenueDate );
+				map.put("Revenue",revenue);
+				listAll.add(map);
+				
+			}
+			
+		}
+		JSONArray list = new JSONArray(listAll);
+		return list;
+	}
 	public JSONArray mgrToJson(Integer stock_no) {
 		MGRService mgrSvc = new MGRService();
 		List<MGRVO> MGRSet = mgrSvc.getByStockNo(stock_no);

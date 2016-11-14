@@ -42,11 +42,15 @@
 						<td class="col-sm-1"><a href="${pageContext.servletContext.contextPath}/financialstatements/FinancialContrastList.jsp"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報比較</button></a></td>
 						<td class="col-sm-4">
 							<div class="input-group custom-search-form">
-                                <input type="text" style="width:500px;height:auto" class="form-control" placeholder="輸入股號或股名...">
+							<form method="post" action="${pageContext.servletContext.contextPath}/ShowStockServlet">
+                                <input type="text" style="width:500px;height:auto" class="form-control" placeholder="輸入股號或股名..." name="stock_no">
+                             	<input type="hidden" name="action" value="stock">
+                           
                                 <span class="input-group-btn" >
-                                    <button class="btn btn-default" type="button" style="height:140%">
+                                    <button class="btn btn-default" type="submit" style="height:140%">
                                         <i class="fa fa-search"></i>
                                     </button>
+                              </form> 
                                 </span>
                             </div>
 						</td>			
