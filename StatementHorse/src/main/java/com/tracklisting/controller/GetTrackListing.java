@@ -50,7 +50,7 @@ public class GetTrackListing extends HttpServlet {
 			tlvo.setListingName("我的追蹤清單");
 			tldao.insert(tlvo);
 			
-			request.getRequestDispatcher("memberhome.jsp")
+			request.getRequestDispatcher("memberhomePage.jsp")
 			.forward(request, response);
 			
 		}
@@ -74,7 +74,7 @@ public class GetTrackListing extends HttpServlet {
 		request.setAttribute("tlNo", tlNo);
 		request.setAttribute("tlSize", tlNo.size()-1);
 		
-		request.getRequestDispatcher("memberhome.jsp")
+		request.getRequestDispatcher("memberhomePage.jsp")
 		.forward(request, response);
 		
 		}
