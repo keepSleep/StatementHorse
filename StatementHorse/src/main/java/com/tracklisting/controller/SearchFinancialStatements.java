@@ -47,14 +47,14 @@ public class SearchFinancialStatements extends HttpServlet {
 		//使用到的 DAO
 		ListingDetailsHibernateDAO lddao = new ListingDetailsHibernateDAO();
 		FinancialStatementsDAO fsdao = new FinancialStatementsDAO();
-		
+//		System.out.println("test");
 		//使用到的集合
 		ArrayList l1 = new ArrayList();
 		
 		//查詢清單編號內含股號		
 		List<ListingDetailsVO> tdvo = lddao.getAllByListing(Integer.parseInt(listingNo));
 		for (ListingDetailsVO tdvo2 : tdvo) {
-	
+//			System.out.println(tdvo2.getStockVO().getStockNo());
 		List<FinancialStatementsVO> fsvo= fsdao.getByStockNo(tdvo2.getStockVO().getStockNo());
 		for (FinancialStatementsVO fsvo2 : fsvo) {
 			
@@ -66,7 +66,7 @@ public class SearchFinancialStatements extends HttpServlet {
 			
 			m1.put("StockName", sVO.getStockName());
 			m1.put("StatementDate", fsvo2.getStatementDate());
-			m1.put("PostDate", fsvo2.getPostDate());
+			m1.put("PostDate", fsvo2.getPostDate().toString().substring(0,10));
 			m1.put("PostTime", fsvo2.getPostTime());
 			l1.add(m1);
 			

@@ -138,6 +138,9 @@ public class MemberHibernateDAO implements MemberDAOInterface {
 	}
 
 	public static void main(String[] args) {
+		
+		MemberDAOInterface dao=new MemberHibernateDAO();
+		dao.delete("Blastoise");
 		/*
 		 * MemberDAOInterface dao = new MemberHibernateDAO(); //
 		 * 新增(新增會員ok，新會員帳號) MemberVO memberVO = new MemberVO();
@@ -169,15 +172,15 @@ public class MemberHibernateDAO implements MemberDAOInterface {
 		 * System.out.println("帳號筆數無誤"); } else { System.out.println("帳號筆數有誤");
 		 * }
 		 */
-		MemberDAOInterface dao = new MemberHibernateDAO();
-		MemberVO membervo = dao.findByPrimaryKey("Charizard");
-		Set<TrackListingVO> list1 = membervo.getTrackListingVOs();
-		membervo.getMemberId();
-		for (TrackListingVO tl : list1) {
-			Set<ListingDetailsVO> ldvo = tl.getLds();
-			for (ListingDetailsVO ld : ldvo) {
-				System.out.println(ld.getStockVO());
-			}
-		}
+//		MemberDAOInterface dao = new MemberHibernateDAO();
+//		MemberVO membervo = dao.findByPrimaryKey("Charizard");
+//		Set<TrackListingVO> list1 = membervo.getTrackListingVOs();
+//		membervo.getMemberId();
+//		for (TrackListingVO tl : list1) {
+//			Set<ListingDetailsVO> ldvo = tl.getLds();
+//			for (ListingDetailsVO ld : ldvo) {
+//				System.out.println(ld.getStockVO());
+//			}
+//		}
 	}
 }

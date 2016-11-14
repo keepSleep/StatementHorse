@@ -8,32 +8,34 @@
 <title>損益表</title>
 </head>
 <body>
-	<div class="col-md-6"
-				style="width: 800px; position: absolute; left: 300px; top: 0px; display: none"
-				id="show_li_mgr">
-				<div class="panel with-nav-tabs panel-info">
-					<div class="panel-heading" style="background-color: lightblue">
-						<ul class="nav nav-tabs"
-							style="background-color: lightblue; font-size: x-large">
-							<li class="active"><a href="#tab1info" data-toggle="tab"
-								id="111">月營收</a></li>
-							<li><a href="#tab2info" data-toggle="tab">每股盈餘</a></li>
-							<li><a href="#tab3info" data-toggle="tab">股價</a></li>
-							<li><a href="#tab4info" data-toggle="tab">股利</a></li>
-							<li><a href="#tab5info" data-toggle="tab">本益比</a></li>
-						</ul>
-					</div>
-					<div class="panel-body" style="height: 630px">
-						<div class="tab-content" id="container">
-							<div class="tab-pane fade in active" id="tab1info"
-								style="width: 730px"></div>
-							<div class="tab-pane fade" id="tab2info" style="width: 730px"></div>
-							<div class="tab-pane fade" id="tab3info" style="width: 730px"></div>
-							<div class="tab-pane fade" id="tab4info" style="width: 730px"></div>
-							<div class="tab-pane fade" id="tab5info" style="width: 730px"></div>
-						</div>
-					</div>
-				</div>
-			</div>
+  <c:forEach begin="0" end="${tlSize }" var="num" >
+  
+  <div value="${tlName[num]}" name="show" id="${tlNo[num]}">
+  
+ <h3 style="display:inline;">${tlName[num]}</h3>
+<div>
+<div id="tabs-4"></div>
+</div>
+
+<script src="${pageContext.servletContext.contextPath}/js/jquery-3.1.1.min.js"></script>
+
+<script type="text/javascript">
+	$.getJSON("SearchFinancialStatements",{"ListingNo":tlno},function(data) {
+				
+				$.each(data,function(){
+					
+					var StockNo = this.StockNo;
+					var StockName = this.StockName;
+					var StatementDate = this.StatementDate;
+					var PostDate = this.PostDate;
+					var PostTime = this.PostTime;
+					
+					$('#tabs-4').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + StatementDate + ' 季財務報表 (' + PostDate + "," + PostTime + ')</a><br>');
+					$('#tabs-1').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + StatementDate + ' 季財務報表 (' + PostDate + "," + PostTime + ')</a><br>');
+
+					});
+			
+			});
+</script>
 </body>
 </html>

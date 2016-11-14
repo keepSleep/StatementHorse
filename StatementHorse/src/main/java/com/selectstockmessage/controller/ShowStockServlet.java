@@ -57,11 +57,19 @@ public class ShowStockServlet extends HttpServlet {
 				if(listingName==null){
 					VO1.setListingName("我的追蹤清單");
 				}
-				set = VO1.getLds();
-				for (ListingDetailsVO VO2 : set) {
+				Integer listingno = VO1.getListingNo();
+//				set = VO1.getLds();
+//				for (ListingDetailsVO VO2 : set) {
+//					Integer stock_list = VO2.getStockVO().getStockNo();
+//					stock_set=new HashSet();
+//					stock_set.add(stock_list);
+//				}
+				ListingDetailsHibernateDAO listingDetails=new ListingDetailsHibernateDAO();
+				List<ListingDetailsVO> listing = listingDetails.getAllByListing(listingno);
+				for(ListingDetailsVO VO2:listing){
 					Integer stock_list = VO2.getStockVO().getStockNo();
-					stock_set=new HashSet();
-					stock_set.add(stock_list);
+//					stock_set=new HashSet();
+//					stock_set.add(stock_list);
 				}
 			}
 			req.setAttribute("stockVO", stockVO);
