@@ -47,14 +47,14 @@ public class SearchFinancialStatements extends HttpServlet {
 		//使用到的 DAO
 		ListingDetailsHibernateDAO lddao = new ListingDetailsHibernateDAO();
 		FinancialStatementsDAO fsdao = new FinancialStatementsDAO();
-		
+//		System.out.println("test");
 		//使用到的集合
 		ArrayList l1 = new ArrayList();
 		
 		//查詢清單編號內含股號		
 		List<ListingDetailsVO> tdvo = lddao.getAllByListing(Integer.parseInt(listingNo));
 		for (ListingDetailsVO tdvo2 : tdvo) {
-	
+//			System.out.println(tdvo2.getStockVO().getStockNo());
 		List<FinancialStatementsVO> fsvo= fsdao.getByStockNo(tdvo2.getStockVO().getStockNo());
 		for (FinancialStatementsVO fsvo2 : fsvo) {
 			
