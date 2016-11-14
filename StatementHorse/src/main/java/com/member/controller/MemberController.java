@@ -140,7 +140,10 @@ public class MemberController {
 
 		MemberVO memberVO = memberService.findMember(memberEmail);
 		if (memberVO != null) {
-			//登入session
+			if(memberVO.getMemberCheck()==0){
+					modelmap.addAttribute("erroemsg", "信箱尚未驗證");
+					return "login/login";
+			}
 			if (memberVO.getMemberPassword().equals(PasswordEncorder.encrypt(password)))
 				request.getSession().setAttribute("user", memberVO);
 			else {
@@ -306,5 +309,4 @@ public class MemberController {
 		modelmap.addAttribute("url","account/login");
 		return "login/registermailok";
 	}
-
 }

@@ -51,13 +51,13 @@
                             </div>
 						</td>			
 						<td class="col-sm-1 col-md-offset-8">
-						<c:if test="${empty member_id}">
+						<c:if test="${empty sessionScope.user}">
 						 <button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none" id="login"><i class="fa fa-user fa-fw"></i>登入</button>
 						</c:if>
-						<c:if test="${!empty member_id}">
-						 <button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none " id="logout"><i class="fa fa-user fa-fw"></i>追蹤清單</button>
+						<c:if test="${!empty sessionScope.user}">
+						 <button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none " id="logout"><i class="fa fa-user fa-fw"></i>${sessionScope.user.memberId}</button>
 						</c:if>
-						<c:if test="${!empty member_id}">
+						<c:if test="${!empty sessionScope.user}">
 						</td>
 						<td class="col-sm-1">
  							<ul class="nav navbar-top-links navbar-right ">
@@ -99,7 +99,7 @@
 			                        <li><a  id="setting" style="cursor:pointer"><i class="fa fa-gear fa-fw"></i>通知設定</a>
 			                        </li>
 			                        <li class="divider"></li>
-			                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+			                        <li><a href="${pageContext.servletContext.contextPath}/account/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 			                        </li>
 			                    </ul>
 			                </li>

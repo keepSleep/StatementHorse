@@ -22,13 +22,9 @@
 <style>
 *{
 font-family:微軟正黑體;
-
 }
 dd{
 font-size:18px;
-}
-.panel-title{
-font-size:22px;
 }
 </style>
 
