@@ -49,15 +49,21 @@ a:link {
 	<input type="hidden" id="stockname" value="${stockVO.stockName}" />
 	<div class="container">
 		<div class="page-header">
-			<h3 style="font-family: '新細明體'; color: #00BBFF">
+			<h3 style="font-family: '微軟正黑體';font-size:26px; color: #00BBFF">
 				<a href="#" id="first_page"><i  class="fa fa-stack-exchange fa-fw"></i> 個股資料</a> <span
 					class="pull-right label label-default"></span> <span
-					style="margin: 0px 0px 0px 850px">
+					style="margin: 0px 0px 0px 650px">
 
 
 					<div class="btn-group">
+						<a href="${pageContext.servletContext.contextPath}/GetTrackListing?id=Blastoise"><button type="button" class="btn btn-info btn-xs dropdown-toggle"
+							style="font-family: '微軟正黑體';font-size:26px; id="mylisting">我的追蹤清單 <span></span>
+						</button>
+						<span></span>
+						</div>
+						<div class="btn-group">
 						<button type="button" class="btn btn-info btn-xs dropdown-toggle"
-							data-toggle="dropdown" style="font-size: x-large; id="listing">
+							data-toggle="dropdown" style="font-family: '微軟正黑體';font-size:26px; id="listing">
 							加入追蹤 <span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu pull-right" role="menu"
@@ -73,7 +79,7 @@ a:link {
 		</div>
 
 		<div style="width: 300px; position: absolute; left: 250px; top: 250px">
-			<ul class="nav" id="side-menu" style="font-size: x-large;">
+			<ul class="nav" id="side-menu" style="font-family: '微軟正黑體';font-size:26px;">
 
 				<li id="show_mgr"><a href="#"><i
 						class="fa fa-search-plus fa-fw"></i>公司最新動態<span class="active"></span></a>
@@ -103,7 +109,7 @@ a:link {
 			<!--個股資料-->
 			<table border='3 bordercolor='
 				black'
-				style="text-indent: 20px; width: 800px; height: 500px; position: absolute; left: 300px; top: 0px; display:; font-size: x-large; margin-bottom: 50px"
+				style="text-indent: 20px; width: 800px; height: 500px; position: absolute; left: 300px; top: 0px; display:; font-family: '微軟正黑體';font-size:26px; margin-bottom: 50px"
 				id="show_stock">
 				<tr>
 					<td style="background-color: lightblue">股號</td>
@@ -159,7 +165,7 @@ a:link {
 				<div class="panel with-nav-tabs panel-info">
 					<div class="panel-heading" style="background-color: lightblue">
 						<ul class="nav nav-tabs"
-							style="background-color: lightblue; font-size: x-large">
+							style="background-color: lightblue; font-family: '微軟正黑體';font-size:26px">
 							<li class="active"><a href="#tab1info" data-toggle="tab"
 								id="111">月營收</a></li>
 							<li><a href="#tab2info" data-toggle="tab">每股盈餘</a></li>
@@ -187,7 +193,7 @@ a:link {
 				<div class="panel with-nav-tabs panel-info">
 					<div class="panel-heading" style="background-color: lightblue">
 						<ul class="nav nav-tabs"
-							style="background-color: lightblue; font-size: x-large">
+							style="background-color: lightblue; font-family: '微軟正黑體';font-size:25px">
 							<li class="active"><a href="#tab1info_1" data-toggle="tab">季營收</a></li>
 							<li><a href="#tab2info_1" data-toggle="tab">季毛利</a></li>
 							<li><a href="#tab3info_1" data-toggle="tab">營業利益</a></li>
@@ -216,7 +222,7 @@ a:link {
 				<div class="panel with-nav-tabs panel-info">
 					<div class="panel-heading" style="background-color: lightblue">
 						<ul class="nav nav-tabs"
-							style="background-color: lightblue; font-size: x-large">
+							style="background-color: lightblue; font-family: '微軟正黑體';font-size:26px">
 							<li class="active"><a href="#tab1info_2" data-toggle="tab">流動資產</a></li>
 							<li><a href="#tab2info_2" data-toggle="tab">固定資產</a></li>
 							<li><a href="#tab3info_2" data-toggle="tab">總資產</a></li>
@@ -242,7 +248,7 @@ a:link {
 				<div class="panel with-nav-tabs panel-info">
 					<div class="panel-heading" style="background-color: lightblue">
 						<ul class="nav nav-tabs"
-							style="background-color: lightblue; font-size: x-large">
+							style="background-color: lightblue;font-family: '微軟正黑體';font-size:26px">
 							<li class="active"><a href="#tab1info_3" data-toggle="tab">流動負債</a></li>
 							<li><a href="#tab2info_3" data-toggle="tab">長期負債</a></li>
 							<li><a href="#tab3info_3" data-toggle="tab">淨值</a></li>
@@ -269,7 +275,7 @@ a:link {
 				<div class="panel with-nav-tabs panel-info">
 					<div class="panel-heading" style="background-color: lightblue">
 						<ul class="nav nav-tabs"
-							style="background-color: lightblue; font-size: x-large">
+							style="background-color: lightblue; font-family: '微軟正黑體';font-size:26px">
 							<li class="active"><a href="#tab1info_4" data-toggle="tab">負債比率</a></li>
 							<li><a href="#tab2info_4" data-toggle="tab">流動比率</a></li>
 						</ul>
@@ -289,7 +295,7 @@ a:link {
 				<div class="panel with-nav-tabs panel-info">
 					<div class="panel-heading" style="background-color: lightblue">
 						<ul class="nav nav-tabs"
-							style="background-color: lightblue; font-size: x-large">
+							style="background-color: lightblue; font-family: '微軟正黑體';font-size:26px">
 							<li class="active"><a href="#tab1info_5" data-toggle="tab">利潤比率</a></li>
 						</ul>
 					</div>
