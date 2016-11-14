@@ -23,7 +23,7 @@ import org.omg.CORBA_2_3.portable.InputStream;
 import com.member.model.MemberService;
 import com.member.model.MemberVO;
 
-@WebServlet("/account/registermailok")
+//@WebServlet("/account/registermailok")
 public class CheckMailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

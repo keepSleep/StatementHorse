@@ -14,7 +14,7 @@ import com.member.model.CheckMailService;
 import com.member.model.MemberService;
 import com.member.model.MemberVO;
 
-@WebServlet("/account/changepw")
+//@WebServlet("/account/changepw")
 public class ChangepwServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

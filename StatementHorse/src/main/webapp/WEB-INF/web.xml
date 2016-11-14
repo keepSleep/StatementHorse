@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
-  <display-name>StatementHorse</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  <servlet>
-    <servlet-name>BalanceSheetServlet</servlet-name>
-    <servlet-class>com.balancesheet.controller.BalanceSheetServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BalanceSheetServlet</servlet-name>
-    <url-pattern>/balancesheet/balanceSheet.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>FinancialStatementsServlet</servlet-name>
-    <servlet-class>com.financialstatements.controller.FinancialStatementsServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FinancialStatementsServlet</servlet-name>
-    <url-pattern>/financialstatements/financialstatements.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>ShowStockServlet</servlet-name>
-    <servlet-class>com.selectstockmessage.controller.ShowStockServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ShowStockServlet</servlet-name>
-    <url-pattern>/ShowStockServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	<display-name>StatementHorse</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>BalanceSheetServlet</servlet-name>
+		<servlet-class>com.balancesheet.controller.BalanceSheetServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BalanceSheetServlet</servlet-name>
+		<url-pattern>/balancesheet/balanceSheet.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>FinancialStatementsServlet</servlet-name>
+		<servlet-class>com.financialstatements.controller.FinancialStatementsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FinancialStatementsServlet</servlet-name>
+		<url-pattern>/financialstatements/financialstatements.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ShowStockServlet</servlet-name>
+		<servlet-class>com.selectstockmessage.controller.ShowStockServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowStockServlet</servlet-name>
+		<url-pattern>/ShowStockServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>MsgServlet</servlet-name>
 		<servlet-class>com.message.controller.MsgServlet</servlet-class>
 	</servlet>
@@ -44,7 +47,7 @@
 		<servlet-name>MsgIUDServlet</servlet-name>
 		<servlet-class>com.message.controller.MsgIUDServlet</servlet-class>
 	</servlet>
-		<servlet>
+	<servlet>
 		<description>
 		</description>
 		<display-name>ChangePassword</display-name>
@@ -64,7 +67,7 @@
 		<display-name>Startfinding</display-name>
 		<servlet-name>Startfinding</servlet-name>
 		<servlet-class>com.message.controller.Startfinding</servlet-class>
-<!-- 		<load-on-startup>1</load-on-startup> -->
+		<!-- <load-on-startup>1</load-on-startup> -->
 	</servlet>
 	<servlet>
 		<description>
@@ -98,5 +101,14 @@
 	<servlet-mapping>
 		<servlet-name>ChangePassword</servlet-name>
 		<url-pattern>/changepassword/ChangePassword</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/account/*</url-pattern>
 	</servlet-mapping>
 </web-app>

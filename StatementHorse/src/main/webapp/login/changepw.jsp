@@ -48,7 +48,7 @@
 					</div>
 					<div class="panel-body">
 						<form role="form" method="post"
-							action="${pageContext.request.contextPath}/account/changepwok">
+							action="${pageContext.request.contextPath}/account/changepw">
 							<fieldset>
 								<div class="form-group" hidden>
 									<input class="form-control"
@@ -66,7 +66,7 @@
 										value="">
 								</div>
 								<div>
-									<label>錯誤訊息：${ErrorMsgKey.registerError}</label>
+									<label>錯誤訊息：${errormsg}</label>
 								</div>
 								<div>
 									<!-- Change this to a button or input when using this as a form -->

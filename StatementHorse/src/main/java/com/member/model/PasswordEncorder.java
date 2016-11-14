@@ -35,12 +35,11 @@ public class PasswordEncorder {
 	private static byte[] enc(String text) {
 		byte[] result = null;
 		try {
-			SecureRandom random = new SecureRandom();
 			DESKeySpec desKey = new DESKeySpec(KEY.getBytes());
 			SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
 			SecretKey securekey = keyFactory.generateSecret(desKey);
 			Cipher cipher = Cipher.getInstance("DES");
-			cipher.init(Cipher.ENCRYPT_MODE, securekey, random);
+			cipher.init(Cipher.ENCRYPT_MODE, securekey);
 			result = cipher.doFinal(text.getBytes());
 		} catch (InvalidKeyException e) {
 			// TODO Auto-generated catch block
@@ -74,7 +73,7 @@ public class PasswordEncorder {
 
 	public static void main(String args[]) {
 		try {
-			String inputStr = "简单加密";
+			String inputStr = "a123456";
 			String result = encrypt(inputStr);
 			System.out.println(result);
 		} catch (Exception e) {

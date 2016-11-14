@@ -22,8 +22,9 @@ import org.omg.CORBA_2_3.portable.InputStream;
 
 import com.member.model.MemberService;
 import com.member.model.MemberVO;
+import com.member.model.PasswordEncorder;
 
-@WebServlet("/account/changepwok")
+//@WebServlet("/account/changepwok")
 public class ChangepwokServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -63,7 +64,7 @@ public class ChangepwokServlet extends HttpServlet {
 			rd.forward(request, response);
 			return;
 		}
-		mem.setMemberPassword(memberPassword);
+		mem.setMemberPassword(PasswordEncorder.encrypt(memberPassword));
 		rs.insertMember(mem);
 		RequestDispatcher rd = request.getRequestDispatcher("/message/Message.jsp");//是否要改成密碼修改完成頁面
 		rd.forward(request, response);

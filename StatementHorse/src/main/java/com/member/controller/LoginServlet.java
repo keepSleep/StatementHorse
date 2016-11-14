@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.member.model.MemberService;
 import com.member.model.MemberVO;
 
-@WebServlet("/account/login")
+//@WebServlet("/account/login")
 public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
