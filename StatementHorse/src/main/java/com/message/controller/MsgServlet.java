@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.servlet.mvc.condition.RequestMethodsRequestCondition;
 
-
-
+import com.member.model.MemberVO;
 import com.message.model.MsgService;
 
 /*@WebServlet("/MsgServlet")*/
@@ -35,11 +35,10 @@ public class MsgServlet extends HttpServlet {
 		MsgService msgservicedao = new MsgService();
 		PrintWriter out = resp.getWriter();
 		// 傳入追蹤者的id為何
-		String member_id1 = (String) req.getParameter("member_id");
-		if (member_id1 != null) {
-			session.setAttribute("member_id", member_id1);
-		}
-		String member_id = (String) session.getAttribute("member_id");
+		String member_id = (String)req.getParameter("member_id");
+//		MemberVO membervo = (MemberVO) session.getAttribute("user");
+//		String member_id = membervo.getMemberId();
+
 
 		//傳入追蹤者的登入時間
 		session.setAttribute("logintime",new Date(System.currentTimeMillis()));

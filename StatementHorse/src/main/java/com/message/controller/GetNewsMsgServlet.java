@@ -19,6 +19,7 @@ import org.json.JSONArray;
 
 import com.financialstatements.model.FinancialStatementsService;
 import com.financialstatements.model.FinancialStatementsVO;
+import com.member.model.MemberVO;
 import com.message.model.MsgService;
 
 import com.mgr.model.MGRService;
@@ -38,14 +39,11 @@ public class GetNewsMsgServlet extends HttpServlet {
 		MGRService mgdao = new MGRService();
 		try {
 			// 傳入追蹤者的id為何
-			String member_id1 = (String) request.getParameter("member_id");
-			if (member_id1 != null) {
-				session.setAttribute("member_id", member_id1);
-			}
-			String member_id = (String) session.getAttribute("member_id");
-
+			MemberVO membervo = (MemberVO) session.getAttribute("user");
+			String member_id = membervo.getMemberId();
+			
 			// 傳入追蹤者的登入時間
-			java.sql.Date logintime = (java.sql.Date) session.getAttribute("logintime");
+			java.sql.Date logintime = (java.sql.Date)membervo.getCreatetime();
 
 			// 取得會員追蹤的股號
 			List<Integer> memberstockno = msgservicedao.findStockNo(member_id);

@@ -37,8 +37,9 @@ public class ChangePassword extends HttpServlet {
 			session.setAttribute("CorrectMsg", correctMsg);
 
 			// 取得會員id
-			String member_id = (String) session.getAttribute("member_id");
-
+			MemberVO membervo1 = (MemberVO) session.getAttribute("user");
+			String member_id = membervo1.getMemberId();
+			
 			// 取得舊密碼
 			String oldpassword = request.getParameter("oldpassword");
 

@@ -34,7 +34,9 @@ public class MsgIUDServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		String action = request.getParameter("action");
-		String member_id = (String) session.getAttribute("member_id");
+		MemberVO membervo = (MemberVO) session.getAttribute("user");
+		String member_id = membervo.getMemberId();
+		
 		MsgService msgservicedao = new MsgService();
 
 		if ("jquery_check".equals(action)) {

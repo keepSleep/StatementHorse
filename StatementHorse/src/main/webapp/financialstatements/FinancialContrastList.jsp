@@ -19,6 +19,7 @@
 <%-- <script src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script> --%>
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+<%@include file="/top/Top.jsp"%>
 <style>
 *{
 font-family:微軟正黑體;
@@ -152,8 +153,7 @@ font-size:14px;
 </script>
 </head>
 <body>
-<%@include file="/top/Top.jsp"%>
-<p/>
+
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="col-md-1"></div>
