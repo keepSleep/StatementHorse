@@ -35,7 +35,9 @@ public class GetTrackListing extends HttpServlet {
 
 		response.setHeader("content-type", "text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
+
 		
+
 		//session
 		HttpSession session = request.getSession();
 		MemberVO membervo = (MemberVO) session.getAttribute("user");

@@ -11,7 +11,8 @@
 <!--Bootstrap樣式-->
 <%-- 	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/bootstrap.min.css"> --%>
 <!--JQuery/JQueryUI/Bootstrap JS-->
-	<script src="${pageContext.servletContext.contextPath}/js/jquery.min.js"></script>
+
+<%-- 	<script src="${pageContext.servletContext.contextPath}/js/jquery.min.js"></script> --%>
 	<script	src="${pageContext.servletContext.contextPath}/js/jquery-ui.min.js"></script>
 <%-- 	<script	src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script> --%>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -87,7 +88,7 @@
 </div>
 
 <!-- 匯入需要的檔案 -->
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
