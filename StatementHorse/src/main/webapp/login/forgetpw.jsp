@@ -64,7 +64,7 @@
 								<div>
 								<!-- Change this to a button or input when using this as a form -->
 								<button type="submit" class="btn btn-lg btn-info btn-block">
-									<label>記密碼更改信給我</label>
+									記密碼更改信給我
 								</div>
 									<div>
 									<a href="${pageContext.request.contextPath}/account/login">

@@ -81,17 +81,19 @@ public class MemberController {
 	// 驗證信箱
 	@GetMapping("/registerchecker")
 	public String registerChecker(@RequestParam(name = "confirmation_token", required = true) String token,
-			ModelMap modelmap) {
+			ModelMap modelmap,HttpServletRequest request) {
 		String memberEmail = new String(Base64.getDecoder().decode(token));
 		MemberVO mem = memberService.findMember(memberEmail);
 		if ((new Date().getTime() - mem.getCreatetime().getTime()) > 6 * 60 * 60 * 1000) {
 			return "login/registermailagain";
 		}
+		
 		mem.setMemberCheck(1);
 		memberService.insertMember(mem);
 		modelmap.addAttribute("title", "成功加入財報馬 ");
 		modelmap.addAttribute("content", "感謝申請會員");
-		modelmap.addAttribute("url", "tracklisting/memberhomePage.jsp");
+		modelmap.addAttribute("url", "/GetTrackListing");
+		request.getSession().setAttribute("user", mem);
 		return "login/registermailok";
 	}
 
@@ -195,7 +197,7 @@ public class MemberController {
 		}
 		request.getSession().setAttribute("user", memberVO);
 		// return "redirect:/tracklisting/memberhomePage.jsp";
-		return request.getContextPath() + "/tracklisting/memberhomePage.jsp";
+		return request.getContextPath() + "/GetTrackListing";
 	}
 
 	@PostMapping("/fblogin")
@@ -215,7 +217,7 @@ public class MemberController {
 			memberVO = memberService.findMember(memberEmail);
 		}
 		request.getSession().setAttribute("user", memberVO);
-		return request.getContextPath() + "/com.tracklisting.controller/GetTrackListing.java";
+		return request.getContextPath() + "/GetTrackListing";
 	}
 
 	// 註冊
