@@ -215,7 +215,7 @@ public class MemberController {
 			memberVO = memberService.findMember(memberEmail);
 		}
 		request.getSession().setAttribute("user", memberVO);
-		return request.getContextPath() + "/tracklisting/memberhomePage.jsp";
+		return request.getContextPath() + "/com.tracklisting.controller/GetTrackListing.java";
 	}
 
 	// 註冊
@@ -314,7 +314,7 @@ public class MemberController {
 
 		MemberVO mem = memberService.findMember(memberEmail);
 		if ((new Date().getTime() - mem.getCreatetime().getTime()) > 6 * 60 * 60 * 1000) {
-			return "login/registermailagain";
+			return "login/forgetpwagain";
 		}
 		mem.setMemberPassword(PasswordEncorder.encrypt(memberPassword));
 		memberService.insertMember(mem);
