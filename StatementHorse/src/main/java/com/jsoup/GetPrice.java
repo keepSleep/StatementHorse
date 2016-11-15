@@ -17,32 +17,33 @@ public class GetPrice {
 		PriceService priceService = new PriceService();
 
 		URL url = new URL("http://www.tse.com.tw/ch/trading/exchange/MI_INDEX/MI_INDEX.php?download=&qdate="
-				+ (year - 1911) + "%2F" + month + "%2F" + day + "&selectType=ALLBUT0999");
-		Document xmlDoc = Jsoup.parse(url, 5000); // 使用Jsoup jar 去解析網頁
+				+ (year - 1911) + "%2F" + String.format("%02d", month) + "%2F" + String.format("%02d", day)
+				+ "&selectType=ALLBUT0999");
+		Document xmlDoc = Jsoup.parse(url, 10000); // 使用Jsoup jar 去解析網頁
 		Elements tdText = xmlDoc.select("td"); // 要解析的tag元素為td
 
-		double open_price = 0.0;
-		double close_price = 0.0;
-		double highest_price = 0.0;
-		double lowest_price = 0.0;
-		int quantity = 0;
+		Double open_price = null;
+		Double close_price = null;
+		Double highest_price = null;
+		Double lowest_price = null;
+		Integer quantity = null;
 		int i = 0;
 
 		for (Element tdContext : tdText) {
 			// System.out.println(tdContext.text());
-				//設定的股號
-			if (tdContext.text().equals(""+stockNo)) {
+			// 設定的股號
+			if (tdContext.text().equals("" + stockNo)) {
 				// 開盤價
 				open_price = new Double(tdText.get(i + 5).text().replace(",", ""));
-				System.out.println(open_price);				
+				System.out.println(open_price);
 				// 最高價
-				highest_price =new Double(tdText.get(i+6).text().replace(",", ""));
-				System.out.println(highest_price);				
+				highest_price = new Double(tdText.get(i + 6).text().replace(",", ""));
+				System.out.println(highest_price);
 				// 最低價
-				lowest_price =new Double(tdText.get(i+7).text().replace(",", ""));
-				System.out.println(lowest_price);				
+				lowest_price = new Double(tdText.get(i + 7).text().replace(",", ""));
+				System.out.println(lowest_price);
 				// 收盤價
-				close_price =new Double(tdText.get(i+8).text().replace(",", ""));
+				close_price = new Double(tdText.get(i + 8).text().replace(",", ""));
 				System.out.println(close_price);
 				// 成交量
 				quantity = new Integer(tdText.get(i + 2).text().replace(",", ""));
@@ -50,14 +51,27 @@ public class GetPrice {
 			}
 			i++;
 		}
-		
-		String priceDate=""+year+"-"+month+"-"+day;
+
+		String priceDate = "" + year + "-" + month + "-" + day;
 		priceService.insert(stockNo, priceDate, open_price, close_price, highest_price, lowest_price, quantity);
 		System.out.println(priceDate);
 	}
 
 	public static void main(String[] args) throws IOException {
-		insertPrice(3008, 2016, 11, 14);
+
+		for (int x = 2013; x <= 2016; x++) {
+			for (int i = 1; i <= 12; i++) {
+				for (int j = 1; j <= 31; j++) {
+					try {
+						insertPrice(3008, x, i, j);
+					} catch (org.hibernate.exception.ConstraintViolationException e) {
+						continue;
+					} catch (org.hibernate.exception.SQLGrammarException se) {
+						continue;
+					}
+				}
+			}
+		}
 	}
 
 }
