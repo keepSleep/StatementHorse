@@ -36,13 +36,13 @@ public class MsgServlet extends HttpServlet {
 		MsgService msgservicedao = new MsgService();
 		PrintWriter out = resp.getWriter();
 		// 傳入追蹤者的id為何
-		String member_id = (String)req.getParameter("member_id");
-//		MemberVO membervo = (MemberVO) session.getAttribute("user");
-//		String member_id = membervo.getMemberId();
+		
+		MemberVO membervo = (MemberVO) session.getAttribute("user");
+		String member_id = membervo.getMemberId();
 
 
 		//傳入追蹤者的登入時間
-		session.setAttribute("logintime",new Date(System.currentTimeMillis()));
+//		session.setAttribute("logintime",new Date(System.currentTimeMillis()));
 		// System.out.println(member_id);
 		// 取得使用者的追縱股號有哪些
 		List<Integer> memberstockno = msgservicedao.findStockNo(member_id);

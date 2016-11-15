@@ -37,149 +37,6 @@ table {
 }
 </style>
 
-<<<<<<< HEAD
-	<table style="background-color: lightblue; height: 70px;width:100%">
-		<tr>
-			<td ><a href="${pageContext.servletContext.contextPath}/MessageIndex.jsp">
-			<img src="${pageContext.servletContext.contextPath}/picture/statementhourse.png" class="img-circle" style="padding: 5px"></a></td>
-			<td>
-				<table>
-					<tr>
-						<td class="col-sm-1"><a href="${pageContext.servletContext.contextPath}/ShowStockServlet?action=stock&stock_no=2330&member_id=Blastoise"> <button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >個股資料</button></td>
-						<td class="col-sm-1"><a href="${pageContext.servletContext.contextPath}/financialstatements/ListStatementsDate.jsp"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報日期</button></a></td>
-						<td class="col-sm-1"><a href="${pageContext.servletContext.contextPath}/financialstatements/FinancialContrastList.jsp"><button type="button" class="btn btn-outline btn-info btn-lg" style="border:0px blue none" >財報比較</button></a></td>
-						<td class="col-sm-4">
-							<div class="input-group custom-search-form">
-							<form method="post" action="${pageContext.servletContext.contextPath}/ShowStockServlet">
-                                <input type="text" style="width:500px;height:auto" class="form-control" placeholder="輸入股號或股名..." name="stock_no">
-                             	<input type="hidden" name="action" value="stock">
-                           
-                                <span class="input-group-btn" >
-                                    <button class="btn btn-default" type="submit" style="height:140%">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                              </form> 
-                                </span>
-                            </div>
-						</td>			
-						<td class="col-sm-1 col-md-offset-8">
-						<c:if test="${empty sessionScope.user}">
-						 <button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none" id="login"><i class="fa fa-user fa-fw"></i>登入</button>
-						</c:if>
-						<c:if test="${!empty sessionScope.user}">
-						 <button type="button" class="btn btn-outline btn-warning btn-lg" style="border:0px blue none " id="logout"><i class="fa fa-user fa-fw"></i>${sessionScope.user.memberId}</button>
-						</c:if>
-						<c:if test="${!empty sessionScope.user}">
-						</td>
-						<td class="col-sm-1">
- 							<ul class="nav navbar-top-links navbar-right ">
-            				    <li class="dropdown ">
-               					  <a id="tg" class="dropdown-toggle btn-lg " data-toggle="dropdown" href="" style="width:65px">
-                   				     <i class="fa fa-bell "></i> <i class="fa fa-caret-down"></i>
-                  				  </a>
-                   					 <ul class="dropdown-menu dropdown-messages">
-                       					 <li>
-                           					        <div class="chat-panel panel panel-default">
-						                        <!-- /.panel-heading -->
-						                        <div class="panel-body">
-						                            <ul class="chat" id="newmessage">
-						                            </ul>
-						                        </div> 
-						                        <div style="display:none" id="messagelength"></div>      
-						                        <!-- /.panel-footer -->
-						                    	</div>
-	                        			 </li>             
-                        				 <li>
-                        				    <a class="text-center" href="#">
-                         				       <strong>Read All Messages</strong>
-                          					   <i class="fa fa-angle-right"></i>
-                    				        </a>
-                 					    </li>
-                 					</ul>
-                 				</li>
-                 			</ul>
-						</td>
-						<td  class="col-sm-1">
-							<ul class="nav navbar-top-links navbar-right ">
-							<li class="dropdown" id="allsetting">
-			                    <a class="dropdown-toggle btn-lg" data-toggle="dropdown" href="" style="width:65px">
-			                        <i class="fa fa-gear fa-fw"></i><i class="fa fa-caret-down"></i>
-			                    </a>
-			                    <ul class="dropdown-menu dropdown-user">
-			                        <li><a  href="${pageContext.servletContext.contextPath}/changepassword/changepassword.jsp" style="cursor:pointer"><i class="fa fa-user fa-fw"></i>更改密碼</a>
-			                        </li>
-			                        <li><a  id="setting" style="cursor:pointer"><i class="fa fa-gear fa-fw"></i>通知設定</a>
-			                        </li>
-			                        <li class="divider"></li>
-			                        <li><a href="${pageContext.servletContext.contextPath}/account/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-			                        </li>
-			                    </ul>
-			                </li>
-			                </ul>
-						</td>
-						</c:if>
-					</tr>
-				</table>
-			</td>
-
-		</tr>
-	</table>
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header" style="padding:35px 50px;">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 ><i class="fa fa-gear" ></i>通知設定</h4>
-        </div>
-        <div class="modal-body" style="padding:25px 50px;">
-          
-<!--           <form method="post" role="form" action="MsgIUDServlet"> -->
-         	 <table class="table table-condensed">
-					<caption>個人通知設定</caption>
-					<thead>
-						<tr>
-							<th>股號</th>
-							<th>月營收通知</th>
-							<th>財報更新通知</th>
-						</tr>
-					</thead>
-					<tbody>
-					<c:if test="${empty memberlistno}">
-					<tr>
-					<td colspan="3"><h3>您目前沒有追蹤股號，請至<a href="">追蹤清單</a>新增</h3></td>
-					</tr>
-					</c:if>
-					<c:if test="${!empty memberlistno}">
-					<c:forEach var="stock" items="${memberlistno}" varStatus="count">
-						<tr>
-							<td>${stock[0]}</td>
-							<td><input type="checkbox" id="${stock[0]}1" name="${stock[0]}1" ${(stock[1]==true)? 'checked' : ''}/></td>
-							<td><input type="checkbox" id="${stock[0]}2" name="${stock[0]}2" ${(stock[2]==true)? 'checked' : ''}/></td>
-						</tr>
-						<div style="display:none" id="${count.count}">${stock[0]}</div>
-						<div style="display:none" id="${count.last}">${count.count}</div>
-					</c:forEach>
-					</c:if>
-					<tr><td colspan="3" align="center"><div style="display:none;margin:0px auto" id="followok" ><h3>你已更新成功!!!</h3></div></td></tr>
-					</tbody>
-		 		</table>
-		 		<c:if test="${!empty memberlistno}">
-              <button type="button" class="btn btn-success btn-block" style="border:0px;" id="updatemessage"><span  class="glyphicon glyphicon-floppy-disk"></span> 完成更新</button>
- 			   </c:if>
- 			   <c:if test="${empty memberlistno}">
- 			   <button type="button" class="btn btn-success btn-block" style="border:0px;" id="updatemessage" disabled="disabled"><span  class="glyphicon glyphicon-floppy-disk"></span> 完成更新</button>
- 			   </c:if>    
-<!--           </form> -->
-          
-        </div>
-      </div>
-      
-    </div>
-  </div>
-	<script>
-=======
 	<nav class="navbar navbar-default navbar-static-top"
 		role="navigation" style="background-color: lightblue">
 <!-- <div class=container-fluid> -->
@@ -229,7 +86,7 @@ table {
 					</button>
 				</div>
 			</form>
->>>>>>> branch 'master' of https://github.com/EEIT89Team3/StatementHorse
+
 
 
 
@@ -246,9 +103,9 @@ table {
 				</c:if>
 				<c:if test="${!empty sessionScope.user}">
 					<li>
-						<button type="button" class="btn btn-outline btn-warning btn-lg"
+						<a href="${pageContext.servletContext.contextPath}/GetTrackListing"><button type="button" class="btn btn-outline btn-warning btn-lg"
 							style="border: 0px blue none;margin-top:11px" id="logout">
-							<i class="fa fa-user fa-fw"></i>${sessionScope.user.memberId}</button>
+							<i class="fa fa-user fa-fw"></i>${sessionScope.user.memberId}</button></a>
 					</li>
 				</c:if>
 
@@ -329,7 +186,7 @@ table {
 									<c:if test="${empty memberlistno}">
 										<tr>
 											<td colspan="3"><h3>
-													您目前沒有追蹤股號，請至<a href="">追蹤清單</a>新增
+													您目前沒有追蹤股號，請至<a href="${pageContext.servletContext.contextPath}/GetTrackListing">追蹤清單</a>新增
 												</h3></td>
 										</tr>
 									</c:if>
@@ -382,7 +239,7 @@ table {
 	$(document).ready(
 			function() {
 				var last = $("#true").text();
-				// 		setInterval("refreshnews()",5000);
+// 						setInterval("refreshnews()",5000);
 				$("#tg").click(function() {
 					$("#tg").attr("style", "color:#337ab7;width:65px")
 				})
@@ -455,8 +312,7 @@ table {
 
 			});
 	function refreshnews() {
-		$
-				.getJSON(
+		$.getJSON(
 						"GetNewsMsgServlet",
 						function(data) {
 							console.log(data)

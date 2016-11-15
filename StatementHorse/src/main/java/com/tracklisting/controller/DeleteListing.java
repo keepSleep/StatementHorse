@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.member.model.MemberVO;
 import com.tracklisting.model.TrackListingHibernateDAO;
 import com.tracklisting.model.TrackListingVO;
 
@@ -25,13 +27,18 @@ public class DeleteListing extends HttpServlet {
 		
 		response.setHeader("content-type", "text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		
+		//session
+		HttpSession session = request.getSession();
+		MemberVO membervo = (MemberVO) session.getAttribute("user");
+		String member_id = membervo.getMemberId();
 
 		String listingNo = request.getParameter("listingNo");
-		String memberId = request.getParameter("memberId");
+//		String memberId = request.getParameter("memberId");
 
 		TrackListingHibernateDAO tldao = new TrackListingHibernateDAO();
 		
-		List<TrackListingVO> tlVO = tldao.getAllByMember(memberId);
+		List<TrackListingVO> tlVO = tldao.getAllByMember(member_id);
 		
 		if(tlVO.size() == 1){
 			

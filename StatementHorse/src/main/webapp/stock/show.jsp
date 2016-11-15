@@ -7,8 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/top/Top.jsp"%>
-<link rel="stylesheet"
-	href="${pageContext.servletContext.contextPath}/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" -->
+<%-- 	href="${pageContext.servletContext.contextPath}/css/bootstrap.min.css"> --%>
 <link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath}/css/metisMenu.css">
 <link rel="stylesheet"

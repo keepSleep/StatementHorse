@@ -70,7 +70,7 @@
 									<label>寄驗證信給我</label>
 								</div>
 									<div>
-									<a href="${pageContext.request.contextPath}/login/login.jsp">
+									<a href="${pageContext.request.contextPath}/account/login">
 									<label>回到登入頁</label>
 									</div>
 								</a>

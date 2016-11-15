@@ -171,7 +171,7 @@ public class MemberController {
 		}
 		if (status.isEmpty()) {
 			status.put("status", "OK");
-			status.put("msg", request.getContextPath() + "/tracklisting/memberhomePage.jsp");
+			status.put("msg", request.getContextPath() + "/GetTrackListing");
 		}
 		return status;
 	}

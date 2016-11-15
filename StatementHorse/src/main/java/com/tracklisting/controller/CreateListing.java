@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.listingdetails.model.ListingDetailsHibernateDAO;
 import com.listingdetails.model.ListingDetailsVO;
@@ -27,8 +28,13 @@ public class CreateListing extends HttpServlet {
 		response.setHeader("content-type", "text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
+		//session
+		HttpSession session = request.getSession();
+		MemberVO membervo = (MemberVO) session.getAttribute("user");
+		String member_id = membervo.getMemberId();
+		
 		String listingName = request.getParameter("listingName");
-		String memberId = request.getParameter("memberId");
+//		String memberId = request.getParameter("memberId");
 
 		TrackListingHibernateDAO tldao = new TrackListingHibernateDAO();
 		TrackListingVO tlvo = new TrackListingVO();
@@ -42,7 +48,7 @@ public class CreateListing extends HttpServlet {
 		else{
 				
 			MemberVO mvo = new MemberVO();
-			mvo.setMemberId(memberId);
+			mvo.setMemberId(member_id);
 			
 			tlvo.setMemberVO(mvo);;
 			tlvo.setListingName(listingName);
