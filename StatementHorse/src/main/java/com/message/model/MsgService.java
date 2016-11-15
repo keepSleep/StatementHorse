@@ -11,6 +11,7 @@ import com.member.model.MemberHibernateDAO;
 import com.member.model.MemberVO;
 import com.messagelists.model.MsgListVO;
 import com.stock.model.StockVO;
+import com.tracklisting.model.TrackListingHibernateDAO;
 import com.tracklisting.model.TrackListingVO;
 
 public class MsgService {
@@ -69,7 +70,11 @@ public class MsgService {
 		Set<Integer> set= new HashSet<>();
 		List<Integer> list=new LinkedList<>();
 		MemberVO membervo = memberdao.findByPrimaryKey(MemberId);
-		Set<TrackListingVO> tracklistvos = membervo.getTrackListingVOs();
+		TrackListingHibernateDAO tracklisting = new TrackListingHibernateDAO();
+		List<TrackListingVO> tracklistvos = tracklisting.getAllByMember(MemberId);
+//		Set<TrackListingVO> tracklistvos = membervo.getTrackListingVOs();
+		
+		
 		for(TrackListingVO tlvo:tracklistvos){
 			Set<ListingDetailsVO> ldvo = tlvo.getLds();
 			for(ListingDetailsVO LDVO:ldvo){

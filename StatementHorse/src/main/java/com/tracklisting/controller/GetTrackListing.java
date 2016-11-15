@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.listingdetails.model.ListingDetailsHibernateDAO;
 import com.listingdetails.model.ListingDetailsVO;
@@ -34,8 +35,11 @@ public class GetTrackListing extends HttpServlet {
 
 		response.setHeader("content-type", "text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
 		
-		String memberId = request.getParameter("id");
+		MemberVO membervo = (MemberVO) session.getAttribute("user");
+		String memberId = membervo.getMemberId();
+		
 		TrackListingHibernateDAO tldao = new TrackListingHibernateDAO();
 		
 		List<TrackListingVO> tlVO = tldao.getAllByMember(memberId);
