@@ -281,7 +281,7 @@ $(function() {
 				var StockNo = this.StockNo;	
 				var StockName = this.StockName;	
 			tab.append('<tr><td>' + StockNo + '</td><td><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
-					'</a></td><td><input type="button" value="取消追蹤" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
+					'</a></td><td><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 			});	
 			$(del);
 			});
@@ -404,7 +404,7 @@ $(function() {
 						var StockNo = this.StockNo;	
 						var StockName = this.StockName;	
 					tab.append('<tr><td>' + StockNo + '</td><td><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
-							'</a></td><td><input type="button" value="取消追蹤" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
+							'</a></td><td><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 					});	
 					$(del);
 					});
@@ -413,8 +413,8 @@ $(function() {
 		};
 					
 		//設置選擇列
-		$("#createText"+tlno).append('<input type="text" placeholder="請輸入股號" name="godText" style="width:150px">');	
-		$("#createText"+tlno).append('<input type="button" value="追蹤個股" name="createStock" id="' + tlno + '"><br>');
+		$("#createText"+tlno).append('<input type="text" placeholder="請輸入股號" name="godText" style="width:150px ; margin-right:10px">');	
+		$("#createText"+tlno).append('<input type="button" style="background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-2016111512562799.ico); width:16px; height:16px; background-color: #FFFFFF; border:none " name="createStock" id="' + tlno + '"><br>');
 		
 		//自動完成
 		$.getJSON("GetStock?",{},function(data) {
@@ -559,7 +559,7 @@ $(function() {
 						var StockNo = this.StockNo;	
 						var StockName = this.StockName;	
 					tab.append('<tr><td>' + StockNo + '</td><td><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
-							'</a></td><td><input type="button" value="取消追蹤" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
+							'</a></td><td><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 					});	
 					$(del);
 					});
@@ -680,7 +680,7 @@ $(function() {
 				var StockNo = this.StockNo;	
 				var StockName = this.StockName;	
 			tab.append('<tr><td>' + StockNo + '</td><td><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
-					'</a></td><td><input type="button" value="取消追蹤" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
+					'</a></td><td><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 			});	
 			$(del2);
 			});
@@ -802,7 +802,7 @@ $(function() {
 					var StockNo = this.StockNo;	
 					var StockName = this.StockName;	
 				tab.append('<tr><td>' + StockNo + '</td><td><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
-						'</a></td><td><input type="button" value="取消追蹤" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
+						'</a></td><td><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 				});	
 				$(del2);
 				});
@@ -811,8 +811,8 @@ $(function() {
 	};
 			
 				//設置選擇列
-		$("#createText"+tlno).append('<input type="text" placeholder="請輸入股號 " name="godText" style="width:150px">');	
-		$("#createText"+tlno).append('<input type="button" value="追蹤個股" name="createStock" id="' + tlno + '"><br>');
+		$("#createText"+tlno).append('<input type="text" placeholder="請輸入股號" name="godText" style="width:150px ; margin-right:10px">');	
+		$("#createText"+tlno).append('<input type="button" style="background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-2016111512562799.ico); width:16px; height:16px; background-color: #FFFFFF; border:none " name="createStock" id="' + tlno + '"><br>');
 		
 		//自動完成
 		$.getJSON("GetStock?",{},function(data) {
@@ -957,7 +957,7 @@ $(function() {
 						var StockNo = this.StockNo;	
 						var StockName = this.StockName;	
 					tab.append('<tr><td>' + StockNo + '</td><td><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
-							'</a></td><td><input type="button" value="取消追蹤" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
+							'</a></td><td><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 					});	
 					$(del2);
 					});
