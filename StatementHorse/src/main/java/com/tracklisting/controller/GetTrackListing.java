@@ -35,20 +35,22 @@ public class GetTrackListing extends HttpServlet {
 
 		response.setHeader("content-type", "text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		
+
+		//session
 		HttpSession session = request.getSession();
-		
 		MemberVO membervo = (MemberVO) session.getAttribute("user");
-		String memberId = membervo.getMemberId();
-		
+		String member_id = membervo.getMemberId();
+			
+//		String memberId = request.getParameter("id");
 		TrackListingHibernateDAO tldao = new TrackListingHibernateDAO();
-		
-		List<TrackListingVO> tlVO = tldao.getAllByMember(memberId);
+		List<TrackListingVO> tlVO = tldao.getAllByMember(member_id);
 		
 		if (tlVO.size() == 0){
 
 			TrackListingVO tlvo = new TrackListingVO();
 			MemberVO mvo = new MemberVO();
-			mvo.setMemberId(memberId);
+			mvo.setMemberId(member_id);
 			
 			tlvo.setMemberVO(mvo);
 			tlvo.setListingName("我的追蹤清單");
