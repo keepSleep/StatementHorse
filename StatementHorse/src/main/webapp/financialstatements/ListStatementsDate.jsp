@@ -10,7 +10,6 @@
 <link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath}/css/bootstrap-datepicker3.min.css">
 	<!-- 林文的TOP -->
-	<%@include file="/top/Top.jsp"%>
 	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,8 +19,9 @@
 <script src="${pageContext.servletContext.contextPath}/js/jquery.min.js"></script>
 <script
 	src="${pageContext.servletContext.contextPath}/js/jquery-ui.min.js"></script>
-<script
-	src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script>
+<!-- <script -->
+<%-- 	src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script> --%>
+	<%@include file="/top/Top.jsp"%>
 <script
 	src="${pageContext.servletContext.contextPath}/js/bootstrap-datepicker.min.js"></script>
 

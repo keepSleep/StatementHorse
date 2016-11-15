@@ -94,7 +94,7 @@
 									</div>
 									<div class="col-lg-6">
 										<label><a
-											href="${pageContext.request.contextPath}/login/login.jsp">
+											href="${pageContext.request.contextPath}/account/login">
 												登入財報馬 </a></label>
 									</div>
 
