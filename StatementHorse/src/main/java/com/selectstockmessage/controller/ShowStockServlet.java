@@ -40,9 +40,9 @@ public class ShowStockServlet extends HttpServlet {
 		String listNo = req.getParameter("listNo");
 		String insert_or_delete = req.getParameter("insert_or_delete");
 		Integer stockNo = new Integer(req.getParameter("stock_no"));
-	
+		String selectstock=req.getParameter("selectstock");
 
-	
+		
 		if ("stock".equals(action)) {
 			StockService stockService=new StockService();
 			StockVO stockVO=new StockVO();
@@ -57,11 +57,19 @@ public class ShowStockServlet extends HttpServlet {
 				if(listingName==null){
 					VO1.setListingName("我的追蹤清單");
 				}
-				set = VO1.getLds();
-				for (ListingDetailsVO VO2 : set) {
+				Integer listingno = VO1.getListingNo();
+//				set = VO1.getLds();
+//				for (ListingDetailsVO VO2 : set) {
+//					Integer stock_list = VO2.getStockVO().getStockNo();
+//					stock_set=new HashSet();
+//					stock_set.add(stock_list);
+//				}
+				ListingDetailsHibernateDAO listingDetails=new ListingDetailsHibernateDAO();
+				List<ListingDetailsVO> listing = listingDetails.getAllByListing(listingno);
+				for(ListingDetailsVO VO2:listing){
 					Integer stock_list = VO2.getStockVO().getStockNo();
-					stock_set=new HashSet();
-					stock_set.add(stock_list);
+//					stock_set=new HashSet();
+//					stock_set.add(stock_list);
 				}
 			}
 			req.setAttribute("stockVO", stockVO);
@@ -100,6 +108,15 @@ public class ShowStockServlet extends HttpServlet {
 				out.close();
 			
 			}
+		}
+		if("getVO".equals(json)){
+			PrintWriter out = resp.getWriter();
+			ToJsonArray tojson=new ToJsonArray();
+			JSONArray list=tojson.getVO(stockNo,need);
+			out.print(list);	
+			out.close();
+			
+			
 		}
 		if ("mgrjson".equals(json)) {
 			PrintWriter out = resp.getWriter();

@@ -19,12 +19,13 @@
 <%-- <script src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script> --%>
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+<%@include file="/top/Top.jsp"%>
 <style>
 *{
 font-family:微軟正黑體;
 }
 dd{
-font-size:14px;
+font-size:18px;
 }
 </style>
 
@@ -70,8 +71,8 @@ font-size:14px;
 				});
 		//滑鼠移動會計科目動畫
 		$('dd').mouseover(over).mouseout(out);
-		var s1 = {'font-size':'16px'},
-			s2 = {'font-size':'14px'};
+		var s1 = {'font-size':'20px'},
+			s2 = {'font-size':'18px'};
 		function over(){
 			$(this).css(s1);
 		}
@@ -152,8 +153,7 @@ font-size:14px;
 </script>
 </head>
 <body>
-<%@include file="/top/Top.jsp"%>
-<p/>
+
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="col-md-1"></div>
@@ -161,7 +161,7 @@ font-size:14px;
 						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 							<div class="panel panel-default">
 								<div class="panel-heading" role="tab" id="headingOne"  style="background-color: lightblue">
-								<h2 class="panel-title">
+								<h2 class="panel-title" style="font-size:22px">
 									<a data-toggle="collapse" data-parent="#accordion"
 										href="#collapseOne" aria-expanded="true"
 										aria-controls="collapseOne"> 資產負債表 </a>
@@ -190,7 +190,7 @@ font-size:14px;
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading" role="tab" id="headingTwo" style="background-color: lightblue">
-								<h2 class="panel-title">
+								<h2 class="panel-title" style="font-size:22px">
 									<a class="collapsed" data-toggle="collapse"
 										data-parent="#accordion" href="#collapseTwo"
 										aria-expanded="true" aria-controls="collapseTwo"> 損益表 </a>

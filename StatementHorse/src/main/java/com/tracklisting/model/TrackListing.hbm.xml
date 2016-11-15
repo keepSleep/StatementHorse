@@ -11,7 +11,7 @@
 	
 	<property name="listingName" column="listing_name"></property>
 	
-	<many-to-one name="memberVO" class="com.member.model.MemberVO" lazy="false">
+	<many-to-one name="memberVO" class="com.member.model.MemberVO" lazy="false" >
 		<column name="member_id"></column>
 	</many-to-one>
 	

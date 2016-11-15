@@ -44,6 +44,8 @@ public class TrackListingHibernateDAO implements TrackListing_Interface{
 				session.beginTransaction();
 				TrackListingVO tlVO = (TrackListingVO) session.get(TrackListingVO.class, listingNo);
 				session.delete(tlVO);
+//				session.flush();
+//				session.evict(tlVO);
 				session.getTransaction().commit();
 			} catch (RuntimeException ex) {
 				session.getTransaction().rollback();

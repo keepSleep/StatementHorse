@@ -40,6 +40,18 @@
 a:link {
 	text-decoration: none
 }
+.th{
+		white-space:nowrap;
+		text-align:center;
+		padding:0px 20px;
+	}
+	.td{
+		white-space:nowrap;
+		text-align:center;
+		padding:5px 20px
+
+
+}
 </style>
 <title>Insert title here</title>
 </head>
@@ -49,15 +61,21 @@ a:link {
 	<input type="hidden" id="stockname" value="${stockVO.stockName}" />
 	<div class="container">
 		<div class="page-header">
-			<h3 style="font-family: '新細明體'; color: #00BBFF">
+			<h3 style="font-family: '微軟正黑體';font-size:26px; color: #00BBFF">
 				<a href="#" id="first_page"><i  class="fa fa-stack-exchange fa-fw"></i> 個股資料</a> <span
 					class="pull-right label label-default"></span> <span
-					style="margin: 0px 0px 0px 850px">
+					style="margin-left:650px">
 
 
 					<div class="btn-group">
+						<a href="${pageContext.servletContext.contextPath}/GetTrackListing?id=Blastoise"><button type="button" class="btn btn-info btn-xs dropdown-toggle"
+							style="font-family: '微軟正黑體';font-size:26px; id="mylisting">我的追蹤清單 <span></span>
+						</button>
+						<span></span>
+						</div>
+						<div class="btn-group">
 						<button type="button" class="btn btn-info btn-xs dropdown-toggle"
-							data-toggle="dropdown" style="font-size: x-large; id="listing">
+							data-toggle="dropdown" style="font-family: '微軟正黑體';font-size:26px; id="listing">
 							加入追蹤 <span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu pull-right" role="menu"
@@ -72,8 +90,8 @@ a:link {
 			</h3>
 		</div>
 
-		<div style="width: 300px; position: absolute; left: 250px; top: 250px">
-			<ul class="nav" id="side-menu" style="font-size: x-large;">
+		<div style="width: 300px; position: absolute; left: 370px; top: 250px">
+			<ul class="nav" id="side-menu" style="font-family: '微軟正黑體';font-size:26px;">
 
 				<li id="show_mgr"><a href="#"><i
 						class="fa fa-search-plus fa-fw"></i>公司最新動態<span class="active"></span></a>
@@ -103,7 +121,7 @@ a:link {
 			<!--個股資料-->
 			<table border='3 bordercolor='
 				black'
-				style="text-indent: 20px; width: 800px; height: 500px; position: absolute; left: 300px; top: 0px; display:; font-size: x-large; margin-bottom: 50px"
+				style="text-indent: 20px; width: 800px; height: 500px; position: absolute; left: 300px; top: 0px; display:; font-family: '微軟正黑體';font-size:26px; margin-bottom: 200px"
 				id="show_stock">
 				<tr>
 					<td style="background-color: lightblue">股號</td>
@@ -159,23 +177,63 @@ a:link {
 				<div class="panel with-nav-tabs panel-info">
 					<div class="panel-heading" style="background-color: lightblue">
 						<ul class="nav nav-tabs"
-							style="background-color: lightblue; font-size: x-large">
-							<li class="active"><a href="#tab1info" data-toggle="tab"
+							style="background-color: lightblue; font-family: '微軟正黑體';font-size:26px">
+							<li class="active"><a href="#tab1info1" data-toggle="tab"
 								id="111">月營收</a></li>
-							<li><a href="#tab2info" data-toggle="tab">每股盈餘</a></li>
-							<li><a href="#tab3info" data-toggle="tab">股價</a></li>
-							<li><a href="#tab4info" data-toggle="tab">股利</a></li>
-							<li><a href="#tab5info" data-toggle="tab">本益比</a></li>
+							<li><a href="#tab2info1" data-toggle="tab">每股盈餘</a></li>
+							<li><a href="#tab3info1" data-toggle="tab">股價</a></li>
+							<li><a href="#tab4info1" data-toggle="tab">股利</a></li>
+							<li><a href="#tab5info1" data-toggle="tab">本益比</a></li>
 						</ul>
 					</div>
 					<div class="panel-body" style="height: 630px">
 						<div class="tab-content" id="container">
-							<div class="tab-pane fade in active" id="tab1info"
-								style="width: 730px"></div>
-							<div class="tab-pane fade" id="tab2info" style="width: 730px"></div>
-							<div class="tab-pane fade" id="tab3info" style="width: 730px"></div>
-							<div class="tab-pane fade" id="tab4info" style="width: 730px"></div>
-							<div class="tab-pane fade" id="tab5info" style="width: 730px"></div>
+							<div class="tab-pane fade in active" id="tab1info1"
+								>
+							  <div id="tab1info"style="width: 730px"></div>	
+							  <div style="overflow-x:auto;padding-top:30px">
+							  		<table border='3' bordercolor='#DCDCDC' style="color:steelblue;font-family: '微軟正黑體';font-size:20px" id="show_mgr_table">
+							  		<thead style="background-color:lightblue" ></thead>
+							  		<tbody></tbody>
+							  		</table>
+							  </div>
+						  	</div>
+						   	<div class="tab-pane fade" id="tab2info1" >
+						   	<div id="tab2info" style="width: 730px"></div>
+						   	  <div style="overflow-x:auto;padding-top:30px">
+							  		<table border='3' bordercolor='#DCDCDC' style="color:steelblue;font-family: '微軟正黑體';font-size:20px" id="show_earningPerShare_table">
+							  		<thead style="background-color:lightblue" ></thead>
+							  		<tbody></tbody>
+							  		</table>
+							 </div>
+						   	</div>
+							<div class="tab-pane fade" id="tab3info1" >
+							<div id="tab3info" style="width: 730px"></div>
+						   	  <div style="overflow-x:auto;padding-top:30px">
+							  		<table border='3' bordercolor='#DCDCDC' style="color:steelblue;font-family: '微軟正黑體';font-size:20px" id="show_price_table">
+							  		<thead style="background-color:lightblue" ></thead>
+							  		<tbody></tbody>
+							  		</table>
+							 </div>
+							</div>
+							<div class="tab-pane fade" id="tab4info1" >
+							<div id="tab4info" style="width: 730px"></div>
+						   	  <div style="overflow-x:auto;padding-top:30px">
+							  		<table border='3' bordercolor='#DCDCDC' style="color:steelblue;font-family: '微軟正黑體';font-size:20px" id="show_divident_table">
+							  		<thead style="background-color:lightblue" ></thead>
+							  		<tbody></tbody>
+							  		</table>
+							 </div>
+							 </div>
+							<div class="tab-pane fade" id="tab5info1" >
+							<div id="tab5info" style="width: 730px"></div>
+						   	  <div style="overflow-x:auto;padding-top:30px">
+							  		<table border='3' bordercolor='#DCDCDC' style="color:steelblue;font-family: '微軟正黑體';font-size:20px" id="show_per_table">
+							  		<thead style="background-color:lightblue" ></thead>
+							  		<tbody></tbody>
+							  		</table>
+							 </div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -187,7 +245,7 @@ a:link {
 				<div class="panel with-nav-tabs panel-info">
 					<div class="panel-heading" style="background-color: lightblue">
 						<ul class="nav nav-tabs"
-							style="background-color: lightblue; font-size: x-large">
+							style="background-color: lightblue; font-family: '微軟正黑體';font-size:25px">
 							<li class="active"><a href="#tab1info_1" data-toggle="tab">季營收</a></li>
 							<li><a href="#tab2info_1" data-toggle="tab">季毛利</a></li>
 							<li><a href="#tab3info_1" data-toggle="tab">營業利益</a></li>
@@ -216,7 +274,7 @@ a:link {
 				<div class="panel with-nav-tabs panel-info">
 					<div class="panel-heading" style="background-color: lightblue">
 						<ul class="nav nav-tabs"
-							style="background-color: lightblue; font-size: x-large">
+							style="background-color: lightblue; font-family: '微軟正黑體';font-size:26px">
 							<li class="active"><a href="#tab1info_2" data-toggle="tab">流動資產</a></li>
 							<li><a href="#tab2info_2" data-toggle="tab">固定資產</a></li>
 							<li><a href="#tab3info_2" data-toggle="tab">總資產</a></li>
@@ -242,7 +300,7 @@ a:link {
 				<div class="panel with-nav-tabs panel-info">
 					<div class="panel-heading" style="background-color: lightblue">
 						<ul class="nav nav-tabs"
-							style="background-color: lightblue; font-size: x-large">
+							style="background-color: lightblue;font-family: '微軟正黑體';font-size:26px">
 							<li class="active"><a href="#tab1info_3" data-toggle="tab">流動負債</a></li>
 							<li><a href="#tab2info_3" data-toggle="tab">長期負債</a></li>
 							<li><a href="#tab3info_3" data-toggle="tab">淨值</a></li>
@@ -269,7 +327,7 @@ a:link {
 				<div class="panel with-nav-tabs panel-info">
 					<div class="panel-heading" style="background-color: lightblue">
 						<ul class="nav nav-tabs"
-							style="background-color: lightblue; font-size: x-large">
+							style="background-color: lightblue; font-family: '微軟正黑體';font-size:26px">
 							<li class="active"><a href="#tab1info_4" data-toggle="tab">負債比率</a></li>
 							<li><a href="#tab2info_4" data-toggle="tab">流動比率</a></li>
 						</ul>
@@ -289,7 +347,7 @@ a:link {
 				<div class="panel with-nav-tabs panel-info">
 					<div class="panel-heading" style="background-color: lightblue">
 						<ul class="nav nav-tabs"
-							style="background-color: lightblue; font-size: x-large">
+							style="background-color: lightblue; font-family: '微軟正黑體';font-size:26px">
 							<li class="active"><a href="#tab1info_5" data-toggle="tab">利潤比率</a></li>
 						</ul>
 					</div>
@@ -318,10 +376,21 @@ a:link {
 
 				
 				$(function() {
+					
 					var stockno = $("#stockno").val();
 					var stockname = $("#stockname").val();
 					var url = "ShowStockServlet?action=stock&stock_no="
 							+ stockno;
+					var thousandComma = function(number){
+						var num = number.toString();
+						var pattern = /(-?\d+)(\d{3})/;
+						while(pattern.test(num)){
+						num = num.replace(pattern, "$1,$2");
+						}
+					 	return num;
+						}
+					
+					
 					$("#first_page").click(function() {
 						$("#show_div_mgr").css("display", "none");
 						$("#show_div_incomestatement").css("display", "none");
@@ -439,6 +508,26 @@ a:link {
 										// 							console.log(i);
 									}
 								})
+								var list_no = $(
+										"#TrackListing_id>li>input:eq(2)")
+										.val();
+								// 					console.log(i)
+								$.get("ShowStockServlet", {
+									"listNo" : list_no,
+									"stock_no" : stockno,
+									"insert_or_delete" : "select"
+								}, function(data) {
+									console.log(data)
+
+									if (data == stockno) {
+										$("#TrackListing_id>li>input:eq(2)")
+												.prop("checked", true)
+									} else {
+										$("#TrackListing_id>li>input:eq(2)")
+												.prop("checked", false)
+										// 							console.log(i);
+									}
+								})
 							
 					//加入追蹤清單
 					$("#TrackListing_id>li>input").change(function() {
@@ -464,7 +553,35 @@ a:link {
 							rangeSelector : {selected : 5},title : {text : '月營收('+ stockno+ ')'},
 							series : [ {name : stockname,data : data,tooltip : {valueDecimals : 2}} ]
 						});
+						
 					});
+					var myHead=$("#show_mgr_table>thead")
+					var myBody=$("#show_mgr_table>tbody")
+
+					//http://localhost:8080/StatementHorse/ShowStockServlet?json=getVO&stock_no=2330&need=getMGRVO
+					$.getJSON("ShowStockServlet",{"json":"getVO","need":"getMGRVO","stock_no":stockno},function(data){
+						var length=data.length
+// 						myHead.append("<><>")
+						myHead.append("<th>年度/月份</th>")
+						myBody.append("<td>營收</td>")
+						$.each(data,function(key2,value2){
+							var date=$("<th></th>").append(value2.RevenueDate);
+							var revenue=$("<td></td>").append(thousandComma(value2.Revenue));
+							myHead.append(date)
+							myBody.append(revenue)
+						})
+						$("#show_mgr_table>thead>th").addClass("th")
+						$("#show_mgr_table>tbody>td").addClass("td")
+
+					})
+						
+				
+					
+					
+					
+					
+					
+					
 					//pricejson
 					var priceurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=pricejson&stock_no='+ stockno
 					$.getJSON(priceurl,function(data) {$('#tab3info').highcharts('StockChart',{

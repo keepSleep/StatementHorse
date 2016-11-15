@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.member.model.CheckMailService;
 import com.member.model.MemberService;
@@ -90,7 +91,7 @@ public class MemberController {
 		memberService.insertMember(mem);
 		modelmap.addAttribute("title", "成功加入財報馬 ");
 		modelmap.addAttribute("content", "感謝申請會員");
-		modelmap.addAttribute("url", "message/Message.jsp");
+		modelmap.addAttribute("url", "tracklisting/memberhomePage.jsp");
 		return "login/registermailok";
 	}
 
@@ -124,38 +125,60 @@ public class MemberController {
 
 	// login
 	@PostMapping("/login")
-	public String login(@RequestParam(name = "email", required = true) String memberEmail,
+	@ResponseBody
+	public Map<String, String> login(@RequestParam(name = "email", required = true) String memberEmail,
 			@RequestParam(name = "password", required = true) String password, HttpServletRequest request,
 			ModelMap modelmap) {
-		modelmap.addAttribute("email", memberEmail);
+		Map<String, String> status = new HashMap<>();
+		// modelmap.addAttribute("email", memberEmail);
 		// ErrorMsg
 		if (memberEmail == null || memberEmail.trim().length() == 0) {
-			modelmap.addAttribute("errormsg", "帳號欄必須輸入");
-			return "login/login";
+			// modelmap.addAttribute("errormsg", "帳號欄必須輸入");
+			// return "login/login";
+			status.put("status", "error");
+			status.put("msg", "帳號欄必須輸入");
 		}
 		if (password == null || password.trim().length() == 0) {
-			modelmap.addAttribute("errormsg", "密碼欄必須輸入");
-			return "login/login";
+			// modelmap.addAttribute("errormsg", "密碼欄必須輸入");
+			// return "login/login";
+			status.put("status", "error");
+			status.put("msg", "密碼欄必須輸入");
 		}
-
+		if (!status.isEmpty()) {
+			return status;
+		}
 		MemberVO memberVO = memberService.findMember(memberEmail);
 		if (memberVO != null) {
-			//登入session
+			if (memberVO.getMemberCheck() == 0) {
+				// modelmap.addAttribute("erroemsg", "信箱尚未驗證");
+				// return "login/login";
+				status.put("status", "error");
+				status.put("msg", "信箱尚未驗證");
+			}
 			if (memberVO.getMemberPassword().equals(PasswordEncorder.encrypt(password)))
 				request.getSession().setAttribute("user", memberVO);
 			else {
-				modelmap.addAttribute("errormsg", "密碼錯誤");
-				return "login/login";
+				// modelmap.addAttribute("errormsg", "密碼錯誤");
+				// return "login/login";
+				status.put("status", "error");
+				status.put("msg", "密碼錯誤");
 			}
 		} else {
-			modelmap.addAttribute("errormsg", "該帳號不存在");
-			return "login/login";
+			// modelmap.addAttribute("errormsg", "該帳號不存在");
+			// return "login/login";
+			status.put("status", "error");
+			status.put("msg", "該帳號不存在");
 		}
-		return "redirect:/message/Message.jsp";
+		if (status.isEmpty()) {
+			status.put("status", "OK");
+			status.put("msg", request.getContextPath() + "/tracklisting/memberhomePage.jsp");
+		}
+		return status;
 	}
 
 	// login
 	@PostMapping("/googlelogin")
+	@ResponseBody
 	public String googlelogin(@RequestParam(name = "email", required = true) String memberEmail,
 			HttpServletRequest request) {
 		MemberVO memberVO = memberService.findMember(memberEmail);
@@ -171,10 +194,12 @@ public class MemberController {
 			memberVO = memberService.findMember(memberEmail);
 		}
 		request.getSession().setAttribute("user", memberVO);
-		return "redirect:/message/Message.jsp";
+		// return "redirect:/tracklisting/memberhomePage.jsp";
+		return request.getContextPath() + "/tracklisting/memberhomePage.jsp";
 	}
 
 	@PostMapping("/fblogin")
+	@ResponseBody
 	public String fblogin(@RequestParam(name = "email", required = true) String memberEmail,
 			HttpServletRequest request) {
 		MemberVO memberVO = memberService.findMember(memberEmail);
@@ -190,7 +215,7 @@ public class MemberController {
 			memberVO = memberService.findMember(memberEmail);
 		}
 		request.getSession().setAttribute("user", memberVO);
-		return "redirect:/message/Message.jsp";
+		return request.getContextPath() + "/tracklisting/memberhomePage.jsp";
 	}
 
 	// 註冊
@@ -263,6 +288,7 @@ public class MemberController {
 		String memberEmail = new String(Base64.getDecoder().decode(token));
 
 		String path = "account/changepw?confirmation_token=" + token;
+		// String path = "account/changepw";
 
 		if (memberPassword == null || memberPassword.trim().length() == 0) {
 			modelmap.addAttribute("errormsg", "密碼欄不可空白");
@@ -294,17 +320,18 @@ public class MemberController {
 		memberService.insertMember(mem);
 		modelmap.addAttribute("title", "修改密碼成功 ");
 		modelmap.addAttribute("content", "歡迎使用財報馬");
-		modelmap.addAttribute("url","account/login");
-		return "login/registermailok";
-	}
-	//logout
-	@GetMapping("/logout")
-	public String logoutPage(ModelMap modelmap,HttpServletRequest request) {
-		request.getSession().removeAttribute("user");;
-		modelmap.addAttribute("title", "登出成功 ");
-		modelmap.addAttribute("content", "歡迎再次使用財報馬");
-		modelmap.addAttribute("url","account/login");
+		modelmap.addAttribute("url", "account/login");
 		return "login/registermailok";
 	}
 
+	// logout
+	@GetMapping("/logout")
+	public String logoutPage(ModelMap modelmap, HttpServletRequest request) {
+		request.getSession().removeAttribute("user");
+		;
+		modelmap.addAttribute("title", "登出成功 ");
+		modelmap.addAttribute("content", "歡迎再次使用財報馬");
+		modelmap.addAttribute("url", "account/login");
+		return "login/registermailok";
+	}
 }
