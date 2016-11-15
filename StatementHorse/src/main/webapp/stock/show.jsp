@@ -186,7 +186,7 @@ a:link {
 							<li><a href="#tab5info1" data-toggle="tab">本益比</a></li>
 						</ul>
 					</div>
-					<div class="panel-body" style="height: 630px">
+					<div class="panel-body" style="height: 730px">
 						<div class="tab-content" id="container">
 							<div class="tab-pane fade in active" id="tab1info1"
 								>
@@ -197,6 +197,16 @@ a:link {
 							  		<tbody></tbody>
 							  		</table>
 							  </div>
+							  <div style="padding-top:30px">
+							  	<table style="font-family: '微軟正黑體';font-size:20px" >
+							  		<tr>
+							  			<th Class="th" >每月營收
+							  				<td >定義：企業因銷售產品或提供勞務而取得的各項收入
+營業收入是企業尚未扣除任何成本和費用前的收入， 上市櫃公司強制每個月都得公佈，因此是財報中最即時的數據。 營收有淡旺季的特性，因此觀察月、季增率沒什麼意義， 投資人應把重點放在年增率的趨勢。</li>
+							  			</td>
+							  		</th>
+							  	</tr>
+							   </table>
 						  	</div>
 						   	<div class="tab-pane fade" id="tab2info1" >
 						   	<div id="tab2info" style="width: 730px"></div>
@@ -550,20 +560,21 @@ a:link {
 					var mgrurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=mgrjson&stock_no='+ stockno;
 					$.getJSON(mgrurl,function(data) {
 						$('#tab1info').highcharts('StockChart',{
-							rangeSelector : {selected : 5},title : {text : '月營收('+ stockno+ ')'},
+							rangeSelector : {selected : 5},title : {text : '月營收('+ stockno+ ')(單位:千元)'},
 							series : [ {name : stockname,data : data,tooltip : {valueDecimals : 2}} ]
 						});
 						
 					});
+					
+					
+					//mgr_table
 					var myHead=$("#show_mgr_table>thead")
 					var myBody=$("#show_mgr_table>tbody")
-
 					//http://localhost:8080/StatementHorse/ShowStockServlet?json=getVO&stock_no=2330&need=getMGRVO
 					$.getJSON("ShowStockServlet",{"json":"getVO","need":"getMGRVO","stock_no":stockno},function(data){
 						var length=data.length
-// 						myHead.append("<><>")
 						myHead.append("<th>年度/月份</th>")
-						myBody.append("<td>營收</td>")
+						myBody.append("<td>營收(單位:千元)</td>")
 						$.each(data,function(key2,value2){
 							var date=$("<th></th>").append(value2.RevenueDate);
 							var revenue=$("<td></td>").append(thousandComma(value2.Revenue));
@@ -572,7 +583,7 @@ a:link {
 						})
 						$("#show_mgr_table>thead>th").addClass("th")
 						$("#show_mgr_table>tbody>td").addClass("td")
-
+					
 					})
 						
 				
@@ -657,7 +668,24 @@ a:link {
 						    });								
 															
 						});
-					
+					//earningPerShare_table
+					var myHead=$("#show_mgr_table>thead")
+					var myBody=$("#show_mgr_table>tbody")
+					//http://localhost:8080/StatementHorse/ShowStockServlet?json=getVO&stock_no=2330&need=getMGRVO
+					$.getJSON("ShowStockServlet",{"json":"getVO","need":"getMGRVO","stock_no":stockno},function(data){
+						var length=data.length
+						myHead.append("<th>年度/月份</th>")
+						myBody.append("<td>營收</td>")
+						$.each(data,function(key2,value2){
+							var date=$("<th></th>").append(value2.RevenueDate);
+							var revenue=$("<td></td>").append(thousandComma(value2.Revenue));
+							myHead.append(date)
+							myBody.append(revenue)
+						})
+						$("#show_mgr_table>thead>th").addClass("th")
+						$("#show_mgr_table>tbody>td").addClass("td")
+
+					})
 					
 					//divident 股利
 					var dividenturl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=dividendjson&stock_no='
