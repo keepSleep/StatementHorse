@@ -101,6 +101,10 @@
     <url-pattern>/GetNewsMsgServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
+    <servlet-name>GetNewsMsgServlet</servlet-name>
+    <url-pattern>/financialstatements/GetNewsMsgServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
     <servlet-name>ChangePassword</servlet-name>
     <url-pattern>/changepassword/ChangePassword</url-pattern>
   </servlet-mapping>
