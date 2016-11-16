@@ -50,7 +50,7 @@
 			<form method="post" action="financialstatements.do">
 			
 				<div class="input-group date" data-date-end-date="0d">
-					<input type="text" class="form-control" id = "datepicker" name="date"> <span
+					<input type="text" class="form-control" id = "datepicker" name="date" readonly> <span
 						class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 						
 					<input type="hidden" name="action" value="financialstatements">
@@ -95,7 +95,8 @@ format:"yyyy-mm-dd",
 language : "zh-CN",
 daysOfWeekDisabled : "0,6",
 autoclose : true,
-toggleActive : true
+toggleActive : true,
+ShowUpDown : true
 });
 
 $('#datepicker').change(function(){
@@ -115,6 +116,12 @@ $('#datepicker').change(function(){
 		})
 		
 	})
+});
+$('#datepicker').keypress(function(){			
+    var keycode = window.event.keyCode;
+    if( keycode == 13 ){
+        window.event.returnValue=false;
+    }	
 });
 </script>
 

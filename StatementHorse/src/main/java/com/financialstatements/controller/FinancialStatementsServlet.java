@@ -43,49 +43,29 @@ public class FinancialStatementsServlet extends HttpServlet {
 
 		//查詢財報公布日期
 		if ("financialstatements".equals(action)) {
-
 			/**************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-
 			// 接收日期(格式yyyy-mm-dd)(字串)
 			String dayStr = req.getParameter("date");
 			java.sql.Date dateParse=null;
 			try {
 				 dateParse = java.sql.Date.valueOf(dayStr);
 			} catch (IllegalArgumentException ie) {
-
+				System.out.println("aaa");
 			}
-
 			/*************************** 2.開始查詢資料 *****************************************/
 			FinancialStatementsService financialStatementsSvc = new FinancialStatementsService();
 			List statementsData=null;
-			
-			try{
-				statementsData = financialStatementsSvc.getByPostDate(dateParse);
-			}catch(org.hibernate.exception.SQLGrammarException e){
-				String url = "InputDate.jsp";
-				RequestDispatcher nothingHappend =req.getRequestDispatcher(url);
-				nothingHappend.forward(req, res);
-			}
-			/***************************
-			 * 3.查詢完成,準備轉交(Send the Success view)
-			 *************/
-			
+			statementsData = financialStatementsSvc.getByPostDate(dateParse);
+			/*************************** * 3.查詢完成,準備轉交(Send the Success view)*************/
 			JSONArray json = new JSONArray(statementsData);
-			
 			if(!statementsData.isEmpty()){
 				out.println(json);
 				out.close();
-				
-				
 //				req.setAttribute("financialStatementsVO", financialStatementsVO);
 //				String url = "listFinancialStatements.jsp";
 //				RequestDispatcher successView = req.getRequestDispatcher(url);
 //				successView.forward(req, res);
-			} else{
-				String url = "NullFinancialStatementsDate.jsp";
-				RequestDispatcher nullView = req.getRequestDispatcher(url);
-				nullView.forward(req, res);
-			}
+			} 
 		}
 		//查詢財報公布日期 END
 		

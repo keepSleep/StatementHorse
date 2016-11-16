@@ -11,7 +11,7 @@ import org.jsoup.select.Elements;
 public class GetStock {
 
 	public static void main(String[] args) {
-		String url = "http://stock.nlog.cc/b/2330";
+		String url = "http://gcis.nat.gov.tw/pub/cmpy/cmpyInfoAction.do?method=detail&banNo=22099131";
 		try {
 			Document doc = Jsoup.connect(url).ignoreHttpErrors(true).get();
 			System.out.println(doc.title());
