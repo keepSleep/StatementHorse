@@ -1,5 +1,6 @@
 package com.stocknews.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -117,6 +118,44 @@ private static final String GET_ALL_STMT = "from Stock_News_VO order by stockno"
 		}
 		return snVO;
 		
+	}
+
+	@Override
+	public List<Object[]> getByStockNoByShao(ArrayList stockNoArrayList) {
+		
+		List<Object[]>list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		
+		try {
+			
+			session.beginTransaction();
+			
+			String s1 = "";
+			
+			for( int i = 0 ; i < stockNoArrayList.size() ; i++ ){	
+				
+				if(i>=1){
+					s1 += " or s.stock_no =";};		
+					
+				s1 += stockNoArrayList.get(i);	
+				
+			};
+			
+			s1 += " ";
+			
+			String sql = "select n.news_date, n.news_title, n.news_webaddress from NEWS n join STOCK_NEWS s on n.news_id = s.news_id where s.stock_no =" + s1 + "order by news_date desc";				
+			Query query = session.createSQLQuery(sql);
+			
+			list = query.list();
+			
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		
+		return list;
+
 	}
 
 }

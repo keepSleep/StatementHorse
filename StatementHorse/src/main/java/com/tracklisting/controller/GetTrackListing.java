@@ -57,22 +57,18 @@ public class GetTrackListing extends HttpServlet {
 			tlvo.setListingName("我的追蹤清單");
 			tldao.insert(tlvo);
 			
-			request.getRequestDispatcher("memberhomePage.jsp")
-			.forward(request, response);
-			
 		}
 		
-		else{
-		
+		List<TrackListingVO> tlVO2 = tldao.getAllByMember(member_id);
 		ArrayList<String> mId = new ArrayList<String>();
 		ArrayList<String> tlName = new ArrayList<String>();
 		ArrayList<Integer> tlNo = new ArrayList<Integer>();
 		
-		for (TrackListingVO tlVO2 : tlVO) {
+		for (TrackListingVO tlVO3 : tlVO2) {
 			
-			mId.add(tlVO2.getMemberVO().getMemberId());
-			tlName.add(tlVO2.getListingName());
-			tlNo.add(tlVO2.getListingNo());
+			mId.add(member_id);
+			tlName.add(tlVO3.getListingName());
+			tlNo.add(tlVO3.getListingNo());
 							
 			}	
 			
@@ -83,9 +79,7 @@ public class GetTrackListing extends HttpServlet {
 		
 		request.getRequestDispatcher("memberhomePage.jsp")
 		.forward(request, response);
-		
-		}
-		
+	
 	}		
 
 }
