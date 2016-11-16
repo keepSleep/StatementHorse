@@ -47,29 +47,31 @@ public class SearchNews extends HttpServlet {
 		//使用到的 DAO
 		ListingDetailsHibernateDAO lddao = new ListingDetailsHibernateDAO();
 		StockNewsHibernateDAO isdao = new StockNewsHibernateDAO();
-		NewsHibernateDAO ndao = new NewsHibernateDAO();
+//		NewsHibernateDAO ndao = new NewsHibernateDAO();
 		
 		//使用到的集合
 		ArrayList l1 = new ArrayList();
+		ArrayList stockNoArrayList = new ArrayList();
 		
 		//查詢清單編號內含股號		
 		List<ListingDetailsVO> tdvo = lddao.getAllByListing(Integer.parseInt(listingNo));
 		for (ListingDetailsVO tdvo2 : tdvo) {
-			
-		List<StockNewsVO> snvo	= isdao.getAllByStockNo(tdvo2.getStockVO().getStockNo());
-		for (StockNewsVO snvo2 : snvo) {
+
+				stockNoArrayList.add(tdvo2.getStockVO().getStockNo());
+
+		}
 		
+		List<Object[]> list = isdao.getByStockNoByShao(stockNoArrayList);
+		
+		for(Object[] aArray : list ){
+			
 			Map m1 = new HashMap();
-//			m1.put("StockNo", snvo2.getStockVO().getStockNo());
-//			m1.put("StockName", snvo2.getStockVO().getStockName());
-			m1.put("NewsDate",snvo2.getNewsVO().getNewsDate().toString().substring(0,10));
-			m1.put("NewsTitle", snvo2.getNewsVO().getNewsTitle());
-			m1.put("NewsWebaddress", snvo2.getNewsVO().getNewsWebaddress());
+			m1.put("NewsDate", aArray[0].toString());
+			m1.put("NewsTitle",aArray[1]);
+			m1.put("NewsWebaddress", aArray[2]);
 			l1.add(m1);
-		
-		}
 			
-		}
+			}
 		
 		String jsonString = JSONValue.toJSONString(l1);
 		response.getWriter().println(jsonString);

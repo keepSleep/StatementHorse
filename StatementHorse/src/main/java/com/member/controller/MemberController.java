@@ -92,7 +92,7 @@ public class MemberController {
 		memberService.insertMember(mem);
 		modelmap.addAttribute("title", "成功加入財報馬 ");
 		modelmap.addAttribute("content", "感謝申請會員");
-		modelmap.addAttribute("url", "/GetTrackListing");
+		modelmap.addAttribute("url", "GetTrackListing");
 		request.getSession().setAttribute("user", mem);
 		return "login/registermailok";
 	}

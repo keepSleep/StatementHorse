@@ -47,30 +47,29 @@ public class SearchFinancialStatements extends HttpServlet {
 		//使用到的 DAO
 		ListingDetailsHibernateDAO lddao = new ListingDetailsHibernateDAO();
 		FinancialStatementsDAO fsdao = new FinancialStatementsDAO();
-//		System.out.println("test");
+		
 		//使用到的集合
 		ArrayList l1 = new ArrayList();
+		ArrayList stockNoArrayList = new ArrayList();
 		
 		//查詢清單編號內含股號		
 		List<ListingDetailsVO> tdvo = lddao.getAllByListing(Integer.parseInt(listingNo));
 		for (ListingDetailsVO tdvo2 : tdvo) {
-//			System.out.println(tdvo2.getStockVO().getStockNo());
-		List<FinancialStatementsVO> fsvo= fsdao.getByStockNo(tdvo2.getStockVO().getStockNo());
-		for (FinancialStatementsVO fsvo2 : fsvo) {
+
+			stockNoArrayList.add(tdvo2.getStockVO().getStockNo());
+	
+		}
+		
+		List<Object[]> list = fsdao.getByStockNoByShao(stockNoArrayList);
+		
+		for(Object[] aArray : list ){
 			
 			Map m1 = new HashMap();
-			m1.put("StockNo", fsvo2.getStockNo());
-			
-			StockService sS = new StockService();
-			StockVO sVO = sS.getOneStock(fsvo2.getStockNo()); 
-			
-			m1.put("StockName", sVO.getStockName());
-			m1.put("StatementDate", fsvo2.getStatementDate());
-			m1.put("PostDate", fsvo2.getPostDate().toString().substring(0,10));
-			m1.put("PostTime", fsvo2.getPostTime());
+			m1.put("StockNo", aArray[0]);
+			m1.put("StockName",aArray[1]);
+			m1.put("StatementDate", aArray[2]);
+			m1.put("PostDate", aArray[3].toString());
 			l1.add(m1);
-			
-		}
 			
 		}
 		

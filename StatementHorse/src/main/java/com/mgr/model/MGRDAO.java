@@ -1,5 +1,6 @@
 package com.mgr.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -154,6 +155,43 @@ public class MGRDAO implements MGRDAO_interface {
 			session.getTransaction().rollback();
 			throw ex;
 		}
+		return list;
+	}
+
+	@Override
+	public List<Object[]> getByStockNoByShao(ArrayList stockNoArrayList) {
+				
+		List<Object[]>list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		
+		try {
+			
+			session.beginTransaction();
+			
+			String s1 = "";
+			
+			for( int i = 0 ; i < stockNoArrayList.size() ; i++ ){	
+				
+				if(i>=1){
+					s1 += " or s.stock_no =";};		
+					
+				s1 += stockNoArrayList.get(i);	
+				
+			};
+			
+			s1 += " ";
+			
+			String sql = "select m.stock_no, s.stock_name, m.Revenue_date, m.Revenue, m.post_date from MGR m join STOCK s on m.stock_no = s.stock_no where s.stock_no =" + s1 + "order by post_date desc";				
+			Query query = session.createSQLQuery(sql);
+			
+			list = query.list();
+			
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		
 		return list;
 	}
 
