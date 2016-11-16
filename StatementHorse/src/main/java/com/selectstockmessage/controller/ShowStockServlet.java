@@ -17,6 +17,7 @@ import org.json.JSONArray;
 
 import com.listingdetails.model.ListingDetailsHibernateDAO;
 import com.listingdetails.model.ListingDetailsVO;
+import com.member.model.MemberVO;
 import com.stock.model.StockService;
 import com.stock.model.StockVO;
 import com.tojsonarray.model.ToJsonArray;
@@ -48,11 +49,13 @@ public class ShowStockServlet extends HttpServlet {
 				StockService svc = new StockService();
 				stockNo = svc.getStockNoByStockName(stock);
 			}
-
 			HttpSession session = req.getSession();
-			String memberId = (String) session.getAttribute("user");
+			MemberVO memberVO=(MemberVO) session.getAttribute("user");
+			String memberId = memberVO.getMemberId();
+			
 
 			if ("stock".equals(action)) {
+				
 				StockService stockService = new StockService();
 				StockVO stockVO = new StockVO();
 				stockVO = stockService.getOneStock(stockNo);
