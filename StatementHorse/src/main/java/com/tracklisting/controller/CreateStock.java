@@ -56,15 +56,22 @@ public class CreateStock extends HttpServlet {
 			ldvo.setStockVO(svo);;
 			lddao.insert(ldvo);
 			
-			if(ms.findByKey(member_id, Integer.parseInt(listingNo)) != null){
+			if(ms.findByKey(member_id, Integer.parseInt(stockNo.substring(0, 4))).size()==0){
+				
+//				ms.delete(member_id,Integer.parseInt(stockNo.substring(0, 4)), 1);
+//				ms.delete(member_id,Integer.parseInt(stockNo.substring(0, 4)), 2);
+				ms.insert(member_id,Integer.parseInt(stockNo.substring(0, 4)), 1);
+				ms.insert(member_id,Integer.parseInt(stockNo.substring(0, 4)), 2);
 
+				
 				response.getWriter().write("追蹤個股成功");
 			}
 			
 			else{
-				
-				ms.insert(member_id, Integer.parseInt(listingNo), 1);
-				ms.insert(member_id, Integer.parseInt(listingNo), 2);
+				ms.delete(member_id,Integer.parseInt(stockNo.substring(0, 4)), 1);
+				ms.delete(member_id,Integer.parseInt(stockNo.substring(0, 4)), 2);
+				ms.insert(member_id,Integer.parseInt(stockNo.substring(0, 4)), 1);
+				ms.insert(member_id,Integer.parseInt(stockNo.substring(0, 4)), 2);
 				
 				response.getWriter().write("追蹤個股成功");
 			}

@@ -129,7 +129,7 @@ table {
 										<!-- /.panel-footer -->
 									</div>
 								</li>
-								<li><a class="text-center" href="#"> <strong>Read
+								<li><a class="text-center" href="${pageContext.servletContext.contextPath}/GetTrackListing"> <strong>Read
 											All Messages</strong> <i class="fa fa-angle-right"></i>
 								</a></li>
 							</ul></li>
@@ -164,9 +164,9 @@ table {
 
 					<!-- Modal content-->
 					<div class="modal-content">
-						<div class="modal-header" style="padding: 35px 50px;">
+						<div class="modal-header" style="padding: 35px 50px;background-color:#5ca9b8">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4>
+							<h4 style="background-color:#5ca9b8">
 								<i class="fa fa-gear"></i>通知設定
 							</h4>
 						</div>
@@ -186,14 +186,14 @@ table {
 									<tr>
 										<td colspan="3" align="center"><div
 												style="display: none; margin: 0px auto" id="followok">
-												<h3>你已更新成功!!!</h3>
+												<h3 >你已更新成功!!!</h3>
 											</div></td>
 									</tr>
 								</tbody>
 							</table>
 							
 								<button type="button" class="btn btn-success btn-block"
-									style="border: 0px;" id="updatemessage">
+									style="border: 0px;background-color:#5ca9b8" id="updatemessage">
 									<span class="glyphicon glyphicon-floppy-disk"></span> 完成更新
 								</button>
 							<!--           </form> -->
@@ -304,7 +304,7 @@ table {
 											function(i, v) {
 												$("#newmessage")
 														.append(
-																"<li class='clearfix'><a style='cursor:pointer'><div class='chat-body clearfix'><div class='header'><small class='pull-right text-muted'></small></div><p>"
+																"<li class='clearfix'><a style='cursor:pointer' href='${pageContext.servletContext.contextPath}/GetTrackListing'><div class='chat-body clearfix'><div class='header'><small class='pull-right text-muted'></small></div><p>"
 																		+ v
 																		+ "</p></div></a></li>");
 											})
