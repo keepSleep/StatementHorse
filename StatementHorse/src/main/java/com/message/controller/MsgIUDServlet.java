@@ -34,86 +34,91 @@ public class MsgIUDServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		String action = request.getParameter("action");
+
+		
 		MemberVO membervo = (MemberVO) session.getAttribute("user");
 		String member_id = membervo.getMemberId();
+		
 		
 		MsgService msgservicedao = new MsgService();
 
 		if ("jquery_check".equals(action)) {
 			String stocknos = request.getParameter("stockcheck1");
-			
-			 
-			
-			String[] stockcheckbox = stocknos.split(";");
-			for (int i = 0; i < stockcheckbox.length; i++) {
-				String[] eachstockno = stockcheckbox[i].split(",");
-				String stockno = eachstockno[0];
-				List<Integer> list = msgservicedao.findByKey(member_id, new Integer(stockno));
-				String check1 = eachstockno[1];
-				String check2 = eachstockno[2];
+//			System.out.println(stocknos);
+			for(String stocklist:stocknos.split(";")){
+				String[] stockparts=stocklist.split(",");
+				String stock = stockparts[0];
+				String check1=stockparts[1];
+				String check2=stockparts[2];
+
+				System.out.println(stock+","+check1+","+check2);
 				
+				List<Integer> list = msgservicedao.findByKey(member_id, new Integer(stock));
+				System.out.println(list);
+				// 取得使用者勾選的項目1和2
+
 				if (list.size() == 2) {
 					if ("true".equals(check1) && list.get(0) != 1) {
 
-						msgservicedao.insert(member_id, new Integer(stockno), 1);
+						msgservicedao.insert(member_id, new Integer(stock), 1);
 
 					} else if ("false".equals(check1) && list.get(0) == 1) {
 
-						msgservicedao.delete(member_id, new Integer(stockno), 1);
+						msgservicedao.delete(member_id, new Integer(stock), 1);
 
 					}
 					if ("true".equals(check2) && list.get(1) != 2) {
 
-						msgservicedao.insert(member_id, new Integer(stockno), 2);
+						msgservicedao.insert(member_id, new Integer(stock), 2);
 
-					} else if ("false".equals(check2)  && list.get(1) == 2) {
+					} else if ("false".equals(check2) && list.get(1) == 2) {
 
-						msgservicedao.delete(member_id, new Integer(stockno), 2);
+						msgservicedao.delete(member_id, new Integer(stock), 2);
 
 					}
 				} else if (list.size() == 1) {
 					if ("true".equals(check1) && list.get(0) != 1) {
 
-						msgservicedao.insert(member_id, new Integer(stockno), 1);
+						msgservicedao.insert(member_id, new Integer(stock), 1);
 
-					} else if ("false".equals(check1)  && list.get(0) == 1) {
+					} else if ("false".equals(check1) && list.get(0) == 1) {
 
-						msgservicedao.delete(member_id, new Integer(stockno), 1);
+						msgservicedao.delete(member_id, new Integer(stock), 1);
 
 					}
 					if ("true".equals(check2) && list.get(0) != 2) {
 
-						msgservicedao.insert(member_id, new Integer(stockno), 2);
+						msgservicedao.insert(member_id, new Integer(stock), 2);
 
-					} else if ("false".equals(check2)  && list.get(0) == 2) {
+					} else if ("false".equals(check2) && list.get(0) == 2) {
 
-						msgservicedao.delete(member_id, new Integer(stockno), 2);
+						msgservicedao.delete(member_id, new Integer(stock), 2);
 					}
 
 				} else {
 					if ("true".equals(check1)) {
 
-						msgservicedao.insert(member_id, new Integer(stockno), 1);
+						msgservicedao.insert(member_id, new Integer(stock), 1);
 
 					} else {
 
-						msgservicedao.delete(member_id, new Integer(stockno), 1);
+						msgservicedao.delete(member_id, new Integer(stock), 1);
 
 					}
 					if ("true".equals(check2)) {
 
-						msgservicedao.insert(member_id, new Integer(stockno), 2);
+						msgservicedao.insert(member_id, new Integer(stock), 2);
 
 					} else {
 
-						msgservicedao.delete(member_id, new Integer(stockno), 2);
+						msgservicedao.delete(member_id, new Integer(stock), 2);
 					}
 				}
-				System.out.println(stocknos+"---------------------"+stockno+"-----------------"+check1+","+check2);
+
 			}
+
 //			out.println(forjsonlist);
-			RequestDispatcher failureView = request.getRequestDispatcher("/MsgServlet");
-			failureView.forward(request, response);
+
 		}
 		if ("checkbox_update".equals(action)) {
 			List<List<Object>> allstock = (List<List<Object>>) session.getAttribute("memberlistno");
@@ -188,7 +193,7 @@ public class MsgIUDServlet extends HttpServlet {
 			}
 
 			// System.out.println(member_id+","+stock);
-			session.setAttribute("member_id", member_id);
+
 
 			RequestDispatcher failureView = request.getRequestDispatcher("/MsgServlet");
 			failureView.forward(request, response);

@@ -6,6 +6,11 @@
 	
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="stylesheet"
+	href="${pageContext.servletContext.contextPath}/css/bootstrap.min.css">
+
 <%@include file="/top/Top.jsp"%>
 <!-- <link rel="stylesheet" -->
 <%-- 	href="${pageContext.servletContext.contextPath}/css/bootstrap.min.css"> --%>
@@ -186,7 +191,7 @@ a:link {
 							<li><a href="#tab5info1" data-toggle="tab">本益比</a></li>
 						</ul>
 					</div>
-					<div class="panel-body" style="height: 630px">
+					<div class="panel-body" style="height: 730px">
 						<div class="tab-content" id="container">
 							<div class="tab-pane fade in active" id="tab1info1"
 								>
@@ -197,6 +202,20 @@ a:link {
 							  		<tbody></tbody>
 							  		</table>
 							  </div>
+							  <div style="padding-top:30px">
+							  	<table style="font-family: '微軟正黑體';font-size:20px" >
+							  		<tr>
+							  			<th Class="th" >每月營收
+							  				<td >定義：企業因銷售產品或提供勞務而取得的各項收入
+												營業收入是企業尚未扣除任何成本和費用前的收入，
+												 上市櫃公司強制每個月都得公佈，因此是財報中最即時的數據。 
+												 營收有淡旺季的特性，因此觀察月、季增率沒什麼意義，
+												  投資人應把重點放在年增率的趨勢。
+							  			</td>
+							  		</th>
+							  	</tr>
+							   </table>
+								</div>
 						  	</div>
 						   	<div class="tab-pane fade" id="tab2info1" >
 						   	<div id="tab2info" style="width: 730px"></div>
@@ -219,7 +238,7 @@ a:link {
 							<div class="tab-pane fade" id="tab4info1" >
 							<div id="tab4info" style="width: 730px"></div>
 						   	  <div style="overflow-x:auto;padding-top:30px">
-							  		<table border='3' bordercolor='#DCDCDC' style="color:steelblue;font-family: '微軟正黑體';font-size:20px" id="show_divident_table">
+							  		<table border='3' bordercolor='#DCDCDC' style="width: 730px ;color:steelblue;font-family: '微軟正黑體';font-size:20px" id="show_dividend_table">
 							  		<thead style="background-color:lightblue" ></thead>
 							  		<tbody></tbody>
 							  		</table>
@@ -246,22 +265,63 @@ a:link {
 					<div class="panel-heading" style="background-color: lightblue">
 						<ul class="nav nav-tabs"
 							style="background-color: lightblue; font-family: '微軟正黑體';font-size:25px">
-							<li class="active"><a href="#tab1info_1" data-toggle="tab">季營收</a></li>
-							<li><a href="#tab2info_1" data-toggle="tab">季毛利</a></li>
-							<li><a href="#tab3info_1" data-toggle="tab">營業利益</a></li>
-							<li><a href="#tab4info_1" data-toggle="tab">稅前淨利</a></li>
-							<li><a href="#tab5info_1" data-toggle="tab">稅後淨利</a></li>
-							<li><a href="#tab6info_1" data-toggle="tab">損益表</a></li>
+							<li class="active"><a href="#tab1info_11" data-toggle="tab">季營收</a></li>
+							<li><a href="#tab2info_11" data-toggle="tab">季毛利</a></li>
+							<li><a href="#tab3info_11" data-toggle="tab">營業利益</a></li>
+							<li><a href="#tab4info_11" data-toggle="tab">稅前淨利</a></li>
+							<li><a href="#tab5info_11" data-toggle="tab">稅後淨利</a></li>
+							<li><a href="#tab6info_11" data-toggle="tab">損益表</a></li>
 						</ul>
 					</div>
 					<div class="panel-body" style="height: 630px">
 						<div class="tab-content" id="container_1" >
-							<div class="tab-pane fade in active" id="tab1info_1"
-								style="width: 730px"></div>
-							<div class="tab-pane fade" id="tab2info_1" style="width: 730px"></div>
-							<div class="tab-pane fade" id="tab3info_1" style="width: 730px"></div>
-							<div class="tab-pane fade" id="tab4info_1" style="width: 730px"></div>
-							<div class="tab-pane fade" id="tab5info_1" style="width: 730px"></div>
+							<div class="tab-pane fade in active" id="tab1info_11">
+								<div id="tab1info_1" style="width: 730px"></div>
+						   	  	<div style="overflow-x:auto;padding-top:30px">
+							  		<table border='3' bordercolor='#DCDCDC' style="color:steelblue;font-family: '微軟正黑體';font-size:20px" id="show_operatingRevenue_table">
+							  		<thead style="background-color:lightblue" ></thead>
+							  		<tbody></tbody>
+							  		</table>
+							 	</div>
+							</div>	
+							
+							<div class="tab-pane fade" id="tab2info_11" >
+								<div id="tab2info_1" style="width: 730px"></div>
+								<div style="overflow-x:auto;padding-top:30px">
+							  		<table border='3' bordercolor='#DCDCDC' style="color:steelblue;font-family: '微軟正黑體';font-size:20px" id="show_operatingMargain_table">
+							  		<thead style="background-color:lightblue" ></thead>
+							  		<tbody></tbody>
+							  		</table>
+							 	</div>
+							</div>
+							<div class="tab-pane fade" id="tab3info_11" >
+								<div id="tab3info_1" style="width: 730px"></div>
+								<div style="overflow-x:auto;padding-top:30px">
+							  		<table border='3' bordercolor='#DCDCDC' style="color:steelblue;font-family: '微軟正黑體';font-size:20px" id="show_operatingIncome_table">
+							  		<thead style="background-color:lightblue" ></thead>
+							  		<tbody></tbody>
+							  		</table>
+							 	</div>
+							 </div>
+							<div class="tab-pane fade" id="tab4info_11" style="width: 730px">
+								<div id="tab4info_1" style="width: 730px"></div>
+								<div style="overflow-x:auto;padding-top:30px">
+							  		<table border='3' bordercolor='#DCDCDC' style="color:steelblue;font-family: '微軟正黑體';font-size:20px" id="show_oibt_table">
+							  		<thead style="background-color:lightblue" ></thead>
+							  		<tbody></tbody>
+							  		</table>
+							 	</div>
+							
+							</div>
+							<div class="tab-pane fade" id="tab5info_11" style="width: 730px">
+								<div id="tab5info_1" style="width: 730px"></div>
+								<div style="overflow-x:auto;padding-top:30px">
+							  		<table border='3' bordercolor='#DCDCDC' style="color:steelblue;font-family: '微軟正黑體';font-size:20px" id="show_netIncome_table">
+							  		<thead style="background-color:lightblue" ></thead>
+							  		<tbody></tbody>
+							  		</table>
+							 	</div>
+							</div>
 							<div class="tab-pane fade" id="tab6info_1" style="width: 730px"></div>
 						</div>
 					</div>
@@ -550,20 +610,21 @@ a:link {
 					var mgrurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=mgrjson&stock_no='+ stockno;
 					$.getJSON(mgrurl,function(data) {
 						$('#tab1info').highcharts('StockChart',{
-							rangeSelector : {selected : 5},title : {text : '月營收('+ stockno+ ')'},
+							rangeSelector : {selected : 5},title : {text : '月營收('+ stockno+ ')(單位:千元)'},
 							series : [ {name : stockname,data : data,tooltip : {valueDecimals : 2}} ]
 						});
 						
 					});
+					
+					
+					//mgr_table
 					var myHead=$("#show_mgr_table>thead")
 					var myBody=$("#show_mgr_table>tbody")
-
-					//http://localhost:8080/StatementHorse/ShowStockServlet?json=getVO&stock_no=2330&need=getMGRVO
-					$.getJSON("ShowStockServlet",{"json":"getVO","need":"getMGRVO","stock_no":stockno},function(data){
+					//http://http://localhost:8080/StatementHorse/GetStockTableServlet?json=mgrjson&stock_no=2330
+					$.getJSON("GetStockTableServlet",{"json":"mgrjson","stock_no":stockno},function(data){
 						var length=data.length
-// 						myHead.append("<><>")
 						myHead.append("<th>年度/月份</th>")
-						myBody.append("<td>營收</td>")
+						myBody.append("<td>營收(單位:千元)</td>")
 						$.each(data,function(key2,value2){
 							var date=$("<th></th>").append(value2.RevenueDate);
 							var revenue=$("<td></td>").append(thousandComma(value2.Revenue));
@@ -572,7 +633,7 @@ a:link {
 						})
 						$("#show_mgr_table>thead>th").addClass("th")
 						$("#show_mgr_table>tbody>td").addClass("td")
-
+					
 					})
 						
 				
@@ -593,7 +654,23 @@ a:link {
 									}]
 								} )
 							});
+					//price_table
+					var myHead1=$("#show_price_table>thead")
+					var myBody1=$("#show_price_table>tbody")
+					//http://localhost:8080/StatementHorse/GetStockTableServlet?json=mgrjson&stock_no=2330
+					$.getJSON("GetStockTableServlet",{"json":"pricejson","stock_no":stockno},function(data){
+						myHead1.append("<th>日期</th>")
+						myBody1.append("<td>股價(單位:元)</td>")
+						$.each(data,function(key2,value2){
+							var date=$("<th></th>").append(value2.Date);
+							var price=$("<td></td>").append(thousandComma(value2.Price));
+							myHead1.append(date)
+							myBody1.append(price)
+						})
+						$("#show_price_table>thead>th").addClass("th")
+						$("#show_price_table>tbody>td").addClass("td")
 					
+					})
 					//incomestatementjson
 					var incomestatementjsonurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=incomestatementjson&need=earningPerShare&stock_no='
 							+ stockno;
@@ -657,7 +734,23 @@ a:link {
 						    });								
 															
 						});
-					
+					//earningPerShare_table
+					var myHead2=$("#show_earningPerShare_table>thead")
+					var myBody2=$("#show_earningPerShare_table>tbody")
+					//http://localhost:8080/StatementHorse/ShowStockServlet?json=incomestatementjson&stock_no=2330&need=EarningPerShare
+					$.getJSON("ShowStockServlet",{"json":"incomestatementjson","need":"earningPerShare","stock_no":stockno},function(data){
+						myHead2.append("<th>年度/季度</th>")
+						myBody2.append("<td>每股盈餘</td>")
+						$.each(data,function(key,value){
+							var date=$("<th></th>").append(data[key][0]);
+							var revenue=$("<td></td>").append(thousandComma(data[key][1]));
+							myHead2.append(date)
+							myBody2.append(revenue)
+						})
+						$("#show_earningPerShare_table>thead>th").addClass("th")
+						$("#show_earningPerShare_table>tbody>td").addClass("td")
+
+					})
 					
 					//divident 股利
 					var dividenturl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=dividendjson&stock_no='
@@ -674,6 +767,24 @@ a:link {
 										} ]
 								});
 						});
+					//dividend_table
+					var myHead3=$("#show_dividend_table>thead")
+					var myBody3=$("#show_dividend_table>tbody")
+					//http://localhost:8080/StatementHorse/GetStockTableServlet?json=dividendjson&stock_no=2330
+					$.getJSON("GetStockTableServlet",{"json":"dividendjson","stock_no":stockno},function(data){
+						myHead3.append("<th>年度</th>")
+						myBody3.append("<td>股利</td>")
+						$.each(data,function(key2,value2){
+							var date=$("<th></th>").append(value2.Date);
+							var dividend=$("<td></td>").append(thousandComma(value2.Dividend));
+							myHead3.append(date)
+							myBody3.append(dividend)
+						})
+						$("#show_dividend_table>thead>th").addClass("th")
+						$("#show_dividend_table>tbody>td").addClass("td")
+
+					})
+					
 						//本益比JSON
 					var PERurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=PERjson&stock_no='
 							+ stockno;
