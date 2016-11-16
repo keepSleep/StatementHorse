@@ -63,7 +63,7 @@ public class GetNewsMsgServlet extends HttpServlet {
 				}
 				for (FinancialStatementsVO FinancialStatementsVO : fsmessage) {
 					newmessage.add(FinancialStatementsVO.getStockNo().toString() + "於"
-							+ FinancialStatementsVO.getPostDate() + " " + FinancialStatementsVO.getPostTime() + "發佈"
+							+ FinancialStatementsVO.getPostDate().toString().substring(0,10) + " " + FinancialStatementsVO.getPostTime() + "發佈"
 							+ FinancialStatementsVO.getStatementDate().substring(0, 3) + "年第"
 							+ FinancialStatementsVO.getStatementDate().substring(4) + "季的財報更新");
 				}
