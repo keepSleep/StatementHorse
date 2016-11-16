@@ -41,36 +41,45 @@ public class GetNewsMsgServlet extends HttpServlet {
 			// 傳入追蹤者的id為何
 			MemberVO membervo = (MemberVO) session.getAttribute("user");
 			String member_id = membervo.getMemberId();
-			
-			// 傳入追蹤者的登入時間
-			java.sql.Timestamp logintime = (java.sql.Timestamp)membervo.getCreatetime();
 
+			// System.out.println(member_id);
+			// 傳入追蹤者的登入時間
+			java.sql.Timestamp logintime = (java.sql.Timestamp) membervo.getCreatetime();
+			// System.out.println(logintime);
 			// 取得會員追蹤的股號
 			List<Integer> memberstockno = msgservicedao.findStockNo(member_id);
+
 			// 取得會員新的通知訊息及排序
 			List<String> newmessage = new LinkedList<>();
 			for (Integer stockno : memberstockno) {
+				System.out.println(stockno);
 				List<FinancialStatementsVO> fsmessage = null;
 				List<MGRVO> mgmessage = null;
 				List<Integer> list = msgservicedao.findByKey(member_id, stockno);
-				for (Integer listno : list) {
-					if (listno == 2) {
-						fsmessage = fsdao.checkinsert(stockno, logintime);
-					}
-					if (listno == 1) {
-						mgmessage = mgdao.checkinsert(stockno, logintime);
+				if (list.size() != 0) {
+					for (Integer listno : list) {
+						if (listno == 2) {
+							fsmessage = fsdao.checkinsert(stockno, logintime);
+						}
+						if (listno == 1) {
+							mgmessage = mgdao.checkinsert(stockno, logintime);
+						}
 					}
 				}
-				for (FinancialStatementsVO FinancialStatementsVO : fsmessage) {
-					newmessage.add(FinancialStatementsVO.getStockNo().toString() + "於"
-							+ FinancialStatementsVO.getPostDate().toString().substring(0,10) + " " + FinancialStatementsVO.getPostTime() + "發佈"
-							+ FinancialStatementsVO.getStatementDate().substring(0, 3) + "年第"
-							+ FinancialStatementsVO.getStatementDate().substring(4) + "季的財報更新");
+				if (fsmessage != null) {
+					for (FinancialStatementsVO FinancialStatementsVO : fsmessage) {
+						newmessage.add(FinancialStatementsVO.getStockNo().toString() + "於"
+								+ FinancialStatementsVO.getPostDate() + " " + FinancialStatementsVO.getPostTime() + "發佈"
+								+ FinancialStatementsVO.getStatementDate().substring(0, 3) + "年第"
+								+ FinancialStatementsVO.getStatementDate().substring(4) + "季的財報更新");
+					}
 				}
-				for (MGRVO mrgvo : mgmessage) {
-					newmessage.add(mrgvo.getStockVO().getStockNo() + "於" + mrgvo.getPostDate() + "發佈"
-							+ mrgvo.getRevenueDate().substring(0, 4) + "年第" + mrgvo.getRevenueDate().substring(5)
-							+ "月營收");
+				if (mgmessage != null) {
+					for (MGRVO mrgvo : mgmessage) {
+						newmessage.add(mrgvo.getStockVO().getStockNo() + "於" + mrgvo.getPostDate() + "發佈"
+								+ mrgvo.getRevenueDate().substring(0, 4) + "年第" + mrgvo.getRevenueDate().substring(5)
+								+ "月營收");
+					}
 				}
 			}
 			List<String> newsmessage = orderByDate(newmessage);
