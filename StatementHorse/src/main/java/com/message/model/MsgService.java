@@ -70,9 +70,12 @@ public class MsgService {
 		Set<Integer> set= new HashSet<>();
 		List<Integer> list=new LinkedList<>();
 		MemberVO membervo = memberdao.findByPrimaryKey(MemberId);
-		TrackListingHibernateDAO tracklistingdao=new TrackListingHibernateDAO();
-		List<TrackListingVO> tracklistvos = tracklistingdao.getAllByMember(membervo.getMemberId());
+
+		TrackListingHibernateDAO tracklisting = new TrackListingHibernateDAO();
+		List<TrackListingVO> tracklistvos = tracklisting.getAllByMember(MemberId);
 //		Set<TrackListingVO> tracklistvos = membervo.getTrackListingVOs();
+		
+
 		for(TrackListingVO tlvo:tracklistvos){
 			Set<ListingDetailsVO> ldvo = tlvo.getLds();
 			for(ListingDetailsVO LDVO:ldvo){

@@ -48,23 +48,22 @@
 			<div class="col-md-4 col-md-offset-4">
 				<div class="login-panel panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">忘記密碼</h3>
+						<h3 class="panel-title">時效超過</h3>
 					</div>
 					<div class="panel-body">
 						<form role="form" method="post"
-							action="${pageContext.request.contextPath}/account/changepwmail">
+							action="${pageContext.request.contextPath}/account/forgetpw">
 							<fieldset>
 								<div class="form-group">
 									<label>
-									我們將寄給你一封密碼修改信，讓你直接重設密碼
-									請輸入註冊時的電子信箱：
+									請重新申請修改信
 									</label> <input class="form-control"
 										placeholder="E-mail" name="email" type="email" autofocus>
 								</div>
 								<div>
 								<!-- Change this to a button or input when using this as a form -->
 								<button type="submit" class="btn btn-lg btn-info btn-block">
-									記密碼更改信給我
+									<label>重新寄發修改信</label>
 								</div>
 									<div>
 									<a href="${pageContext.request.contextPath}/account/login">

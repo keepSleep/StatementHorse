@@ -18,7 +18,6 @@
 
 <script
 	src="${pageContext.servletContext.contextPath}/js/jquery-3.1.1.min.js"></script>
-
 <script
 	src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -108,9 +107,9 @@ table {
 				</c:if>
 				<c:if test="${!empty sessionScope.user}">
 					<li>
-						<button type="button" class="btn btn-outline btn-warning btn-lg"
+						<a href="${pageContext.servletContext.contextPath}/GetTrackListing"><button type="button" class="btn btn-outline btn-warning btn-lg"
 							style="border: 0px blue none;margin-top:11px" id="logout">
-							<i class="fa fa-user fa-fw"></i>${sessionScope.user.memberId}</button>
+							<i class="fa fa-user fa-fw"></i>${sessionScope.user.memberId}</button></a>
 					</li>
 				</c:if>
 
@@ -191,7 +190,7 @@ table {
 									<c:if test="${empty memberlistno}">
 										<tr>
 											<td colspan="3"><h3>
-													您目前沒有追蹤股號，請至<a href="">追蹤清單</a>新增
+													您目前沒有追蹤股號，請至<a href="${pageContext.servletContext.contextPath}/GetTrackListing">追蹤清單</a>新增
 												</h3></td>
 										</tr>
 									</c:if>
@@ -244,7 +243,7 @@ table {
 
 			function() {
 				var last = $("#true").text();
-				// 		setInterval("refreshnews()",5000);
+// 						setInterval("refreshnews()",5000);
 				$("#tg").click(function() {
 					$("#tg").attr("style", "color:#337ab7;width:65px")
 				})
@@ -331,8 +330,7 @@ table {
 
 			});
 	function refreshnews() {
-		$
-				.getJSON(
+		$.getJSON(
 						"GetNewsMsgServlet",
 						function(data) {
 							console.log(data)

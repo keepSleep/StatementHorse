@@ -30,6 +30,7 @@ public class BalanceSheetService {
 		balanceSheetVO.setOtherEquity(otherEquity);
 		balanceSheetVO.setConsolidatedNetIncomeAttributedToStockholdersOfTheCompany(consolidatedNetIncomeAttributedToStockholdersOfTheCompany);
 		balanceSheetVO.setTotalEquity(totalEquity);
+		dao.insert(balanceSheetVO);
 		
 		
 		
