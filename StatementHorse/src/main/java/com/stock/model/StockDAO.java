@@ -14,6 +14,8 @@ public class StockDAO implements StockDAO_interface {
 	
 	private static final String GET_ALL_STMT=
 			"from StockVO order by stockNo ";
+	private static final String GET_STOCK_NO=
+			"from StockVO where stock_name=:stockName";
 	
 	@Override
 	public void insert(StockVO stockVO) {
@@ -69,6 +71,26 @@ public class StockDAO implements StockDAO_interface {
 			throw ex;
 		}
 		return stockVO1;
+	}
+	@Override
+	public List<StockVO> findStockNoByStockName(String stockName){
+		List<StockVO> list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		StockVO stockVO1=null;
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GET_STOCK_NO);
+			StockVO stockVO=new StockVO();
+			stockVO.setStockName(stockName);
+			query.setProperties(stockVO);
+			list = query.list();
+			
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
 	}
 
 	@Override

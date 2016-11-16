@@ -13,6 +13,7 @@ public interface StockDAO_interface {
 		public void update(StockVO stockVO);
 		public void delete(StockVO stockNo);
 		public StockVO findByPrimaryKey(StockVO stockVO);
+		public List<StockVO> findStockNoByStockName(String stockName);
 		public List<StockVO> getAll();
 		public Set<MGRVO> getRevenueByStockNo(StockVO stockVO);
 		public Set<PriceVO> getPriceByStockNo(StockVO stockVO);

@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+
 <link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath}/css/bootstrap.min.css">
 
@@ -206,11 +207,15 @@ a:link {
 							  		<tr>
 							  			<th Class="th" >每月營收
 							  				<td >定義：企業因銷售產品或提供勞務而取得的各項收入
-營業收入是企業尚未扣除任何成本和費用前的收入， 上市櫃公司強制每個月都得公佈，因此是財報中最即時的數據。 營收有淡旺季的特性，因此觀察月、季增率沒什麼意義， 投資人應把重點放在年增率的趨勢。</li>
+												營業收入是企業尚未扣除任何成本和費用前的收入，
+												 上市櫃公司強制每個月都得公佈，因此是財報中最即時的數據。 
+												 營收有淡旺季的特性，因此觀察月、季增率沒什麼意義，
+												  投資人應把重點放在年增率的趨勢。
 							  			</td>
 							  		</th>
 							  	</tr>
 							   </table>
+								</div>
 						  	</div>
 						   	<div class="tab-pane fade" id="tab2info1" >
 						   	<div id="tab2info" style="width: 730px"></div>

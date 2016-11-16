@@ -18,8 +18,11 @@
 
 <script
 	src="${pageContext.servletContext.contextPath}/js/jquery-3.1.1.min.js"></script>
+
 <script
 	src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
 <style>
 .modal-header, h4, .close {
 	background-color: #5cb85c;
@@ -61,7 +64,7 @@ table {
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li><a
-					href="${pageContext.servletContext.contextPath}/ShowStockServlet?action=stock&stock_no=2330&member_id=Blastoise">
+					href="${pageContext.servletContext.contextPath}/ShowStockServlet?action=stock&stock_no=2330">
 						<button type="button"
 							class="btn btn-default btn-outline btn-info btn-lg"
 							style="border: 0px blue none">個股資料</button>
@@ -76,14 +79,16 @@ table {
 							style="border: 0px blue none">財報比較</button></a></li>
 			</ul>
 			
-			<form class="navbar-form navbar-left" role="search">
+			<form class="navbar-form navbar-left" role="search" method="post" action="/StatementHorse/ShowStockServlet">
 				<div class="form-group">
 			
 					<input type="text" style="width: 400px;margin-top:12px"
-						class="form-control" placeholder="輸入股號或股名...">
-					<button class="btn btn-default" type="button" style="height:140%;margin-top:12px">
+						class="form-control" placeholder="輸入股號或股名..." name="stock_no" id="getstockno" autocomplete="off">
+					<input type="hidden" name="action" value="stock" >
+					<button class="btn btn-default" type="submit" style="height:140%;margin-top:12px">
 						<i class="fa fa-search"></i>
 					</button>
+					
 				</div>
 			</form>
 
@@ -234,9 +239,9 @@ table {
 <!-- </div> -->
 	
 
-
 <script>
 	$(document).ready(
+
 			function() {
 				var last = $("#true").text();
 				// 		setInterval("refreshnews()",5000);
@@ -309,6 +314,20 @@ table {
 							})
 
 						})
+// 						$.getJSON("/StatementHorse/GetStock?",{},function(data) {
+							
+// 							var stock = [];		
+// 							$.each(data,function(){						
+								
+							
+// 								var StockNo = this.StockNo;	
+// 								console.log(StockNo);
+// 								var StockName = this.StockName;	
+// 								stock.push(StockNo + " " + StockName);
+// 							});
+													
+// 							$('input[name="stock_no"]').autocomplete({source: stock});						
+// 						});
 
 			});
 	function refreshnews() {
@@ -333,8 +352,10 @@ table {
 																		+ v
 																		+ "</p></div></a></li>");
 											})
-
-						})
+					
+							
+							
+					})
 
 	}
 </script>
