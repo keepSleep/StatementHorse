@@ -18,7 +18,12 @@
 	<div class="container-fluid">
 <!-- 巡覽列 開始 -->
 		<nav class="navbar navbar-default" role="navigation" style="background-color:#C6D8FF">
-			<div class="navbar-header">
+		
+		<div class="row-fluid">
+			<div class="navbar-header col-lg-1">
+			
+			
+			
 	<!-- 功能巡覽列按鈕 開始 -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar" style="background-color:#C6D8FF">
 					<span class="sr-only">Toggle navigation</span>
@@ -35,7 +40,7 @@
 			</div>
 	<!-- 巡覽列功能區塊 開始 --><!-- 螢幕縮小時，區塊內的項目會自動收起 -->
 			<div id="navbar" class="navbar-collapse collapse" aria-expanded="true">
-				<ul class="nav navbar-nav">
+				<ul class="nav navbar-nav col-lg-8">
 					<li><a href="#">#1</a></li>
 					<li><a href="#">#2</a></li>
 					<li><a href="#">#3</a></li>
@@ -56,7 +61,7 @@
 		<!-- 下拉選單 結束 -->
 				</ul>
 		<!-- 巡覽列靠右功能區塊 開始 -->
-				<ul class="nav navbar-nav navbar-right">
+				<ul class="nav navbar-nav navbar-right col-lg-3">
 					<li><a href="#">#5</a></li>
 					<li><a href="#">#6</a></li>
 					<li><a href="#">#7</a></li>
@@ -64,6 +69,7 @@
 		<!-- 巡覽列靠右功能區塊 結束 -->
 			</div>
 	<!-- 巡覽列功能區塊 結束 -->
+	</div>
 		</nav>
 <!-- 巡覽列 結束 -->
 <!-- 頁面主體 開始 -->
