@@ -12,11 +12,30 @@
 	<input type="text" class="form-control" id="yyyy" placeholder="yyyy" maxlength="4">
 </div>
 <div class="col-sm-1">
-	<input type="text" class="form-control" id="qq" placeholder="qq" maxlength="2">
+	<input type="text" class="form-control" id="month" placeholder="month" maxlength="2">
 </div>
 
-<button class="btn btn-info">Go</button>
+<button class="btn btn-info" id="gobutton">Go</button>
 </div>
+
+<script>
+	$(document).ready(
+			function() {
+				$("#gobutton").click(function(){
+					//營收的jquery
+				$.get("BackStageMgr",{"action":"mgr","stockno":$("#stockNo").val(),"year":$("#yyyy").val(),"month":$("#month").val()},function(){
+				console.log("營收更新完成");
+				})
+// 				$.get("BackStageMgr",{"action":"financialstatements","stockno":$("#stockNo").val(),"year":$("#yyyy").val(),"season":$("#season").val()},function(){
+// 					console.log("財報更新完成");
+// 				})	
+				
+				})
+			
+	
+			}
+	)
+	</script>
 <div class="h1 text-info text-bold">
 表格
 

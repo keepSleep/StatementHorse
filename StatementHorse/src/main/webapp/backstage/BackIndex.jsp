@@ -37,10 +37,10 @@
 				$("#gobutton").click(function(){
 					//營收的jquery
 // 				$.get("BackStageMgr",{"action":"mgr","stockno":$("#stockNo").val(),"year":$("#yyyy").val(),"month":$("#MM").val()},function(){
-// 				console.log(營收更新完成);
+// 				console.log("營收更新完成");
 // 				})
 				$.get("BackStageMgr",{"action":"financialstatements","stockno":$("#stockNo").val(),"year":$("#yyyy").val(),"season":$("#season").val()},function(){
-					console.log(財報更新完成);
+					console.log("財報更新完成");
 				})	
 				
 				})
