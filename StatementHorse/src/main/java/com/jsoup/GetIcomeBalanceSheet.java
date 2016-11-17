@@ -65,113 +65,122 @@ public class GetIcomeBalanceSheet {
 	        for(Element s:tdtext){	
 	        	
 	        	//資產負債表
-	        	if(s.text().trim().equals("　　　 流動資產合計")){
+	        	if(s.text().trim().contains(" 流動資產合計")){
 	        		current_assets=new Long(tdtext.get(i+1).text().replace(",",""));
 	        	System.out.println("流動資產合計="+current_assets);
 	        	}
 	        	
-	        	if(s.text().trim().equals("　　　 非流動資產合計")){
+	        	if(s.text().trim().contains(" 非流動資產合計")){
 	        		fixed_assets=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("非流動資產合計="+tdtext.get(i+1).text().replace(",",""));
 		       	}
 	        	
-	        	if(s.text().trim().equals("　　 資產總計")){
+	        	if(s.text().trim().contains(" 資產總計")){
 	        		assets=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("資產總計="+tdtext.get(i+1).text().replace(",",""));
 		       	}
 	        	
-	        	if(s.text().trim().equals("　　　　 流動負債合計")){
+	        	if(s.text().trim().contains(" 資產總額")){
+	        		assets=new Long(tdtext.get(i+1).text().replace(",",""));
+		        	System.out.println("資產總額="+tdtext.get(i+1).text().replace(",",""));
+		       	}
+	        	
+	        	if(s.text().trim().contains(" 流動負債合計")){
 	        		current_liabilities=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("流動負債合計="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　　　　 非流動負債合計")){
+	        	if(s.text().trim().contains(" 非流動負債合計")){
 	        		long_term_liabilities=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("非流動負債合計="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　　　 負債總計")){
+	        	if(s.text().trim().contains(" 負債總計")){
 	        		liabilities=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("負債總計="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　　　　　 股本合計")){
+	        	if(s.text().trim().contains(" 負債總額")){
+	        		liabilities=new Long(tdtext.get(i+1).text().replace(",",""));
+		        	System.out.println("負債總額="+tdtext.get(i+1).text().replace(",",""));
+		       	}
+	        	if(s.text().trim().contains(" 股本合計")){
 	        		capital_stock=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("股本合計="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　　　　　 資本公積合計")){
+	        	if(s.text().trim().contains(" 資本公積合計")){
 	        		additional_paid_in_capital=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("資本公積合計="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　　　　　 保留盈餘合計")){
+	        	if(s.text().trim().contains(" 保留盈餘合計")){
 	        		retained_earnings=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("保留盈餘合計="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　　　　　 其他權益合計")){
+	        	if(s.text().trim().contains(" 其他權益合計")){
 	        		other_equity=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("其他權益合計="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　　　　 歸屬於母公司業主之權益合計")){
+	        	if(s.text().trim().contains(" 歸屬於母公司業主之權益合計")){
 	        		Consolidated_Net_Income_Attributed_to_Stockholders_of_the_Company=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("歸屬於母公司業主之權益合計="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　　　 權益總額")){
+	        	if(s.text().trim().contains(" 權益總額")){
 	        		total_equity=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("權益總額="+tdtext.get(i+1).text().replace(",",""));
 		       	}
 	        	
 	        	//損益表
 	        	
-	        	if(s.text().trim().equals("　　 營業收入合計")){
+	        	if(s.text().trim().contains(" 營業收入合計")){
 	        		operating_revenue=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("營業收入合計="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　　 營業成本合計")){
+	        	if(s.text().trim().contains(" 營業成本合計")){
 	        		operating_cost=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("營業成本合計="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　 營業毛利（毛損）")){
+	        	if(s.text().trim().contains(" 營業毛利（毛損）")){
 	        		operating_margain=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("營業毛利（毛損）="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　 營業毛利（毛損）淨額")){
+	        	if(s.text().trim().contains(" 營業毛利（毛損）淨額")){
 	        		net_operating_margain=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("營業毛利（毛損）淨額="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　　 營業費用合計")){
+	        	if(s.text().trim().contains(" 營業費用合計")){
 	        		operating_expenses=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("營業費用合計="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　 營業利益（損失）")){
+	        	if(s.text().trim().contains(" 營業利益（損失）")){
 	        		operating_income=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("營業利益（損失）="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　　 營業外收入及支出合計")){
+	        	if(s.text().trim().contains(" 營業外收入及支出合計")){
 	        		non_operating_revenue=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("營業外收入及支出合計="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　 繼續營業單位稅前淨利（淨損）")){
+	        	if(s.text().trim().contains(" 繼續營業單位稅前淨利（淨損）")){
 	        		oibt=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("繼續營業單位稅前淨利（淨損）="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　　 所得稅費用（利益）合計")){
+	        	if(s.text().trim().contains(" 所得稅費用（利益）合計")){
 	        		income_tax_expense=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("所得稅費用（利益）合計="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　 繼續營業單位本期淨利（淨損）")){
+	        	if(s.text().trim().contains(" 繼續營業單位本期淨利（淨損）")){
 	        		coiat=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("繼續營業單位本期淨利（淨損）="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　 本期淨利（淨損）")){
+	        	if(s.text().trim().contains(" 本期淨利（淨損）")){
 	        		net_income=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("本期淨利（淨損）="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　　 其他綜合損益（淨額）")){
+	        	if(s.text().trim().contains(" 其他綜合損益（淨額）")){
 	        		oci=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("其他綜合損益（淨額）="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　 本期綜合損益總額")){
+	        	if(s.text().trim().contains(" 本期綜合損益總額")){
 	        		current_profit_and_loss=new Long(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("本期綜合損益總額="+tdtext.get(i+1).text().replace(",",""));
 		       	}
-	        	if(s.text().trim().equals("　　 稀釋每股盈餘合計")){
+	        	if(s.text().trim().contains(" 稀釋每股盈餘合計")){
 	        		earning_per_share=new Double(tdtext.get(i+1).text().replace(",",""));
 		        	System.out.println("稀釋每股盈餘合計="+tdtext.get(i+1).text().replace(",",""));
 		       	}
@@ -196,7 +205,7 @@ public class GetIcomeBalanceSheet {
 	        balancesheetvo.setConsolidatedNetIncomeAttributedToStockholdersOfTheCompany(Consolidated_Net_Income_Attributed_to_Stockholders_of_the_Company);
 	        balancesheetvo.setTotalEquity(total_equity);
 	        
-	        balancesheetdao.insert(balancesheetvo);
+//	        balancesheetdao.insert(balancesheetvo);
 	        
 	        incomestatementvo.setStockVO(stockvo);
 	        incomestatementvo.setStatementDate(""+(year-1911)+"0"+season);
@@ -215,7 +224,7 @@ public class GetIcomeBalanceSheet {
 	        incomestatementvo.setCurrentProfitAndLoss(current_profit_and_loss);
 	        incomestatementvo.setEarningPerShare(earning_per_share);;
 	        
-	        incomestatementdao.insert(incomestatementvo);
+//	        incomestatementdao.insert(incomestatementvo);
 //	        System.out.println("Title is "+title.get(0).text()); //得到title tag的內容
 //	        System.out.print(happy.get(20).text()+",");
 //	        System.out.print(happy.get(21).text()+",");
@@ -228,7 +237,7 @@ public class GetIcomeBalanceSheet {
 	 
 	    }
 	 public static void main(String[] args) throws Exception {
-		 Parsing(2016,2,1476);
+		 Parsing(2013,1,1476);
 		 
 	 }
 }
