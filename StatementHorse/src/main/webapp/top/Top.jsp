@@ -20,6 +20,8 @@
 	src="${pageContext.servletContext.contextPath}/js/jquery-3.1.1.min.js"></script>
 <script
 	src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
 <style>
 .modal-header, h4, .close {
 	background-color: #5cb85c;
@@ -61,7 +63,7 @@ table {
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li><a
-					href="${pageContext.servletContext.contextPath}/ShowStockServlet?action=stock&stock_no=2330&member_id=Blastoise">
+					href="${pageContext.servletContext.contextPath}/ShowStockServlet?action=stock&stock_no=2330">
 						<button type="button"
 							class="btn btn-default btn-outline btn-info btn-lg"
 							style="border: 0px blue none">個股資料</button>
@@ -76,14 +78,16 @@ table {
 							style="border: 0px blue none">財報比較</button></a></li>
 			</ul>
 			
-			<form class="navbar-form navbar-left" role="search">
+			<form class="navbar-form navbar-left" role="search" method="post" action="/StatementHorse/ShowStockServlet">
 				<div class="form-group">
 			
 					<input type="text" style="width: 400px;margin-top:12px"
-						class="form-control" placeholder="輸入股號或股名...">
-					<button class="btn btn-default" type="button" style="height:140%;margin-top:12px">
+						class="form-control" placeholder="輸入股號或股名..." name="stock_no" id="getstockno" autocomplete="off">
+					<input type="hidden" name="action" value="stock" >
+					<button class="btn btn-default" type="submit" style="height:140%;margin-top:12px">
 						<i class="fa fa-search"></i>
 					</button>
+					
 				</div>
 			</form>
 
@@ -129,7 +133,7 @@ table {
 										<!-- /.panel-footer -->
 									</div>
 								</li>
-								<li><a class="text-center" href="#"> <strong>Read
+								<li><a class="text-center" href="${pageContext.servletContext.contextPath}/GetTrackListing"> <strong>Read
 											All Messages</strong> <i class="fa fa-angle-right"></i>
 								</a></li>
 							</ul></li>
@@ -164,16 +168,16 @@ table {
 
 					<!-- Modal content-->
 					<div class="modal-content">
-						<div class="modal-header" style="padding: 35px 50px;">
+						<div class="modal-header" style="padding: 35px 50px;background-color:#5ca9b8">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4>
+							<h4 style="background-color:#5ca9b8">
 								<i class="fa fa-gear"></i>通知設定
 							</h4>
 						</div>
 						<div class="modal-body" style="padding: 25px 50px;">
 
 							<!--           <form method="post" role="form" action="MsgIUDServlet"> -->
-							<table class="table table-condensed">
+							<table class="table table-condensed" id="setting111">
 								<caption>個人通知設定</caption>
 								<thead>
 									<tr>
@@ -182,48 +186,20 @@ table {
 										<th>財報更新通知</th>
 									</tr>
 								</thead>
-								<tbody>
-									<c:if test="${empty memberlistno}">
-										<tr>
-											<td colspan="3"><h3>
-													您目前沒有追蹤股號，請至<a href="${pageContext.servletContext.contextPath}/GetTrackListing">追蹤清單</a>新增
-												</h3></td>
-										</tr>
-									</c:if>
-									<c:if test="${!empty memberlistno}">
-										<c:forEach var="stock" items="${memberlistno}"
-											varStatus="count">
-											<tr>
-												<td>${stock[0]}</td>
-												<td><input type="checkbox" id="${stock[0]}1"
-													name="${stock[0]}1" ${(stock[1]==true)? 'checked' : ''} /></td>
-												<td><input type="checkbox" id="${stock[0]}2"
-													name="${stock[0]}2" ${(stock[2]==true)? 'checked' : ''} /></td>
-											</tr>
-											<div style="display: none" id="${count.count}">${stock[0]}</div>
-											<div style="display: none" id="${count.last}">${count.count}</div>
-										</c:forEach>
-									</c:if>
+								<tbody >
 									<tr>
 										<td colspan="3" align="center"><div
 												style="display: none; margin: 0px auto" id="followok">
-												<h3>你已更新成功!!!</h3>
+												<h3 >你已更新成功!!!</h3>
 											</div></td>
 									</tr>
 								</tbody>
 							</table>
-							<c:if test="${!empty memberlistno}">
+							
 								<button type="button" class="btn btn-success btn-block"
-									style="border: 0px;" id="updatemessage">
+									style="border: 0px;background-color:#5ca9b8" id="updatemessage">
 									<span class="glyphicon glyphicon-floppy-disk"></span> 完成更新
 								</button>
-							</c:if>
-							<c:if test="${empty memberlistno}">
-								<button type="button" class="btn btn-success btn-block"
-									style="border: 0px;" id="updatemessage" disabled="disabled">
-									<span class="glyphicon glyphicon-floppy-disk"></span> 完成更新
-								</button>
-							</c:if>
 							<!--           </form> -->
 
 						</div>
@@ -234,12 +210,13 @@ table {
 <!-- </div> -->
 	
 
-
 <script>
 	$(document).ready(
+
 			function() {
-				var last = $("#true").text();
-// 						setInterval("refreshnews()",5000);
+				var last = 0;
+				var array;
+// 				setInterval("refreshnews()",5000);
 				$("#tg").click(function() {
 					$("#tg").attr("style", "color:#337ab7;width:65px")
 				})
@@ -250,65 +227,82 @@ table {
 				$("#allsetting").click(function() {
 					$("#followok").attr("style", "display:none")
 				})
-
+				
+				//顯示通知設定
 				$("#setting").click(function() {
-					$("#myModal").modal();
+					$.getJSON("MsgServlet", {"action" : "jquery_check"}, function(data) {
+						$("#setting111>tbody>tr").remove();
+						last=data.length;
+						array=new Array();
+						if(data.length!=0){
+// 						console.log(data.length)
+						$.each(data,function(name,value){
+							array.push(value[0])
+// 							console.log(array)
+							console.log(value)
+							var i;
+							var j;
+							if(value[1]=='true'){
+								i='checked'
+							}else{
+								i=''
+							}
+							if(value[2]=='true'){
+								j='checked'
+							}else{
+								j=''
+							}
+						$("#setting111>tbody").append("<tr><td>"+value[0]+"</td><td><input type='checkbox' id='"+value[0]+"1' name='"+value[0]+"1'"+i+"></td><td><input type='checkbox' id='"+value[0]+"2' name='"+value[0]+"2'"+j+"></td></tr>")
+						$("#myModal").modal();
+						})
+						$("#setting111>tbody").append("<tr><td colspan='3' align='center'><div style='display: none; margin: 0px auto' id='followok'><h3>你已更新成功!!!</h3></div></td></tr>")
+						}else{
+							$("#setting111>tbody").append("<tr><td colspan='3'><h3>您目前沒有追蹤股號，請至<a href='${pageContext.servletContext.contextPath}/GetTrackListing'>追蹤清單</a>新增</h3></td></tr>")
+							$("#myModal").modal();
+						}
+						})
+// 					$("#myModal").modal();
 				});
 
 				$("#updatemessage").click(
 						function() {
-							$("#followok").attr("style", "color:red")
+// 							$("#followok").attr("style", "color:red")
 							var stockcheck1 = "";
-							for (var i = 1; i <= last; i++) {
-								var stockno = $("#" + i).text();
-								stockcheck1 += $("#" + i).text()
+							for (var i = 0; i < last; i++) {
+								var stockno=array[i]
+								console.log(stockno)
+								stockcheck1 += stockno
 										+ ","
 										+ $("#" + stockno + "1")
 												.prop("checked")
 										+ ","
 										+ $("#" + stockno + "2")
-												.prop("checked") + ";"
+												.prop("checked") + ",;"
 							}
-							console.log(stockcheck1)
+// 							console.log(stockcheck1)
 							$.get("MsgIUDServlet", {
 								"action" : "jquery_check",
-								"stockcheck1" : stockcheck1
+								"stockcheck1" :stockcheck1
 							}, function(data) {
-								console.log(data)
-
-								var data1 = data.split("]");
-
-								// 	    			console.log(data1)
-								for (var i = 0; i < (data1.length - 2); i++) {
-									var data2 = data1[i].split(",");
-									console.log(data2)
-
-									if (i == 0) {
-										var stock = data2[0].substring(2);
-
-										var check1 = data2[1].substring(1)
-
-										var check2 = data2[2].substring(1)
-
-									} else {
-										var stock = data2[1].substring(2);
-										console.log(stock)
-										var check1 = data2[2].substring(1)
-										console.log(check1)
-										var check2 = data2[3].substring(1)
-										console.log(check2)
-									}
-									//console.log(main)
-									// 	    			main[i+]
-
-									// 	    			$("#"+main[i*3]+"1").prop("checked",main[(1+i*3)])
-									// 	    			$("#"+main[i*3]+"2").prop("checked",main[(2+i*3)])
-									// 	    			console.log($("#"+main[i*3]+"2").prop("checked",main[(2+i*3)]))
-								}
+								$("#followok").attr("style", "color:red")
 
 							})
 
 						})
+// 						$.getJSON("/StatementHorse/GetStock?",{},function(data) {
+							
+// 							var stock = [];		
+// 							$.each(data,function(){						
+								
+							
+// 								var StockNo = this.StockNo;	
+// 								console.log(StockNo);
+// 								var StockName = this.StockName;	
+// 								stock.push(StockNo + " " + StockName);
+// 							});
+													
+// 							$('input[name="stock_no"]').autocomplete({source: stock});						
+// 						});
 
 			});
 	function refreshnews() {
@@ -328,12 +322,14 @@ table {
 											function(i, v) {
 												$("#newmessage")
 														.append(
-																"<li class='clearfix'><a style='cursor:pointer'><div class='chat-body clearfix'><div class='header'><small class='pull-right text-muted'></small></div><p>"
+																"<li class='clearfix'><a style='cursor:pointer' href='${pageContext.servletContext.contextPath}/GetTrackListing'><div class='chat-body clearfix'><div class='header'><small class='pull-right text-muted'></small></div><p>"
 																		+ v
 																		+ "</p></div></a></li>");
 											})
-
-						})
+					
+							
+							
+					})
 
 	}
 </script>

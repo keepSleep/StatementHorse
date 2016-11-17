@@ -1,6 +1,7 @@
 package com.stock.model;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 
 
@@ -81,6 +82,15 @@ public class StockService {
 //		dao.delete(stockNo);
 //		
 //	}
+	public Integer getStockNoByStockName(String stockName){
+		Integer stockno=null;
+		List<StockVO> stockVO=dao.findStockNoByStockName(stockName);
+		for(StockVO element:stockVO){
+			stockno=element.getStockNo();
+		}
+		return stockno;
+	}
+	
 	
 	public Set<PriceVO> getOneStockPrice(Integer stockNo){
 		StockVO stockVO=new StockVO();

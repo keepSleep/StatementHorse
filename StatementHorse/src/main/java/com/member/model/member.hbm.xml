@@ -12,11 +12,10 @@
 		<property name="memberCheck" column="member_check"/>
 		<property name="createtime" column="create_time"/>
 
-		<!-- <set name="msgVOs" table="MESSAGE" lazy="false" cascade="all" inverse="true" 
-			> -->
-		<!-- <key><column name="member_id"/></key> -->
-		<!-- <one-to-many class="com.message.model.MsgVO"/> -->
-		<!-- </set> -->
+		<set name="msgVOs" table="MESSAGE" lazy="true" cascade="all" inverse="true" >
+		<key><column name="member_id"/></key>
+		<one-to-many class="com.message.model.MsgVO"/>
+		</set>
 
 		 <set name="trackListingVOs" table="TRACK_LISTING" lazy="true" cascade="all" 
 			inverse="true" > 

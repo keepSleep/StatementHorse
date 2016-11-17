@@ -11,4 +11,5 @@ public interface StockNewsDAOinterface {
           public StockNewsVO findByPrimaryKey(Integer stockno);
 	      public List<StockNewsVO> getAll();
 	      public List<StockNewsVO> getAllByStockNo(Integer stockno);
+	      public List<Object[]> getByStockNoByShao(ArrayList stockNoArrayList);
 }

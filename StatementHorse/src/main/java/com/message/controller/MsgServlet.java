@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
 import org.springframework.web.servlet.mvc.condition.RequestMethodsRequestCondition;
 
 import com.member.model.MemberVO;
@@ -54,29 +55,28 @@ public class MsgServlet extends HttpServlet {
 			List<Object> memberstock_list_no = new LinkedList<>();
 			List<Integer> memberlistno = msgservicedao.findByKey(member_id, stock_no);
 			memberstock_list_no.add(0, stock_no);
-			memberstock_list_no.add(1, "false");
-			memberstock_list_no.add(2, "false");
-			try {
-				for (int listno : memberlistno) {
-
-					if (listno == 1) {
-						memberstock_list_no.set(1, "true");
+			memberstock_list_no.add(1, "true");
+			memberstock_list_no.add(2, "true");
+//			try {
+			if(memberlistno.size()==1){
+					if (memberlistno.get(0) == 1) {
+						memberstock_list_no.set(2, "false");
 					}
-					if (listno == 2) {
-						memberstock_list_no.set(2, "true");
-					}
-
-				}
-				member.add(memberstock_list_no);
-			} catch (NullPointerException e) {
-				continue;
+					if (memberlistno.get(0) == 2) {
+						memberstock_list_no.set(1, "false");
+					}	
+			}else if(memberlistno.size()==0){
+				memberstock_list_no.set(1, "false");
+				memberstock_list_no.set(2, "false");
 			}
+				member.add(memberstock_list_no);
+
 		}
 		session.setAttribute("memberlistno", member);
 		// 轉移畫面
 //		if ("jquery_check".equals(action)) {
- 
-		out.print(member);
+		JSONArray json = new JSONArray(member);
+		out.print(json);
 //		} else {
 //			RequestDispatcher failureView = req.getRequestDispatcher("message/Message.jsp");
 //			failureView.forward(req, resp);
