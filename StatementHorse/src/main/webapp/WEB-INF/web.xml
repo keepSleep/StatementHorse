@@ -76,9 +76,17 @@
     <servlet-name>MsgServlet</servlet-name>
     <url-pattern>/MsgServlet</url-pattern>
   </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>MsgServlet</servlet-name>
+    <url-pattern>/financialstatements/MsgServlet</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>MsgIUDServlet</servlet-name>
     <url-pattern>/MsgIUDServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MsgIUDServlet</servlet-name>
+    <url-pattern>/financialstatements/MsgIUDServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>NewsServlet</servlet-name>
@@ -91,6 +99,10 @@
   <servlet-mapping>
     <servlet-name>GetNewsMsgServlet</servlet-name>
     <url-pattern>/GetNewsMsgServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetNewsMsgServlet</servlet-name>
+    <url-pattern>/financialstatements/GetNewsMsgServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ChangePassword</servlet-name>

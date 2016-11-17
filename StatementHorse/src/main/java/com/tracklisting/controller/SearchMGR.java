@@ -49,28 +49,32 @@ public class SearchMGR extends HttpServlet {
 		
 		//使用到的集合
 		ArrayList l1 = new ArrayList();
+		ArrayList stockNoArrayList = new ArrayList();
 		
 		//查詢清單編號內含股號		
 		List<ListingDetailsVO> tdvo = lddao.getAllByListing(Integer.parseInt(listingNo));
+		
 		for (ListingDetailsVO tdvo2 : tdvo) {
-	
-		List<MGRVO> mgrvo= mgrdao.getByStockNo(tdvo2.getStockVO().getStockNo());
-		for (MGRVO mgrvo2 : mgrvo) {
+			stockNoArrayList.add(tdvo2.getStockVO().getStockNo());
+		}
+		
+		
+		List<Object[]> list = mgrdao.getByStockNoByShao(stockNoArrayList);
+		
+		for(Object[] aArray : list ){
 			
 			Map m1 = new HashMap();
-			m1.put("StockNo", mgrvo2.getStockVO().getStockNo());
-			m1.put("StockName", mgrvo2.getStockVO().getStockName());
-			m1.put("RevenueDate", mgrvo2.getRevenueDate());
-			m1.put("PostDate", mgrvo2.getPostDate().toString().substring(0,10));
+			m1.put("StockNo", aArray[0]);
+			m1.put("StockName",aArray[1]);
+			m1.put("RevenueDate", aArray[2]);
+			m1.put("PostDate", aArray[4].toString());
 			l1.add(m1);
 			
-		}
-			
-		}
-		
+			}
+
 		String jsonString = JSONValue.toJSONString(l1);
 		response.getWriter().println(jsonString);
-		
+
 	}
 	
 }

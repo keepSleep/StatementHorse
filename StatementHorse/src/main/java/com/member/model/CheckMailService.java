@@ -15,8 +15,9 @@ import javax.mail.internet.MimeMessage;
 public class CheckMailService {
 
 	public void sendCheckMail(String email) {
-		final String username = "statementhorse@gmail.com";
-		final String password = "s123456-";// your password
+		//發信帳號
+		final String username = "statementhorse@gmail.com";//mail
+		final String password = "s123456-";                // your password
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
