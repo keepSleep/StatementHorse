@@ -7,6 +7,8 @@ import java.util.Map;
 
 import org.json.JSONArray;
 
+import com.balancesheet.model.BalanceSheetService;
+import com.balancesheet.model.BalanceSheetVO;
 import com.dividend.model.DividendService;
 import com.dividend.model.DividendVO;
 import com.incomestatement.model.IncomeStatementService;
@@ -66,6 +68,25 @@ public class ToTableJson {
 			map.put("EarningPerShare",earning);
 			listAll.add(map);
 			}
+			if("profit".equals(str)){
+				String date = element.getStatementDate();
+				Double revenue = element.getOperatingRevenue().doubleValue();
+				Double margain = element.getOperatingMargain().doubleValue();
+				Double income=element.getOperatingIncome().doubleValue();
+				Double netIncome = element.getNetIncome().doubleValue();
+				Double margain_ratio=Math.rint(margain/revenue*100);
+				Double income_ratio=Math.rint(income/revenue*100);
+				Double netIncome_ratio=Math.rint(netIncome/revenue*100);
+				String margainRatio=Double.toString(margain_ratio);
+				String incomeRatio=Double.toString(income_ratio);
+				String netIncomeRatio=Double.toString(netIncome_ratio);
+				
+				map.put("Date",date );
+				map.put("MargainRatio",margainRatio);
+				map.put("IncomeRatio",incomeRatio);
+				map.put("NetIncomeRatio",netIncomeRatio);
+				listAll.add(map);
+				}
 		}
 		JSONArray list = new JSONArray(listAll);
 		return list;
@@ -87,6 +108,51 @@ public class ToTableJson {
 		JSONArray list = new JSONArray(listAll);
 		return list;
 	}
+	public JSONArray AssetsToJson(Integer stock_no,String str) {
+		BalanceSheetService Svc = new BalanceSheetService();
+		List<BalanceSheetVO> set = Svc.getByStockNo(stock_no);
+		List<Map<String,String>> listAll = new LinkedList<Map<String,String>>();
+		for(BalanceSheetVO element:set){
+			Map map = new Hashtable();
+			if("flow".equals(str)){
+					String date = element.getStatementDate();
+					Double currentAssets=element.getCurrentAssets().doubleValue();
+					Double clurrentLiabilities=element.getCurrentLiabilities().doubleValue();
+					Double balance_str=Math.rint(currentAssets/clurrentLiabilities*100);
+					String balance=Double.toString(balance_str);
+					map.put("Date",date );
+					map.put("Balance",balance);
+					listAll.add(map);
+					
+			}if("balance".equals(str)){
+				
+				String date = element.getStatementDate();
+				Double assets=element.getAssets().doubleValue();
+				Double liabilities=element.getLiabilities().doubleValue();
+				Double balance_str=Math.rint(liabilities/assets*100);
+				String balance=Double.toString(balance_str);
+				map.put("Date",date );
+				map.put("Balance",balance);
+				listAll.add(map);
+				
+			}
+				
+	
+		}
+		JSONArray list = new JSONArray(listAll);
+		return list;
+	}
+public JSONArray IncomeToJson(Integer stock_no,String str){
+	BalanceSheetService Svc = new BalanceSheetService();
+	List<BalanceSheetVO> set = Svc.getByStockNo(stock_no);
+	List<Map<String,String>> listAll = new LinkedList<Map<String,String>>();
+
+	
+	
+	JSONArray list = new JSONArray(listAll);
+	return list;
+}
+	
 	
 	public static void main(String[] args) {
 		ToTableJson dao=new ToTableJson();
