@@ -107,6 +107,9 @@
 				</ul>
 			</nav>
 			<div class="col-sm-2">
+				<input type="text" class="form-control" id="stockNo" placeholder="stockNo" maxlength="4">
+			</div>
+			<div class="col-sm-2">
 				<input type="text" class="form-control" id="yyyy" placeholder="yyyy" maxlength="4">
 			</div>
 			<div class="col-sm-2">
@@ -115,6 +118,7 @@
 			<div class="col-sm-2">
 				<input type="text" class="form-control" id="dd" placeholder="dd" maxlength="2">
 			</div>
+			<button class="btn btn-info">Go</button>
 		</div>
 	</div>
 	
