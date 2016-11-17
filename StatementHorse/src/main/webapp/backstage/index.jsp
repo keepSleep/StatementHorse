@@ -38,11 +38,9 @@
 		$("span[class='title']").parents("a").click(function(){
 			var clickObj = $(this).find("span").text();
 			if(clickObj == "月營收表爬蟲"){
-				alert(clickObj)
 				seachPage.load("MGRCrawler.jsp");
 			}
 			if(clickObj == "財務報表爬蟲"){
-				alert(clickObj)
 				seachPage.load("FSCrawler.jsp");
 			}
 			
@@ -132,7 +130,6 @@
 				</ul>
 			</nav>
 			<div id="seachPage" class="row">
-				<%@include file="FSCrawler2.jsp"%>
 			</div>
 		</div>
 	</div>
