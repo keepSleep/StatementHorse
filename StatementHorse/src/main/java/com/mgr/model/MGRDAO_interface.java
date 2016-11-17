@@ -1,5 +1,6 @@
 package com.mgr.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -14,4 +15,5 @@ public interface MGRDAO_interface {
 		public List<MGRVO> getAll();
 		public List<MGRVO> getByStockNo(Integer stockNo);
 		public List<MGRVO> findByStockNo(Integer stockno);
+		public List<Object[]> getByStockNoByShao(ArrayList stockNoArrayList);
 }

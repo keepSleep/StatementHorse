@@ -192,6 +192,43 @@ public class FinancialStatementsDAO implements FinancialStatements_interface {
 		}
 		return list;
 	}
+
+	@Override
+	public List<Object[]> getByStockNoByShao(ArrayList stockNoArrayList) {
+		
+		List<Object[]>list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		
+		try {
+			
+			session.beginTransaction();
+			
+			String s1 = "";
+			
+			for( int i = 0 ; i < stockNoArrayList.size() ; i++ ){	
+				
+				if(i>=1){
+					s1 += " or s.stock_no =";};		
+					
+				s1 += stockNoArrayList.get(i);	
+				
+			};
+			
+			s1 += " ";
+
+			String sql = "select f.stock_no, s.stock_name, f.statement_date, f.post_date from FINANCIAL_STATEMENTS f join STOCK s on f.stock_no = s.stock_no where s.stock_no =" + s1 + "order by post_date desc";				
+			Query query = session.createSQLQuery(sql);
+			
+			list = query.list();
+			
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		
+		return list;
+	}
 	
 	
 }
