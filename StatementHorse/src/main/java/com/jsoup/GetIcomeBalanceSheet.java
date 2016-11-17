@@ -63,8 +63,7 @@ public class GetIcomeBalanceSheet {
 		double earning_per_share = 0.0;
 
 		int i = 0;
-		for (Element s : tdtext) {
-
+		for ( Element s : tdtext) {
 			// 資產負債表
 			if (s.text().trim().equals("　　　 流動資產合計")) {
 				current_assets = new Long(tdtext.get(i + 1).text().replace(",", ""));
@@ -76,12 +75,12 @@ public class GetIcomeBalanceSheet {
 				System.out.println("非流動資產合計=" + tdtext.get(i + 1).text().replace(",", ""));
 			}
 
-			if (s.text().trim().equals("　　 資產總計")) {
+			if (s.text().trim().equals("　　 資產總計") || s.text().trim().equals("　　 資產總額")) {
 				assets = new Long(tdtext.get(i + 1).text().replace(",", ""));
 				System.out.println("資產總計=" + tdtext.get(i + 1).text().replace(",", ""));
 			}
 
-			if (s.text().trim().equals("　　　　 流動負債合計")) {
+			if (s.text().trim().equals("　　　　 流動負債合計") ||s.text().trim().equals("　　　 流動負債合計")) {
 				current_liabilities = new Long(tdtext.get(i + 1).text().replace(",", ""));
 				System.out.println("流動負債合計=" + tdtext.get(i + 1).text().replace(",", ""));
 			}
@@ -237,7 +236,7 @@ public class GetIcomeBalanceSheet {
 
 		for (int y = 2013; y <= 2016; y++) {
 			for (int s = 1; s <= 4; s++) {
-				Parsing(y, s, 3008);
+				Parsing(y, s, 1101);
 			}
 		}
 	}

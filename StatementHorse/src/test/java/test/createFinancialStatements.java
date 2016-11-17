@@ -62,7 +62,7 @@ public class createFinancialStatements {
 				
 				String time =hh+":"+String.format("%02d", mm);
 				
-				financialStatementsVO.setStockNo(3008);
+				financialStatementsVO.setStockNo(stock_no);
 				financialStatementsVO.setStatementDate(""+statementDate);
 				financialStatementsVO.setPostDate(day);
 				financialStatementsVO.setPostTime(time);
@@ -73,7 +73,7 @@ public class createFinancialStatements {
 
 	public static void main(String[] args) throws ParseException{
 		//股號&第三季的假日期
-		createTime(3008,"2016-11-11");
+		createTime(1101,"2016-11-11");
 	}
 		
 		

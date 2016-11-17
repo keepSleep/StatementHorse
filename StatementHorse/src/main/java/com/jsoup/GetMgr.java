@@ -15,6 +15,8 @@ public class GetMgr {
 
 	// 有營收才會來這邊 作新增營收的動作
 	public static void insertMgr(Integer year, Integer month, Integer stockno) throws IOException {
+	//	Thread thread = new Thread();
+		
 		MGRService mgrservice = new MGRService();
 
 		URL url = new URL(
