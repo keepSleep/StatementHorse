@@ -77,6 +77,8 @@
   <div id="tabs-4" name="div1"></div>
 <!--   <div id="tabs-5" name="div1"></div> -->
 <!--   <div id="tabs-6" name="div1"></div> -->
+
+<!-- <input type="button" id="tsetbutton" value="showmore"> -->
   
 </div>
 
@@ -571,14 +573,20 @@ $(function() {
 	});
 					
 									
-//進入頁面時預設展開第一個清單
+///////////////////////////////// 進入頁面時預設展開第一個清單 //////////////////////////////////////////
+
 $(function() {
-		
+	
 	//設置屬性預設排序 0 放第一個
 		var tlno = ${tlNo[0]};
 		var mId = ${mId[0]};
 		var tab = $("#table" + tlno);
 		var cText = $("#createText"+ tlno );
+		
+		//查詢變數
+// 		var searchNewsNum = 0;
+// 		var searchMGRNum = 0;
+// 		var searchFinancialStatementsNum = 0;
 		
 		//查詢新聞		
 		$.getJSON("SearchNews?",{"ListingNo":tlno},function(data) {
@@ -617,8 +625,43 @@ $(function() {
 // 				$('#tabs-1').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收報表</a><br>');
 		
 				});
+			
+// 			searchMGRNum += 10 ;
 		
 		});
+		
+// 		//捲動事件
+// 		$('#tsetbutton').click(function() {
+			
+// 			$.getJSON("SearchMGR?",{"ListingNo":tlno,"searchMGRNum":searchMGRNum},function(data) {
+				
+// 				$.each(data,function(){
+					
+// 					var StockNo = this.StockNo;
+// 					var StockName = this.StockName;
+// 					var RevenueDate = this.RevenueDate;	
+// //					var Revenue = this.Revenue;	
+// 					var PostDate = this.PostDate;	
+					
+// 					$('#tabs-3').append( '<a href="https://www.google.com.tw/" Target="_blank" style="text-decoration:none;"><div style="border:2px #d0d0d0 solid ; padding:10px ; margin:1px 0px"><h5>' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收' + ' (' + PostDate + ')' +'</h5></div></a>');
+// //	 				$('#tabs-3').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收報表</a><br>');
+// //	 				$('#tabs-1').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收報表</a><br>');
+			
+// 					});
+				
+// 				searchMGRNum += 10 ;
+// 				alert(searchMGRNum);
+			
+// 			});
+				
+// 			});
+		
+		
+		
+		
+		
+		
+		
 		
 		//查詢資產負債表		
 // 		$.getJSON("SearchBalanceSheet?",{"ListingNo":tlno},function(data) {
