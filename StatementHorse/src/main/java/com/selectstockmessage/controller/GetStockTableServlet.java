@@ -66,6 +66,20 @@ public class GetStockTableServlet extends HttpServlet {
 			out.print(list);
 			out.close();
 		}
+		if ("assetsjson".equals(json)) {
+			PrintWriter out = resp.getWriter();
+			ToTableJson tojson = new ToTableJson();
+			JSONArray list = tojson.AssetsToJson(stockNo, need);
+			out.print(list);
+			out.close();
+		}
+		if ("incomejson".equals(json)) {
+			PrintWriter out = resp.getWriter();
+			ToTableJson tojson = new ToTableJson();
+			JSONArray list = tojson.IncomeToJson(stockNo, need);
+			out.print(list);
+			out.close();
+		}
 	}
 
 }
