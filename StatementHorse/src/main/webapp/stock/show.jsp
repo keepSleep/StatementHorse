@@ -75,11 +75,11 @@ a:link {
 
 					<div class="btn-group">
 						<a
-							href="${pageContext.servletContext.contextPath}/GetTrackListing?id=Blastoise"><button
+							href="${pageContext.servletContext.contextPath}/GetTrackListing?"><button
 								type="button" class="btn btn-info btn-xs dropdown-toggle"
 								style="font-family: '微軟正黑體'; font-size: 26px;"mylisting">
 								我的追蹤清單 <span></span>
-							</button> <span></span>
+							</button></a> <span></span>
 					</div>
 					<div class="btn-group">
 						<button type="button" class="btn btn-info btn-xs dropdown-toggle"
