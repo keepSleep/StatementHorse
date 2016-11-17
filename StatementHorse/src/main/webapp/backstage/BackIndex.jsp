@@ -31,7 +31,30 @@
 	
 	<!-- icon file ="WebContent/test01/assets/css/fonts/fontawesome/css/font-awesome.css" -->
 	<!-- icon file ="WebContent/test01/assets/css/fonts/linecons/css/linecons-codes.css" -->
+	<script>
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</script>
 </head>
 <body class="page-body">
 
