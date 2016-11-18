@@ -1,7 +1,9 @@
 package com.message.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,9 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
+
+import com.balancesheet.model.BalanceSheetVO;
 import com.financialstatements.model.FinancialStatementsService;
 import com.jsoup.GetIcomeBalanceSheet;
 import com.jsoup.GetMgr;
+import com.message.model.MsgService;
 
 @WebServlet("/backstage/BackStageMgr")
 public class BackStageMgr extends HttpServlet {
@@ -25,8 +31,11 @@ public class BackStageMgr extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
 		String action = request.getParameter("action");
 		FinancialStatementsService financialstatementservice=new FinancialStatementsService();
+		MsgService msgdao = new MsgService();
+		
 		
 		// 營收的爬蟲
 		if ("mgr".equals(action)) {
@@ -68,7 +77,34 @@ public class BackStageMgr extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
+		//資產負債表的顯示依時間
+		if ("balancesheet".equals(action)) {
+			String stockno = request.getParameter("stockno");
+			List list = msgdao.findbalancesheetbystockno(stockno);
+			JSONArray json = new JSONArray(list);
+			out.print(json);
+		}
+		//損益表的顯示
+		if ("incomestatement".equals(action)) {
+			String stockno = request.getParameter("stockno");
+			List list = msgdao.findincomestatementbystockno(stockno);
+			JSONArray json = new JSONArray(list);
+			out.print(json);
+		}
+		//營收的按鈕顯示
+		if ("mgrdemoclick".equals(action)) {
+			String stockno = request.getParameter("stockno");
+			List list = msgdao.findmgrbystockno(stockno);
+			JSONArray json = new JSONArray(list);
+			out.print(json);
+		}
+		//營收的失焦顯示
+		if ("mgrdemoblur".equals(action)) {
+			String stockno = request.getParameter("stockno");
+			List list = msgdao.findmgrbystocknobyrevencedate(stockno);
+			JSONArray json = new JSONArray(list);
+			out.print(json);
+		}
 		
 		
 	}

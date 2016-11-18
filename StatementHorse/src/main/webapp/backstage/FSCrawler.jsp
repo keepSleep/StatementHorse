@@ -24,19 +24,79 @@
 	$(document).ready(
 			function() {
 				$("#gobutton").click(function(){
-					//營收的jquery
-// 				$.get("BackStageMgr",{"action":"mgr","stockno":$("#stockNo").val(),"year":$("#yyyy").val(),"month":$("#MM").val()},function(){
-// 				console.log("營收更新完成");
-// 				})
+
 				$.get("BackStageMgr",{"action":"financialstatements","stockno":$("#stockNo").val(),"year":$("#yyyy").val(),"season":$("#season").val()},function(){
-					console.log("財報更新完成");
+					console.log("財報更新完成");				
 				})	
+				$.getJSON("BackStageMgr",{"action":"balancesheet","stockno":$("#stockNo").val()},function(data){
+					console.log(data)
+					//此為資產負債表點擊後產生的狀態
+					//葉哲 data我擺在console 格式就是[ [1476,10503.... ],[1476,10502.....  ]   ] 用$.each(data)可取出
+					
+					//此處因為line上說不demo 所以複製下面失焦狀態就好
+					
+					
+					
+					
+					
+					
+					
 				
 				})
-			
+				$.getJSON("BackStageMgr",{"action":"incomestatement","stockno":$("#stockNo").val()},function(data){
+						console.log(data)
+						//此為損益表失焦後產生的狀態
+						//葉哲 data我擺在console 格式就是[ [1476,10503.... ],[1476,10502.....  ]   ] 用$.each(data)可取出
+					
+					
+						//此處因為line上說不demo 所以複製下面失焦狀態就好
+						
+						
+						
+						
+						
+					
+					
+				})
+				})
+				$("#stockNo").blur(function(){
+					$.getJSON("BackStageMgr",{"action":"balancesheet","stockno":$("#stockNo").val()},function(data){
+						console.log(data)
+						//此為資產負債表失焦後產生的狀態
+						//葉哲 data我擺在console 格式就是[ [1476,10503.... ],[1476,10502.....  ]   ] 用$.each(data)可取出
+						
+						
+						
+						
+						
+						
+						
+		
+					})
+				
+					$.getJSON("BackStageMgr",{"action":"incomestatement","stockno":$("#stockNo").val()},function(data){
+						console.log(data)
+						//此為損益表失焦後產生的狀態
+						//葉哲 data我擺在console 格式就是[ [1476,10503.... ],[1476,10502.....  ]   ] 用$.each(data)可取出
+					
+					
+					
+						
+						
+						
+						
+						
+						
+					
+					
+					})
+					
+					
+				})
+				
+				
 	
-			}
-	)
+			})
 	</script>
 <div class="h1 text-info text-bold">
 表格

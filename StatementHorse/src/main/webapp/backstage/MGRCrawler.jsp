@@ -23,15 +23,40 @@
 			function() {
 				$("#gobutton").click(function(){
 					//營收的jquery
-				$.get("BackStageMgr",{"action":"mgr","stockno":$("#stockNo").val(),"year":$("#yyyy").val(),"month":$("#month").val()},function(){
+				$.getJSON("BackStageMgr",{"action":"mgr","stockno":$("#stockNo").val(),"year":$("#yyyy").val(),"month":$("#month").val()},function(){
 				console.log("營收更新完成");
 				})
-// 				$.get("BackStageMgr",{"action":"financialstatements","stockno":$("#stockNo").val(),"year":$("#yyyy").val(),"season":$("#season").val()},function(){
-// 					console.log("財報更新完成");
-// 				})	
-				
+				$.getJSON("BackStageMgr",{"action":"mgrdemoclick","stockno":$("#stockNo").val()},function(data){
+						console.log(data)
+						//此為營收點擊後後產生的狀態
+						//葉哲 data我擺在console 格式就是[ [1476,201610.... ],[1476,201608.....  ]   ] 用$.each(data)可取出
+						
+						
+						
+						
+						
+						
+						
 				})
-			
+				})
+				$("#stockNo").blur(function(){
+					$.getJSON("BackStageMgr",{"action":"mgrdemoblur","stockno":$("#stockNo").val()},function(data){
+						console.log(data)
+						//此為營收失焦後產生的狀態
+						//葉哲 data我擺在console 格式就是[ [1476,201610.... ],[1476,201608.....  ]   ] 用$.each(data)可取出
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					})
+				})
 	
 			}
 	)

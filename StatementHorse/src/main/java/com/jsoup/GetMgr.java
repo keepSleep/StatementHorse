@@ -35,7 +35,7 @@ public class GetMgr {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		insertMgr(2016,9,2330);
+		insertMgr(2016,10,1476);
 
 	}
 
