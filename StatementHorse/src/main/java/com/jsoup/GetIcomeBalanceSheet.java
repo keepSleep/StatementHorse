@@ -205,7 +205,7 @@ public class GetIcomeBalanceSheet {
 	        balancesheetvo.setConsolidatedNetIncomeAttributedToStockholdersOfTheCompany(Consolidated_Net_Income_Attributed_to_Stockholders_of_the_Company);
 	        balancesheetvo.setTotalEquity(total_equity);
 	        
-	        balancesheetdao.insert(balancesheetvo);
+//	        balancesheetdao.insert(balancesheetvo);
 	        
 	        incomestatementvo.setStockVO(stockvo);
 	        incomestatementvo.setStatementDate(""+(year-1911)+"0"+season);
@@ -224,7 +224,7 @@ public class GetIcomeBalanceSheet {
 	        incomestatementvo.setCurrentProfitAndLoss(current_profit_and_loss);
 	        incomestatementvo.setEarningPerShare(earning_per_share);;
 	        
-	        incomestatementdao.insert(incomestatementvo);
+//	        incomestatementdao.insert(incomestatementvo);
 //	        System.out.println("Title is "+title.get(0).text()); //得到title tag的內容
 //	        System.out.print(happy.get(20).text()+",");
 //	        System.out.print(happy.get(21).text()+",");

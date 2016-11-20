@@ -29,7 +29,7 @@ public class FinancialStatementsService {
 		financialStatementsVO.setStatementDate(statementDate);
 		financialStatementsVO.setPostDate(postDate);
 		financialStatementsVO.setPostTime(postTime);
-		dao.insert(financialStatementsVO);
+		
 		
 		
 		
