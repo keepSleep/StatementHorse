@@ -93,10 +93,10 @@ public class MsgService {
 	}
 	
 	public List findbalancesheetbystockno(String Stockno) {
-		LinkedList list = new LinkedList();
 		LinkedList list1 = new LinkedList();
 		List<BalanceSheetVO> balancesheetvolist = msgdao.findbalancesheetbystockno(Stockno);
 		for(BalanceSheetVO bb:balancesheetvolist){
+			LinkedList list = new LinkedList();
 			list.add(bb.getStockVO().getStockNo());
 			list.add(bb.getStatementDate());
 			list.add(bb.getCurrentAssets());
@@ -111,17 +111,17 @@ public class MsgService {
 			list.add(bb.getOtherEquity());
 			list.add(bb.getConsolidatedNetIncomeAttributedToStockholdersOfTheCompany());
 			list.add(bb.getTotalEquity());		
+			list1.add(list);
 		}
-		list1.add(list);
 		
 		return list1;
 	}
 	
 	public List findincomestatementbystockno(String Stockno) {
-		LinkedList list = new LinkedList();
 		LinkedList list1 = new LinkedList();
 		List<IncomeStatementVO> incomestatementvolist = msgdao.findincomestatementbystockno(Stockno);
 		for(IncomeStatementVO aa:incomestatementvolist){
+			LinkedList list = new LinkedList();
 			list.add(aa.getStockVO().getStockNo());
 			list.add(aa.getStatementDate());
 			list.add(aa.getOperatingRevenue());
@@ -138,38 +138,41 @@ public class MsgService {
 			list.add(aa.getOci());
 			list.add(aa.getCurrentProfitAndLoss());
 			list.add(aa.getEarningPerShare());
+			list1.add(list);
 		}
-		list1.add(list);
 		
 		return list1;
 	}
 	
 	public List findmgrbystockno(String Stockno) {
-		LinkedList list = new LinkedList();
 		LinkedList list1 = new LinkedList();
 		List<MGRVO> mgrvolist = msgdao.findmgrbystockno(Stockno);
 		for(MGRVO aa:mgrvolist){
+			LinkedList list = new LinkedList();
 			list.add(aa.getStockVO().getStockNo());
 			list.add(aa.getRevenueDate());
 			list.add(aa.getRevenue());
 			list.add(aa.getPostDate());
+			list1.add(list);
 		}
-		list1.add(list);
 		
 		return list1;
 	}
 	
 	public List findmgrbystocknobyrevencedate(String Stockno) {
-		LinkedList list = new LinkedList();
+		
 		LinkedList list1 = new LinkedList();
 		List<MGRVO> mgrvolist = msgdao.findmgrbystocknobyrevencedate(Stockno);
+		
 		for(MGRVO aa:mgrvolist){
+			LinkedList list = new LinkedList();
 			list.add(aa.getStockVO().getStockNo());
 			list.add(aa.getRevenueDate());
 			list.add(aa.getRevenue());
 			list.add(aa.getPostDate());
+
+			list1.add(list);
 		}
-		list1.add(list);
 		
 		return list1;
 	}

@@ -3,51 +3,59 @@
 <script>
 	$(document).ready(
 			function() {
+				var table=$("#example-1").dataTable({
+					"aoColumns":[{"sTitle":"股號"},{"sTitle":"年月份"},{"sTitle":"營收"},{"sTitle":"公布日期"}],
+					"bDestroy" : true,
+					aLengthMenu: [
+						[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]
+					]
+				});
+				
 				$("#gobutton").click(function(){
 					//營收的jquery
 // 				$.getJSON("BackStageMgr",{"action":"mgr","stockno":$("#stockNo").val(),"year":$("#yyyy").val(),"month":$("#month").val()},function(){
 // 				console.log("營收更新完成");
 // 				})
-// 				$.getJSON("BackStageMgr",{"action":"mgrdemoclick","stockno":$("#stockNo").val()},function(data){
-// 						console.log(data)
-						//此為營收點擊後後產生的狀態
-						//葉哲 data我擺在console 格式就是[ [1476,201610.... ],[1476,201608.....  ]   ] 用$.each(data)可取出
-						
-						
-						
-						
-						
-						
-						
-// 				})
+
+
+				$.getJSON("BackStageMgr",{"action":"mgrdemoclick","stockno":$("#stockNo").val()},function(data){
+					console.log(data)
+	
+					var opt={
+							   "bJQueryUI":true,
+							   "aoColumns":[{"sTitle":"股號"},{"sTitle":"年月份"},{"sTitle":"營收"},{"sTitle":"公布日期"}],
+							   "aaData": data,
+							   "bDestroy" : true,
+							   aLengthMenu: [
+								[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]
+									]
+							 };         
+					table=$("#example-1").dataTable(opt);								
+					})
 				})
+				
+				
 				$("#stockNo").blur(function(){
-// 					$.getJSON("BackStageMgr",{"action":"mgrdemoblur","stockno":$("#stockNo").val()},function(data){
-// 						console.log(data)
-						//此為營收失焦後產生的狀態
-						//葉哲 data我擺在console 格式就是[ [1476,201610.... ],[1476,201608.....  ]   ] 用$.each(data)可取出
+					$.getJSON("BackStageMgr",{"action":"mgrdemoblur","stockno":$("#stockNo").val()},function(data){
+						
+						console.log(data)
+							var opt={
+							    "bJQueryUI":true,
+							    "aoColumns":[{"sTitle":"股號"},{"sTitle":"年月份"},{"sTitle":"營收"},{"sTitle":"公布日期"}],
+							    "aaData": data,
+							    "bDestroy" : true,
+							    aLengthMenu: [
+									[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]
+											]
+							        };         
+							table=$("#example-1").dataTable(opt);			
 						
 						
 						
 						
 						
-						
-						
-						
-						
-						
-						
-// 					})
+					})
 				})
-				var BS;
-				for(e=0;e<10;e++){
-					BS += "<tr>"
-				for(i=0;i<4;i++){
-					BS += "<td>" + i + "</td>"
-				}
-					BS += "</tr>"
-				}
-				$("#MGRbody").append(BS);
 			}
 	)
 	</script>
@@ -67,40 +75,11 @@
 						<button class="btn btn-info" id="gobutton">Go</button>
 				</div>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body" id="firstchild" >
+				
 					
-					<script type="text/javascript">
-					jQuery(document).ready(function($)
-					{
-						$("#example-1").dataTable({
-							aLengthMenu: [
-								[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]
-							]
-						});
-					});
-					</script>
-					
-					<div class="h2 text-info">月營收表</div>
-					<table id="example-1" class="table table-striped table-bordered" cellspacing="0" width="100%">
-						<thead>
-							<tr>
-								<th>股號</th>
-								<th>年月份</th>
-								<th>營收</th>
-								<th>公布日期</th>
-							</tr>
-						</thead>
-					
-						<tfoot>
-							<tr>
-								<th>股號</th>
-								<th>年月份</th>
-								<th>營收</th>
-								<th>公布日期</th>
-							</tr>
-						</tfoot>
-					
-						<tbody id="MGRbody"></tbody>
+					<div class="h2 text-info" >月營收表</div>
+					<table id="example-1" class="table table-striped table-bordered" cellspacing="0" width="100%">			
 					</table>
 				</div>
 			</div>
