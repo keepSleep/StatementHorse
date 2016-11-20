@@ -99,8 +99,8 @@
 					<li class="opened">
 						<a href="#"><i class="linecons-thumbs-up"></i><span class="title">爬蟲程式</span></a>
 						<ul>
-							<li><a href="#FS"><i class="linecons-money"></i><span class="title">月營收表爬蟲</span></a></li>
-							<li><a href="#MRG"><i class="linecons-doc"></i><span class="title">財務報表爬蟲</span></a></li>
+							<li><a href="#MRG"><i class="linecons-money"></i><span class="title">月營收表爬蟲</span></a></li>
+							<li><a href="#FS"><i class="linecons-doc"></i><span class="title">財務報表爬蟲</span></a></li>
 						</ul>
 					</li>
 	

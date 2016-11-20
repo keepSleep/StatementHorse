@@ -32,28 +32,22 @@
 	<!-- icon file ="WebContent/test01/assets/css/fonts/fontawesome/css/font-awesome.css" -->
 	<!-- icon file ="WebContent/test01/assets/css/fonts/linecons/css/linecons-codes.css" -->
 	<script>
+	$(document).ready(
+			function() {
+				$("#gobutton").click(function(){
+					//營收的jquery
+// 				$.get("BackStageMgr",{"action":"mgr","stockno":$("#stockNo").val(),"year":$("#yyyy").val(),"month":$("#MM").val()},function(){
+// 				console.log("營收更新完成");
+// 				})
+				$.get("BackStageMgr",{"action":"financialstatements","stockno":$("#stockNo").val(),"year":$("#yyyy").val(),"season":$("#season").val()},function(){
+					console.log("財報更新完成");
+				})	
+				
+				})
+			
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+			}
+	)
 	</script>
 </head>
 <body class="page-body">
@@ -118,7 +112,10 @@
 			<div class="col-sm-2">
 				<input type="text" class="form-control" id="dd" placeholder="dd" maxlength="2">
 			</div>
-			<button class="btn btn-info">Go</button>
+			<div class="col-sm-2">
+				<input type="text" class="form-control" id="season" placeholder="season" maxlength="2">
+			</div>
+			<button class="btn btn-info" id="gobutton">Go</button>
 		</div>
 	</div>
 	
