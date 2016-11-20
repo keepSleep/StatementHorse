@@ -34,7 +34,7 @@
 	<script>
 	$(function(){
 		var seachPage = $("#seachPage");	
-		seachPage.load("FSCrawler.jsp");
+		seachPage.load("MGRCrawler.jsp");
 		$("span[class='title']").parents("a").click(function(){
 			var clickObj = $(this).find("span").text();
 			if(clickObj == "月營收表爬蟲"){
