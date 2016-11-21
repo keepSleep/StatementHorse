@@ -71,7 +71,7 @@ font-size:18px;
 				});
 		//滑鼠移動會計科目動畫
 		$('dd').mouseover(over).mouseout(out);
-		var s1 = {'font-size':'20px'},
+		var s1 = {'font-size':'20px','cursor': 'pointer'},
 			s2 = {'font-size':'18px'};
 		function over(){
 			$(this).css(s1);
