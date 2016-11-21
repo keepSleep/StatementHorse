@@ -36,6 +36,7 @@ public class LoginFilter implements Filter {
 			} else {
 				HttpSession session = req.getSession();
 				session.setAttribute("target", req.getServletPath());
+				//換成首頁
 				RequestDispatcher rd = request.getRequestDispatcher("/login/login.jsp");
 				rd.forward(req, resp);
 			}
