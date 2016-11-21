@@ -54,7 +54,7 @@ table {
 				<!-- 三條線 結束 -->
 			</button>
 			<a class="navbar-link"
-				href="${pageContext.servletContext.contextPath}/MessageIndex.jsp">
+				href="${pageContext.servletContext.contextPath}/index.jsp">
 				<img
 				src="${pageContext.servletContext.contextPath}/picture/statementhourse.png"
 				class="img-circle" width=200 style="padding: 5px;">
@@ -215,7 +215,7 @@ table {
 			function() {
 				var last = 0;
 				var array;
-// 				setInterval("refreshnews()",5000);
+				setInterval("refreshnews()",5000);
 				$("#tg").click(function() {
 					$("#tg").attr("style", "color:#337ab7;width:65px")
 				})
