@@ -738,7 +738,7 @@ a:link {
 						"listNo" : $(this).val(),
 						"stock_no" : stockno,
 						"insert_or_delete" : "delete"
-					})
+					})                                                                                                                                                                                                                                                                                                                                                     
 				}
 			})
 			$("#show_mgr")
