@@ -71,7 +71,7 @@ font-size:18px;
 				});
 		//滑鼠移動會計科目動畫
 		$('dd').mouseover(over).mouseout(out);
-		var s1 = {'font-size':'20px'},
+		var s1 = {'font-size':'20px','cursor': 'pointer'},
 			s2 = {'font-size':'18px'};
 		function over(){
 			$(this).css(s1);
@@ -110,7 +110,8 @@ font-size:18px;
 		$('#clear').click(function() {
 			$('#simpleTable').empty().prepend('<thead id="Fhead"><td class="col-md-1"></td><td class="col-md-3">股票號碼</td><td name="tr">+增加會計科目</td></thead><tbody id="Fbody"><tr><td><a href="#" class="btn btn-danger">刪除</a></td><td><input type="text" name="stockText" maxlength="4"/></td><td name="tr"></td></tr></tbody>')
 			colNo = 0;
-			start = true;	
+			start = true;
+			$('dd').css(c2);
 		})
 		//自動查詢個股股名,增加到輸入方塊中
 		$('#simpleTable').on('blur','input[name="stockText"]',function(){

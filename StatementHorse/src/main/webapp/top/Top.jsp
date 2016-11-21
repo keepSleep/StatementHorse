@@ -54,7 +54,7 @@ table {
 				<!-- 三條線 結束 -->
 			</button>
 			<a class="navbar-link"
-				href="${pageContext.servletContext.contextPath}/MessageIndex.jsp">
+				href="${pageContext.servletContext.contextPath}/index.jsp">
 				<img
 				src="${pageContext.servletContext.contextPath}/picture/statementhourse.png"
 				class="img-circle" width=200 style="padding: 5px;">
@@ -190,7 +190,6 @@ table {
 									<tr>
 										<td colspan="3" align="center"><div
 												style="display: none; margin: 0px auto" id="followok">
-												<h3 >你已更新成功!!!</h3>
 											</div></td>
 									</tr>
 								</tbody>
@@ -216,7 +215,7 @@ table {
 			function() {
 				var last = 0;
 				var array;
-// 				setInterval("refreshnews()",5000);
+				setInterval("refreshnews()",5000);
 				$("#tg").click(function() {
 					$("#tg").attr("style", "color:#337ab7;width:65px")
 				})
@@ -255,7 +254,7 @@ table {
 						$("#setting111>tbody").append("<tr><td>"+value[0]+"</td><td><input type='checkbox' id='"+value[0]+"1' name='"+value[0]+"1'"+i+"></td><td><input type='checkbox' id='"+value[0]+"2' name='"+value[0]+"2'"+j+"></td></tr>")
 						$("#myModal").modal();
 						})
-						$("#setting111>tbody").append("<tr><td colspan='3' align='center'><div style='display: none; margin: 0px auto' id='followok'><h3>你已更新成功!!!</h3></div></td></tr>")
+						$("#setting111>tbody").append("<tr><td colspan='3' align='center'><div style=' margin: 0px auto' id='followok'></div></td></tr>")
 						}else{
 							$("#setting111>tbody").append("<tr><td colspan='3'><h3>您目前沒有追蹤股號，請至<a href='${pageContext.servletContext.contextPath}/GetTrackListing'>追蹤清單</a>新增</h3></td></tr>")
 							$("#myModal").modal();
@@ -266,6 +265,7 @@ table {
 
 				$("#updatemessage").click(
 						function() {
+						$("#followok").html("<img src='${pageContext.servletContext.contextPath}/picture/box.gif'>");
 // 							$("#followok").attr("style", "color:red")
 							var stockcheck1 = "";
 							for (var i = 0; i < last; i++) {
@@ -284,7 +284,8 @@ table {
 								"action" : "jquery_check",
 								"stockcheck1" :stockcheck1
 							}, function(data) {
-								$("#followok").attr("style", "color:red")
+								$("#followok>img").remove();
+								$("#followok").html("<h3 >你已更新成功!!!</h3>").attr("style", "color:red")
 
 							})
 

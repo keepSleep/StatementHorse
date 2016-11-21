@@ -78,6 +78,7 @@ a:link {
 					class="pull-right label label-default"></span> <span
 					style="margin-left: 650px">
 
+
 		</div>
 		<div class="col-md-7"></div>
 <!-- 		<div class="btn-group" class="col-md-2"> -->
