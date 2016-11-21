@@ -86,7 +86,22 @@ public class ToTableJson {
 				map.put("IncomeRatio",incomeRatio);
 				map.put("NetIncomeRatio",netIncomeRatio);
 				listAll.add(map);
-				}
+			}
+			if("income".equals(str)){
+				String date = element.getStatementDate();
+				Long revenue = element.getOperatingRevenue()/1000;
+				Long margain = element.getOperatingMargain()/1000;
+				Long income=element.getOperatingIncome()/1000;
+				Long oibt=element.getOibt()/1000;
+				Long netIncome = element.getNetIncome()/1000;
+				map.put("Date",date );
+				map.put("Revenue",revenue.toString());
+				map.put("Margain",margain.toString());
+				map.put("Income",income.toString());
+				map.put("Oibt",oibt.toString());
+				map.put("NetIncome",netIncome.toString());
+				listAll.add(map);
+			}
 		}
 		JSONArray list = new JSONArray(listAll);
 		return list;
