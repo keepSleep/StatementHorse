@@ -44,10 +44,10 @@ public class SearchMGR extends HttpServlet {
 		String listingNo = request.getParameter("ListingNo");
 		
 		//接收查詢變數
-//		String searchMGRNum = request.getParameter("searchMGRNum");
-//		int i = Integer.parseInt(searchMGRNum);
-//		int y = i + 10 ;
-//		int a = 0;
+		String searchNum = request.getParameter("searchNum");
+		
+		int i = 0;
+		int y = Integer.parseInt(searchNum);
 		
 		//使用到的 DAO
 		ListingDetailsHibernateDAO lddao = new ListingDetailsHibernateDAO();
@@ -68,13 +68,7 @@ public class SearchMGR extends HttpServlet {
 		List<Object[]> list = mgrdao.getByStockNoByShao(stockNoArrayList);
 		
 		for(Object[] aArray : list ){
-			
-//			if( a < i ){
-//				
-//				a++;
-//				
-//			}else{
-				
+	
 				Map m1 = new HashMap();
 				m1.put("StockNo", aArray[0]);
 				m1.put("StockName",aArray[1]);
@@ -82,10 +76,10 @@ public class SearchMGR extends HttpServlet {
 				m1.put("PostDate", aArray[4].toString());
 				l1.add(m1);
 				
-//				i++;
-//				if( i == y )
-//					break;
-//			}
+				i++;
+				if( i == y && y != 0)
+					break;
+			
 		}
 			
 

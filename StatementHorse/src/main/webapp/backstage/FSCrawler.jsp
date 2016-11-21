@@ -5,6 +5,7 @@
 			function() {
 				
 				$("#example-1").dataTable({
+					"sScrollX": "120%",
 					"aoColumns":[{"sTitle":"股號"},{"sTitle":"季度"},{"sTitle":"流動資產"},
 					             {"sTitle":"非流動資產"},{"sTitle":"總資產"},
 					             {"sTitle":"流動負債"},{"sTitle":"非流動負債"},
@@ -19,6 +20,7 @@
 				});
 				
 				$("#example-2").dataTable({
+					"sScrollX": "150%",
 					"aoColumns":[{"sTitle":"股號"},{"sTitle":"季度"},{"sTitle":"營業收入"}
 								,{"sTitle":"營業成本"},{"sTitle":"營業毛利"},{"sTitle":"營業毛利淨額"},
 								{"sTitle":"營業費用"},{"sTitle":"營業利益"},{"sTitle":"業外收入及支出"}
@@ -27,7 +29,7 @@
 								,{"sTitle":"基本每股盈餘"}],
 					"bDestroy" : true,
 					aLengthMenu: [
-						[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]
+						[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]
 					]
 				});
 				
@@ -44,6 +46,7 @@
 					console.log(data)
 					//此為資產負債表點擊後產生的狀態
 					var opt={
+						"sScrollX": "120%",
 						   "bJQueryUI":true,
 						   "aoColumns":[{"sTitle":"股號"},{"sTitle":"季度"},{"sTitle":"流動資產"},
 							             {"sTitle":"非流動資產"},{"sTitle":"總資產"},
@@ -66,6 +69,7 @@
 						console.log(data)
 						//此為損益表失焦後產生的狀態
 						var opt={
+							"sScrollX": "150%",
 							   "bJQueryUI":true,
 							   "aoColumns":[{"sTitle":"股號"},{"sTitle":"季度"},{"sTitle":"營業收入"}
 								,{"sTitle":"營業成本"},{"sTitle":"營業毛利"},{"sTitle":"營業毛利淨額"},
@@ -113,6 +117,7 @@
 						console.log(data)
 						//此為資產負債表失焦後產生的狀態
 						var opt={
+							"sScrollX": "120%",
 						   "bJQueryUI":true,
 						   "aoColumns":[{"sTitle":"股號"},{"sTitle":"季度"},{"sTitle":"流動資產"},
 							             {"sTitle":"非流動資產"},{"sTitle":"總資產"},
@@ -134,6 +139,7 @@
 						console.log(data)
 						//此為損益表失焦後產生的狀態
 						var opt={
+							"sScrollX": "150%",
 							   "bJQueryUI":true,
 							   "aoColumns":[{"sTitle":"股號"},{"sTitle":"季度"},{"sTitle":"營業收入"}
 								,{"sTitle":"營業成本"},{"sTitle":"營業毛利"},{"sTitle":"營業毛利淨額"},

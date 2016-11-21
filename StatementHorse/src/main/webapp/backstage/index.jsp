@@ -43,6 +43,9 @@
 			if(clickObj == "財務報表爬蟲"){
 				seachPage.load("FSCrawler.jsp");
 			}
+			if(clickObj == "歷史股價爬蟲"){
+				seachPage.load("PCrawler.jsp");
+			}
 			
 		})
 		
@@ -101,6 +104,7 @@
 						<ul>
 							<li><a href="#MRG"><i class="linecons-money"></i><span class="title">月營收表爬蟲</span></a></li>
 							<li><a href="#FS"><i class="linecons-doc"></i><span class="title">財務報表爬蟲</span></a></li>
+							<li><a href="#P"><i class="linecons-wallet"></i><span class="title">歷史股價爬蟲</span></a></li>
 						</ul>
 					</li>
 	

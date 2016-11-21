@@ -44,6 +44,12 @@ public class SearchFinancialStatements extends HttpServlet {
 		//接收使用者選擇的清單編號
 		String listingNo = request.getParameter("ListingNo");
 		
+		//接收查詢變數
+		String searchNum = request.getParameter("searchNum");
+				
+		int i = 0;
+		int y = Integer.parseInt(searchNum);
+		
 		//使用到的 DAO
 		ListingDetailsHibernateDAO lddao = new ListingDetailsHibernateDAO();
 		FinancialStatementsDAO fsdao = new FinancialStatementsDAO();
@@ -70,6 +76,10 @@ public class SearchFinancialStatements extends HttpServlet {
 			m1.put("StatementDate", aArray[2]);
 			m1.put("PostDate", aArray[3].toString());
 			l1.add(m1);
+			
+			i++;
+			if( i == y && y != 0)
+				break;
 			
 		}
 		
