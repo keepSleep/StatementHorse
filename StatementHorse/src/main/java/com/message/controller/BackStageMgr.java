@@ -42,8 +42,11 @@ public class BackStageMgr extends HttpServlet {
 			String stockno = request.getParameter("stockno");
 			String year = request.getParameter("year");
 			String month = request.getParameter("month");
-			System.out.println(stockno + ":" + year + "/" + month);
+//			System.out.println(stockno + ":" + year + "/" + month);
 			GetMgr.insertMgr(new Integer(year), new Integer(month), new Integer(stockno));
+			List list = msgdao.findmgrbystockno(stockno);
+			JSONArray json = new JSONArray(list);
+			out.print(json);
 		}
 
 		// 財報的爬蟲
@@ -67,14 +70,23 @@ public class BackStageMgr extends HttpServlet {
 				postDate=Date.valueOf((year+1)+"-03-01");
 				break;
 			}
-			
+			JSONArray json=null;
+			JSONArray json1=null;
 			try {
 				
 				financialstatementservice.addFinancialStatements(stockno, (year-1911)+"0"+season, postDate, "00:00:00");
 				
 				GetIcomeBalanceSheet.Parsing(year, season, stockno);
+				List list = msgdao.findbalancesheetbystockno(stockno.toString());
+				json = new JSONArray(list);
+				List list1 = msgdao.findincomestatementbystockno(stockno.toString());
+				json1 = new JSONArray(list);
+				out.print(json);
+				out.print(json1);
 			} catch (Exception e) {
 				e.printStackTrace();
+				json1 = new JSONArray();
+				out.print(json);
 			}
 		}
 		//資產負債表的顯示依時間
