@@ -71,7 +71,7 @@ a:link {
 
 <!-- 	<div class="container "> -->
 <!-- 		<div class="page-header"> -->
-		<div class="col-md-2">
+		<div class="col-md-3">
 			<p style="font-family: '微軟正黑體'; font-size: 26px; color: #00BBFF">
 				<a href="#" id="first_page"><i
 					class="fa fa-stack-exchange fa-fw"></i> 個股資料</a> <span
@@ -88,7 +88,7 @@ a:link {
 <!-- 						我的追蹤清單 <span></span> -->
 <!-- 				</button></a> <span></span> -->
 <!-- 		</div> -->
-		<div class="col-md-1"></div>
+<!-- 		<div class="col-md-1"></div> -->
 		<div class="btn-group" class="col-md-1">
 				<button type="button" class="btn btn-info btn-xs dropdown-toggle"
 					data-toggle="dropdown"style="font-family: '微軟正黑體'; font-size: 26px;"listing">

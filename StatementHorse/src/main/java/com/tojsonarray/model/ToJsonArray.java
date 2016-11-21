@@ -157,19 +157,33 @@ public class ToJsonArray {
 		JSONArray list = new JSONArray(listAll);
 		return list;
 	}
-//	public JSONArray PERToJson(Integer stock_no) {
-//
-//		List listAll = new LinkedList();
-//		PriceService svc=new PriceService();
-//		List list=svc.getPER(stock_no);
-//		for(Object element:list){
-//			
-//		}
-//
-//		JSONArray list = new JSONArray(listAll);
-//		return list;
-//
-//	}
+	public JSONArray PERToJson(Integer stock_no) {
+
+		List listAll = new LinkedList();
+		PriceService svc=new PriceService();
+		List<Object[]> list1=svc.getPER(stock_no);
+		for(Object[] aArray:list1){
+			List elementlist=new LinkedList();
+			String price_str=aArray[0].toString();
+			Double price=Double.parseDouble(price_str);
+			String date=aArray[1].toString();
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			long millionSeconds = 0;
+			try {
+				millionSeconds = sdf.parse(date).getTime();
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			elementlist.add(millionSeconds);
+			elementlist.add(price);
+			listAll.add(elementlist);
+		}
+		
+		JSONArray list = new JSONArray(listAll);
+		return list;
+
+	}
 	public JSONArray balanceSheetToJson(Integer stock_no,String str) {
 		List listAll = new LinkedList();
 		BalanceSheetService balanceSheetSvc=new BalanceSheetService();

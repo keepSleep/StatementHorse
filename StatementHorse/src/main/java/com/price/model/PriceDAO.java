@@ -141,7 +141,7 @@ public class PriceDAO implements PriceDAO_interface {
 	@Override
 	public List getStoredProcedure(Integer stockNo){
 		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
-		List list=null;
+		List<Object[]> list=null;
 		try{
 		session.beginTransaction();
 		String queryString="exec getPER :stock_no";
@@ -150,11 +150,13 @@ public class PriceDAO implements PriceDAO_interface {
 		query.setParameter("stock_no", stockNo);
 		
 		list=query.list();
-
+		
 		session.getTransaction().commit();
 		}catch(RuntimeException ex){
 			session.getTransaction().rollback();
 			throw ex;
+		}catch(Exception e){
+			
 		}
 		return list; 
 		
