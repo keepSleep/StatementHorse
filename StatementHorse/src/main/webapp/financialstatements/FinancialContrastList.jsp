@@ -25,7 +25,11 @@
 font-family:微軟正黑體;
 }
 dd{
-font-size:18px;
+font-size:22px;
+}
+table{
+font-size:22px;
+word-break: keep-all;
 }
 </style>
 
@@ -71,8 +75,8 @@ font-size:18px;
 				});
 		//滑鼠移動會計科目動畫
 		$('dd').mouseover(over).mouseout(out);
-		var s1 = {'font-size':'20px','cursor': 'pointer'},
-			s2 = {'font-size':'18px'};
+		var s1 = {'font-size':'26px','cursor': 'pointer'},
+			s2 = {'font-size':'22px'};
 		function over(){
 			$(this).css(s1);
 		}
@@ -91,7 +95,7 @@ font-size:18px;
 								//尚未點選會計科目時，增加的查詢列
 								$('#Fbody')
 										.append(
-												"<tr><td><a href='#' class='btn btn-danger'>刪除</a></td><td><input type='text' name='stockText' maxlength='4'/></td><td name='tr'></td></tr>");
+												"<tr><td><a href='#' class='btn btn-danger'>刪除</a></td><td><input type='text' name='stockText' maxlength='4' placeholder='請輸入股號'/></td><td name='tr'></td></tr>");
 							} else {
 								//已點選會計科目時，依據增加的欄位數量，增加的查詢列
 								var tds;
@@ -102,13 +106,13 @@ font-size:18px;
 													+ "'></td>";
 										})
 								$('#Fbody').append(
-												"<tr><td><a href='#' class='btn btn-danger'>刪除</a></td><td><input type='text' name='stockText' maxlength='4'/></td>"
+												"<tr><td><a href='#' class='btn btn-danger'>刪除</a></td><td><input type='text' name='stockText' maxlength='4' placeholder='請輸入股號'/></td>"
 												+ tds + "</tr>");
 							}
 						});
 		//清空整個頁面，還原到一開始進入的樣子
 		$('#clear').click(function() {
-			$('#simpleTable').empty().prepend('<thead id="Fhead"><td class="col-md-1"></td><td class="col-md-3">股票號碼</td><td name="tr">+增加會計科目</td></thead><tbody id="Fbody"><tr><td><a href="#" class="btn btn-danger">刪除</a></td><td><input type="text" name="stockText" maxlength="4"/></td><td name="tr"></td></tr></tbody>')
+			$('#simpleTable').empty().prepend('<thead id="Fhead"><td class="col-md-1"></td><td class="col-md-3">股票號碼</td><td name="tr">+增加會計科目</td></thead><tbody id="Fbody"><tr><td><a href="#" class="btn btn-danger">刪除</a></td><td><input type="text" name="stockText" maxlength="4" placeholder="請輸入股號"/></td><td name="tr"></td></tr></tbody>')
 			colNo = 0;
 			start = true;
 			$('dd').css(c2);
@@ -122,7 +126,7 @@ font-size:18px;
 						thing.attr("stockNo",thing.prop("value"))
 						if(thing.next().text() != stockName){
 							thing.next().remove()
-							thing.after("<h5>"+ stockName +"</h5>")
+							thing.after("<h3>"+ stockName +"</h3>")
 						}
 				})
 			}else{
@@ -162,7 +166,7 @@ font-size:18px;
 						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 							<div class="panel panel-default">
 								<div class="panel-heading" role="tab" id="headingOne"  style="background-color: lightblue">
-								<h2 class="panel-title" style="font-size:22px">
+								<h2 class="panel-title" style="font-size:26px">
 									<a data-toggle="collapse" data-parent="#accordion"
 										href="#collapseOne" aria-expanded="true"
 										aria-controls="collapseOne"> 資產負債表 </a>
@@ -184,14 +188,14 @@ font-size:18px;
 										<dd name="otherEquity">其他權益</dd>
 										<dd
 											name="consolidatedNetIncomeAttributedToStockholdersOfTheCompany">歸屬母公司業主之權益</dd>
-										<dd name="totalEquity">權益總計(資產-負債)</dd>
+										<dd name="totalEquity">權益總計</dd>
 									</dl>
 								</div>
 							</div>
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading" role="tab" id="headingTwo" style="background-color: lightblue">
-								<h2 class="panel-title" style="font-size:22px">
+								<h2 class="panel-title" style="font-size:26px">
 									<a class="collapsed" data-toggle="collapse"
 										data-parent="#accordion" href="#collapseTwo"
 										aria-expanded="true" aria-controls="collapseTwo"> 損益表 </a>
@@ -226,12 +230,12 @@ font-size:18px;
 					<div class="row-fluid">
 						<div class="col-md-2 ">
 							<input type="button" value="add" id="buttonAdd"
-								class="btn btn-success">
+								class="btn btn-success  btn-lg">
 						</div>
                     <!-- 年分下拉選單開始 -->
                     <!-- 尚未做動態 -->
                     	<div class="col-md-3">
-							<select name="SDSelect" class="form-control" >
+							<select name="SDSelect" class="form-control input-lg">
 <!--   								<option>105</option> -->
 <!-- 								<option>104</option> -->
 <!-- 								<option>103</option> -->
@@ -256,18 +260,18 @@ font-size:18px;
 					<div class="row-fluid">
 						<div class="table table-responsive ">
 							<p/>
-								<table id="simpleTable" class="table table-bordered">
+								<table id="simpleTable" class="table table-bordered text-center"> 
 									<thead id="Fhead">
 										<tr>
 											<td class="col-md-1"></td>
-											<td class="col-md-1">股票號碼</td>
+											<td class="col-md-1 text-left">股票號碼</td>
 											<td name="tr">+增加會計科目</td>
 										</tr>
 									</thead>
-									<tbody id="Fbody">
+									<tbody id="Fbody" class="text-right">
 										<tr>
-											<td><a href='#' class='btn btn-danger'>刪除</a></td>
-											<td><input type="text" name="stockText" maxlength="4"/></td>
+											<td><a href='#' class='btn btn-danger btn-lg'>刪除</a></td>
+											<td><input type="text" name="stockText" maxlength="4" placeholder="請輸入股號"/></td>
 											<td name="tr"></td>
 										</tr>
 									</tbody>
@@ -278,9 +282,9 @@ font-size:18px;
 							<div class="col-md-8"></div>
 							<div class="col-md-4">
 								<input type="button" value="clear" id="clear"
-									class="btn btn-success">
+									class="btn btn-success  btn-lg">
 								<input type="button" value="submit" id="submit"
-									class="btn btn-info">
+									class="btn btn-info  btn-lg">
 							</div>
 					</div>
 					
