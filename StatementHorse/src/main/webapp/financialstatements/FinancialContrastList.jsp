@@ -82,8 +82,8 @@ word-break: keep-all;
 	$(function() {
 		//輸入數字自動顯示提示
 		//自動完成
+		var stock = [];
 		$.getJSON("${pageContext.servletContext.contextPath}/GetStock",{},function(data) {
-			var stock = [];
 			$.each(data,function(){
 				var StockNo = this.StockNo;	
 				stock.push(StockNo.toString());
@@ -151,7 +151,7 @@ word-break: keep-all;
 								//尚未點選會計科目時，增加的查詢列
 								$('#Fbody')
 										.append(
-												"<tr><td><a href='#' class='btn btn-danger'>刪除</a></td><td><input type='text' name='stockText' maxlength='4' placeholder='請輸入股號'/></td><td name='tr'></td></tr>");
+												"<tr><td><a href='#' class='btn btn-danger btn-lg'>刪除</a></td><td><input type='text' name='stockText' maxlength='4' placeholder='請輸入股號'/></td><td name='tr'></td></tr>");
 							} else {
 								//已點選會計科目時，依據增加的欄位數量，增加的查詢列
 								var tds;
@@ -162,13 +162,15 @@ word-break: keep-all;
 													+ "'></td>";
 										})
 								$('#Fbody').append(
-												"<tr><td><a href='#' class='btn btn-danger'>刪除</a></td><td><input type='text' name='stockText' maxlength='4' placeholder='請輸入股號'/></td>"
+												"<tr><td><a href='#' class='btn btn-danger btn-lg'>刪除</a></td><td><input type='text' name='stockText' maxlength='4' placeholder='請輸入股號'/></td>"
 												+ tds + "</tr>");
 							}
+							$( "input[name='stockText']" ).css("width","150px").autocomplete({source: stock}).parents('td').addClass("text-left");
+							
 						});
 		//清空整個頁面，還原到一開始進入的樣子
 		$('#clear').click(function() {
-			$('#simpleTable').empty().prepend('<thead id="Fhead"><td class="col-md-1"></td><td class="col-md-3">股票號碼</td><td name="tr">+增加會計科目</td></thead><tbody id="Fbody"><tr><td><a href="#" class="btn btn-danger">刪除</a></td><td><input type="text" name="stockText" maxlength="4" placeholder="請輸入股號"/></td><td name="tr"></td></tr></tbody>')
+			$('#simpleTable').empty().prepend('<thead id="Fhead"><td class="col-md-1"></td><td class="col-md-3">股票號碼</td><td name="tr">+增加會計科目</td></thead><tbody id="Fbody"><tr><td><a href="#" class="btn btn-danger  btn-lg">刪除</a></td><td><input type="text" name="stockText" maxlength="4" placeholder="請輸入股號"/></td><td name="tr"></td></tr></tbody>')
 			colNo = 0;
 			start = true;
 			$('dd').css(c2);
@@ -292,23 +294,12 @@ word-break: keep-all;
                     <!-- 尚未做動態 -->
                     	<div class="col-md-3">
 							<select name="SDSelect" class="form-control input-lg">
-<!--   								<option>105</option> -->
-<!-- 								<option>104</option> -->
-<!-- 								<option>103</option> -->
-<!-- 						   		<option>102</option> -->
 							</select>
 						</div>
 					<!-- 年分下拉選單結束 -->
 					<!-- 季度下拉選單開始 -->
 					<!-- 尚未做動態 -->
 						<div class="col-md-3">
-<!-- 							<select class="form-control"> -->
-<!--   								<option>最新季度</option> -->
-<!-- 								<option>01</option> -->
-<!-- 								<option>02</option> -->
-<!-- 								<option>03</option> -->
-<!-- 						   	 <option>04</option> -->
-<!-- 							</select> -->
 						</div>
 						<div class="col-md-4"></div>
 					</div>
