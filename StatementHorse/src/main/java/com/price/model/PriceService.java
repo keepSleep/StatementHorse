@@ -67,7 +67,7 @@ public class PriceService {
 		
 	}
 	
-	public List getPER(Integer stockNo){
+	public List<Object[]> getPER(Integer stockNo){
 		List list=dao.getStoredProcedure(stockNo);
 		return list;
 	}
@@ -77,9 +77,13 @@ public class PriceService {
 	}
 //	public static  void main(String args[]){
 //		PriceService priceser=new PriceService();
-//		List list=priceser.getPER(3008);
-//		for(int i=0;i<list.size();i++){
-//			System.out.println(list.get(i));
+//		List<Object[]> list=priceser.getPER(3008);
+//		
+//		for(Object[] aArray:list){
+////			System.out.println(aArray.getClass());
+//				
+//				System.out.println(aArray[0]+","+aArray[1]);
+//			
 //		}
 //	}
 }

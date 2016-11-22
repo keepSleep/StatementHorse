@@ -168,13 +168,13 @@ public class ShowStockServlet extends HttpServlet {
 				out.print(list);
 				out.close();
 			}
-//			if ("PERjson".equals(json)) {
-//				PrintWriter out = resp.getWriter();
-//				ToJsonArray tojson = new ToJsonArray();
-//				JSONArray list = tojson.PERToJson(stockNo);
-//				out.print(list);
-//				out.close();
-//			}
+			if ("PERjson".equals(json)) {
+				PrintWriter out = resp.getWriter();
+				ToJsonArray tojson = new ToJsonArray();
+				JSONArray list = tojson.PERToJson(stockNo);
+				out.print(list);
+				out.close();
+			}
 			if ("operatingRevenuejson".equals(json)) {
 				PrintWriter out = resp.getWriter();
 				ToJsonArray tojson = new ToJsonArray();

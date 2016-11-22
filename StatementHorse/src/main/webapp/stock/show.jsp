@@ -71,7 +71,7 @@ a:link {
 
 <!-- 	<div class="container "> -->
 <!-- 		<div class="page-header"> -->
-		<div class="col-md-2">
+		<div class="col-md-3">
 			<p style="font-family: '微軟正黑體'; font-size: 26px; color: #00BBFF">
 				<a href="#" id="first_page"><i
 					class="fa fa-stack-exchange fa-fw"></i> 個股資料</a> <span
@@ -88,7 +88,7 @@ a:link {
 <!-- 						我的追蹤清單 <span></span> -->
 <!-- 				</button></a> <span></span> -->
 <!-- 		</div> -->
-		<div class="col-md-1"></div>
+<!-- 		<div class="col-md-1"></div> -->
 		<div class="btn-group" class="col-md-1">
 				<button type="button" class="btn btn-info btn-xs dropdown-toggle"
 					data-toggle="dropdown"style="font-family: '微軟正黑體'; font-size: 26px;"listing">
@@ -107,11 +107,13 @@ a:link {
 
 		</div>
 		</div>
+		<br>
+		<br>
 		<div class="row-fluid">
 <!-- 		<div style="width: 300px"> -->
 		<div class="nav col-md-3" >
 			<ul id="side-menu"
-				style="font-family: '微軟正黑體'; font-size: 26px;">
+				style="list-styleLfont-family: '微軟正黑體'; font-size: 26px;">
 
 				<li id="show_mgr"><a href="#"><i
 						class="fa fa-search-plus fa-fw"></i>公司最新動態<span class="active"></span></a>
@@ -134,7 +136,7 @@ a:link {
 
 			</ul>
 			</div>
-			<!-- 					</div> -->
+			
 
 			<!----------------------每頁不同從這裡開始----------------------------------------------------->
 			<!--個股資料-->
@@ -209,10 +211,10 @@ a:link {
 							<li><a href="#tab5info1" data-toggle="tab">本益比</a></li>
 						</ul>
 					</div>
-					<div class="panel-body" style="height: 730px">
+					<div class="panel-body" style="margin-bottom: 100px">
 						<div class="tab-content" id="container">
 							<div class="tab-pane fade in active" id="tab1info1">
-								<div id="tab1info" style="width: 730px"></div>
+								<div id="tab1info" style="width:730px"></div>
 								<div style="overflow-x: auto; padding-top: 30px">
 									<table border='3' bordercolor='#DCDCDC'
 										style="color: steelblue; font-family: '微軟正黑體'; font-size: 20px"
@@ -221,17 +223,17 @@ a:link {
 										<tbody></tbody>
 									</table>
 								</div>
-								<div style="padding-top: 30px">
-									<table style="font-family: '微軟正黑體'; font-size: 20px">
-										<tr>
-											<th Class="th">每月營收
-											<td>定義：企業因銷售產品或提供勞務而取得的各項收入 營業收入是企業尚未扣除任何成本和費用前的收入，
-												上市櫃公司強制每個月都得公佈，因此是財報中最即時的數據。 營收有淡旺季的特性，因此觀察月、季增率沒什麼意義，
-												投資人應把重點放在年增率的趨勢。</td>
-											</th>
-										</tr>
-									</table>
-								</div>
+<!-- 								<div style="padding-top: 30px"> -->
+<!-- 									<table style="font-family: '微軟正黑體'; font-size: 20px"> -->
+<!-- 										<tr> -->
+<!-- 											<th Class="th">每月營收 -->
+<!-- 											<td>定義：企業因銷售產品或提供勞務而取得的各項收入 營業收入是企業尚未扣除任何成本和費用前的收入， -->
+<!-- 												上市櫃公司強制每個月都得公佈，因此是財報中最即時的數據。 營收有淡旺季的特性，因此觀察月、季增率沒什麼意義， -->
+<!-- 												投資人應把重點放在年增率的趨勢。</td> -->
+<!-- 											</th> -->
+<!-- 										</tr> -->
+<!-- 									</table> -->
+<!-- 								</div> -->
 							</div>
 							<div class="tab-pane fade" id="tab2info1">
 								<div id="tab2info" style="width: 730px"></div>
@@ -297,7 +299,7 @@ a:link {
 							<li><a href="#tab6info_11" data-toggle="tab">損益表</a></li>
 						</ul>
 					</div>
-					<div class="panel-body" style="height: 630px">
+					<div class="panel-body" style="margin-bottom: 100px">
 						<div class="tab-content" id="container_1">
 							<div class="tab-pane fade in active" id="tab1info_11">
 								<div id="tab1info_1" style="width: 730px"></div>
@@ -382,10 +384,10 @@ a:link {
 							<li class="active"><a href="#tab1info_21" data-toggle="tab">流動資產</a></li>
 							<li><a href="#tab2info_21" data-toggle="tab">固定資產</a></li>
 							<li><a href="#tab3info_21" data-toggle="tab">總資產</a></li>
-							<li><a href="#tab4info_2" data-toggle="tab">資產表</a></li>
+							<li><a href="#tab4info_21" data-toggle="tab">資產表</a></li>
 						</ul>
 					</div>
-					<div class="panel-body" style="height: 630px">
+					<div class="panel-body" style="margin-bottom: 100px">
 						<div class="tab-content" id="container_2">
 							<div class="tab-pane fade in active" id="tab1info_21">
 								<div id="tab1info_2" style="width: 730px"></div>
@@ -420,7 +422,16 @@ a:link {
 									</table>
 								</div>
 							</div>
-							<div class="tab-pane fade" id="tab4info_2" style="width: 730px"></div>
+							<div class="tab-pane fade" id="tab4info_21" style="width: 730px">
+							<div id="tab4info_2" style="width: 730px"></div>
+								<div style="overflow-x: auto; padding-top: 30px">
+									<table border='3' bordercolor='#DCDCDC'
+										style="color: steelblue; font-family: '微軟正黑體'; font-size: 20px"
+										id="show_assetsall_table">
+										<thead style="background-color: lightblue"></thead>
+										<tbody></tbody>
+									</table>
+								</div></div>
 						</div>
 					</div>
 				</div>
@@ -440,7 +451,7 @@ a:link {
 							<li><a href="#tab5info_3" data-toggle="tab">負債表</a></li>
 						</ul>
 					</div>
-					<div class="panel-body" style="height: 630px">
+					<div class="panel-body" style="margin-bottom: 100px">
 						<div class="tab-content" id="container_3">
 							<div class="tab-pane fade in active" id="tab1info_31">
 								<div id="tab1info_3" style="width: 730px"></div>
@@ -504,7 +515,7 @@ a:link {
 							<li><a href="#tab2info_41" data-toggle="tab">流動比率</a></li>
 						</ul>
 					</div>
-					<div class="panel-body" style="height: 630px">
+					<div class="panel-body" style="margin-bottom: 100px">
 						<div class="tab-content" id="container_4">
 							<div class="tab-pane fade in active" id="tab1info_41">
 								<div id="tab1info_4" style="width: 730px"></div>
@@ -544,7 +555,7 @@ a:link {
 						<li class="active"><a href="#tab1info_51" data-toggle="tab">利潤比率</a></li>
 					</ul>
 				</div>
-				<div class="panel-body" style="height: 630px">
+				<div class="panel-body" style="margin-bottom: 100px">
 					<div class="tab-content" id="container_5">
 						<div class="tab-pane fade in active" id="tab1info_51">
 							<div id="tab1info_5" style="width: 730px"></div>
@@ -727,7 +738,7 @@ a:link {
 						"listNo" : $(this).val(),
 						"stock_no" : stockno,
 						"insert_or_delete" : "delete"
-					})
+					})                                                                                                                                                                                                                                                                                                                                                     
 				}
 			})
 			$("#show_mgr")
@@ -1042,6 +1053,32 @@ a:link {
 									});
 								});
 							})
+							//per_table
+								var myHead4 = $("#show_per_table>thead")
+								var myBody4 = $("#show_per_table>tbody")
+								myHead4.empty();
+								myBody4.empty();
+								//http://localhost:8080/StatementHorse/GetStockTableServlet?json=PERjson&stock_no=2330
+								$.getJSON("GetStockTableServlet", {
+									"json" : "PERjson",
+									"stock_no" : stockno
+								}, function(data) {
+									myHead4.append("<th>日期</th>")
+									myBody4.append("<td>本益比</td>")
+									$.each(data, function(key2, value2) {
+										var date = $("<th></th>").append(
+												value2.Date);
+										var price = $("<td></td>").append(
+												thousandComma(value2.Price));
+										myHead4.append(date)
+										myBody4.append(price)
+									})
+									$("#show_per_table>thead>th").addClass(
+											"th")
+									$("#show_per_table>tbody>td").addClass(
+											"td")
+
+								})
 
 			$("#show_incomestatement")
 					.click(
@@ -1538,7 +1575,7 @@ a:link {
 									});
 
 								})
-								//flow_table
+								//profit_table
 								//http://localhost:8080/StatementHorse/GetStockTableServlet?json=assetsjson&need=flow&stock_no=2330;
 								//http://localhost:8080/StatementHorse/GetStockTableServlet?json=incomestatementjson&need=profit&stock_no=	
 								
@@ -1555,13 +1592,13 @@ a:link {
 									$.each(data, function(key, value) {
 										
 										var date = $("<th></th>").append(
-												value.Date);
+												thousandComma(value.Date));
 										myHead6.append(date)
 									})
 									var Body1 = $("<tr></tr>").append("<td>季營收(單位:百萬)</td>")
 
 									$.each(data, function(key, value) {
-										var revenue1 = $("<td></td>").append(value.Revenue);
+										var revenue1 = $("<td></td>").append(thousandComma(value.Revenue));
 										Body1.append(revenue1);
 									})
 // 									
@@ -1571,7 +1608,7 @@ a:link {
 
 									$.each(data, function(key, value) {
 										var revenue2 = $("<td></td>").append(
-												value.Margain);
+												thousandComma(value.Margain));
 										Body2.append(revenue2);
 									})
 // 								
@@ -1580,7 +1617,7 @@ a:link {
 
 									$.each(data, function(key, value) {
 										var revenue3 = $("<td></td>").append(
-												value.Oibt);
+												thousandComma(value.Oibt));
 										Body3.append(revenue3);
 									})
 									var Body4 = $("<tr></tr>").append(
@@ -1588,7 +1625,7 @@ a:link {
 
 									$.each(data, function(key, value) {
 										var revenue4 = $("<td></td>").append(
-												value.NetIncome);
+												thousandComma(value.NetIncome));
 										Body4.append(revenue4);
 									})
 									
@@ -1640,6 +1677,58 @@ a:link {
 										series : [ data[1], data[2], data[3] ]
 									});
 								})
+								//統整表
+								var myHead6 = $("#show_assetsall_table>thead")
+								var myBody6 = $("#show_assetsall_table>tbody")
+								myHead6.empty();
+								myBody6.empty();
+								$.getJSON("GetStockTableServlet", {
+									"json" : "assetsjson",
+									"need" : "assetsall",
+									"stock_no" : stockno
+								}, function(data) {
+									myHead6.append("<th>年度/季度</th>")
+									$.each(data, function(key, value) {
+										
+										var date = $("<th></th>").append(
+												value.Date);
+										myHead6.append(date)
+									})
+									var Body1 = $("<tr></tr>").append("<td>流動資產(單位:百萬)</td>")
+
+									$.each(data, function(key, value) {
+										var revenue1 = $("<td></td>").append(thousandComma(value.CurrentAssets));
+										Body1.append(revenue1);
+									})
+// 									
+
+									var Body2 = $("<tr></tr>").append(
+											"<td>固定資產(單位:百萬)</td>")
+
+									$.each(data, function(key, value) {
+										var revenue2 = $("<td></td>").append(
+												thousandComma(value.FixedAssets));
+										Body2.append(revenue2);
+									})
+// 								
+									var Body3 = $("<tr></tr>").append(
+											"<td>總資產(單位:百萬)</td>")
+
+									$.each(data, function(key, value) {
+										var revenue3 = $("<td></td>").append(
+												thousandComma(value.Assets));
+										Body3.append(revenue3);
+									})
+									
+									myBody6.append(Body1,Body2,Body3);
+									$("#show_assetsall_table>thead>th").addClass(
+											"th")
+									$("#show_assetsall_table>tbody>tr>td")
+											.addClass("td")
+
+								})
+
+								
 								//流動資產
 								var fixedAssetsjsonurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=balancesheetjson&need=currentAssets&stock_no='
 										+ stockno;
@@ -1912,6 +2001,7 @@ a:link {
 											"td")
 
 								})
+								
 							})
 			$("#show_balancesheet_2")
 					.click(

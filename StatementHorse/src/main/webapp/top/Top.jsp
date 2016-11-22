@@ -108,7 +108,7 @@ table {
 				<c:if test="${!empty sessionScope.user}">
 					<li>
 						<a href="${pageContext.servletContext.contextPath}/GetTrackListing"><button type="button" class="btn btn-outline btn-warning btn-lg"
-							style="border: 0px blue none;margin-top:11px" id="logout">
+							style="border: 0px blue none;margin-top:3px" id="logout">
 							<i class="fa fa-user fa-fw"></i>${sessionScope.user.memberId}</button></a>
 					</li>
 				</c:if>
