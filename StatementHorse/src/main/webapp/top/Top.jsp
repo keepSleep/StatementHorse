@@ -215,7 +215,7 @@ table {
 			function() {
 				var last = 0;
 				var array;
-				setInterval("refreshnews()",5000);
+// 				setInterval("refreshnews()",5000);
 				$("#tg").click(function() {
 					$("#tg").attr("style", "color:#337ab7;width:65px")
 				})
@@ -323,7 +323,7 @@ table {
 											function(i, v) {
 												$("#newmessage")
 														.append(
-																"<li class='clearfix'><a style='cursor:pointer' href='${pageContext.servletContext.contextPath}/GetTrackListing'><div class='chat-body clearfix'><div class='header'><small class='pull-right text-muted'></small></div><p>"
+																"<li class='clearfix'><a style='cursor:pointer' href='${pageContext.servletContext.contextPath}/ChangeCreateTime'><div class='chat-body clearfix'><div class='header'><small class='pull-right text-muted'></small></div><p>"
 																		+ v
 																		+ "</p></div></a></li>");
 											})

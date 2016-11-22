@@ -8,6 +8,7 @@ import org.hibernate.classic.Session;
 import com.balancesheet.model.BalanceSheetVO;
 import com.incomestatement.model.IncomeStatementVO;
 import com.mgr.model.MGRVO;
+import com.price.model.PriceVO;
 
 import hibernate.util.HibernateUtil;
 
@@ -24,7 +25,8 @@ public class MsgHibernateDAO implements MsgDAO_interface {
 	//mgr
 	private static final String Get_MGR_BY_STOCKNO_ORDERBY_POST_DATE="from MGRVO where stock_no=? order by POST_DATE DESC";
 	private static final String Get_MGR_BY_STOCKNO_ORDERBY_REVENUE_DATE="from MGRVO where stock_no=? order by REVENUE_DATE DESC";
-	
+	//Price
+	private static final String Get_PRICE_BY_STOCKNO_ORDERBY_PRICE_DATE="from PriceVO where stock_no=? order by price_date DESC";
 	@Override
 	public void insert(MsgVO MsgVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -160,6 +162,23 @@ public class MsgHibernateDAO implements MsgDAO_interface {
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(Get_MGR_BY_STOCKNO_ORDERBY_REVENUE_DATE);
+			query.setParameter(0, Stockno);
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
+	}
+	
+	@Override
+	public List<PriceVO> findpricebystocknobypricedate(String Stockno) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		List<PriceVO> list = null;
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(Get_PRICE_BY_STOCKNO_ORDERBY_PRICE_DATE);
 			query.setParameter(0, Stockno);
 			list = query.list();
 			session.getTransaction().commit();
