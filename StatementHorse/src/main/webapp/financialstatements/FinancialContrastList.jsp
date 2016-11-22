@@ -31,6 +31,49 @@ table{
 font-size:22px;
 word-break: keep-all;
 }
+
+.ui-autocomplete {
+ position: absolute;
+ z-index: 1000;
+ cursor: default;
+ padding: 0;
+ margin-top: 2px;
+ list-style: none;
+ background-color: #ffffff;
+ border: 1px solid #cccccc
+ -webkit-border-radius: 5px;
+ -moz-border-radius: 5px;
+ border-radius: 5px;
+ -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+ -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+ box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.ui-autocomplete > li {
+  padding: 3px 20px;
+}
+.ui-autocomplete > li.ui-state-focus {
+  background-color: #dddddd;
+}
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
+.ui-autocomplete a  {
+ color: #555555;
+}
+.ui-autocomplete a:link  {
+ color: #555555;
+}
+.ui-autocomplete a:hover  {
+ color: #337ab7;
+ text-decoration: none;
+}
+.ui-autocomplete a:active  {
+ color: #555555;
+}
+.ui-autocomplete a:visited  {
+ color: #555555;
+}
 </style>
 
 
@@ -38,10 +81,18 @@ word-break: keep-all;
 <script>
 	$(function() {
 		//輸入數字自動顯示提示
-		var availableTags = ["1476","2330","3008"];
-		$( "input[name='stockText']" ).autocomplete({
-      		source: availableTags
-   		 });
+		//自動完成
+		$.getJSON("${pageContext.servletContext.contextPath}/GetStock",{},function(data) {
+			var stock = [];
+			$.each(data,function(){
+				var StockNo = this.StockNo;	
+				var StockName = this.StockName;	
+				stock.push(StockNo + "/" + StockName);
+			});
+			
+			$( "input[name='stockText']" ).css("width","150px").autocomplete({source: stock}).parents('td').addClass("text-left");
+			
+		});
 		
 		//載入AllStatementDates
 		$.getJSON("${pageContext.servletContext.contextPath}/financialstatements/financialstatements.do",{"action":"getAllSDs"},function(data){
