@@ -37,6 +37,12 @@ word-break: keep-all;
 
 <script>
 	$(function() {
+		//輸入數字自動顯示提示
+		var availableTags = ["1476","2330","3008"];
+		$( "input[name='stockText']" ).autocomplete({
+      		source: availableTags
+   		 });
+		
 		//載入AllStatementDates
 		$.getJSON("${pageContext.servletContext.contextPath}/financialstatements/financialstatements.do",{"action":"getAllSDs"},function(data){
 			var SDs = "";
