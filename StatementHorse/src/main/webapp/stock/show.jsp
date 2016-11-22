@@ -80,7 +80,7 @@ a:link {
 
 
 		</div>
-		<div class="col-md-7"></div>
+		<div class="col-md-6"></div>
 <!-- 		<div class="btn-group" class="col-md-2"> -->
 <%-- 				<a href="${pageContext.servletContext.contextPath}/GetTrackListing?"> --%>
 <!-- 				<button type="button" class="btn btn-info btn-xs dropdown-toggle" -->
@@ -88,10 +88,10 @@ a:link {
 <!-- 						我的追蹤清單 <span></span> -->
 <!-- 				</button></a> <span></span> -->
 <!-- 		</div> -->
-<!-- 		<div class="col-md-1"></div> -->
+		<div class="col-md-1"></div>
 		<div class="btn-group" class="col-md-1">
 				<button type="button" class="btn btn-info btn-xs dropdown-toggle"
-					data-toggle="dropdown"style="font-family: '微軟正黑體'; font-size: 26px;"listing">
+					data-toggle="dropdown"style="font-family: '微軟正黑體'; font-size: 26px;width:175px">
 					加入追蹤 
 <!-- 					<span class="caret"></span> -->
 				</button> 
@@ -102,8 +102,7 @@ a:link {
 							value="${TrackListingVO.listingNo}">${TrackListingVO.listingName}</li>
 					</c:forEach>
 				</ul>
-<!-- 		</div> -->
-<!-- 				</span> -->
+
 
 		</div>
 		</div>
@@ -113,7 +112,7 @@ a:link {
 <!-- 		<div style="width: 300px"> -->
 		<div class="nav col-md-3" >
 			<ul id="side-menu"
-				style="list-styleLfont-family: '微軟正黑體'; font-size: 26px;">
+				style="list-style:none;font-family: '微軟正黑體'; font-size: 26px;">
 
 				<li id="show_mgr"><a href="#"><i
 						class="fa fa-search-plus fa-fw"></i>公司最新動態<span class="active"></span></a>
@@ -144,7 +143,7 @@ a:link {
 			<div class="col-md-9">
 			<table border='3 bordercolor='
 				black'
-				style="text-indent: 20px; width: 800px; height: 500px; display:; font-family: '微軟正黑體'; font-size: 26px; margin-bottom: 200px"
+				style="text-indent: 20px; width: 788px; height: 500px; display:; font-family: '微軟正黑體'; font-size: 26px; margin-bottom: 200px"
 				id="show_stock" >
 				<tr>
 					<td style="background-color: lightblue">股號</td>
