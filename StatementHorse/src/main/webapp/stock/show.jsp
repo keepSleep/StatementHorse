@@ -448,7 +448,7 @@ a:link {
 							<li><a href="#tab2info_31" data-toggle="tab">長期負債</a></li>
 							<li><a href="#tab3info_31" data-toggle="tab">淨值</a></li>
 							<li><a href="#tab4info_31" data-toggle="tab">總負債+淨值</a></li>
-							<li><a href="#tab5info_3" data-toggle="tab">負債表</a></li>
+							<li><a href="#tab5info_31" data-toggle="tab">負債表</a></li>
 						</ul>
 					</div>
 					<div class="panel-body" style="margin-bottom: 100px">
@@ -497,7 +497,17 @@ a:link {
 									</table>
 								</div>
 							</div>
-							<div class="tab-pane fade" id="tab5info_3" style="width: 730px"></div>
+							<div class="tab-pane fade" id="tab5info_31">
+							<div id="tab5info_3" style="width: 730px"></div>
+								<div style="overflow-x: auto; padding-top: 30px">
+									<table border='3' bordercolor='#DCDCDC'
+										style="color: steelblue; font-family: '微軟正黑體'; font-size: 20px"
+										id="show_debt_table">
+										<thead style="background-color: lightblue"></thead>
+										<tbody></tbody>
+									</table>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -1592,7 +1602,7 @@ a:link {
 									$.each(data, function(key, value) {
 										
 										var date = $("<th></th>").append(
-												thousandComma(value.Date));
+												value.Date);
 										myHead6.append(date)
 									})
 									var Body1 = $("<tr></tr>").append("<td>季營收(單位:百萬)</td>")
@@ -2444,6 +2454,67 @@ a:link {
 									});
 
 								})
+								
+								//負債統整表
+								var myHead6 = $("#show_debt_table>thead")
+								var myBody6 = $("#show_debt_table>tbody")
+								myHead6.empty();
+								myBody6.empty();
+								$.getJSON("GetStockTableServlet", {
+									"json" : "assetsjson",
+									"need" : "debt",
+									"stock_no" : stockno
+								}, function(data) {
+									myHead6.append("<th>年度/季度</th>")
+									$.each(data, function(key, value) {
+										
+										var date = $("<th></th>").append(
+												value.Date);
+										myHead6.append(date)
+									})
+									var Body1 = $("<tr></tr>").append("<td>季營收(單位:百萬)</td>")
+
+									$.each(data, function(key, value) {
+										var revenue1 = $("<td></td>").append(thousandComma(value.CurrentLiabilities));
+										Body1.append(revenue1);
+									})
+// 									
+
+									var Body2 = $("<tr></tr>").append(
+											"<td>季毛利(單位:百萬)</td>")
+
+									$.each(data, function(key, value) {
+										var revenue2 = $("<td></td>").append(
+												thousandComma(value.LongTermLiabilities));
+										Body2.append(revenue2);
+									})
+// 								
+									var Body3 = $("<tr></tr>").append(
+											"<td>稅前淨利(單位:百萬)</td>")
+
+									$.each(data, function(key, value) {
+										var revenue3 = $("<td></td>").append(
+												thousandComma(value.Net));
+										Body3.append(revenue3);
+									})
+									var Body4 = $("<tr></tr>").append(
+											"<td>稅後淨利(單位:百萬)</td>")
+
+									$.each(data, function(key, value) {
+										var revenue4 = $("<td></td>").append(
+												thousandComma(value.Assets));
+										Body4.append(revenue4);
+									})
+									
+									myBody6.append(Body1,Body2,Body3,Body4);
+									$("#show_debt_table>thead>th").addClass(
+											"th")
+									$("#show_debt_table>tbody>tr>td")
+											.addClass("td")
+
+								})
+						
+
 
 							})
 
