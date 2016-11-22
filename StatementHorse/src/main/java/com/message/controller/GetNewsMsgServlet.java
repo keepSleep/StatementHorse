@@ -44,7 +44,7 @@ public class GetNewsMsgServlet extends HttpServlet {
 
 			// System.out.println(member_id);
 			// 傳入追蹤者的登入時間
-			java.sql.Timestamp logintime = (java.sql.Timestamp) membervo.getCreatetime();
+			java.util.Date logintime = (java.util.Date) membervo.getCreatetime();
 			// System.out.println(logintime);
 			// 取得會員追蹤的股號
 			List<Integer> memberstockno = msgservicedao.findStockNo(member_id);

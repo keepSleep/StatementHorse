@@ -15,9 +15,9 @@
 					if($("#stockNo").val().trim()!=""&&$("#yyyy").val().trim()!=""&&$("#month").val().trim()!=""){
 					$("#picture").html("<img src='${pageContext.servletContext.contextPath}/picture/ring.gif'>")
 					//營收的jquery	
-				$.getJSON("BackStageMgr",{"action":"mgr","stockno":$("#stockNo").val(),"year":$("#yyyy").val(),"month":$("#month").val()},function(){
+				$.getJSON("BackStageMgr",{"action":"price","stockno":$("#stockNo").val(),"year":$("#yyyy").val(),"month":$("#month").val(),"day":$("#dd").val()},function(){
 		
-					$.getJSON("BackStageMgr",{"action":"mgrdemoclick","stockno":$("#stockNo").val()},function(data){
+					$.getJSON("BackStageMgr",{"action":"priceblur","stockno":$("#stockNo").val()},function(data){
 						console.log(data)
 		
 						var opt={
@@ -54,7 +54,7 @@
 				})
 				
 				$("#stockNo").blur(function(){
-					$.getJSON("BackStageMgr",{"action":"mgrdemoblur","stockno":$("#stockNo").val()},function(data){
+					$.getJSON("BackStageMgr",{"action":"priceblur","stockno":$("#stockNo").val()},function(data){
 						
 						console.log(data)
 							var opt={

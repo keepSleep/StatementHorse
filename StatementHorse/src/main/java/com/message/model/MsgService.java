@@ -13,6 +13,7 @@ import com.member.model.MemberHibernateDAO;
 import com.member.model.MemberVO;
 import com.messagelists.model.MsgListVO;
 import com.mgr.model.MGRVO;
+import com.price.model.PriceVO;
 import com.stock.model.StockVO;
 import com.tracklisting.model.TrackListingHibernateDAO;
 import com.tracklisting.model.TrackListingVO;
@@ -171,6 +172,24 @@ public class MsgService {
 			list.add(aa.getRevenue());
 			list.add(aa.getPostDate());
 
+			list1.add(list);
+		}
+		
+		return list1;
+	}
+	
+	public List findpricebystocknobypricedate(String Stockno) {
+		LinkedList list1 = new LinkedList();
+		List<PriceVO> mgrvolist = msgdao.findpricebystocknobypricedate(Stockno);
+		for(PriceVO aa:mgrvolist){
+			LinkedList list = new LinkedList();
+			list.add(aa.getStockVO().getStockNo());
+			list.add(aa.getPriceDate());
+			list.add(aa.getOpenPrice());
+			list.add(aa.getClosePrice());
+			list.add(aa.getHighestPrice());
+			list.add(aa.getLowestPrice());
+			list.add(aa.getQuantity());
 			list1.add(list);
 		}
 		

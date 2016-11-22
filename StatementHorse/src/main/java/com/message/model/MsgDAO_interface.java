@@ -6,6 +6,7 @@ import java.util.List;
 import com.balancesheet.model.BalanceSheetVO;
 import com.incomestatement.model.IncomeStatementVO;
 import com.mgr.model.MGRVO;
+import com.price.model.PriceVO;
 
 public interface MsgDAO_interface {
 		public void insert(MsgVO MsgVO);
@@ -18,4 +19,5 @@ public interface MsgDAO_interface {
 		public List<IncomeStatementVO> findincomestatementbystockno(String Stockno);
 		public List<MGRVO> findmgrbystockno(String Stockno);
 		public List<MGRVO> findmgrbystocknobyrevencedate(String Stockno);
+		public List<PriceVO> findpricebystocknobypricedate(String Stockno);
 }
