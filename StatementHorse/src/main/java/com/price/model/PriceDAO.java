@@ -26,6 +26,7 @@ public class PriceDAO implements PriceDAO_interface {
 			"from PriceVO where stock_no=:stockVO order by Price_Date ";
 	private static final String DELETE_BY_STOCKNO=
 			"delete from PriceVO where stock_no=:stockVO";
+
 	@Override
 	public void insert(PriceVO priceVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -135,6 +136,29 @@ public class PriceDAO implements PriceDAO_interface {
 			throw ex;
 		}
 		return list;
+		
+	}
+	@Override
+	public List getStoredProcedure(Integer stockNo){
+		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
+		List<Object[]> list=null;
+		try{
+		session.beginTransaction();
+		String queryString="exec getPER :stock_no";
+//		Query query=session.createSQLQuery(queryString);
+		Query query=session.getNamedQuery("getPER");
+		query.setParameter("stock_no", stockNo);
+		
+		list=query.list();
+		
+		session.getTransaction().commit();
+		}catch(RuntimeException ex){
+			session.getTransaction().rollback();
+			throw ex;
+		}catch(Exception e){
+			
+		}
+		return list; 
 		
 	}
 	

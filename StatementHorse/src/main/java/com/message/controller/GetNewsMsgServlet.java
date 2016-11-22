@@ -69,7 +69,7 @@ public class GetNewsMsgServlet extends HttpServlet {
 				if (fsmessage != null) {
 					for (FinancialStatementsVO FinancialStatementsVO : fsmessage) {
 						newmessage.add(FinancialStatementsVO.getStockNo().toString() + "於"
-								+ FinancialStatementsVO.getPostDate() + " " + FinancialStatementsVO.getPostTime() + "發佈"
+								+ FinancialStatementsVO.getPostDate().toString().substring(0,10) + " " + FinancialStatementsVO.getPostTime() + "發佈"
 								+ FinancialStatementsVO.getStatementDate().substring(0, 3) + "年第"
 								+ FinancialStatementsVO.getStatementDate().substring(4) + "季的財報更新");
 					}
@@ -77,7 +77,7 @@ public class GetNewsMsgServlet extends HttpServlet {
 				if (mgmessage != null) {
 					for (MGRVO mrgvo : mgmessage) {
 						newmessage.add(mrgvo.getStockVO().getStockNo() + "於" + mrgvo.getPostDate() + "發佈"
-								+ mrgvo.getRevenueDate().substring(0, 4) + "年第" + mrgvo.getRevenueDate().substring(5)
+								+ mrgvo.getRevenueDate().substring(0, 4) + "年第" + mrgvo.getRevenueDate().substring(4,6)
 								+ "月營收");
 					}
 				}

@@ -1,18 +1,13 @@
 package com.message.model;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.classic.Session;
 
-import com.dividend.model.DividendVO;
-import com.listingdetails.model.ListingDetailsVO;
-import com.member.model.MemberVO;
-import com.messagelists.model.MsgListVO;
-import com.stocknews.model.StockNewsVO;
-import com.tracklisting.model.TrackListingVO;
+import com.balancesheet.model.BalanceSheetVO;
+import com.incomestatement.model.IncomeStatementVO;
+import com.mgr.model.MGRVO;
 
 import hibernate.util.HibernateUtil;
 
@@ -22,6 +17,14 @@ public class MsgHibernateDAO implements MsgDAO_interface {
 	private static final String GET_LISTNO = "from MsgVO where member_id=? and stock_no=?";
 	private static final String GET_STOCKNO_BY_MEMBERID = "from MsgVO where member_id=?";
 
+	//balancesheetVO
+	private static final String GET_BALANCESHEET_BY_STOCKNO_ORDERBY_STATEMENTDATE="from BalanceSheetVO where stock_no=? order by statement_date DESC";
+	//incomestatement
+	private static final String GET_INCOMESTATEMENT_BY_STOCKNO_ORDERBY_STATEMENTDATE="from IncomeStatementVO where stock_no=? order by statement_date DESC";
+	//mgr
+	private static final String Get_MGR_BY_STOCKNO_ORDERBY_POST_DATE="from MGRVO where stock_no=? order by POST_DATE DESC";
+	private static final String Get_MGR_BY_STOCKNO_ORDERBY_REVENUE_DATE="from MGRVO where stock_no=? order by REVENUE_DATE DESC";
+	
 	@Override
 	public void insert(MsgVO MsgVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -99,13 +102,87 @@ public class MsgHibernateDAO implements MsgDAO_interface {
 		return list;
 	}
 
+	@Override
+	public List<BalanceSheetVO> findbalancesheetbystockno(String Stockno) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		List<BalanceSheetVO> list = null;
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GET_BALANCESHEET_BY_STOCKNO_ORDERBY_STATEMENTDATE);
+			query.setParameter(0, Stockno);
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
+	}
+	
+	@Override
+	public List<IncomeStatementVO> findincomestatementbystockno(String Stockno) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		List<IncomeStatementVO> list = null;
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GET_INCOMESTATEMENT_BY_STOCKNO_ORDERBY_STATEMENTDATE);
+			query.setParameter(0, Stockno);
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
+	}
+	
+	@Override
+	public List<MGRVO> findmgrbystockno(String Stockno) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		List<MGRVO> list = null;
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(Get_MGR_BY_STOCKNO_ORDERBY_POST_DATE);
+			query.setParameter(0, Stockno);
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
+	}
+	
+	@Override
+	public List<MGRVO> findmgrbystocknobyrevencedate(String Stockno) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		List<MGRVO> list = null;
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(Get_MGR_BY_STOCKNO_ORDERBY_REVENUE_DATE);
+			query.setParameter(0, Stockno);
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
+	}
+	
+	
 	public static void main(String[] args) {
 		MsgHibernateDAO msgdao = new MsgHibernateDAO();
-		MsgVO msgvo1 = new MsgVO();
-		MsgListVO msgListVO = new MsgListVO();
-		MemberVO memberVO = new MemberVO();
-		memberVO.setMemberId("Charizard");
-		msgvo1.setMemberVO(memberVO);
+		List<BalanceSheetVO> list = msgdao.findbalancesheetbystockno("1476");
+		for(BalanceSheetVO aa :list){
+			System.out.println(aa.getStockVO().getStockNo());
+			System.out.println(aa.getStatementDate());
+		}
+//		MsgVO msgvo1 = new MsgVO();
+//		MsgListVO msgListVO = new MsgListVO();
+//		MemberVO memberVO = new MemberVO();
+//		memberVO.setMemberId("Charizard");
+//		msgvo1.setMemberVO(memberVO);
 		// msgListVO.setListNo(1);
 		// msgvo1.setMsgListVO(msgListVO);;
 		// msgvo1.setMemberVO(memberVO);
@@ -131,20 +208,20 @@ public class MsgHibernateDAO implements MsgDAO_interface {
 		// System.out.println();
 
 		// ---------------查詢一個會員有追蹤哪寫股票-----------------------
-		List<MsgVO> list = msgdao.findStockNo(msgvo1.getMemberVO().getMemberId());
-		for (MsgVO msg : list) {
-			System.out.print(msg.getStockVO().getStockNo() + ",");
-			Set<DividendVO> dividens = msg.getStockVO().getDividends();
-			for (DividendVO dividen : dividens) {
-				System.out.print(dividen.getDividend()+",");
-			}
-			System.out.println();
-
-			// System.out.print(msg.getMsgListVO().getListName()+",");
-			// System.out.print(msg.getMsgListVO().getListNo());
-
-			System.out.println();
-		}
+//		List<MsgVO> list = msgdao.findStockNo(msgvo1.getMemberVO().getMemberId());
+//		for (MsgVO msg : list) {
+//			System.out.print(msg.getStockVO().getStockNo() + ",");
+//			Set<DividendVO> dividens = msg.getStockVO().getDividends();
+//			for (DividendVO dividen : dividens) {
+//				System.out.print(dividen.getDividend()+",");
+//			}
+//			System.out.println();
+//
+//			// System.out.print(msg.getMsgListVO().getListName()+",");
+//			// System.out.print(msg.getMsgListVO().getListNo());
+//
+//			System.out.println();
+//		}
 
 		// ----------------查詢多個------------------------------------
 		// List<MsgVO> list = msgdao.getAll();

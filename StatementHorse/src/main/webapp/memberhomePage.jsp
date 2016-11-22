@@ -55,7 +55,20 @@
 
  <br>
  <input type="text" placeholder="新增追蹤清單" name="createListingText" style="width: 150px ; height: 25px">
- <input type="button" value="新增" name="createListing" style="height: 25px">
+ <input type="button" value="新增" name="createListing" style="height: 25px"><br>
+ <br>
+ 
+  <fieldset>
+    <label>資料顯示筆數</label>
+    <label for="radio-1">10</label>
+    <input type="radio" name="radio-1" value="10" id="radio-1" checked>
+    <label for="radio-2">50</label>
+    <input type="radio" name="radio-1" value="50" id="radio-2">
+    <label for="radio-3">100</label>
+    <input type="radio" name="radio-1" value="100" id="radio-3">
+    <label for="radio-4">全部</label>
+    <input type="radio" name="radio-1" value="0" id="radio-4">
+  </fieldset>
 
 </div>
 
@@ -77,15 +90,17 @@
   <div id="tabs-4" name="div1"></div>
 <!--   <div id="tabs-5" name="div1"></div> -->
 <!--   <div id="tabs-6" name="div1"></div> -->
+
+<!-- <input type="button" id="tsetbutton" value="showmore"> -->
   
 </div>
 
 <div id="dialog-1" title="設定" style="display:none">
-  
-  <input type="text" name="changeNameText">
-  <input type="button" value="修改追蹤清單名稱" name="changeName"><br>
-  <input type="button" value="刪除追蹤清單" name="deleteListing">
-  
+  <br>
+  <input type="text" name="changeNameText" placeholder="修改追蹤清單名稱">
+  <input type="button" value="修改" name="changeName"><br>
+  <br>
+  <input type="button" value="刪除追蹤清單" name="deleteListing"> 
 </div>
 
 <!-- 匯入需要的檔案 -->
@@ -98,7 +113,6 @@
 $( function() {
     $( "#accordion" ).accordion({heightStyle: "content"});
     $( "#tabs" ).tabs();
-    
     });
     
 //點選清單展開明細
@@ -109,7 +123,7 @@ $(function() {
 	var btnc = $('input[name="chooesList"]');
 	var btncn = $('input[name="changeName"]');
 	var btndl = $('input[name="deleteListing"]');
-	var btncl = $('input[name="createListing"]');	
+	var btncl = $('input[name="createListing"]');
 			
 	//點擊設定
 	btnc.click(function(){
@@ -117,7 +131,9 @@ $(function() {
 		var tlno = $(this).attr("id");
 		var mId = $('form[id*="createText"]').attr("name");
 
-		$( "#dialog-1" ).dialog({			
+		$( "#dialog-1" ).dialog({
+			 height: 200,
+			 width: 300,
 			 draggable: false,
 			 modal: true,
 			 beforeClose: function( event, ui ) {
@@ -125,7 +141,7 @@ $(function() {
 				  mId = "";	
 				  $('input[name="changeNameText"]').val("");
                },
-		});
+		}).prev(".ui-dialog-titlebar").css("background","lightblue");
 		
 		event.stopPropagation();
 		
@@ -137,6 +153,7 @@ $(function() {
 			$.get("ChangeName?",{"listingName":tlName,"memberId":mId,"listingNo":tlno},function(data) {
 				alert(data);
 				
+				if(data=="修改追蹤清單名稱成功")
 				location.reload();
 
 				});
@@ -148,6 +165,7 @@ $(function() {
 			$.get("DeleteListing?",{"listingNo":tlno,"memberId":mId},function(data) {
 				alert(data);
 				
+				if(data=="刪除追蹤清單成功")
 				location.reload();
 
 				});
@@ -180,15 +198,86 @@ $(function() {
 		$('form[id*="createText"]').empty();
 		$('input[name="stockNo"]').empty();
 		$('div[name="div1"]').empty();
+		
+		 //checkbox　radio
+	    var searchNum =$("input[name='radio-1']:checked").val();
+	    
+	    $("input[name='radio-1']").click(function(){
+	    	
+	    	var searchNum =$("input[name='radio-1']:checked").val();
+	    	$('div[name="div1"]').empty();
+	    	
+			//查詢新聞		
+			$.getJSON("SearchNews?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
+
+//					var jsonobj = eval("(" + data + ")");
+
+				$.each(data,function(){
+
+//					var StockNo = this.StockNo;
+					var NewsDate = this.NewsDate;	
+					var NewsTitle = this.NewsTitle;	
+					var NewsWebaddress = this.NewsWebaddress;
+					
+
+					$('#tabs-2').append( '<a href="' + NewsWebaddress + '"Target="_blank" style="text-decoration:none;"><div style="border:2px #d0d0d0 solid ; padding:10px ; margin:1px 0px"><h5>' + NewsTitle + ' (' + NewsDate + ')' + '</h5></div></a>');				
+//	 				$('#tabs-2').append( '<a href="' + NewsWebaddress + '"Target="_blank">' + NewsTitle + ' (' + NewsDate + ')</a><br>');
+//	 				$('#tabs-1').append( '<a href="' + NewsWebaddress + '"Target="_blank">' + NewsTitle + ' (' + NewsDate + ')</a><br>');
+			
+					});
+			
+			});
+	    	
+	    	//查詢月營收			
+			$.getJSON("SearchMGR?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
+				
+				$.each(data,function(){
+					
+					var StockNo = this.StockNo;
+					var StockName = this.StockName;
+					var RevenueDate = this.RevenueDate;	
+//					var Revenue = this.Revenue;	
+					var PostDate = this.PostDate;	
+					
+					$('#tabs-3').append( '<a href="https://www.google.com.tw/" Target="_blank" style="text-decoration:none;"><div style="border:2px #d0d0d0 solid ; padding:10px ; margin:1px 0px"><h5>' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收' + ' (' + PostDate + ')' +'</h5></div></a>');
+//	 				$('#tabs-3').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收報表</a><br>');
+//	 				$('#tabs-1').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收報表</a><br>');
+			
+					});
+			
+			});
+	    	
+			//查詢財務報表	
+			$.getJSON("SearchFinancialStatements?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
+				
+				$.each(data,function(){
+					
+					var StockNo = this.StockNo;
+					var StockName = this.StockName;
+					var StatementDate = this.StatementDate;
+					var PostDate = this.PostDate;
+//	 				var PostTime = this.PostTime;
+					
+					$('#tabs-4').append( '<a href="https://www.google.com.tw/" Target="_blank" style="text-decoration:none;"><div style="border:2px #d0d0d0 solid ; padding:10px ; margin:1px 0px"><h5>' + StockNo + ' ' + StockName + ' ' + StatementDate + ' 季財務報表 (' + PostDate + ')</h5></div></a>');
+//	 				$('#tabs-4').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + StatementDate + ' 季財務報表 (' + PostDate + "," + PostTime + ')</a><br>');
+//	 				$('#tabs-1').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + StatementDate + ' 季財務報表 (' + PostDate + "," + PostTime + ')</a><br>');
+					
+					});
+			
+			});
+	    	
+	    });
+		
+		var searchNum =$("input[name='radio-1']:checked").val();
 			
 		//查詢新聞		
-		$.getJSON("SearchNews?",{"ListingNo":tlno},function(data) {
+		$.getJSON("SearchNews?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 
 //				var jsonobj = eval("(" + data + ")");
 
 			$.each(data,function(){
 
-//					var StockNo = this.StockNo;
+//				var StockNo = this.StockNo;
 				var NewsDate = this.NewsDate;	
 				var NewsTitle = this.NewsTitle;	
 				var NewsWebaddress = this.NewsWebaddress;
@@ -201,9 +290,9 @@ $(function() {
 				});
 		
 		});
-		
-		//查詢月營收			
-		$.getJSON("SearchMGR?",{"ListingNo":tlno},function(data) {
+    	
+    	//查詢月營收			
+		$.getJSON("SearchMGR?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 			
 			$.each(data,function(){
 				
@@ -258,7 +347,7 @@ $(function() {
 // 		});
 		
 		//查詢財務報表	
-		$.getJSON("SearchFinancialStatements?",{"ListingNo":tlno},function(data) {
+		$.getJSON("SearchFinancialStatements?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 			
 			$.each(data,function(){
 				
@@ -304,14 +393,16 @@ $(function() {
 				$('table[id*="table"]').empty();
 				$('div[name="div1"]').empty();
 				
+				var searchNum =$("input[name='radio-1']:checked").val();
+				
 				//查詢新聞		
-				$.getJSON("SearchNews?",{"ListingNo":tlno},function(data) {
+				$.getJSON("SearchNews?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 
 //						var jsonobj = eval("(" + data + ")");
 
 					$.each(data,function(){
 
-//							var StockNo = this.StockNo;
+//						var StockNo = this.StockNo;
 						var NewsDate = this.NewsDate;	
 						var NewsTitle = this.NewsTitle;	
 						var NewsWebaddress = this.NewsWebaddress;
@@ -324,9 +415,9 @@ $(function() {
 						});
 				
 				});
-				
-				//查詢月營收			
-				$.getJSON("SearchMGR?",{"ListingNo":tlno},function(data) {
+		    	
+		    	//查詢月營收			
+				$.getJSON("SearchMGR?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 					
 					$.each(data,function(){
 						
@@ -381,7 +472,7 @@ $(function() {
 //		 		});
 				
 				//查詢財務報表	
-				$.getJSON("SearchFinancialStatements?",{"ListingNo":tlno},function(data) {
+				$.getJSON("SearchFinancialStatements?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 					
 					$.each(data,function(){
 						
@@ -459,14 +550,16 @@ $(function() {
 				$('input[name="godText"]').val("");
 				$('div[name="div1"]').empty();
 				
+				var searchNum =$("input[name='radio-1']:checked").val();
+				
 				//查詢新聞		
-				$.getJSON("SearchNews?",{"ListingNo":tlno},function(data) {
+				$.getJSON("SearchNews?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 
 //						var jsonobj = eval("(" + data + ")");
 
 					$.each(data,function(){
 
-//							var StockNo = this.StockNo;
+//						var StockNo = this.StockNo;
 						var NewsDate = this.NewsDate;	
 						var NewsTitle = this.NewsTitle;	
 						var NewsWebaddress = this.NewsWebaddress;
@@ -479,9 +572,9 @@ $(function() {
 						});
 				
 				});
-				
-				//查詢月營收			
-				$.getJSON("SearchMGR?",{"ListingNo":tlno},function(data) {
+		    	
+		    	//查詢月營收			
+				$.getJSON("SearchMGR?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 					
 					$.each(data,function(){
 						
@@ -536,7 +629,7 @@ $(function() {
 //		 		});
 				
 				//查詢財務報表	
-				$.getJSON("SearchFinancialStatements?",{"ListingNo":tlno},function(data) {
+				$.getJSON("SearchFinancialStatements?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 					
 					$.each(data,function(){
 						
@@ -571,17 +664,87 @@ $(function() {
 	});
 					
 									
-//進入頁面時預設展開第一個清單
+///////////////////////////////// 進入頁面時預設展開第一個清單 //////////////////////////////////////////
+
 $(function() {
-		
+	
 	//設置屬性預設排序 0 放第一個
 		var tlno = ${tlNo[0]};
 		var mId = ${mId[0]};
 		var tab = $("#table" + tlno);
 		var cText = $("#createText"+ tlno );
 		
+	    //checkbox　radio
+	    var searchNum =$("input[name='radio-1']:checked").val();
+	    
+	    $("input[name='radio-1']").click(function(){
+	    	
+	    	var searchNum =$("input[name='radio-1']:checked").val();
+	    	$('div[name="div1"]').empty();
+	    	
+			//查詢新聞		
+			$.getJSON("SearchNews?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
+
+//					var jsonobj = eval("(" + data + ")");
+
+				$.each(data,function(){
+
+//					var StockNo = this.StockNo;
+					var NewsDate = this.NewsDate;	
+					var NewsTitle = this.NewsTitle;	
+					var NewsWebaddress = this.NewsWebaddress;
+					
+
+					$('#tabs-2').append( '<a href="' + NewsWebaddress + '"Target="_blank" style="text-decoration:none;"><div style="border:2px #d0d0d0 solid ; padding:10px ; margin:1px 0px"><h5>' + NewsTitle + ' (' + NewsDate + ')' + '</h5></div></a>');				
+//	 				$('#tabs-2').append( '<a href="' + NewsWebaddress + '"Target="_blank">' + NewsTitle + ' (' + NewsDate + ')</a><br>');
+//	 				$('#tabs-1').append( '<a href="' + NewsWebaddress + '"Target="_blank">' + NewsTitle + ' (' + NewsDate + ')</a><br>');
+			
+					});
+			
+			});
+	    	
+	    	//查詢月營收			
+			$.getJSON("SearchMGR?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
+				
+				$.each(data,function(){
+					
+					var StockNo = this.StockNo;
+					var StockName = this.StockName;
+					var RevenueDate = this.RevenueDate;	
+//					var Revenue = this.Revenue;	
+					var PostDate = this.PostDate;	
+					
+					$('#tabs-3').append( '<a href="https://www.google.com.tw/" Target="_blank" style="text-decoration:none;"><div style="border:2px #d0d0d0 solid ; padding:10px ; margin:1px 0px"><h5>' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收' + ' (' + PostDate + ')' +'</h5></div></a>');
+//	 				$('#tabs-3').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收報表</a><br>');
+//	 				$('#tabs-1').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收報表</a><br>');
+			
+					});
+			
+			});
+	    	
+			//查詢財務報表	
+			$.getJSON("SearchFinancialStatements?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
+				
+				$.each(data,function(){
+					
+					var StockNo = this.StockNo;
+					var StockName = this.StockName;
+					var StatementDate = this.StatementDate;
+					var PostDate = this.PostDate;
+//	 				var PostTime = this.PostTime;
+					
+					$('#tabs-4').append( '<a href="https://www.google.com.tw/" Target="_blank" style="text-decoration:none;"><div style="border:2px #d0d0d0 solid ; padding:10px ; margin:1px 0px"><h5>' + StockNo + ' ' + StockName + ' ' + StatementDate + ' 季財務報表 (' + PostDate + ')</h5></div></a>');
+//	 				$('#tabs-4').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + StatementDate + ' 季財務報表 (' + PostDate + "," + PostTime + ')</a><br>');
+//	 				$('#tabs-1').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + StatementDate + ' 季財務報表 (' + PostDate + "," + PostTime + ')</a><br>');
+					
+					});
+			
+			});
+	    	
+	    });
+		
 		//查詢新聞		
-		$.getJSON("SearchNews?",{"ListingNo":tlno},function(data) {
+		$.getJSON("SearchNews?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 
 //				var jsonobj = eval("(" + data + ")");
 
@@ -602,7 +765,7 @@ $(function() {
 		});
 		
 		//查詢月營收			
-		$.getJSON("SearchMGR?",{"ListingNo":tlno},function(data) {
+		$.getJSON("SearchMGR?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 			
 			$.each(data,function(){
 				
@@ -617,6 +780,8 @@ $(function() {
 // 				$('#tabs-1').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收報表</a><br>');
 		
 				});
+			
+// 			searchMGRNum += 10 ;
 		
 		});
 		
@@ -657,7 +822,7 @@ $(function() {
 // 		});
 		
 		//查詢財務報表	
-		$.getJSON("SearchFinancialStatements?",{"ListingNo":tlno},function(data) {
+		$.getJSON("SearchFinancialStatements?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 			
 			$.each(data,function(){
 				
@@ -702,8 +867,10 @@ $(function() {
 			$('table[id*="table"]').empty();
 			$('div[name="div1"]').empty();
 			
+			var searchNum =$("input[name='radio-1']:checked").val();
+			
 			//查詢新聞		
-			$.getJSON("SearchNews?",{"ListingNo":tlno},function(data) {
+			$.getJSON("SearchNews?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 
 //					var jsonobj = eval("(" + data + ")");
 
@@ -724,7 +891,7 @@ $(function() {
 			});
 			
 			//查詢月營收			
-			$.getJSON("SearchMGR?",{"ListingNo":tlno},function(data) {
+			$.getJSON("SearchMGR?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 				
 				$.each(data,function(){
 					
@@ -739,6 +906,8 @@ $(function() {
 //	 				$('#tabs-1').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收報表</a><br>');
 			
 					});
+				
+//	 			searchMGRNum += 10 ;
 			
 			});
 			
@@ -779,7 +948,7 @@ $(function() {
 //	 		});
 			
 			//查詢財務報表	
-			$.getJSON("SearchFinancialStatements?",{"ListingNo":tlno},function(data) {
+			$.getJSON("SearchFinancialStatements?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 				
 				$.each(data,function(){
 					
@@ -857,8 +1026,10 @@ $(function() {
 				$('input[name="godText"]').val("");
 				$('div[name="div1"]').empty();
 				
+				var searchNum =$("input[name='radio-1']:checked").val();
+				
 				//查詢新聞		
-				$.getJSON("SearchNews?",{"ListingNo":tlno},function(data) {
+				$.getJSON("SearchNews?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 
 //						var jsonobj = eval("(" + data + ")");
 
@@ -879,7 +1050,7 @@ $(function() {
 				});
 				
 				//查詢月營收			
-				$.getJSON("SearchMGR?",{"ListingNo":tlno},function(data) {
+				$.getJSON("SearchMGR?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 					
 					$.each(data,function(){
 						
@@ -894,6 +1065,8 @@ $(function() {
 //		 				$('#tabs-1').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收報表</a><br>');
 				
 						});
+					
+//		 			searchMGRNum += 10 ;
 				
 				});
 				
@@ -934,7 +1107,7 @@ $(function() {
 //		 		});
 				
 				//查詢財務報表	
-				$.getJSON("SearchFinancialStatements?",{"ListingNo":tlno},function(data) {
+				$.getJSON("SearchFinancialStatements?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 					
 					$.each(data,function(){
 						

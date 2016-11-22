@@ -158,52 +158,31 @@ public class ToJsonArray {
 		return list;
 	}
 	public JSONArray PERToJson(Integer stock_no) {
-//		PriceService priceSvc = new PriceService();
-//		IncomeStatementService incomeStatementSvc=new IncomeStatementService();
-//		List<PriceVO> priceList = priceSvc.getByStockNo(stock_no);
+
 		List listAll = new LinkedList();
-//		for(PriceVO element:priceList){
-//			List list = new LinkedList();
-//			Double price=element.getClosePrice();
-//			String priceDate = element.getPriceDate();
-//			Integer year=Integer.parseInt(priceDate.substring(0,4));
-//			Double month=Double.parseDouble(priceDate.substring(5,7));
-//			Integer season=(int) Math.ceil(month/3.0);
-//			String yearStr=Integer.toString(year-1911);
-//			String seasonStr=Integer.toString(season);
-//			IncomeStatementVO incomeStatementVO=null;
-//			Double earningPerShare =null;
-//			try{
-//			incomeStatementVO=incomeStatementSvc.getOneStockIncomeStatement(stock_no, yearStr+"0"+seasonStr);
-//			System.out.println(yearStr+"0"+seasonStr);
-//			earningPerShare = incomeStatementVO.getEarningPerShare();
-////			System.out.println(earningPerShare);
-//			}catch(NullPointerException e){
-//				
-//				seasonStr=Integer.toString(season-1);
-//				incomeStatementVO = incomeStatementSvc.getOneStockIncomeStatement(stock_no, yearStr+"0"+seasonStr);
-////				System.out.println(yearStr+"0"+seasonStr);
-//				earningPerShare = incomeStatementVO.getEarningPerShare();
-//			}
-//			double PER = price/earningPerShare;
-//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//			long millionSeconds = 0;
-//			try {
-//				millionSeconds = sdf.parse(priceDate).getTime();
-//			} catch (ParseException e) {
-//				e.printStackTrace();
-//			}
-//			list.add(0, millionSeconds);
-//			list.add(1, PER);
-//			System.out.println(millionSeconds);
-//			System.out.println(PER);
-//
-//			listAll.add(list);
-//		}
-//
+		PriceService svc=new PriceService();
+		List<Object[]> list1=svc.getPER(stock_no);
+		for(Object[] aArray:list1){
+			List elementlist=new LinkedList();
+			String price_str=aArray[0].toString();
+			Double price=Double.parseDouble(price_str);
+			String date=aArray[1].toString();
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			long millionSeconds = 0;
+			try {
+				millionSeconds = sdf.parse(date).getTime();
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			elementlist.add(millionSeconds);
+			elementlist.add(price);
+			listAll.add(elementlist);
+		}
+		
 		JSONArray list = new JSONArray(listAll);
 		return list;
-//	
+
 	}
 	public JSONArray balanceSheetToJson(Integer stock_no,String str) {
 		List listAll = new LinkedList();

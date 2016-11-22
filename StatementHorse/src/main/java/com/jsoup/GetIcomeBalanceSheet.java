@@ -16,6 +16,7 @@ import com.stock.model.StockVO;
 
 public class GetIcomeBalanceSheet {
 
+
 	// 有財報才來這邊 新增資產負債表和損益表的動作
 	public static void Parsing(Integer year, Integer season, Integer stockno) throws Exception {
 		BalanceSheetVO balancesheetvo = new BalanceSheetVO();

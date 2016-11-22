@@ -17,4 +17,17 @@
 		<property name="lowestPrice" column="lowest_price"/>
 		<property name="quantity" column="quantity"/>
 	</class>
+	<sql-query name="getPER" callable="true">
+		<return-scalar column="PER" type="float"></return-scalar>
+		<return-scalar column="price_date" type="date"></return-scalar>
+		<![CDATA[{CALL getPER (:stock_no)}]]>
+	
+	</sql-query>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+
+<!--    	<sql-query name="getPER"> -->
+<!-- 	<return alias="price" class="com.price.model.PERVO"/> -->
+<!-- 	<return-scalar column="price" type="float"></return-scalar> -->
+<!-- 	<return-scalar column="earning_per_share" type="float"></return-scalar> -->
+<!-- 	<![CDATA[CALL getPER(:stock_no)]]> -->
+<!--     </sql-query> -->
 </hibernate-mapping>

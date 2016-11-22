@@ -13,4 +13,5 @@ public interface PriceDAO_interface {
 	public PriceVO findByPrimaryKey(PriceVO priceVO);
 	public List<PriceVO> getAll();
 	public List<PriceVO> getByStockNo(Integer stockNo);
+	public List getStoredProcedure(Integer stockNo);
 }

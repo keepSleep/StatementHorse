@@ -32,23 +32,55 @@
 	<!-- icon file ="WebContent/test01/assets/css/fonts/fontawesome/css/font-awesome.css" -->
 	<!-- icon file ="WebContent/test01/assets/css/fonts/linecons/css/linecons-codes.css" -->
 	<script>
-	$(document).ready(
-			function() {
-				$("#gobutton").click(function(){
-					//營收的jquery
-// 				$.get("BackStageMgr",{"action":"mgr","stockno":$("#stockNo").val(),"year":$("#yyyy").val(),"month":$("#MM").val()},function(){
-// 				console.log("營收更新完成");
-// 				})
-				$.get("BackStageMgr",{"action":"financialstatements","stockno":$("#stockNo").val(),"year":$("#yyyy").val(),"season":$("#season").val()},function(){
-					console.log("財報更新完成");
-				})	
-				
-				})
-			
-	
+	$(function(){
+		var seachPage = $("#seachPage");	
+		seachPage.load("MGRCrawler.jsp");
+		$("span[class='title']").parents("a").click(function(){
+			var clickObj = $(this).find("span").text();
+			if(clickObj == "月營收表爬蟲"){
+				seachPage.load("MGRCrawler.jsp");
 			}
-	)
+			if(clickObj == "財務報表爬蟲"){
+				seachPage.load("FSCrawler.jsp");
+			}
+			if(clickObj == "歷史股價爬蟲"){
+				seachPage.load("PCrawler.jsp");
+			}
+			
+		})
+		
+		
+		
+	})
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	</script>
+	<style>
+		*{
+		font-family:微軟正黑體;
+		}
+	</style>
 </head>
 <body class="page-body">
 
@@ -70,8 +102,9 @@
 					<li class="opened">
 						<a href="#"><i class="linecons-thumbs-up"></i><span class="title">爬蟲程式</span></a>
 						<ul>
-							<li><a href="#"><i class="linecons-money"></i><span class="title">月營收爬蟲</span></a></li>
-							<li><a href="#"><i class="linecons-doc"></i><span class="title">財報收爬蟲</span></a></li>
+							<li><a href="#MRG"><i class="linecons-money"></i><span class="title">月營收表爬蟲</span></a></li>
+							<li><a href="#FS"><i class="linecons-doc"></i><span class="title">財務報表爬蟲</span></a></li>
+							<li><a href="#P"><i class="linecons-wallet"></i><span class="title">歷史股價爬蟲</span></a></li>
 						</ul>
 					</li>
 	
@@ -100,25 +133,13 @@
 					</li>
 				</ul>
 			</nav>
-			<div class="col-sm-2">
-				<input type="text" class="form-control" id="stockNo" placeholder="stockNo" maxlength="4">
+			<div id="seachPage" class="row">
 			</div>
-			<div class="col-sm-2">
-				<input type="text" class="form-control" id="yyyy" placeholder="yyyy" maxlength="4">
-			</div>
-			<div class="col-sm-2">
-				<input type="text" class="form-control" id="MM" placeholder="MM" maxlength="2">
-			</div>
-			<div class="col-sm-2">
-				<input type="text" class="form-control" id="dd" placeholder="dd" maxlength="2">
-			</div>
-			<div class="col-sm-2">
-				<input type="text" class="form-control" id="season" placeholder="season" maxlength="2">
-			</div>
-			<button class="btn btn-info" id="gobutton">Go</button>
 		</div>
 	</div>
 	
+<!-- Imported styles on this page -->
+<link rel="stylesheet" href="assets/js/datatables/dataTables.bootstrap.css">
 	
 <!-- Bottom Scripts -->
 	<script src="assets/js/bootstrap.min.js"></script>
@@ -127,6 +148,11 @@
 	<script src="assets/js/joinable.js"></script>
 	<script src="assets/js/xenon-api.js"></script>
 	<script src="assets/js/xenon-toggles.js"></script>
+	<script src="assets/js/datatables/js/jquery.dataTables.min.js"></script>
+<!-- Imported scripts on this page -->
+	<script src="assets/js/datatables/dataTables.bootstrap.js"></script>
+	<script src="assets/js/datatables/yadcf/jquery.dataTables.yadcf.js"></script>
+	<script src="assets/js/datatables/tabletools/dataTables.tableTools.min.js"></script>
 
 
 	<!-- JavaScripts initializations and stuff -->

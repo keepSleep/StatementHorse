@@ -66,14 +66,24 @@ public class PriceService {
 		dao.delete(priceVO);
 		
 	}
+	
+	public List<Object[]> getPER(Integer stockNo){
+		List list=dao.getStoredProcedure(stockNo);
+		return list;
+	}
+	
 	public void deleteByStockNO(Integer stockNo){
 	dao.deleteByStockNo(stockNo);
 	}
-//	public static final void main(String args[]){
+//	public static  void main(String args[]){
 //		PriceService priceser=new PriceService();
-//		List<PriceVO> list=priceser.getByStockNo(3008);
-//		for(PriceVO vo:list){
-//			System.out.println(vo.getPriceDate());
+//		List<Object[]> list=priceser.getPER(3008);
+//		
+//		for(Object[] aArray:list){
+////			System.out.println(aArray.getClass());
+//				
+//				System.out.println(aArray[0]+","+aArray[1]);
+//			
 //		}
 //	}
 }

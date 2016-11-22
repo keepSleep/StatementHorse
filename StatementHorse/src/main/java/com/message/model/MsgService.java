@@ -5,11 +5,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import com.balancesheet.model.BalanceSheetVO;
+import com.incomestatement.model.IncomeStatementVO;
 import com.listingdetails.model.ListingDetailsVO;
 import com.member.model.MemberDAOInterface;
 import com.member.model.MemberHibernateDAO;
 import com.member.model.MemberVO;
 import com.messagelists.model.MsgListVO;
+import com.mgr.model.MGRVO;
 import com.stock.model.StockVO;
 import com.tracklisting.model.TrackListingHibernateDAO;
 import com.tracklisting.model.TrackListingVO;
@@ -88,6 +91,92 @@ public class MsgService {
 		
 		return list;
 	}
+	
+	public List findbalancesheetbystockno(String Stockno) {
+		LinkedList list1 = new LinkedList();
+		List<BalanceSheetVO> balancesheetvolist = msgdao.findbalancesheetbystockno(Stockno);
+		for(BalanceSheetVO bb:balancesheetvolist){
+			LinkedList list = new LinkedList();
+			list.add(bb.getStockVO().getStockNo());
+			list.add(bb.getStatementDate());
+			list.add(bb.getCurrentAssets());
+			list.add(bb.getFixedAssets());
+			list.add(bb.getAssets());
+			list.add(bb.getCurrentLiabilities());
+			list.add(bb.getLongTermLiabilities());
+			list.add(bb.getLiabilities());
+			list.add(bb.getCapitalStock());
+			list.add(bb.getAdditionalPaidInCapital());
+			list.add(bb.getRetainedEarnings());
+			list.add(bb.getOtherEquity());
+			list.add(bb.getConsolidatedNetIncomeAttributedToStockholdersOfTheCompany());
+			list.add(bb.getTotalEquity());		
+			list1.add(list);
+		}
+		
+		return list1;
+	}
+	
+	public List findincomestatementbystockno(String Stockno) {
+		LinkedList list1 = new LinkedList();
+		List<IncomeStatementVO> incomestatementvolist = msgdao.findincomestatementbystockno(Stockno);
+		for(IncomeStatementVO aa:incomestatementvolist){
+			LinkedList list = new LinkedList();
+			list.add(aa.getStockVO().getStockNo());
+			list.add(aa.getStatementDate());
+			list.add(aa.getOperatingRevenue());
+			list.add(aa.getOperatingCost());
+			list.add(aa.getOperatingMargain());
+			list.add(aa.getNetOperatingMargain());
+			list.add(aa.getOperatingExpenses());
+			list.add(aa.getOperatingIncome());
+			list.add(aa.getNonOperatingRevenue());
+			list.add(aa.getOibt());
+			list.add(aa.getIncomeTaxExpense());
+			list.add(aa.getCoiat());
+			list.add(aa.getNetIncome());
+			list.add(aa.getOci());
+			list.add(aa.getCurrentProfitAndLoss());
+			list.add(aa.getEarningPerShare());
+			list1.add(list);
+		}
+		
+		return list1;
+	}
+	
+	public List findmgrbystockno(String Stockno) {
+		LinkedList list1 = new LinkedList();
+		List<MGRVO> mgrvolist = msgdao.findmgrbystockno(Stockno);
+		for(MGRVO aa:mgrvolist){
+			LinkedList list = new LinkedList();
+			list.add(aa.getStockVO().getStockNo());
+			list.add(aa.getRevenueDate());
+			list.add(aa.getRevenue());
+			list.add(aa.getPostDate());
+			list1.add(list);
+		}
+		
+		return list1;
+	}
+	
+	public List findmgrbystocknobyrevencedate(String Stockno) {
+		
+		LinkedList list1 = new LinkedList();
+		List<MGRVO> mgrvolist = msgdao.findmgrbystocknobyrevencedate(Stockno);
+		
+		for(MGRVO aa:mgrvolist){
+			LinkedList list = new LinkedList();
+			list.add(aa.getStockVO().getStockNo());
+			list.add(aa.getRevenueDate());
+			list.add(aa.getRevenue());
+			list.add(aa.getPostDate());
+
+			list1.add(list);
+		}
+		
+		return list1;
+	}
+	
 }
 
 

@@ -39,6 +39,7 @@ public class GetMgr {
 	}
 
 	public static void main(String[] args) throws IOException {
+
 		for (int y = 2013; y <= 2016; y++) {
 			for (int m = 1; m <= 12; m++) {
 				
@@ -46,6 +47,7 @@ public class GetMgr {
 				
 			}
 		}
+
 
 	}
 

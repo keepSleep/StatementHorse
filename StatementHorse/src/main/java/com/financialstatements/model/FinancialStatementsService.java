@@ -30,7 +30,7 @@ public class FinancialStatementsService {
 		financialStatementsVO.setPostDate(postDate);
 		financialStatementsVO.setPostTime(postTime);
 		dao.insert(financialStatementsVO);
-			
+
 		return financialStatementsVO;
 	}
 	public FinancialStatementsVO updateFinancialStatements(Integer stockNo,String statementDate, Date postDate, String postTime

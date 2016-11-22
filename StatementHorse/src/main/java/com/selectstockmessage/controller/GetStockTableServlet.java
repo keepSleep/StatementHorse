@@ -80,6 +80,13 @@ public class GetStockTableServlet extends HttpServlet {
 			out.print(list);
 			out.close();
 		}
+		if ("PERjson".equals(json)) {
+			PrintWriter out = resp.getWriter();
+			ToTableJson tojson = new ToTableJson();
+			JSONArray list = tojson.PERToJson(stockNo);
+			out.print(list);
+			out.close();
+		}
 	}
 
 }
