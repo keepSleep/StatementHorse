@@ -86,8 +86,7 @@ word-break: keep-all;
 			var stock = [];
 			$.each(data,function(){
 				var StockNo = this.StockNo;	
-				var StockName = this.StockName;	
-				stock.push(StockNo + "/" + StockName);
+				stock.push(StockNo.toString());
 			});
 			
 			$( "input[name='stockText']" ).css("width","150px").autocomplete({source: stock}).parents('td').addClass("text-left");
