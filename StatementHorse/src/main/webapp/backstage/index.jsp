@@ -79,6 +79,7 @@
 	<style>
 		*{
 		font-family:微軟正黑體;
+		font-size:18px;
 		}
 	</style>
 </head>
