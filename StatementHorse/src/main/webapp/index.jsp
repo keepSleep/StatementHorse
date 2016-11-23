@@ -7,7 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Title自己改</title>
+	<title>StatementHorse</title>
 
 <!--Bootstrap樣式-->
 <%-- 	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/bootstrap.min.css"> --%>
@@ -41,19 +41,21 @@ left:-50%;
 					<div class="row-fluid">
 						<div id="mid-left-Blank" class="col-xs-12" style="height:340px">
 						<div class="row-fluid" style="height:100px"></div>
-						<p><h1 style="text-shadow: 5px 5px 5px #f9f9f9"><strong>財報馬</strong></h1></p>
-						<h3>跑得快</h3>
+						<p><h1 style="text-shadow: 5px 5px 5px #f9f9f9"><strong>StatementHorse</strong></h1></p>
+						<h1>－－－－－－－－－－－－－－－－－－－－－</h1>
 						</div>
 					</div>
 					<div class="row-fluid">
 						<p/>
 						<div id="mid-left-Blank" class="col-xs-4" style="height:280px">
 						<img src="picture/analysis.png" width="150" height="150">
-							<h3>資料視覺化</h3>
+							<h3>Data visualization</h3>
+							
 							</div>
 						<div id="mid-left-Blank" class="col-xs-4" style="height:280px">
-							<img src="picture/promotion.png" width="150" height="150">
-							<h3>即時財報資訊</h3>
+<!-- 							<img src="picture/promotion.png" width="150" height="150"> -->
+							<img src="picture/statementdog_logo.png" width="150" height="150">
+							<h3>Faster than dog</h3>
 						</div>
 						<div id="mid-left-Blank" class="col-xs-4" style="height:280px">
 							<img src="picture/piggy-bank.png" width="150" height="150">
