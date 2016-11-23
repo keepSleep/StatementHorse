@@ -266,76 +266,7 @@ $(function() {
 		
 		 //checkbox　radio
 	    var searchNum =$("input[name='radio-1']:checked").val();
-	    
-	    $("input[name='radio-1']").click(function(){
-	    	
-	    	$('div[name="div1"]').empty();
-	    	var searchNum =$("input[name='radio-1']:checked").val();
-	    	
-	    	//查詢新聞		
-			$.getJSON("SearchNews?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
-
-//					var jsonobj = eval("(" + data + ")");
-
-				$.each(data,function(){
-
-//					var StockNo = this.StockNo;
-					var NewsDate = this.NewsDate;	
-					var NewsTitle = this.NewsTitle;	
-					var NewsWebaddress = this.NewsWebaddress;
-					
-
-					$('#tabs-2').append( '<a href="' + NewsWebaddress + '"Target="_blank" style="text-decoration:none;"><div style="border:2px #d0d0d0 solid ; padding:10px ; margin:1px 0px">' + NewsTitle + ' (' + NewsDate + ')' + '</div></a>');				
-//	 				$('#tabs-2').append( '<a href="' + NewsWebaddress + '"Target="_blank">' + NewsTitle + ' (' + NewsDate + ')</a><br>');
-//	 				$('#tabs-1').append( '<a href="' + NewsWebaddress + '"Target="_blank">' + NewsTitle + ' (' + NewsDate + ')</a><br>');
-			
-					});
-			
-			});
-			
-			//查詢月營收			
-			$.getJSON("SearchMGR?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
-				
-				$.each(data,function(){
-					
-					var StockNo = this.StockNo;
-					var StockName = this.StockName;
-					var RevenueDate = this.RevenueDate;	
-					var Revenue = this.Revenue;	
-					var PostDate = this.PostDate;
-					
-					$('#tabs-3').append( '<a href="javascript: void(0)" onclick="showMGR(' + StockNo + ',\'' + StockName + '\')" style="text-decoration:none;"><div style="border:2px #d0d0d0 solid ; padding:10px ; margin:1px 0px">' + StockNo + ' ' + StockName + ' ' + RevenueDate + ' 月營收 ' + Revenue + ' (單位:千元) (' + PostDate + ')' +'</div></a>');
-//	 				$('#tabs-3').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收報表</a><br>');
-//	 				$('#tabs-1').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收報表</a><br>');
-			
-					});
-				
-//	 			searchMGRNum += 10 ;
-			
-			});
-	    	
-			//查詢財務報表	
-			$.getJSON("SearchFinancialStatements?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
-
-				$.each(data,function(){
-					
-					var StockNo = this.StockNo;
-					var StockName = this.StockName;
-					var StatementDate = this.StatementDate;
-					var PostDate = this.PostDate;
-//	 				var PostTime = this.PostTime;
-					
-					$('#tabs-4').append( '<a href="${pageContext.servletContext.contextPath}/SelectStatementServlet?stock_no='+StockNo+'&statement_date='+StatementDate+'" style="text-decoration:none;" Target="_blank"><div style="border:2px #d0d0d0 solid ; padding:10px ; margin:1px 0px">' + StockNo + ' ' + StockName + ' ' + StatementDate + ' 季財務報表 (' + PostDate + ')</div></a>');
-//	 				$('#tabs-4').append( '<a href="#" onclick="showFinancialStatements(' + StockNo + "," + StatementDate + ')" style="text-decoration:none;"><div style="border:2px #d0d0d0 solid ; padding:10px ; margin:1px 0px">' + StockNo + ' ' + StockName + ' ' + StatementDate + ' 季財務報表 (' + PostDate + ')</div></a>');
-//	 				$('#tabs-4').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + StatementDate + ' 季財務報表 (' + PostDate + "," + PostTime + ')</a><br>');
-//	 				$('#tabs-1').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + StatementDate + ' 季財務報表 (' + PostDate + "," + PostTime + ')</a><br>');
-					
-					});
-			
-			});
-	    	
-	    });
-			
+		 
 		//查詢新聞		
 		$.getJSON("SearchNews?",{"ListingNo":tlno,"searchNum":searchNum},function(data) {
 
