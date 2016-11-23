@@ -71,10 +71,16 @@ public class GetNews {
 	}
 
 	public static void main(String[] args) throws IOException {
-//		for (int i = 1; i <= 45; i++) {
-			getnewsbystock(2330, 2);
+		int[] stock = new int[] { 1101, 1102, 1216, 1301, 1303, 1326, 1402, 1476, 2002, 2105, 2207, 2227, 2301, 2303,
+				2308, 2311, 2317, 2325, 2330, 2354, 2357, 2382, 2395, 2408, 2409, 2412, 2454, 2474, 2801, 2880, 2881,
+				2882, 2883, 2884, 2885, 2886, 2887, 2890, 2891, 2892, 2912, 3008, 3045, 3474, 3481, 4904, 4938, 5880,
+				6505, 9904 };
+		for(int i =0;i<stock.length;i++){
+		for (int page = 1; page <= 45; page++) {
+			getnewsbystock(stock[i], page);
+		}
 
-//		}
+		}
 	}
 
 }

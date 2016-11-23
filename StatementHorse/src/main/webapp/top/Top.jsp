@@ -23,6 +23,9 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 <style>
+*{
+font-family:微軟正黑體;
+}
 .modal-header, h4, .close {
 	background-color: #5cb85c;
 	color: white !important;
@@ -60,7 +63,7 @@ table {
 				class="img-circle" width=200 style="padding: 5px;">
 			</a>
 		</div>
-		<div id="navbar" class="navbar-collapse collapse">
+		<div id="navbar" class="navbar-collapse collapse" >
 			<ul class="nav navbar-nav">
 				<li><a
 					href="${pageContext.servletContext.contextPath}/ShowStockServlet?action=stock&stock_no=2330">
@@ -166,7 +169,7 @@ table {
 			<div class="modal fade" id="myModal" role="dialog">
 				<div class="modal-dialog">
 
-					<!-- Modal content-->
+					Modal content
 					<div class="modal-content">
 						<div class="modal-header" style="padding: 35px 50px;background-color:#5ca9b8">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -176,7 +179,7 @@ table {
 						</div>
 						<div class="modal-body" style="padding: 25px 50px;">
 
-							<!--           <form method="post" role="form" action="MsgIUDServlet"> -->
+							          <form method="post" role="form" action="MsgIUDServlet">
 							<table class="table table-condensed" id="setting111">
 								<caption>個人通知設定</caption>
 								<thead>
@@ -199,7 +202,7 @@ table {
 									style="border: 0px;background-color:#5ca9b8" id="updatemessage">
 									<span class="glyphicon glyphicon-floppy-disk"></span> 完成更新
 								</button>
-							<!--           </form> -->
+							          </form>
 
 						</div>
 					</div>

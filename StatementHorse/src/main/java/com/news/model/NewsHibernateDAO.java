@@ -107,7 +107,7 @@ public class NewsHibernateDAO implements NewsDAOinterface {
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(GET_ONE_BY_TITLE);
-			query.setParameter(0, title);
+			query.setParameter(0, title.trim());
 			list = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
