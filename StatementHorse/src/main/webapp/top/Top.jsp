@@ -37,6 +37,49 @@
 table {
 	font-family: 微軟正黑體;
 }
+
+.ui-autocomplete {
+ position: absolute;
+ z-index: 1000;
+ cursor: default;
+ padding: 0;
+ margin-top: 2px;
+ list-style: none;
+ background-color: #ffffff;
+ border: 1px solid #cccccc
+ -webkit-border-radius: 5px;
+ -moz-border-radius: 5px;
+ border-radius: 5px;
+ -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+ -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+ box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.ui-autocomplete > li {
+  padding: 3px 20px;
+}
+.ui-autocomplete > li.ui-state-focus {
+  background-color: #dddddd;
+}
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
+.ui-autocomplete a  {
+ color: #555555;
+}
+.ui-autocomplete a:link  {
+ color: #555555;
+}
+.ui-autocomplete a:hover  {
+ color: #337ab7;
+ text-decoration: none;
+}
+.ui-autocomplete a:active  {
+ color: #555555;
+}
+.ui-autocomplete a:visited  {
+ color: #555555;
+}
 </style>
 
 	<nav class="navbar navbar-default navbar-static-top"
@@ -213,6 +256,16 @@ table {
 	$(document).ready(
 
 			function() {
+				var stock = [];
+				$.getJSON("${pageContext.servletContext.contextPath}/GetStock",{},function(data) {
+					$.each(data,function(){
+						var StockNo = this.StockNo;	
+						stock.push(StockNo.toString());
+					});
+					
+					$( "#getstockno" ).autocomplete({source: stock});
+					
+				});
 				var last = 0;
 				var array;
 // 				setInterval("refreshnews()",5000);

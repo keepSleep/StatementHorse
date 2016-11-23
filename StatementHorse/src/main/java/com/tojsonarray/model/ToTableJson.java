@@ -167,6 +167,21 @@ public class ToTableJson {
 				map.put("FixedAssets", fixedassets);
 				map.put("Assets", assets);
 				listAll.add(map);
+			}if("debt".equals(str)){
+				String date = element.getStatementDate();
+				Long currentLiabilities=element.getCurrentLiabilities()/1000;
+				Long longTermLiabilities=element.getLongTermLiabilities()/1000;
+				Long assets=element.getAssets()/1000;
+				Long liabilities=element.getLiabilities()/1000;
+				Long net=assets-liabilities;
+				
+				
+				map.put("Date", date);
+				map.put("CurrentLiabilities", currentLiabilities);
+				map.put("LongTermLiabilities", longTermLiabilities);
+				map.put("Net", net);
+				map.put("Assets", assets);
+				listAll.add(map);
 			}
 
 		}

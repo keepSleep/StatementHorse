@@ -39,12 +39,12 @@
   
   <div value="${tlName[num]}" name="show" id="${tlNo[num]}" style="background-color: lightblue ; color:black ; height: 45px">
   
- <h3 style="display:inline;">${tlName[num]}</h3>
+ <span style="display:inline;font-size:26px;font-family: Microsoft JhengHei;">${tlName[num]}</span>
  <input type="button" style="float: right; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115112233859.ico); width:32px; height:32px; background-color: lightblue; border:none" name="chooesList" id="${tlNo[num]}">
   
   </div>
   
-  <div style="width:400px;border:2px #d0d0d0 solid;">	
+  <div style="width:400px;border:2px #d0d0d0 solid">	
     <table id="table${tlNo[num]}"></table><br>
     <form id="createText${tlNo[num]}" name="${mId[num]}"></form>
   </div>
@@ -52,14 +52,10 @@
   </c:forEach>
   
 </div>
-
- <br>
- <input type="text" placeholder="新增追蹤清單" name="createListingText" style="width: 150px ; height: 25px">
- <input type="button" value="新增" name="createListing" style="height: 25px"><br>
- <br>
  
-  <fieldset>
-    <label>資料顯示筆數</label>
+  <br>
+  <fieldset style="font-size: 16px ; font-family: Microsoft JhengHei;">
+    <label >資料顯示筆數</label>
     <label for="radio-1">10</label>
     <input type="radio" name="radio-1" value="10" id="radio-1" checked>
     <label for="radio-2">50</label>
@@ -69,25 +65,29 @@
     <label for="radio-4">全部</label>
     <input type="radio" name="radio-1" value="0" id="radio-4">
   </fieldset>
+  
+   <input type="text" placeholder="新增追蹤清單" name="createListingText" style="width: 150px ; height: 25px ; font-family: Microsoft JhengHei;font-size: 16px">
+   <input type="button" value="新增" name="createListing" style="height: 26px ; font-family: Microsoft JhengHei; font-size: 16px"><br>
+   <span style='font-size: 16px ; font-family: Microsoft JhengHei ; color:red' id="showError2"></span>
 
 </div>
 
 <!-- JQuery UI 右邊的區塊 -->
-<div id="tabs" style="float:left ; width:900px ; height: 600px; overflow:auto">
+<div id="tabs" style="float:left ; width:900px ; height: 600px; overflow:auto;">
   
-  <ul>
+  <ul style=" font-size: 26px ; font-family: Microsoft JhengHei;">
 <!--     <li><a href="#tabs-1">全部動態</a></li> -->
-    <li><a href="#tabs-2" style="background-color: lightblue ; color:black">相關新聞</a></li>
-    <li><a href="#tabs-3" style="background-color: lightblue ; color:black">每月營收</a></li>
-    <li><a href="#tabs-4" style="background-color: lightblue ; color:black">財務報表</a></li>
+    <li><a href="#tabs-2" style="background-color: lightblue ; color:black ; padding: 5px">相關新聞</a></li>
+    <li><a href="#tabs-3" style="background-color: lightblue ; color:black ; padding: 5px">每月營收</a></li>
+    <li><a href="#tabs-4" style="background-color: lightblue ; color:black ; padding: 5px">財務報表</a></li>
 <!--     <li><a href="#tabs-5">資產負債表</a></li> -->
 <!--     <li><a href="#tabs-6">損益平衡表</a></li> -->
   </ul>
   
 <!--   <div id="tabs-1" name="div1"></div> -->
-  <div id="tabs-2" name="div1"></div>
-  <div id="tabs-3" name="div1"></div>
-  <div id="tabs-4" name="div1"></div>
+  <div style=" font-size: 16px ; font-family: Microsoft JhengHei" id="tabs-2" name="div1"></div>
+  <div style=" font-size: 16px ; font-family: Microsoft JhengHei" id="tabs-3" name="div1"></div>
+  <div style=" font-size: 16px ; font-family: Microsoft JhengHei" id="tabs-4" name="div1"></div>
 <!--   <div id="tabs-5" name="div1"></div> -->
 <!--   <div id="tabs-6" name="div1"></div> -->
 
@@ -97,10 +97,12 @@
 
 <div id="dialog-1" title="設定" style="display:none">
   <br>
-  <input type="text" name="changeNameText" placeholder="修改追蹤清單名稱">
-  <input type="button" value="修改" name="changeName"><br>
+  <input style="font-size: 16px ; font-family: Microsoft JhengHei" type="text" name="changeNameText" placeholder="修改追蹤清單名稱">
+  <input style="font-size: 16px ; font-family: Microsoft JhengHei" type="button" value="修改" name="changeName"><br>
   <br>
-  <input type="button" value="刪除追蹤清單" name="deleteListing"> 
+  <input style="font-size: 16px ; font-family: Microsoft JhengHei" type="button" value="刪除追蹤清單" name="deleteListing"><br>
+  <br>
+  <span style='font-size: 16px ; font-family: Microsoft JhengHei ; color:red' id="showError1"></span> 
 </div>
 
 <!-- 匯入需要的檔案 -->
@@ -132,7 +134,7 @@ $(function() {
 		var mId = $('form[id*="createText"]').attr("name");
 
 		$( "#dialog-1" ).dialog({
-			 height: 200,
+			 height: 250,
 			 width: 300,
 			 draggable: false,
 			 modal: true,
@@ -140,8 +142,9 @@ $(function() {
 				  tlno = "";
 				  mId = "";	
 				  $('input[name="changeNameText"]').val("");
+				  $('#showError1').empty();
                },
-		}).prev(".ui-dialog-titlebar").css("background","lightblue");
+		}).prev(".ui-dialog-titlebar").css("background","lightblue").css("font-size","150%").css("font-family","Microsoft JhengHei");
 		
 		event.stopPropagation();
 		
@@ -151,10 +154,13 @@ $(function() {
 			var tlName = $('input[name="changeNameText"]').val();
 			
 			$.get("ChangeName?",{"listingName":tlName,"memberId":mId,"listingNo":tlno},function(data) {
-				alert(data);
 				
-				if(data=="修改追蹤清單名稱成功")
+				if(data=="修改追蹤清單名稱成功"){
 				location.reload();
+				}else{
+					$('#showError1').empty();
+					$('#showError1').append(data)
+				}
 
 				});
 			});
@@ -163,10 +169,13 @@ $(function() {
 		btndl.click(function() {
 				
 			$.get("DeleteListing?",{"listingNo":tlno,"memberId":mId},function(data) {
-				alert(data);
 				
-				if(data=="刪除追蹤清單成功")
+				if(data=="刪除追蹤清單成功"){
 				location.reload();
+				}else{
+					$('#showError1').empty();
+					$('#showError1').append(data)
+				}
 
 				});
 			});	
@@ -178,9 +187,14 @@ $(function() {
 		var tlName = $('input[name="createListingText"]').val();
 			
 		$.get("CreateListing?",{"listingName":tlName,"memberId":mId},function(data) {
-			alert(data);
 			
+			if(data=="新增追蹤清單成功"){
 			location.reload();
+			}else{
+				$('#showError2').empty();
+				$('#showError2').append(data)
+				$('input[name="createListingText"]').val("");
+			}
 
 			});
 		});
@@ -367,11 +381,20 @@ $(function() {
 		
 		//新增列表 + 設置 del
 		$.getJSON("GetListingDetails?",{"ld":tlno},function(data) {
+			
+			if(data==""){
+				
+				tab.append('<span style="font-size: 16px ; font-family: Microsoft JhengHei">還沒有追蹤的個股喔!</span>');
+				$('#tabs-2').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+				$('#tabs-3').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+				$('#tabs-4').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+			}
+			
 			$.each(data,function(){
 				var ListingNo = this.ListingNo;
 				var StockNo = this.StockNo;	
 				var StockName = this.StockName;	
-			tab.append('<tr><td width=15%>' + StockNo + '</td><td width=80%><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
+			tab.append('<tr style="font-size: 16px ; font-family: Microsoft JhengHei"><td width=15%>' + StockNo + '</td><td width=80%><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
 					'</a></td><td width=5% align=right><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 			});	
 			$(del);
@@ -386,12 +409,13 @@ $(function() {
 			
 			//點擊刪除
 			btnl.click(function() {
+				
 				$.get("DeleteStock?",{"stockNo":$(this).attr("id"),"listingNo":$(this).attr("name")},function(data) {
-				alert(data);
 				
 				//清空列表
 				$('table[id*="table"]').empty();
 				$('div[name="div1"]').empty();
+				$('#showError3').empty();
 				
 				var searchNum =$("input[name='radio-1']:checked").val();
 				
@@ -492,11 +516,20 @@ $(function() {
 				
 				//新增列表 + 設置 del
 				$.getJSON("GetListingDetails?",{"ld":tlno},function(data) {
+					
+					if(data==""){
+						
+						tab.append('<span style="font-size: 16px ; font-family: Microsoft JhengHei">還沒有追蹤的個股喔!</span>');
+						$('#tabs-2').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+						$('#tabs-3').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+						$('#tabs-4').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+					}
+					
 					$.each(data,function(){
 						var ListingNo = this.ListingNo;
 						var StockNo = this.StockNo;	
 						var StockName = this.StockName;	
-					tab.append('<tr><td width=15%>' + StockNo + '</td><td width=80%><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
+					tab.append('<tr style="font-size: 16px ; font-family: Microsoft JhengHei"><td width=15%>' + StockNo + '</td><td width=80%><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
 							'</a></td><td width=5% align=right><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 					});	
 					$(del);
@@ -506,8 +539,9 @@ $(function() {
 		};
 					
 		//設置選擇列
-		$("#createText"+tlno).append('<input type="text" placeholder="請輸入股號" name="godText" style="width:150px ; margin-right:10px">');	
+		$("#createText"+tlno).append('<input type="text" placeholder="請輸入股號" name="godText" style="width:150px ; margin-right:10px ; font-size: 16px ; font-family: Microsoft JhengHei">');	
 		$("#createText"+tlno).append('<input type="button" style="background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-2016111512562799.ico); width:16px; height:16px; background-color: #FFFFFF; border:none " name="createStock" id="' + tlno + '"><br>');
+		$("#createText"+tlno).append('<span style="font-size: 16px ; font-family: Microsoft JhengHei ; color:red" id="showError3"></span>');
 		
 		//自動完成
 		$.getJSON("GetStock?",{},function(data) {
@@ -543,12 +577,14 @@ $(function() {
 			var tlno = $(this).attr("id");
 			var sno = $('input[name="godText"]').val();
 			$.get("CreateStock?",{"listingNo":tlno,"stockNo":sno},function(data) {
-				alert(data);
 				
+				if(data=="追蹤個股成功"){
+
 				//清空列表
 				$('table[id*="table"]').empty();
 				$('input[name="godText"]').val("");
 				$('div[name="div1"]').empty();
+				$('#showError3').empty();
 				
 				var searchNum =$("input[name='radio-1']:checked").val();
 				
@@ -649,15 +685,31 @@ $(function() {
 				
 				//新增列表 + 設置 del
 				$.getJSON("GetListingDetails?",{"ld":tlno},function(data) {
+					
+					if(data==""){
+						
+						tab.append('<span style="font-size: 16px ; font-family: Microsoft JhengHei">還沒有追蹤的個股喔!</span>');
+						$('#tabs-2').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+						$('#tabs-3').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+						$('#tabs-4').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+					}
+					
 					$.each(data,function(){
 						var ListingNo = this.ListingNo;
 						var StockNo = this.StockNo;	
 						var StockName = this.StockName;	
-					tab.append('<tr><td width=15%>' + StockNo + '</td><td width=80%><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
+					tab.append('<tr style="font-size: 16px ; font-family: Microsoft JhengHei"><td width=15%>' + StockNo + '</td><td width=80%><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
 							'</a></td><td width=5% align=right><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 					});	
 					$(del);
 					});
+				
+				}else{
+					 $('#showError3').empty();
+					 $('#showError3').append(data);
+					 $('input[name="godText"]').val("");
+				}
+				
 				});
 			});	
 		});
@@ -772,10 +824,10 @@ $(function() {
 				var StockNo = this.StockNo;
 				var StockName = this.StockName;
 				var RevenueDate = this.RevenueDate;	
-//				var Revenue = this.Revenue;	
+				var Revenue = this.Revenue;	
 				var PostDate = this.PostDate;	
 				
-				$('#tabs-3').append( '<a href="https://www.google.com.tw/" Target="_blank" style="text-decoration:none;"><div style="border:2px #d0d0d0 solid ; padding:10px ; margin:1px 0px"><h5>' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收' + ' (' + PostDate + ')' +'</h5></div></a>');
+				$('#tabs-3').append( '<a href="https://www.google.com.tw/" Target="_blank" style="text-decoration:none;"><div style="border:2px #d0d0d0 solid ; padding:10px ; margin:1px 0px"><h5>' + StockNo + ' ' + StockName + ' ' + RevenueDate + ' 月營收 ' + Revenue + ' (單位:千元) (' + PostDate + ')' +'</h5></div></a>');
 // 				$('#tabs-3').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收報表</a><br>');
 // 				$('#tabs-1').append( '<a href="https://www.google.com.tw/" Target="_blank">' + StockNo + ' ' + StockName + ' ' + RevenueDate + '月營收報表</a><br>');
 		
@@ -842,11 +894,20 @@ $(function() {
 		
 		//新增列表 + 設置 del
 		$.getJSON("GetListingDetails?",{"ld":tlno},function(data) {
+			
+			if(data==""){
+				
+				tab.append('<span style="font-size: 16px ; font-family: Microsoft JhengHei">還沒有追蹤的個股喔!</span>');
+				$('#tabs-2').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+				$('#tabs-3').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+				$('#tabs-4').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+			}
+			
 			$.each(data,function(){
 				var ListingNo = this.ListingNo;
 				var StockNo = this.StockNo;	
 				var StockName = this.StockName;	
-			tab.append('<tr><td width=15%>' + StockNo + '</td><td width=80%><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
+			tab.append('<tr style="font-size: 16px ; font-family: Microsoft JhengHei"><td width=15%>' + StockNo + '</td><td width=80%><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
 					'</a></td><td width=5% align=right><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 			});	
 			$(del2);
@@ -861,11 +922,11 @@ $(function() {
 			//點擊刪除
 		btnl.click(function() {
 			$.get("DeleteStock?",{"stockNo":$(this).attr("id"),"listingNo":$(this).attr("name")},function(data) {
-			alert(data);
 			
 			//清空列表
 			$('table[id*="table"]').empty();
 			$('div[name="div1"]').empty();
+			$('#showError3').empty();
 			
 			var searchNum =$("input[name='radio-1']:checked").val();
 			
@@ -968,11 +1029,20 @@ $(function() {
 			
 			//新增列表 + 設置 del
 			$.getJSON("GetListingDetails?",{"ld":tlno},function(data) {
+				
+				if(data==""){
+					
+					tab.append('<span style="font-size: 16px ; font-family: Microsoft JhengHei">還沒有追蹤的個股喔!</span>');
+					$('#tabs-2').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+					$('#tabs-3').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+					$('#tabs-4').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+				}
+				
 				$.each(data,function(){
 					var ListingNo = this.ListingNo;
 					var StockNo = this.StockNo;	
 					var StockName = this.StockName;	
-				tab.append('<tr><td width=15%>' + StockNo + '</td><td width=80%><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
+				tab.append('<tr style="font-size: 16px ; font-family: Microsoft JhengHei"><td width=15%>' + StockNo + '</td><td width=80%><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
 						'</a></td><td width=5% align=right><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 				});	
 				$(del2);
@@ -982,8 +1052,9 @@ $(function() {
 	};
 			
 				//設置選擇列
-		$("#createText"+tlno).append('<input type="text" placeholder="請輸入股號" name="godText" style="width:150px ; margin-right:10px">');	
+		$("#createText"+tlno).append('<input type="text" placeholder="請輸入股號" name="godText" style="width:150px ; margin-right:10px ; font-size: 16px ; font-family: Microsoft JhengHei">');	
 		$("#createText"+tlno).append('<input type="button" style="background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-2016111512562799.ico); width:16px; height:16px; background-color: #FFFFFF; border:none " name="createStock" id="' + tlno + '"><br>');
+		$("#createText"+tlno).append('<span style="font-size: 16px ; font-family: Microsoft JhengHei ; color:red" id="showError3"></span>');
 		
 		//自動完成
 		$.getJSON("GetStock?",{},function(data) {
@@ -1019,12 +1090,14 @@ $(function() {
 			var tlno = $(this).attr("id");
 			var sno = $('input[name="godText"]').val();
 			$.get("CreateStock?",{"listingNo":tlno,"stockNo":sno},function(data) {
-				alert(data);
+				
+				if(data=="追蹤個股成功"){
 				
 				//清空列表
 				$('table[id*="table"]').empty();
 				$('input[name="godText"]').val("");
 				$('div[name="div1"]').empty();
+				$('#showError3').empty();
 				
 				var searchNum =$("input[name='radio-1']:checked").val();
 				
@@ -1127,15 +1200,31 @@ $(function() {
 				
 				//新增列表 + 設置 del
 				$.getJSON("GetListingDetails?",{"ld":tlno},function(data) {
+					
+					if(data==""){
+						
+						tab.append('<span style="font-size: 16px ; font-family: Microsoft JhengHei">還沒有追蹤的個股喔!</span>');
+						$('#tabs-2').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+						$('#tabs-3').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+						$('#tabs-4').append('<span style="font-size: 36px ; font-family: Microsoft JhengHei ; width:400px ; text-align:center">追蹤個股後可查看相關資訊</span>');
+					}
+					
 					$.each(data,function(){
 						var ListingNo = this.ListingNo;
 						var StockNo = this.StockNo;	
 						var StockName = this.StockName;	
-					tab.append('<tr><td width=15%>' + StockNo + '</td><td width=80%><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
+					tab.append('<tr style="font-size: 16px ; font-family: Microsoft JhengHei"><td width=15%>' + StockNo + '</td><td width=80%><a href="https://www.google.com.tw/" Target="_blank">' + StockName + 
 							'</a></td><td width=5% align=right><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 					});	
 					$(del2);
 					});
+				
+				}else{
+					 $('#showError3').empty();
+					 $('#showError3').append(data);
+					 $('input[name="godText"]').val("");
+				}
+				
 				});
 			});						
 		});	

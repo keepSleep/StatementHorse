@@ -47,13 +47,13 @@ a:link {
 }
 
 .th {
-	white-space: nowrap;
+	width: 200px white-space: nowrap;
 	text-align: center;
 	padding: 0px 20px;
 }
 
 .td {
-	white-space: nowrap;
+	width: 300px white-space: nowrap;
 	text-align: center;
 	padding: 5px 20px
 }
@@ -64,216 +64,216 @@ a:link {
 
 	<input type="hidden" id="stockno" value="${stockVO.stockNo}" />
 	<input type="hidden" id="stockname" value="${stockVO.stockName}" />
-	<div class="container">
-		<div class="page-header">
-			<h3 style="font-family: '微軟正黑體'; font-size: 26px; color: #00BBFF">
-				<a
-					href="${pageContext.servletContext.contextPath}/ShowStockServlet?action=stock&stock_no=${incomeStatementVO.stockVO.stockNo}"
-					id="first_page"><i class="fa fa-stack-exchange fa-fw"></i> 個股資料</a>
-				<span class="pull-right label label-default"></span> <span
-					style="margin-left: 650px">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div id="left-Blank" class="col-md-2"></div>
+			<div id="mid-Blank" class="col-md-8">
+				<div class="row-fluid page-header">
+					<div class="col-md-3">
+						<p style="font-family: '微軟正黑體'; font-size: 26px; color: #00BBFF">
+							<a href="#" id="first_page"><i
+								class="fa fa-stack-exchange fa-fw"></i> 個股資料</a> <span
+								class="pull-right label label-default"></span> <span
+								style="margin-left: 650px">
+					</div>
+					<div class="col-md-5"></div>
+					<div class="btn-group" class="col-md-2">
+						<a href="#">
+							<button type="button" class="btn btn-info btn-xs dropdown-toggle"
+								style="width:150px;font-family: '微軟正黑體'; font-size: 26px" id="show_incomestatement">
+								損益表 <span></span>
+							</button>
+						</a> <span></span>
+					</div>
+					<div class="btn-group" class="col-md-2">
+						<a href="#">
+							<button type="button" class="btn btn-info btn-xs dropdown-toggle"
+								style="font-family: '微軟正黑體'; font-size: 26px" id="show_balancesheet">
+								資產負債表 <span></span>
+							</button>
+						</a> <span></span>
+					</div>
 
 
-					<div class="btn-group">
-						<a href="#"><button type="button"
-								class="btn btn-info btn-xs dropdown-toggle"
-								style="font-family: '微軟正黑體'; font-size: 26px; width: 150px" id="show_incomestatement">
-								損益表<span></span>
-							</button></a> <span></span>
-					</div>
-					<div class="btn-group">
-						<a href="#"><button type="button"
-								class="btn btn-info btn-xs dropdown-toggle"
-								style="font-family: '微軟正黑體'; font-size: 26px;" id="show_balancesheet">
-								資產負債表<span></span>
-							</button></a> <span></span>
-					</div>
+				</div>
 				</span>
-			</h3>
-		</div>
+				</p>
 
-		<div style="width: 300px; position: absolute; left: 370px; top: 250px">
 
-			<div>
-				<table border='3 bordercolor='
-					black'
-				style="text-indent: 20px; width: 1100px; height: 500px; position: absolute; top: 0px; display:; font-family: '微軟正黑體'; font-size: 26px; margin-bottom: 200px"
-					id="show_incomestatement_table">
-					<tr>
-						<td style="background-color: lightblue">股號</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.stockVO.stockNo}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue">股名</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.stockVO.stockName}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue">季度</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.statementDate}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue">營業收入</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.operatingRevenue}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue">營業成本</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.operatingCost}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue">營業毛利</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.operatingMargain}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue">營業毛利淨額</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.netOperatingMargain}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue">營業費用</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.operatingExpenses}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue">營業利益</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.operatingIncome}</td>
-					</tr>
-					<tr>
+				<div style="width: 300px; left: 370px; top: 250px">
 
-						<td style="background-color: lightblue">業外收入及支出</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.nonOperatingRevenue}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue">稅前淨利</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.oibt}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue">所得稅費用</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.incomeTaxExpense}</td>
+					<div>
+						<table border='3 bordercolor='
+							black'
+				style="text-indent: 20px; width: 1100px; display:; font-family: '微軟正黑體'; font-size: 26px; margin-bottom: 200px"
+							id="show_incomestatement_table">
+							<tr>
+								<td style="background-color: lightblue" >股號</td>
+								<td style="background-color: lightcyan" >${IncomeStatementVO.stockVO.stockNo}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">股名</td>
+								<td style="background-color: lightcyan">${stockVO.stockName}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">季度</td>
+								<td style="background-color: lightcyan">${IncomeStatementVO.statementDate}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">營業收入</td>
+								<td style="background-color: lightcyan">${IncomeStatementVO.operatingRevenue}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">營業成本</td>
+								<td style="background-color: lightcyan">${IncomeStatementVO.operatingCost}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">營業毛利</td>
+								<td style="background-color: lightcyan">${IncomeStatementVO.operatingMargain}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">營業毛利淨額</td>
+								<td style="background-color: lightcyan">${IncomeStatementVO.netOperatingMargain}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">營業費用</td>
+								<td style="background-color: lightcyan">${IncomeStatementVO.operatingExpenses}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">營業利益</td>
+								<td style="background-color: lightcyan">${IncomeStatementVO.operatingIncome}</td>
+							</tr>
+							<tr>
 
-					</tr>
-					<tr>
-						<td style="background-color: lightblue">繼續營業單位本期淨利</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.coiat}</td>
+								<td style="background-color: lightblue">業外收入及支出</td>
+								<td style="background-color: lightcyan">${IncomeStatementVO.nonOperatingRevenue}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">稅前淨利</td>
+								<td style="background-color: lightcyan">${IncomeStatementVO.oibt}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">所得稅費用</td>
+								<td style="background-color: lightcyan">${IncomeStatementVO.incomeTaxExpense}</td>
 
-					</tr>
-					<tr>
-						<td style="background-color: lightblue">本期淨利</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.netIncome}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">繼續營業單位本期淨利</td>
+								<td style="background-color: lightcyan">${IncomeStatementVO.coiat}</td>
 
-					</tr>
-					<tr>
-						<td style="background-color: lightblue">其他綜合損益</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.oci}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">本期淨利</td>
+								<td style="background-color: lightcyan">${IncomeStatementVO.netIncome}</td>
 
-					</tr>
-					<tr>
-						<td style="background-color: lightblue">本期綜合損益</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.currentProfitAndLoss}</td>
-					</tr>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">其他綜合損益</td>
+								<td style="background-color: lightcyan">${IncomeStatementVO.oci}</td>
 
-					<tr>
-						<td style="background-color: lightblue">基本每股盈餘</td>
-						<td style="background-color: lightcyan">${incomeStatementVO.earningPerShare}</td>
-					</tr>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">本期綜合損益</td>
+								<td style="background-color: lightcyan">${IncomeStatementVO.currentProfitAndLoss}</td>
+							</tr>
 
-				</table>
+							<tr>
+								<td style="background-color: lightblue">基本每股盈餘</td>
+								<td style="background-color: lightcyan">${IncomeStatementVO.earningPerShare}</td>
+							</tr>
+
+						</table>
+					</div>
+					<div>
+						<table border='3 bordercolor='
+							black'
+				style="display: none; text-indent: 20px; width: 1100px; display:; font-family: '微軟正黑體'; font-size: 26px; margin-bottom: 200px"
+							id="show_balancesheet_table">
+							<tr>
+								<td style="background-color: lightblue">股號</td>
+								<td style="background-color: lightcyan">${BalanceSheetVO.stockVO.stockNo}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">股名</td>
+								<td style="background-color: lightcyan">${stockVO.stockName}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">季度</td>
+								<td style="background-color: lightcyan">${BalanceSheetVO.statementDate}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">流動資產</td>
+								<td style="background-color: lightcyan">${BalanceSheetVO.currentAssets}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">非流動資產</td>
+								<td style="background-color: lightcyan">${BalanceSheetVO.fixedAssets}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">總資產</td>
+								<td style="background-color: lightcyan">${BalanceSheetVO.assets}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">流動負債</td>
+								<td style="background-color: lightcyan">${BalanceSheetVO.currentLiabilities}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">非流動負債</td>
+								<td style="background-color: lightcyan">${BalanceSheetVO.longTermLiabilities}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">總負債</td>
+								<td style="background-color: lightcyan">${BalanceSheetVO.liabilities}</td>
+							</tr>
+							<tr>
+
+								<td style="background-color: lightblue">股本</td>
+								<td style="background-color: lightcyan">${BalanceSheetVO.capitalStock}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">資本公積</td>
+								<td style="background-color: lightcyan">${BalanceSheetVO.additionalPaidInCapital}</td>
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">保留盈餘</td>
+								<td style="background-color: lightcyan">${BalanceSheetVO.retainedEarnings}</td>
+
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">其他權益</td>
+								<td style="background-color: lightcyan">${BalanceSheetVO.otherEquity}</td>
+
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">母公司業主之權益</td>
+								<td style="background-color: lightcyan">${BalanceSheetVO.consolidatedNetIncomeAttributedToStockholdersOfTheCompany}</td>
+
+							</tr>
+							<tr>
+								<td style="background-color: lightblue">權益總計</td>
+								<td style="background-color: lightcyan">${BalanceSheetVO.totalEquity}</td>
+
+							</tr>
+
+
+						</table>
+					</div>
+				</div>
 			</div>
-			<div>
-				<table border='3 bordercolor='
-					black'
-				style="display:none;text-indent: 20px; width: 1100px; height: 500px; position: absolute; top: 0px; display:; font-family: '微軟正黑體'; font-size: 26px; margin-bottom: 200px"
-					id="show_balancesheet_table">
-					<tr>
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.stockVO.stockNo}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.stockVO.stockName}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.statementDate}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.operatingRevenue}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.operatingCost}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.operatingMargain}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.netOperatingMargain}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.operatingExpenses}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.operatingIncome}</td>
-					</tr>
-					<tr>
-
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.nonOperatingRevenue}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.oibt}</td>
-					</tr>
-					<tr>
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.incomeTaxExpense}</td>
-
-					</tr>
-					<tr>
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.coiat}</td>
-
-					</tr>
-					<tr>
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.netIncome}</td>
-
-					</tr>
-					<tr>
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.oci}</td>
-
-					</tr>
-					<tr>
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.currentProfitAndLoss}</td>
-					</tr>
-
-					<tr>
-						<td style="background-color: lightblue"></td>
-						<td style="background-color: lightcyan">${incomeStatementVO.earningPerShare}</td>
-					</tr>
-
-				</table>
-			</div>
+			<div id="right-Blank" class="col-md-2"></div>
 		</div>
+	</div>
 </body>
 <script>
-$("#show_incomestatement").click(function() {
-	$("#show_incomestatement_table").css("display", "");
-	$("#show_balancesheet_table").css("display", "none");
+	$("#show_incomestatement").click(function() {
+		$("#show_incomestatement_table").css("display", "");
+		$("#show_balancesheet_table").css("display", "none");
 
-})
-$("#show_balancesheet").click(function() {
-	$("#show_incomestatement_table").css("display", "none");
-	$("#show_balancesheet_table").css("display", "");
+	})
+	$("#show_balancesheet").click(function() {
+		$("#show_incomestatement_table").css("display", "none");
+		$("#show_balancesheet_table").css("display", "");
 
-})
-
-
-
-
+	})
 </script>
 </html>
