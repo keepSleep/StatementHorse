@@ -19,7 +19,7 @@
 <!-- 		<property name="hibernate.connection.url">jdbc:sqlserver://starbooksdbeeit8912.database.windows.net:1433;DatabaseName=starbooksdb8912</property> -->
 <!-- 		<property name="hibernate.connection.username">cherry@starbooksdbeeit8912</property> -->
 <!-- 		<property name="hibernate.connection.password">tomatoes57KEN</property> -->
- 			
+
 <!--  		<property name="hibernate.connection.datasource">java:/comp/env/jdbc/TestDB</property> -->
         
 		<!--SQL方言,以下使用SQLServer -->
