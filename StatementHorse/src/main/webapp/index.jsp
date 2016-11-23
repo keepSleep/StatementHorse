@@ -16,29 +16,48 @@
 <%-- 	<script src="${pageContext.servletContext.contextPath}/js/jquery.min.js"></script> --%>
 	<script	src="${pageContext.servletContext.contextPath}/js/jquery-ui.min.js"></script>
 <%-- 	<script	src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script> --%>
+<style>
+*{
+font-family:微軟正黑體;
+}
+div img{
+position:static !important;　
+position:relative; 　
+top:-50%;
+left:-50%;
+}
+
+</style>
 
 </head>
 <body>
 
-	<div class="container-fluid">
+	<div class="container-fluid" style="text-align:center">
 	<p/>
 <!-- 頁面主體 開始 -->
 			<div class="row-fluid">
 				<div id="left-Blank" class="col-md-1"></div>
-				<div id="mid-Blank" class="col-md-10" style="background-color:#C6D8FF; height:600px">
+				<div id="mid-Blank" class="col-md-10" >
+					<div class="row-fluid">
+						<div id="mid-left-Blank" class="col-xs-12" style="height:340px">
+						<div class="row-fluid" style="height:100px"></div>
+						<p><h1 style="text-shadow: 5px 5px 5px #f9f9f9"><strong>財報馬</strong></h1></p>
+						<h3>跑得快</h3>
+						</div>
+					</div>
 					<div class="row-fluid">
 						<p/>
-				<!-- 頁面左方區塊 -->
-						<div id="mid-left-Blank" class="col-xs-3" style="border:2px dotted #648381; height:580px">
-						左方
-						</div>
-				<!-- 頁面右方區塊 -->
-						<div id="mid-right-Blank" class="col-xs-9" style="border:2px solid #648381; height:580px">
-							<div class="row-fluid">
-								<div id="mid-right-top-Blank" class="col-xs-12" style="border:2px dotted #563635; height:50px">右上方</div>
-								<p/>
-								<div id="mid-right-down-Blank" class="col-xs-12" style="border:2px solid #563635; height:500px">右下方</div>
+						<div id="mid-left-Blank" class="col-xs-4" style="height:280px">
+						<img src="picture/analysis.png" width="150" height="150">
+							<h3>資料視覺化</h3>
 							</div>
+						<div id="mid-left-Blank" class="col-xs-4" style="height:280px">
+							<img src="picture/promotion.png" width="150" height="150">
+							<h3>即時財報資訊</h3>
+						</div>
+						<div id="mid-left-Blank" class="col-xs-4" style="height:280px">
+							<img src="picture/piggy-bank.png" width="150" height="150">
+							<h3>FREE</h3>
 						</div>
 					</div>
 				</div>
