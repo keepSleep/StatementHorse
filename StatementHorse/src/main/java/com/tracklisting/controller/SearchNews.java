@@ -75,6 +75,7 @@ public class SearchNews extends HttpServlet {
 			m1.put("NewsDate", aArray[0].toString());
 			m1.put("NewsTitle",aArray[1]);
 			m1.put("NewsWebaddress", aArray[2]);
+			m1.put("StockNo", aArray[3]);
 			l1.add(m1);
 			
 			i++;
