@@ -822,27 +822,51 @@ a:link {
 								//mgrjson
 // 								var mgrurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=mgrjson&stock_no='
 // 										+ stockno;
-								$.getJSON("ShowStockServlet",{"json":"mgrjson","stock_no":stockno}, function(data) {
-									$('#tab1info').highcharts(
-											'StockChart',
-											{
-												rangeSelector : {
-													selected : 5
-												},
-												title : {
-													text : '月營收(' + stockno
-															+ ')(單位:千元)'
-												},
-												series : [ {
-													name : stockname,
-													data : data,
-													tooltip : {
-														valueDecimals : 2
-													}
-												} ]
-											});
-
+								$.getJSON("ShowStockServlet",{"json":"mgrjson","stock_no":stockno},function(data) {
+									// create the chart
+									$('#tab1info').highcharts('StockChart', {
+										chart : {
+											alignTicks : false
+										},
+										rangeSelector : {
+											selected : 4
+										},
+										title : {
+											text : '月營收(' + stockno + ')'
+										},
+										series : [ {
+											type : 'column',
+											name : "",
+											data : data,
+										//				                 dataGrouping: {units: [['week', // unit name [1] // allowed multiples
+										//				                     ], ['month', [1, 2, 3, 4, 6] ]] }
+										} ]
+									});
 								});
+								
+								
+								
+// 								$.getJSON("ShowStockServlet",{"json":"mgrjson","stock_no":stockno}, function(data) {
+// 									$('#tab1info').highcharts(
+// 											'StockChart',
+// 											{
+// 												rangeSelector : {
+// 													selected : 5
+// 												},
+// 												title : {
+// 													text : '月營收(' + stockno
+// 															+ ')(單位:千元)'
+// 												},
+// 												series : [ {
+// 													name : stockname,
+// 													data : data,
+// 													tooltip : {
+// 														valueDecimals : 2
+// 													}
+// 												} ]
+// 											});
+
+// 								});
 
 								//mgr_table
 								var myHead = $("#show_mgr_table>thead")
