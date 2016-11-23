@@ -3,6 +3,8 @@ package com.message.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.Calendar;
+import java.util.Calendar.Builder;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,12 +13,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.type.descriptor.java.CalendarTypeDescriptor;
 import org.json.JSONArray;
 
 import com.balancesheet.model.BalanceSheetVO;
 import com.financialstatements.model.FinancialStatementsService;
 import com.jsoup.GetIcomeBalanceSheet;
 import com.jsoup.GetMgr;
+import com.jsoup.GetPrice;
 import com.message.model.MsgService;
 
 @WebServlet("/backstage/BackStageMgr")
@@ -48,7 +52,20 @@ public class BackStageMgr extends HttpServlet {
 			JSONArray json = new JSONArray(list);
 			out.print(json);
 		}
-
+		
+		//歷史股價的爬蟲
+		if ("price".equals(action)) {
+			String stockno = request.getParameter("stockno");
+			String year = request.getParameter("year");
+			String month = request.getParameter("month");
+			String day = request.getParameter("day");
+//			System.out.println(stockno + ":" + year + "/" + month);
+			GetPrice.insertPrice(new Integer(stockno),new Integer(year), new Integer(month),new Integer(day));
+			List list = msgdao.findpricebystocknobypricedate(stockno);
+			JSONArray json = new JSONArray(list);
+			out.print(json);
+		}
+		
 		// 財報的爬蟲
 		if ("financialstatements".equals(action)) {
 			Integer stockno = new Integer(request.getParameter("stockno"));
@@ -73,8 +90,10 @@ public class BackStageMgr extends HttpServlet {
 			JSONArray json=null;
 			JSONArray json1=null;
 			try {
+				 Calendar calendar = new Calendar.Builder().build();
+				financialstatementservice.addFinancialStatements(stockno, (year-1911)+"0"+season, postDate,Calendar.HOUR+":"+Calendar.MINUTE+":"+Calendar.SECOND) ;
+					
 				
-				financialstatementservice.addFinancialStatements(stockno, (year-1911)+"0"+season, postDate, "00:00:00");
 				
 				GetIcomeBalanceSheet.Parsing(year, season, stockno);
 				List list = msgdao.findbalancesheetbystockno(stockno.toString());
@@ -117,7 +136,13 @@ public class BackStageMgr extends HttpServlet {
 			JSONArray json = new JSONArray(list);
 			out.print(json);
 		}
-		
+		//歷史股價的失焦
+		if ("priceblur".equals(action)) {
+			String stockno = request.getParameter("stockno");
+			List list = msgdao.findpricebystocknobypricedate(stockno);
+			JSONArray json = new JSONArray(list);
+			out.print(json);
+		}
 		
 	}
 

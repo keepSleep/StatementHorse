@@ -65,8 +65,8 @@ a:link {
 	<input type="hidden" id="stockno" value="${stockVO.stockNo}" />
 	<input type="hidden" id="stockname" value="${stockVO.stockName}" />
 	<div class="row-fluid">
-		<div id="left-Blank" class="col-md-2"></div>
-		<div id="mid-Blank" class="col-md-8" >
+		<div id="left-Blank" class="col-md-1"></div>
+		<div id="mid-Blank" class="col-md-10" >
 		<div class="row-fluid page-header">
 
 <!-- 	<div class="container "> -->
@@ -80,7 +80,7 @@ a:link {
 
 
 		</div>
-		<div class="col-md-7"></div>
+		<div class="col-md-6"></div>
 <!-- 		<div class="btn-group" class="col-md-2"> -->
 <%-- 				<a href="${pageContext.servletContext.contextPath}/GetTrackListing?"> --%>
 <!-- 				<button type="button" class="btn btn-info btn-xs dropdown-toggle" -->
@@ -88,10 +88,10 @@ a:link {
 <!-- 						我的追蹤清單 <span></span> -->
 <!-- 				</button></a> <span></span> -->
 <!-- 		</div> -->
-<!-- 		<div class="col-md-1"></div> -->
+		<div class="col-md-1"></div>
 		<div class="btn-group" class="col-md-1">
 				<button type="button" class="btn btn-info btn-xs dropdown-toggle"
-					data-toggle="dropdown"style="font-family: '微軟正黑體'; font-size: 26px;"listing">
+					data-toggle="dropdown"style="font-family: '微軟正黑體'; font-size: 26px;width:175px">
 					加入追蹤 
 <!-- 					<span class="caret"></span> -->
 				</button> 
@@ -102,8 +102,7 @@ a:link {
 							value="${TrackListingVO.listingNo}">${TrackListingVO.listingName}</li>
 					</c:forEach>
 				</ul>
-<!-- 		</div> -->
-<!-- 				</span> -->
+
 
 		</div>
 		</div>
@@ -113,7 +112,7 @@ a:link {
 <!-- 		<div style="width: 300px"> -->
 		<div class="nav col-md-3" >
 			<ul id="side-menu"
-				style="list-styleLfont-family: '微軟正黑體'; font-size: 26px;">
+				style="list-style:none;font-family: '微軟正黑體'; font-size: 26px;">
 
 				<li id="show_mgr"><a href="#"><i
 						class="fa fa-search-plus fa-fw"></i>公司最新動態<span class="active"></span></a>
@@ -144,7 +143,7 @@ a:link {
 			<div class="col-md-9">
 			<table border='3 bordercolor='
 				black'
-				style="text-indent: 20px; width: 800px; height: 500px; display:; font-family: '微軟正黑體'; font-size: 26px; margin-bottom: 200px"
+				style="text-indent: 20px; width: 788px; height: 500px; display:; font-family: '微軟正黑體'; font-size: 26px; margin-bottom: 200px"
 				id="show_stock" >
 				<tr>
 					<td style="background-color: lightblue">股號</td>
@@ -448,7 +447,7 @@ a:link {
 							<li><a href="#tab2info_31" data-toggle="tab">長期負債</a></li>
 							<li><a href="#tab3info_31" data-toggle="tab">淨值</a></li>
 							<li><a href="#tab4info_31" data-toggle="tab">總負債+淨值</a></li>
-							<li><a href="#tab5info_3" data-toggle="tab">負債表</a></li>
+							<li><a href="#tab5info_31" data-toggle="tab">負債表</a></li>
 						</ul>
 					</div>
 					<div class="panel-body" style="margin-bottom: 100px">
@@ -497,7 +496,17 @@ a:link {
 									</table>
 								</div>
 							</div>
-							<div class="tab-pane fade" id="tab5info_3" style="width: 730px"></div>
+							<div class="tab-pane fade" id="tab5info_31">
+							<div id="tab5info_3" style="width: 730px"></div>
+								<div style="overflow-x: auto; padding-top: 30px">
+									<table border='3' bordercolor='#DCDCDC'
+										style="color: steelblue; font-family: '微軟正黑體'; font-size: 20px"
+										id="show_debt_table">
+										<thead style="background-color: lightblue"></thead>
+										<tbody></tbody>
+									</table>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -578,7 +587,7 @@ a:link {
 
 			</div>
 		</div>
-		<div id="right-Blank" class="col-md-2"></div>
+		<div id="right-Blank" class="col-md-1"></div>
 	</div>
 </div>
 
@@ -724,6 +733,70 @@ a:link {
 					// 							console.log(i);
 				}
 			})
+			var list_no = $("#TrackListing_id>li>input:eq(3)").val();
+			// 					console.log(i)
+			$.get("ShowStockServlet", {
+				"listNo" : list_no,
+				"stock_no" : stockno,
+				"insert_or_delete" : "select"
+			}, function(data) {
+				console.log(data)
+
+				if (data == stockno) {
+					$("#TrackListing_id>li>input:eq(3)").prop("checked", true)
+				} else {
+					$("#TrackListing_id>li>input:eq(3)").prop("checked", false)
+					// 							console.log(i);
+				}
+			})
+			var list_no = $("#TrackListing_id>li>input:eq(4)").val();
+			// 					console.log(i)
+			$.get("ShowStockServlet", {
+				"listNo" : list_no,
+				"stock_no" : stockno,
+				"insert_or_delete" : "select"
+			}, function(data) {
+				console.log(data)
+
+				if (data == stockno) {
+					$("#TrackListing_id>li>input:eq(4)").prop("checked", true)
+				} else {
+					$("#TrackListing_id>li>input:eq(4)").prop("checked", false)
+					// 							console.log(i);
+				}
+			})
+			var list_no = $("#TrackListing_id>li>input:eq(5)").val();
+			// 					console.log(i)
+			$.get("ShowStockServlet", {
+				"listNo" : list_no,
+				"stock_no" : stockno,
+				"insert_or_delete" : "select"
+			}, function(data) {
+				console.log(data)
+
+				if (data == stockno) {
+					$("#TrackListing_id>li>input:eq(5)").prop("checked", true)
+				} else {
+					$("#TrackListing_id>li>input:eq(5)").prop("checked", false)
+					// 							console.log(i);
+				}
+			})
+			var list_no = $("#TrackListing_id>li>input:eq(6)").val();
+			// 					console.log(i)
+			$.get("ShowStockServlet", {
+				"listNo" : list_no,
+				"stock_no" : stockno,
+				"insert_or_delete" : "select"
+			}, function(data) {
+				console.log(data)
+
+				if (data == stockno) {
+					$("#TrackListing_id>li>input:eq(6)").prop("checked", true)
+				} else {
+					$("#TrackListing_id>li>input:eq(6)").prop("checked", false)
+					// 							console.log(i);
+				}
+			})
 
 			//加入追蹤清單
 			$("#TrackListing_id>li>input").change(function() {
@@ -745,9 +818,9 @@ a:link {
 					.click(
 							function() {
 								//mgrjson
-								var mgrurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=mgrjson&stock_no='
-										+ stockno;
-								$.getJSON(mgrurl, function(data) {
+// 								var mgrurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=mgrjson&stock_no='
+// 										+ stockno;
+								$.getJSON("ShowStockServlet",{"json":"mgrjson","stock_no":stockno}, function(data) {
 									$('#tab1info').highcharts(
 											'StockChart',
 											{
@@ -798,39 +871,17 @@ a:link {
 								})
 
 								//pricejson
-								var priceurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=pricejson&stock_no='
-										+ stockno
-								$
-										.getJSON(
-												priceurl,
-												function(data) {
-													$('#tab3info')
-															.highcharts(
-																	'StockChart',
-																	{
-																		rangeSelector : {
-																			selected : 5
-																		},
-																		title : {
-																			text : '股價('
-																					+ stockno
-																					+ ')'
-																		},
-																		series : [ {
-																			type : 'candlestick',
-																			name : stockname,
-																			data : data,
-																			dataGrouping : {
-																				units : [
-																						'week',
-																						[
-																								'month',
-																								[
-																										1,
-																										2,
-																										3,
-																										4,
-																										6 ] ] ]
+// 								var priceurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=pricejson&stock_no='
+// 										+ stockno
+								$.getJSON("ShowStockServlet",{"json":"pricejson","stock_no":stockno},function(data) {
+													$('#tab3info').highcharts('StockChart',
+													{rangeSelector : {selected : 5},
+													title : {text : '股價('+ stockno+ ')'},
+													series : [ {type : 'candlestick',
+																name : stockname,
+																data : data,
+																dataGrouping : {
+																units : ['week',['month',[1,2,3,4,6 ] ] ]
 																			}
 																		// 									                                      unit name[ 1 ] allowed multiples],
 																		} ]
@@ -863,12 +914,9 @@ a:link {
 
 								})
 								//incomestatementjson
-								var incomestatementjsonurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=incomestatementjson&need=earningPerShare&stock_no='
-										+ stockno;
-								$
-										.getJSON(
-												incomestatementjsonurl,
-												function(data) {
+// 								var incomestatementjsonurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=incomestatementjson&need=earningPerShare&stock_no='
+// 										+ stockno;
+								$.getJSON("ShowStockServlet",{"json":"incomestatementjson","need":"earningPerShare","stock_no":stockno},function(data) {
 													// Create the chart
 													// 						$('#tab2info').highcharts('StockChart',{rangeSelector : {selected : 5},
 													// 										title : {text : '每股盈餘('+ stockno+ ')'},
@@ -963,16 +1011,16 @@ a:link {
 								})
 
 								//divident 股利
-								var dividenturl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=dividendjson&stock_no='
-										+ stockno;
-								$.getJSON(dividenturl, function(data) {
+// 								var dividenturl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=dividendjson&stock_no='
+// 										+ stockno;
+								$.getJSON("ShowStockServlet",{"json":"dividendjson","stock_no":stockno},function(data) {
 									// create the chart
 									$('#tab4info').highcharts('StockChart', {
 										chart : {
 											alignTicks : false
 										},
 										rangeSelector : {
-											selected : 3
+											selected : 6
 										},
 										title : {
 											text : '股利(' + stockno + ')'
@@ -1033,9 +1081,9 @@ a:link {
 												})
 
 								//本益比JSON
-								var PERurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=PERjson&stock_no='
-										+ stockno;
-								$.getJSON(PERurl, function(data) {
+// 								var PERurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=PERjson&stock_no='
+// 										+ stockno;
+								$.getJSON("ShowStockServlet",{"json":"PERjson","stock_no":stockno}, function(data) {
 									$('#tab5info').highcharts('StockChart', {
 										rangeSelector : {
 											selected : 5
@@ -1084,12 +1132,10 @@ a:link {
 					.click(
 							function() {
 								//incomestatementjson季營收
-								var revenuejsonurl = "http://localhost:8080/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingRevenue&stock_no="
-										+ stockno;
+// 								var revenuejsonurl = "http://localhost:8080/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingRevenue&stock_no="
+// 										+ stockno;
 
-								$
-										.getJSON(
-												revenuejsonurl,
+								$.getJSON("ShowStockServlet",{"json":"incomestatementjson","need":"operatingRevenue","stock_no":stockno},
 												function(data) {
 													Highcharts
 															.chart(
@@ -1176,12 +1222,9 @@ a:link {
 								})
 
 								//incomestatementjson季毛利
-								var operatingMargainjsonurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingMargain&stock_no='
-										+ stockno;
-								$
-										.getJSON(
-												operatingMargainjsonurl,
-												function(data) {
+// 								var operatingMargainjsonurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingMargain&stock_no='
+// 										+ stockno;
+								$.getJSON("ShowStockServlet",{"json":"incomestatementjson","need":"operatingMargain","stock_no":stockno},function(data) {
 													Highcharts
 															.chart(
 																	'tab2info_1',
@@ -1269,8 +1312,7 @@ a:link {
 								var operatingIncomejsonurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=incomestatementjson&need=operatingIncome&stock_no='
 										+ stockno;
 								$
-										.getJSON(
-												operatingIncomejsonurl,
+										.getJSON("ShowStockServlet",{"json":"incomestatementjson","need":"operatingIncome","stock_no":stockno},
 												function(data) {
 													Highcharts
 															.chart(
@@ -1360,7 +1402,7 @@ a:link {
 										+ stockno;
 								$
 										.getJSON(
-												oibtjsonurl,
+												"ShowStockServlet",{"json":"incomestatementjson","need":"oibt","stock_no":stockno},
 												function(data) {
 													Highcharts
 															.chart(
@@ -1450,7 +1492,7 @@ a:link {
 										+ stockno;
 								$
 										.getJSON(
-												netIncomejsonurl,
+												"ShowStockServlet",{"json":"incomestatementjson","need":"netIncome","stock_no":stockno},
 												function(data) {
 													Highcharts
 															.chart(
@@ -1538,7 +1580,7 @@ a:link {
 								//統整表
 								var incomejsonurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=incomejson&need=income&stock_no='
 										+ stockno;
-								$.getJSON(incomejsonurl, function(data) {
+								$.getJSON("ShowStockServlet",{"json":"incomejson","need":"income","stock_no":stockno}, function(data) {
 									Highcharts.chart('tab6info_1', {
 										title : {
 											text : "損益表",
@@ -1592,7 +1634,7 @@ a:link {
 									$.each(data, function(key, value) {
 										
 										var date = $("<th></th>").append(
-												thousandComma(value.Date));
+												value.Date);
 										myHead6.append(date)
 									})
 									var Body1 = $("<tr></tr>").append("<td>季營收(單位:百萬)</td>")
@@ -1643,7 +1685,7 @@ a:link {
 							function() {
 								var assetsAlljsonurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=assetsjson&need=assetsAll&stock_no='
 										+ stockno;
-								$.getJSON(assetsAlljsonurl, function(data) {
+								$.getJSON("ShowStockServlet",{"json":"assetsjson","need":"assetsAll","stock_no":stockno}, function(data) {
 									Highcharts.chart('tab4info_2', {
 										title : {
 											text : "資產(" + stockno + ")",
@@ -1734,7 +1776,7 @@ a:link {
 										+ stockno;
 								$
 										.getJSON(
-												fixedAssetsjsonurl,
+												"ShowStockServlet",{"json":"balancesheetjson","need":"currentAssets","stock_no":stockno},
 												function(data) {
 													Highcharts
 															.chart(
@@ -1824,7 +1866,7 @@ a:link {
 										+ stockno;
 								$
 										.getJSON(
-												netIncomejsonurl,
+												"ShowStockServlet",{"json":"balancesheetjson","need":"fixedAssets","stock_no":stockno},
 												function(data) {
 													Highcharts
 															.chart(
@@ -1915,7 +1957,7 @@ a:link {
 										+ stockno;
 								$
 										.getJSON(
-												assetsjsonurl,
+												"ShowStockServlet",{"json":"balancesheetjson","need":"assets","stock_no":stockno},
 												function(data) {
 													Highcharts
 															.chart(
@@ -2011,7 +2053,7 @@ a:link {
 										+ stockno;
 								$
 										.getJSON(
-												currentLiabilitiesjsonurl,
+												"ShowStockServlet",{"json":"balancesheetjson","need":"currentLiabilities","stock_no":stockno},
 												function(data) {
 													Highcharts
 															.chart(
@@ -2120,7 +2162,7 @@ a:link {
 										+ stockno;
 								$
 										.getJSON(
-												longTermLiabilitiesjsonurl,
+												"ShowStockServlet",{"json":"balancesheetjson","need":"longTermLiabilities","stock_no":stockno},
 												function(data) {
 													Highcharts
 															.chart(
@@ -2229,7 +2271,7 @@ a:link {
 										+ stockno;
 								$
 										.getJSON(
-												Netjsonurl,
+												"ShowStockServlet",{"json":"balancesheetjson","need":"net","stock_no":stockno},
 												function(data) {
 													Highcharts
 															.chart(
@@ -2319,7 +2361,7 @@ a:link {
 										+ stockno;
 								$
 										.getJSON(
-												Netjsonurl,
+												"ShowStockServlet",{"json":"balancesheetjson","need":"assets","stock_no":stockno},
 												function(data) {
 													Highcharts
 															.chart(
@@ -2407,7 +2449,7 @@ a:link {
 								//統整表
 								var debtjsonurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=assetsjson&need=debt&stock_no='
 										+ stockno;
-								$.getJSON(debtjsonurl, function(data) {
+								$.getJSON("ShowStockServlet",{"json":"assetsjson","need":"debt","stock_no":stockno}, function(data) {
 									Highcharts.chart('tab5info_3', {
 										title : {
 											text : "負債表",
@@ -2444,6 +2486,67 @@ a:link {
 									});
 
 								})
+								
+								//負債統整表
+								var myHead6 = $("#show_debt_table>thead")
+								var myBody6 = $("#show_debt_table>tbody")
+								myHead6.empty();
+								myBody6.empty();
+								$.getJSON("GetStockTableServlet", {
+									"json" : "assetsjson",
+									"need" : "debt",
+									"stock_no" : stockno
+								}, function(data) {
+									myHead6.append("<th>年度/季度</th>")
+									$.each(data, function(key, value) {
+										
+										var date = $("<th></th>").append(
+												value.Date);
+										myHead6.append(date)
+									})
+									var Body1 = $("<tr></tr>").append("<td>季營收(單位:百萬)</td>")
+
+									$.each(data, function(key, value) {
+										var revenue1 = $("<td></td>").append(thousandComma(value.CurrentLiabilities));
+										Body1.append(revenue1);
+									})
+// 									
+
+									var Body2 = $("<tr></tr>").append(
+											"<td>季毛利(單位:百萬)</td>")
+
+									$.each(data, function(key, value) {
+										var revenue2 = $("<td></td>").append(
+												thousandComma(value.LongTermLiabilities));
+										Body2.append(revenue2);
+									})
+// 								
+									var Body3 = $("<tr></tr>").append(
+											"<td>稅前淨利(單位:百萬)</td>")
+
+									$.each(data, function(key, value) {
+										var revenue3 = $("<td></td>").append(
+												thousandComma(value.Net));
+										Body3.append(revenue3);
+									})
+									var Body4 = $("<tr></tr>").append(
+											"<td>稅後淨利(單位:百萬)</td>")
+
+									$.each(data, function(key, value) {
+										var revenue4 = $("<td></td>").append(
+												thousandComma(value.Assets));
+										Body4.append(revenue4);
+									})
+									
+									myBody6.append(Body1,Body2,Body3,Body4);
+									$("#show_debt_table>thead>th").addClass(
+											"th")
+									$("#show_debt_table>tbody>tr>td")
+											.addClass("td")
+
+								})
+						
+
 
 							})
 
@@ -2454,7 +2557,7 @@ a:link {
 										+ stockno;
 								$
 										.getJSON(
-												balancejsonurl,
+												"ShowStockServlet",{"json":"assetsjson","need":"balance","stock_no":stockno},
 												function(data) {
 													Highcharts
 															.chart(
@@ -2527,7 +2630,7 @@ a:link {
 										+ stockno;
 								$
 										.getJSON(
-												flowjsonurl,
+												"ShowStockServlet",{"json":"assetsjson","need":"flow","stock_no":stockno},
 												function(data) {
 													Highcharts
 															.chart(
@@ -2603,7 +2706,7 @@ a:link {
 							function() {
 								profitjsonurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=incomejson&need=profit&stock_no='
 										+ stockno;
-								$.getJSON(profitjsonurl, function(data) {
+								$.getJSON("ShowStockServlet",{"json":"incomejson","need":"profit","stock_no":stockno}, function(data) {
 									Highcharts.chart('tab1info_5', {
 										title : {
 											text : "利潤比例",

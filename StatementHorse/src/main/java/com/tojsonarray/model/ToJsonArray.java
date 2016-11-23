@@ -148,9 +148,9 @@ public class ToJsonArray {
 				}if("operatingIncome".equals(str)){
 					elementlist.add(1, element.getOperatingIncome()/1000);
 				}if("oibt".equals(str)){
-					elementlist.add(1, element.getOibt());
+					elementlist.add(1, element.getOibt()/1000);
 				}if("netIncome".equals(str)){
-					elementlist.add(1,element.getNetIncome());
+					elementlist.add(1,element.getNetIncome()/1000);
 				}
 				listAll.add(elementlist);
 			}

@@ -76,7 +76,7 @@
     <servlet-name>MsgServlet</servlet-name>
     <url-pattern>/MsgServlet</url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>MsgServlet</servlet-name>
     <url-pattern>/financialstatements/MsgServlet</url-pattern>
   </servlet-mapping>

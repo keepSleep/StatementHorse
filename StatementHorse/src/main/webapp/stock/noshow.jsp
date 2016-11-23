@@ -94,13 +94,13 @@ a:link {
 							加入追蹤
 							<!-- 					<span class="caret"></span> -->
 						</button>
-						<ul class="dropdown-menu pull-right" role="menu"
-							style="font-size: x-large" id="TrackListing_id">
-							<c:forEach var="TrackListingVO" items="${list}">
-								<li><input type="checkbox"
-									value="${TrackListingVO.listingNo}">${TrackListingVO.listingName}</li>
-							</c:forEach>
-						</ul>
+<!-- 						<ul class="dropdown-menu pull-right" role="menu" -->
+<!-- 							style="font-size: x-large" id="TrackListing_id"> -->
+<%-- 							<c:forEach var="TrackListingVO" items="${list}"> --%>
+<!-- 								<li><input type="checkbox" -->
+<%-- 									value="${TrackListingVO.listingNo}">${TrackListingVO.listingName}</li> --%>
+<%-- 							</c:forEach> --%>
+<!-- 						</ul> -->
 						<!-- 		</div> -->
 						<!-- 				</span> -->
 
