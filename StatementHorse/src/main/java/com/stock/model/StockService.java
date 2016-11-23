@@ -36,7 +36,7 @@ public class StockService {
 	
 	public void insertstock(Integer stockNo,String stockName,String industry,
 		String chairman,Date companyEstablishDate,String companyTaxId,Date listingDate,
-		Date stockholdersMeetingDate,String stockWebaddress,Integer capital,String accountingFirm){
+		Date stockholdersMeetingDate,String stockWebaddress,Long capital,String accountingFirm){
 		StockVO stockVO=new StockVO();
 		stockVO.setStockNo(stockNo);
 		stockVO.setStockName(stockName);
@@ -54,7 +54,7 @@ public class StockService {
 	}
 	public void updatestock(Integer stockNo,String stockName,String industry,
 			String chairman,Date companyEstablishDate,String companyTaxId,Date listingDate,
-			Date stockholdersMeetingDate,String stockWebaddress,Integer capital,String accountingFirm){
+			Date stockholdersMeetingDate,String stockWebaddress,Long capital,String accountingFirm){
 			StockVO stockVO=new StockVO();
 			stockVO.setStockNo(stockNo);
 			stockVO.setStockName(stockName);

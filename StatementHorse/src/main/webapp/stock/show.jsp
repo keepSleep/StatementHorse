@@ -64,6 +64,7 @@ a:link {
 <div class="container-fluid">	
 	<input type="hidden" id="stockno" value="${stockVO.stockNo}" />
 	<input type="hidden" id="stockname" value="${stockVO.stockName}" />
+	<input type="hidden" id="stockcapital" value="${stockVO.capital}" />
 	<div class="row-fluid">
 		<div id="left-Blank" class="col-md-1"></div>
 		<div id="mid-Blank" class="col-md-10" >
@@ -179,8 +180,8 @@ a:link {
 				</tr>
 				<tr>
 
-					<td style="background-color: lightblue">資本額(單位:百萬)</td>
-					<td style="background-color: lightcyan">${stockVO.capital}</td>
+					<td style="background-color: lightblue">資本額</td>
+					<td style="background-color: lightcyan" id="capital"></td>
 				</tr>
 				<tr>
 					<td style="background-color: lightblue">公司網址</td>
@@ -599,7 +600,8 @@ a:link {
 
 	<script>
 		$(function() {
-
+			var stockcapital= $("#stockcapital").val();
+			$("#capital").text(Math.round(stockcapital/100000000)+"億");
 			var stockno = $("#stockno").val();
 			var stockname = $("#stockname").val();
 			var url = "ShowStockServlet?action=stock&stock_no=" + stockno;

@@ -15,7 +15,7 @@ public class DividendDAO implements Dividend_interface {
 	private static final String GET_ALL_STMT = 
 			"from DividendVO";
 	private static final String GET_By_StockNo_STMT=
-			"from DividendVO where stock_no=:stockVO ";
+			"from DividendVO where stock_no=:stockVO order by dividend_year ";
 	private static final String DELETE_BY_STOCKNO=
 			"delete from DividendVO where stock_no=:stockVO";
 	
