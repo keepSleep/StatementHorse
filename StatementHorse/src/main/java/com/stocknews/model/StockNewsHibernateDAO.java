@@ -143,7 +143,7 @@ private static final String GET_ALL_STMT = "from Stock_News_VO order by stockno"
 			
 			s1 += " ";
 			
-			String sql = "select n.news_date, n.news_title, n.news_webaddress from NEWS n join STOCK_NEWS s on n.news_id = s.news_id where s.stock_no =" + s1 + "order by news_date desc";				
+			String sql = "select n.news_date, n.news_title, n.news_webaddress, s.stock_no from NEWS n join STOCK_NEWS s on n.news_id = s.news_id where s.stock_no =" + s1 + "order by news_date desc";				
 			Query query = session.createSQLQuery(sql);
 			
 			list = query.list();
