@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>成功加入財報馬</title>
+<title>StatementHorse</title>
 
 <!-- Bootstrap Core CSS -->
 <link

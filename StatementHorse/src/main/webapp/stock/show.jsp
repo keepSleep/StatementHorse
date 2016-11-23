@@ -58,7 +58,7 @@ a:link {
 	padding: 5px 20px
 }
 </style>
-<title>Insert title here</title>
+<title>StatementHorse</title>
 </head>
 <body>
 <div class="container-fluid">	
@@ -1641,9 +1641,9 @@ a:link {
 			$("#show_balancesheet_1")
 					.click(
 							function() {
-								var assetsAlljsonurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=assetsjson&need=assetsAll&stock_no='
-										+ stockno;
-								$.getJSON(assetsAlljsonurl, function(data) {
+// 								var assetsAlljsonurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=assetsjson&need=assetsAll&stock_no='
+// 										+ stockno;
+								$.getJSON("ShowStockServlet",{"json":"assetsjson","need":"assetsAll","stock_no":stockno}, function(data) {
 									Highcharts.chart('tab4info_2', {
 										title : {
 											text : "資產(" + stockno + ")",

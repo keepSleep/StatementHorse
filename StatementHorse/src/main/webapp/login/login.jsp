@@ -13,7 +13,7 @@
 <meta name="google-signin-client_id"
 	content="241585761463-5rgcpko29g39k2kjseog6ursgpnhnve7.apps.googleusercontent.com">
 
-<title>登入財報馬</title>
+<title>StatementHorse</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"

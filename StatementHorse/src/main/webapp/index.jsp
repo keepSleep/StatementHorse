@@ -7,7 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Title自己改</title>
+	<title>StatementHorse</title>
 
 <!--Bootstrap樣式-->
 <%-- 	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/bootstrap.min.css"> --%>

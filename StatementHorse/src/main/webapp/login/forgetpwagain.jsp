@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>忘記密碼</title>
+<title>StatementHorse</title>
 
 <!-- Bootstrap Core CSS -->
 <link
