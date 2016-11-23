@@ -65,8 +65,8 @@ a:link {
 	<input type="hidden" id="stockno" value="${stockVO.stockNo}" />
 	<input type="hidden" id="stockname" value="${stockVO.stockName}" />
 	<div class="row-fluid">
-		<div id="left-Blank" class="col-md-2"></div>
-		<div id="mid-Blank" class="col-md-8" >
+		<div id="left-Blank" class="col-md-1"></div>
+		<div id="mid-Blank" class="col-md-10" >
 		<div class="row-fluid page-header">
 
 <!-- 	<div class="container "> -->
@@ -587,7 +587,7 @@ a:link {
 
 			</div>
 		</div>
-		<div id="right-Blank" class="col-md-2"></div>
+		<div id="right-Blank" class="col-md-1"></div>
 	</div>
 </div>
 
