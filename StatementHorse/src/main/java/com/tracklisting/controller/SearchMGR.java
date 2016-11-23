@@ -1,6 +1,7 @@
 package com.tracklisting.controller;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,6 +50,9 @@ public class SearchMGR extends HttpServlet {
 		int i = 0;
 		int y = Integer.parseInt(searchNum);
 		
+		//數字格式每三位數一個逗點
+		NumberFormat nf = NumberFormat.getInstance(); 
+		
 		//使用到的 DAO
 		ListingDetailsHibernateDAO lddao = new ListingDetailsHibernateDAO();
 		MGRDAO mgrdao = new MGRDAO();
@@ -73,6 +77,7 @@ public class SearchMGR extends HttpServlet {
 				m1.put("StockNo", aArray[0]);
 				m1.put("StockName",aArray[1]);
 				m1.put("RevenueDate", aArray[2]);
+				m1.put("Revenue",nf.format(aArray[3]));
 				m1.put("PostDate", aArray[4].toString());
 				l1.add(m1);
 				
