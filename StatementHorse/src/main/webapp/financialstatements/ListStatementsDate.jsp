@@ -43,14 +43,14 @@
 			
 			<div class="panel-heading" role="tab" id="headingOne"
 					style="background-color: lightblue">
-					<h2 class="panel-title">選擇日期</h2>
+					<h2 class="panel-title" style="font-family: '微軟正黑體'; font-size: 22px;">選擇日期</h2>
 				</div>
 			
 			<div class="panel-body">		
 			<form method="post" action="financialstatements.do">
 			
 				<div class="input-group date" data-date-end-date="0d">
-					<input type="text" class="form-control" id = "datepicker" name="date"> <span
+					<input type="text" class="form-control" id = "datepicker" name="date" style="font-family: '微軟正黑體'; font-size: 22px;"> <span
 						class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 						
 					<input type="hidden" name="action" value="financialstatements">
@@ -65,7 +65,7 @@
 				<div class="row-fluid">
 					<div class="table table-responsive ">
 						<p />
-						<table id="simpleTable" class="table table-bordered">
+						<table id="simpleTable" class="table table-bordered" style="font-family: '微軟正黑體'; font-size: 22px;">
 							<thead id="Fhead">
 								<tr>
 									<td class="col-md-1"></td>
