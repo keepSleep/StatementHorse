@@ -43,14 +43,18 @@
 			
 			<div class="panel-heading" role="tab" id="headingOne"
 					style="background-color: lightblue">
+
 					<h2 class="panel-title" style="font-family: '微軟正黑體'; font-size: 22px;">選擇日期</h2>
+
 				</div>
 			
 			<div class="panel-body">		
 			<form method="post" action="financialstatements.do">
 			
 				<div class="input-group date" data-date-end-date="0d">
-					<input type="text" class="form-control" id = "datepicker" name="date" style="font-family: '微軟正黑體'; font-size: 22px;"> <span
+
+					<input type="text" class="form-control" id = "datepicker" name="date" readonly style="font-family:'微軟正黑體'; font-size:22px"> <span
+
 						class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 						
 					<input type="hidden" name="action" value="financialstatements">
@@ -65,7 +69,9 @@
 				<div class="row-fluid">
 					<div class="table table-responsive ">
 						<p />
+
 						<table id="simpleTable" class="table table-bordered" style="font-family: '微軟正黑體'; font-size: 22px;">
+
 							<thead id="Fhead">
 								<tr>
 									<td class="col-md-1"></td>
@@ -95,7 +101,8 @@ format:"yyyy-mm-dd",
 language : "zh-CN",
 daysOfWeekDisabled : "0,6",
 autoclose : true,
-toggleActive : true
+toggleActive : true,
+ShowUpDown : true
 });
 
 $('#datepicker').change(function(){
@@ -115,6 +122,12 @@ $('#datepicker').change(function(){
 		})
 		
 	})
+});
+$('#datepicker').keypress(function(){			
+    var keycode = window.event.keyCode;
+    if( keycode == 13 ){
+        window.event.returnValue=false;
+    }	
 });
 </script>
 
