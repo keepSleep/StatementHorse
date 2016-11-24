@@ -214,6 +214,7 @@ $(function() {
 					$( "#dialog-5" ).hide();
 					$('#showError1').empty();
 					$('#showError1').append(data)
+					$('input[name="changeNameText"]').val("");
 				}
 
 				});
