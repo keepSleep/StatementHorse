@@ -39,9 +39,9 @@ public class CreateListing extends HttpServlet {
 		TrackListingHibernateDAO tldao = new TrackListingHibernateDAO();
 		TrackListingVO tlvo = new TrackListingVO();
 		
-		if(listingName.trim().length() <= 0 || listingName.trim().length() > 16){
+		if(listingName.trim().length() <= 0 || listingName.trim().length() > 8){
 			
-			response.getWriter().write("清單名稱不得空白或超過 16 個字!!");
+			response.getWriter().write("清單名稱不得空白或超過 8 個字!!");
 			
 		}
 		
