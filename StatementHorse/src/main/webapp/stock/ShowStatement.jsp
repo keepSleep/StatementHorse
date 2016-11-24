@@ -106,7 +106,7 @@ a:link {
 						<table border='3 bordercolor='
 							black'
 				style="text-indent: 20px; width: 1100px; display:; font-family: '微軟正黑體'; font-size: 26px; margin-bottom: 200px"
-							id="show_incomestatement_table">
+							id="show_incomestatement_table" >
 							<tr>
 								<td style="background-color: lightblue" >股號</td>
 								<td style="background-color: lightcyan" >${IncomeStatementVO.stockVO.stockNo}</td>
@@ -265,6 +265,7 @@ a:link {
 	</div>
 </body>
 <script>
+$(function() {
 	$("#show_incomestatement").click(function() {
 		$("#show_incomestatement_table").css("display", "");
 		$("#show_balancesheet_table").css("display", "none");
@@ -275,5 +276,36 @@ a:link {
 		$("#show_balancesheet_table").css("display", "");
 
 	})
+	var thousandComma = function(number) {
+				var num = number.toString();
+				var pattern = /(-?\d+)(\d{3})/;
+				while (pattern.test(num)) {
+					num = num.replace(pattern, "$1,$2");
+				}
+				return num;
+			}
+	
+	$("td").attr("align","center");
+	for(var i=8;i<33;i+=2){
+		var j=$("td:eq("+i+")").text();
+		var a=thousandComma(Math.round(j/1000));
+		$("td:eq("+i+")").text(a+" 仟");
+	
+	}
+	for(var i=42;i<65;i+=2){
+		var j=$("td:eq("+i+")").text();
+		var a=thousandComma(Math.round(j/1000));
+		$("td:eq("+i+")").text(a+" 仟");
+	
+	}
+
+	
+// 	$("td:even").attr("align","right");
+	
+// 	$("td:lt(7)").attr("align","center");
+	
+	
+	
+})	
 </script>
 </html>
