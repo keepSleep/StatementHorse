@@ -100,9 +100,9 @@ a:link {
 				</p>
 
 
-				<div style="width: 300px; left: 370px; top: 250px">
+<!-- 				<div style="width: 300px; left: 370px; top: 250px" > -->
 
-					<div>
+					<div class="col-md-12">
 						<table border='3 bordercolor='
 							black'
 				style="text-indent: 20px; width: 1100px; display:; font-family: '微軟正黑體'; font-size: 26px; margin-bottom: 200px"
@@ -184,7 +184,7 @@ a:link {
 
 						</table>
 					</div>
-					<div>
+					<div class="col-md-12">
 						<table border='3 bordercolor='
 							black'
 				style="display: none; text-indent: 20px; width: 1100px; display:; font-family: '微軟正黑體'; font-size: 26px; margin-bottom: 200px"
@@ -288,17 +288,22 @@ $(function() {
 	$("td").attr("align","center");
 	for(var i=8;i<33;i+=2){
 		var j=$("td:eq("+i+")").text();
-		var a=thousandComma(Math.round(j/1000));
-		$("td:eq("+i+")").text(a+" 仟");
+		var a=thousandComma(Math.round(j));
+		$("td:eq("+i+")").text(a);
 	
 	}
 	for(var i=42;i<65;i+=2){
 		var j=$("td:eq("+i+")").text();
-		var a=thousandComma(Math.round(j/1000));
-		$("td:eq("+i+")").text(a+" 仟");
+		var a=thousandComma(Math.round(j));
+		$("td:eq("+i+")").text(a);
 	
 	}
-
+	$("td:odd").attr("width",350)
+	
+	$("td:even").attr("width",350);
+// 	$("td:even").attr("align","right");
+// 	$("td:even").css("padding-right","50px");
+// 	$("td:even").css("padding-left","10px");
 	
 // 	$("td:even").attr("align","right");
 	
