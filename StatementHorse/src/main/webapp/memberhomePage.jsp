@@ -109,7 +109,7 @@
 <div id="dialog-2" style="display:none"></div>
 <div id="dialog-3" style="display:none"></div>
 <div id="dialog-4" style="display:none"></div>
-<div id="dialog-5" style="display:none"><img src="${pageContext.servletContext.contextPath}/picture/hourglass.gif"></div>
+<div id="dialog-5" style="display:none ; position:absolute ; top:50% ; left:50%"><img src="${pageContext.servletContext.contextPath}/picture/hourglass.gif"></div>
 
 <!-- 匯入需要的檔案 -->
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
