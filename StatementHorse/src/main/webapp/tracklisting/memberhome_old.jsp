@@ -6,7 +6,7 @@
   <%@include file="/top/Top.jsp"%>
   <meta http-equiv="Content-Type" content="text/html; UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>追蹤清單</title>
+  <title>StatementHorse</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!--   <link rel="stylesheet" href="/resources/demos/style.css">  -->
 <!--   <link rel="stylesheet" href="css/bootstrap.min.css">  -->

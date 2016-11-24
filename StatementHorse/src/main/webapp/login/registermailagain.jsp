@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>重新寄發驗證信</title>
+<title>StatementHorse</title>
 
 <!-- Bootstrap Core CSS -->
 <link

@@ -58,7 +58,7 @@ a:link {
 	padding: 5px 20px
 }
 </style>
-<title>Insert title here</title>
+<title>StatementHorse</title>
 </head>
 <body>
 <div class="container-fluid">	

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
-<title>Insert title here</title>
+<title>StatementHorse</title>
 </head>
 <body>
 <jsp:include page="/top/Top.jsp"/>

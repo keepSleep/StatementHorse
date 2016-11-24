@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>StatementHorse</title>
 </head>
 <body>
 <script src="${pageContext.servletContext.contextPath}/js/jquery-1.12.3.min.js"></script>
