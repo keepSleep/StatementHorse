@@ -77,7 +77,7 @@ left:-50%;
 
 <!-- 	<div class="container-fluid"> -->
 <!-- 	<p/> -->
-<!-- <!-- 頁面主體 開始 --> -->
+<!-- <!-- 頁面主體 開始 --> 
 <!-- 			<div class="row-fluid"> -->
 <!-- 				<div id="left-Blank" class="col-md-1"></div> -->
 <!-- 				<div id="mid-Blank" class="col-md-10" style="background-color:#C6D8FF; height:880px"> -->
@@ -105,6 +105,6 @@ left:-50%;
 <!-- 				</div> -->
 <!-- 				<div id="right-Blank" class="col-md-1"></div> -->
 <!-- 			</div> -->
-<!-- <!-- 頁面主體 結束 --> -->
+<!-- <!-- 頁面主體 結束 --> 
 </body>
 </html>
