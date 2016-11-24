@@ -251,6 +251,7 @@ $(function() {
 			if(data=="新增追蹤清單成功"){
 			location.reload();
 			}else{
+				$( "#dialog-5" ).hide();
 				$('#showError2').empty();
 				$('#showError2').append(data)
 				$('input[name="createListingText"]').val("");
