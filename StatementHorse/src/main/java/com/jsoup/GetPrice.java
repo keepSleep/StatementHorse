@@ -80,8 +80,8 @@ public class GetPrice {
 				6505, 9904 };
 
 		for (int y = 2016; y <= 2016; y++) {
-			for (int m = 1; m <= 12; m++) {
-				for (int d = 1; d <= 31; d++) {
+			for (int m = 11; m <= 12; m++) {
+				for (int d = 20; d <= 31; d++) {
 					for (int is = 0; is < stock.length; is++) {
 						try {
 							insertPrice(stock[is], y, m, d);

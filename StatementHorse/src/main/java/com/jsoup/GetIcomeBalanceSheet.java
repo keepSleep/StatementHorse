@@ -16,7 +16,6 @@ import com.stock.model.StockVO;
 
 public class GetIcomeBalanceSheet {
 
-
 	// 有財報才來這邊 新增資產負債表和損益表的動作
 	public static void Parsing(Integer year, Integer season, Integer stockno) throws Exception {
 		BalanceSheetVO balancesheetvo = new BalanceSheetVO();
@@ -27,8 +26,7 @@ public class GetIcomeBalanceSheet {
 
 		URL url = new URL("http://mops.twse.com.tw/server-java/t164sb01?step=1&CO_ID=" + stockno + "&SYEAR=" + year
 				+ "&SSEASON=" + season + "&REPORT_ID=C");
-		
-	
+
 		Document xmlDoc = Jsoup.parse(url, 5000); // 使用Jsoup jar 去解析網頁
 		// (要解析的文件,timeout)
 		// Elements title = xmlDoc.select("title"); //要解析的tag元素為title
@@ -67,6 +65,7 @@ public class GetIcomeBalanceSheet {
 		double earning_per_share = 0.0;
 
 		int i = 0;
+		int k = 0;
 		for (Element s : tdtext) {
 			try {
 				// 資產負債表
@@ -166,9 +165,14 @@ public class GetIcomeBalanceSheet {
 					non_operating_revenue = new Long(tdtext.get(i + 1).text().replace(",", ""));
 					System.out.println("營業外收入及支出合計=" + tdtext.get(i + 1).text().replace(",", ""));
 				}
-				if (s.text().trim().contains(" 繼續營業單位稅前淨利（淨損）")) {
-					oibt = new Long(tdtext.get(i + 1).text().replace(",", ""));
-					System.out.println("繼續營業單位稅前淨利（淨損）=" + tdtext.get(i + 1).text().replace(",", ""));
+
+				if (k < 1) {
+					if (s.text().trim().contains(" 繼續營業單位稅前淨利（淨損）")) {
+						oibt = new Long(tdtext.get(i + 1).text().replace(",", ""));
+						System.out.println("繼續營業單位稅前淨利（淨損）=" + tdtext.get(i + 1).text().replace(",", ""));
+
+						k++;
+					}
 				}
 				if (s.text().trim().contains(" 所得稅費用（利益）合計")) {
 					income_tax_expense = new Long(tdtext.get(i + 1).text().replace(",", ""));
@@ -201,24 +205,24 @@ public class GetIcomeBalanceSheet {
 			i++;
 		}
 		stockvo.setStockNo(stockno);
-
-		balancesheetvo.setStockVO(stockvo);
-		balancesheetvo.setStatementDate("" + (year - 1911) + "0" + season);
-		balancesheetvo.setCurrentAssets(current_assets);
-		balancesheetvo.setFixedAssets(fixed_assets);
-		balancesheetvo.setAssets(assets);
-		balancesheetvo.setCurrentLiabilities(current_liabilities);
-		balancesheetvo.setLongTermLiabilities(long_term_liabilities);
-		balancesheetvo.setLiabilities(liabilities);
-		balancesheetvo.setCapitalStock(capital_stock);
-		balancesheetvo.setAdditionalPaidInCapital(additional_paid_in_capital);
-		balancesheetvo.setRetainedEarnings(retained_earnings);
-		balancesheetvo.setOtherEquity(other_equity);
-		balancesheetvo.setConsolidatedNetIncomeAttributedToStockholdersOfTheCompany(
-				Consolidated_Net_Income_Attributed_to_Stockholders_of_the_Company);
-		balancesheetvo.setTotalEquity(total_equity);
-
-		balancesheetdao.insert(balancesheetvo);
+//
+//		balancesheetvo.setStockVO(stockvo);
+//		balancesheetvo.setStatementDate("" + (year - 1911) + "0" + season);
+//		balancesheetvo.setCurrentAssets(current_assets);
+//		balancesheetvo.setFixedAssets(fixed_assets);
+//		balancesheetvo.setAssets(assets);
+//		balancesheetvo.setCurrentLiabilities(current_liabilities);
+//		balancesheetvo.setLongTermLiabilities(long_term_liabilities);
+//		balancesheetvo.setLiabilities(liabilities);
+//		balancesheetvo.setCapitalStock(capital_stock);
+//		balancesheetvo.setAdditionalPaidInCapital(additional_paid_in_capital);
+//		balancesheetvo.setRetainedEarnings(retained_earnings);
+//		balancesheetvo.setOtherEquity(other_equity);
+//		balancesheetvo.setConsolidatedNetIncomeAttributedToStockholdersOfTheCompany(
+//				Consolidated_Net_Income_Attributed_to_Stockholders_of_the_Company);
+//		balancesheetvo.setTotalEquity(total_equity);
+//
+//		balancesheetdao.insert(balancesheetvo);
 
 		incomestatementvo.setStockVO(stockvo);
 		incomestatementvo.setStatementDate("" + (year - 1911) + "0" + season);

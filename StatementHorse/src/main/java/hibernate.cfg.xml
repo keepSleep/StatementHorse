@@ -21,7 +21,7 @@
 <!-- 		<property name="hibernate.connection.password">tomatoes57KEN</property> -->
 
  	
- 		<property name="hibernate.connection.datasource">java:/comp/env/jdbc/TestDB</property>
+<!--  		<property name="hibernate.connection.datasource">java:/comp/env/jdbc/TestDB</property> -->
 
         
 		<!--SQL方言,以下使用SQLServer -->
