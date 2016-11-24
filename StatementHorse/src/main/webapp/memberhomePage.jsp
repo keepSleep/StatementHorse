@@ -109,7 +109,7 @@
 <div id="dialog-2" style="display:none"></div>
 <div id="dialog-3" style="display:none"></div>
 <div id="dialog-4" style="display:none"></div>
-<div id="dialog-5" style="display:none ; position:absolute ; top:50% ; left:50%"><img src="${pageContext.servletContext.contextPath}/picture/hourglass.gif"></div>
+<div id="dialog-5" style="display:none ; position:absolute ; top:80% ; left:15%"><img src="${pageContext.servletContext.contextPath}/picture/hourglass.gif"></div>
 
 <!-- 匯入需要的檔案 -->
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
@@ -264,6 +264,7 @@ $(function() {
 	btns.click(function() {
 		
 		$( "#dialog-5" ).show();
+		var waitTimeNum = 0;
 			
 		//設置屬性
 		var tlno = $(this).attr("id");
@@ -297,8 +298,9 @@ $(function() {
 		
 				});
 			
-			$( "#dialog-5" ).hide();
-		
+			waitTimeNum++;
+			if(waitTimeNum==4)
+				$( "#dialog-5" ).hide();
 		});
 		
 		//查詢月營收			
@@ -319,8 +321,9 @@ $(function() {
 				});
 			
 // 			searchMGRNum += 10 ;
-			$( "#dialog-5" ).hide();
-		
+			waitTimeNum++;
+			if(waitTimeNum==4)
+				$( "#dialog-5" ).hide();
 		});
 		
 		//查詢資產負債表		
@@ -377,8 +380,9 @@ $(function() {
 				
 				});
 			
-			$( "#dialog-5" ).hide();
-		
+			waitTimeNum++;
+			if(waitTimeNum==4)
+				$( "#dialog-5" ).hide();
 		});
 		
 		//新增列表 + 設置 del
@@ -400,8 +404,10 @@ $(function() {
 			tab.append('<tr style="font-size: 16px ; font-family: Microsoft JhengHei"><td width=20%>' + StockNo + '</td><td width=75%><a href="${pageContext.servletContext.contextPath}/ShowStockServlet?action=stock&stock_no='+StockNo+'" Target="_blank">' + StockName + 
 					'</a></td><td width=5% align=right><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 			});	
-			$(del);
-			$( "#dialog-5" ).hide();
+			$(del);			
+			waitTimeNum++;
+			if(waitTimeNum==4)
+				$( "#dialog-5" ).hide();
 			});
 					
 		//delete
@@ -414,6 +420,7 @@ $(function() {
 			btnl.click(function() {
 				
 				$( "#dialog-5" ).show();
+				var waitTimeNum = 0;
 				
 				$.get("DeleteStock?",{"stockNo":$(this).attr("id"),"listingNo":$(this).attr("name")},function(data) {
 				
@@ -442,7 +449,9 @@ $(function() {
 				
 						});
 					
-					$( "#dialog-5" ).hide();
+					waitTimeNum++;
+					if(waitTimeNum==4)
+						$( "#dialog-5" ).hide();
 				
 				});
 				
@@ -464,7 +473,9 @@ $(function() {
 						});
 					
 //		 			searchMGRNum += 10 ;
-					$( "#dialog-5" ).hide();
+					waitTimeNum++;
+					if(waitTimeNum==4)
+						$( "#dialog-5" ).hide();
 				
 				});
 				
@@ -522,7 +533,9 @@ $(function() {
 						
 						});
 					
-					$( "#dialog-5" ).hide();
+					waitTimeNum++;
+					if(waitTimeNum==4)
+						$( "#dialog-5" ).hide();
 				
 				});
 				
@@ -546,7 +559,9 @@ $(function() {
 							'</a></td><td width=5% align=right><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 					});	
 					$(del);
-					$( "#dialog-5" ).hide();
+					waitTimeNum++;
+					if(waitTimeNum==4)
+						$( "#dialog-5" ).hide();
 					});
 				});
 			});
@@ -590,6 +605,7 @@ $(function() {
 		btncs.click(function() {
 			
 			$( "#dialog-5" ).show();
+			var waitTimeNum = 0;
 			
 			var tlno = $(this).attr("id");
 			var sno = $('input[name="godText"]').val();
@@ -623,7 +639,9 @@ $(function() {
 				
 						});
 					
-					$( "#dialog-5" ).hide();
+					waitTimeNum++;
+					if(waitTimeNum==4)
+						$( "#dialog-5" ).hide();
 				
 				});
 				
@@ -645,7 +663,9 @@ $(function() {
 						});
 					
 //		 			searchMGRNum += 10 ;
-					$( "#dialog-5" ).hide();
+					waitTimeNum++;
+					if(waitTimeNum==4)
+						$( "#dialog-5" ).hide();
 				
 				});
 				
@@ -703,7 +723,9 @@ $(function() {
 						
 						});
 					
-					$( "#dialog-5" ).hide();
+					waitTimeNum++;
+					if(waitTimeNum==4)
+						$( "#dialog-5" ).hide();
 				
 				});
 				
@@ -727,7 +749,9 @@ $(function() {
 							'</a></td><td width=5% align=right><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 					});	
 					$(del);
-					$( "#dialog-5" ).hide();
+					waitTimeNum++;
+					if(waitTimeNum==4)
+						$( "#dialog-5" ).hide();
 					});
 				
 				}else{
@@ -737,9 +761,9 @@ $(function() {
 					 $('input[name="godText"]').val("");
 				}
 				
-				});
-			});			
-		});
+				});			
+			});	
+		});	
 	});
 					
 									
@@ -748,6 +772,7 @@ $(function() {
 $(function() {
 	
 	$( "#dialog-5" ).show();
+	var waitTimeNum = 0;
 	
 	//設置屬性預設排序 0 放第一個
 		var tlno = ${tlNo[0]};
@@ -761,6 +786,7 @@ $(function() {
 	    $("input[name='radio-1']").click(function(){
 	    	
 	    	$( "#dialog-5" ).show();
+	    	var waitTimeNum = 0;
 	    	
 	    	var searchNum =$("input[name='radio-1']:checked").val();
 	    	$('div[name="div1"]').empty();
@@ -783,7 +809,9 @@ $(function() {
 			
 					});
 				
-				$( "#dialog-5" ).hide();
+				waitTimeNum++;
+				if(waitTimeNum==3)
+					$( "#dialog-5" ).hide();
 			
 			});
 			
@@ -805,7 +833,9 @@ $(function() {
 					});
 				
 //	 			searchMGRNum += 10 ;
-				$( "#dialog-5" ).hide();
+				waitTimeNum++;
+				if(waitTimeNum==3)
+					$( "#dialog-5" ).hide();
 			
 			});
 			
@@ -863,7 +893,9 @@ $(function() {
 					
 					});
 				
-				$( "#dialog-5" ).hide();
+				waitTimeNum++;
+				if(waitTimeNum==3)
+					$( "#dialog-5" ).hide();
 			
 			});
 	    	
@@ -887,7 +919,9 @@ $(function() {
 		
 				});
 			
-			$( "#dialog-5" ).hide();
+			waitTimeNum++;
+			if(waitTimeNum==4)
+				$( "#dialog-5" ).hide();
 		
 		});
 		
@@ -909,7 +943,9 @@ $(function() {
 				});
 			
 // 			searchMGRNum += 10 ;
-			$( "#dialog-5" ).hide();
+			waitTimeNum++;
+			if(waitTimeNum==4)
+				$( "#dialog-5" ).hide();
 		
 		});
 		
@@ -967,7 +1003,9 @@ $(function() {
 				
 				});
 			
-			$( "#dialog-5" ).hide();
+			waitTimeNum++;
+			if(waitTimeNum==4)
+				$( "#dialog-5" ).hide();
 		
 		});
 		
@@ -991,7 +1029,9 @@ $(function() {
 					'</a></td><td width=5% align=right><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 			});	
 			$(del2);
-			$( "#dialog-5" ).hide();
+			waitTimeNum++;
+			if(waitTimeNum==4)
+				$( "#dialog-5" ).hide();
 			});
 	
 		//del
@@ -1004,6 +1044,7 @@ $(function() {
 		btnl.click(function() {
 			
 			$( "#dialog-5" ).show();
+			var waitTimeNum = 0;
 			
 			$.get("DeleteStock?",{"stockNo":$(this).attr("id"),"listingNo":$(this).attr("name")},function(data) {
 			
@@ -1032,7 +1073,9 @@ $(function() {
 			
 					});
 				
-				$( "#dialog-5" ).hide();
+				waitTimeNum++;
+				if(waitTimeNum==4)
+					$( "#dialog-5" ).hide();
 			
 			});
 			
@@ -1054,7 +1097,9 @@ $(function() {
 					});
 				
 //	 			searchMGRNum += 10 ;
-				$( "#dialog-5" ).hide();
+				waitTimeNum++;
+				if(waitTimeNum==4)
+					$( "#dialog-5" ).hide();
 			
 			});
 			
@@ -1112,7 +1157,9 @@ $(function() {
 					
 					});
 				
-				$( "#dialog-5" ).hide();
+				waitTimeNum++;
+				if(waitTimeNum==4)
+					$( "#dialog-5" ).hide();
 			
 			});
 			
@@ -1136,7 +1183,9 @@ $(function() {
 						'</a></td><td width=5% align=right><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 				});	
 				$(del2);
-				$( "#dialog-5" ).hide();
+				waitTimeNum++;
+				if(waitTimeNum==4)
+					$( "#dialog-5" ).hide();
 				});
 			});
 		});
@@ -1180,6 +1229,7 @@ $(function() {
 		btncs.click(function() {
 			
 			$( "#dialog-5" ).show();
+			var waitTimeNum = 0;
 			
 			var tlno = $(this).attr("id");
 			var sno = $('input[name="godText"]').val();
@@ -1213,7 +1263,9 @@ $(function() {
 				
 						});
 					
-					$( "#dialog-5" ).hide();
+					waitTimeNum++;
+					if(waitTimeNum==4)
+						$( "#dialog-5" ).hide();
 				
 				});
 				
@@ -1235,7 +1287,9 @@ $(function() {
 						});
 					
 //		 			searchMGRNum += 10 ;
-					$( "#dialog-5" ).hide();
+					waitTimeNum++;
+					if(waitTimeNum==4)
+						$( "#dialog-5" ).hide();
 				
 				});
 				
@@ -1293,7 +1347,9 @@ $(function() {
 						
 						});
 					
-					$( "#dialog-5" ).hide();
+					waitTimeNum++;
+					if(waitTimeNum==4)
+						$( "#dialog-5" ).hide();
 				
 				});
 				
@@ -1317,7 +1373,9 @@ $(function() {
 							'</a></td><td width=5% align=right><input type="button" value="取消追蹤" style="line-height:0; font-size:0; overflow:hidden; background-image:url(${pageContext.servletContext.contextPath}/picture/favicon-20161115124600343.ico); width:16px; height:16px; background-color: #FFFFFF; border:none" name="' + ListingNo + '" id="' + StockNo + '"></td></tr>');
 					});	
 					$(del2);
-					$( "#dialog-5" ).hide();
+					waitTimeNum++;
+					if(waitTimeNum==4)
+						$( "#dialog-5" ).hide();
 					});
 				
 				}else{
