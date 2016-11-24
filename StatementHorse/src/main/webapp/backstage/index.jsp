@@ -9,7 +9,7 @@
 	<meta name="description" content="Xenon Boostrap Admin Panel" />
 	<meta name="author" content="" />
 	
-	<title>Basic</title>
+	<title>StatementHorse BackGround</title>
 
 	<link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
 	<link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">

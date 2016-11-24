@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>請到信箱收密碼修改信</title>
+<title>StatementHorse</title>
 
 <!-- Bootstrap Core CSS -->
 <link

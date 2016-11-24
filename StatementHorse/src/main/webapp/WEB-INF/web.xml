@@ -81,6 +81,10 @@
     <url-pattern>/financialstatements/MsgServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
+    <servlet-name>MsgServlet</servlet-name>
+    <url-pattern>/changepassword/MsgServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
     <servlet-name>MsgIUDServlet</servlet-name>
     <url-pattern>/MsgIUDServlet</url-pattern>
   </servlet-mapping>

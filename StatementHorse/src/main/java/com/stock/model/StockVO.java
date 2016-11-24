@@ -24,7 +24,7 @@ public class StockVO implements Serializable {
 	private Date listingDate;//上市日期
 	private Date stockholdersMeetingDate;//股東會日期
 	private String stockWebaddress;//公司網址
-	private Integer capital;//資本額
+	private Long capital;//資本額
 	private String accountingFirm;//簽證會機師
 	private Set<MGRVO> mgrs=new LinkedHashSet<MGRVO>();
 	private Set<PriceVO> prices=new LinkedHashSet<PriceVO>();
@@ -96,10 +96,10 @@ public class StockVO implements Serializable {
 	public void setStockWebaddress(String stockWebaddress) {
 		this.stockWebaddress = stockWebaddress;
 	}
-	public Integer getCapital() {
+	public Long getCapital() {
 		return capital;
 	}
-	public void setCapital(Integer capital) {
+	public void setCapital(Long capital) {
 		this.capital = capital;
 	}
 	public String getAccountingFirm() {

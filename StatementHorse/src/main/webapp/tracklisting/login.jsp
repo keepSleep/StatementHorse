@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>會員登入</title>
+<title>StatementHorse</title>
 </head>
 <body>
 <h1>會員登入</h1>

@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>註冊財報馬</title>
+<title>StatementHorse</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"

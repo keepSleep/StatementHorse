@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>更改密碼</title>
+<title>StatementHorse</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"

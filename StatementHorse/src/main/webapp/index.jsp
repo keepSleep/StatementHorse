@@ -7,7 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Title自己改</title>
+	<title>StatementHorse</title>
 
 <!--Bootstrap樣式-->
 		<script src="js/skel.min.js"></script>
@@ -22,39 +22,54 @@
 
 	<script	src="${pageContext.servletContext.contextPath}/js/jquery-ui.min.js"></script>
 
+<%-- 	<script	src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script> --%>
+<style>
+*{
+font-family:微軟正黑體;
+}
+div img{
+position:static !important;　
+position:relative; 　
+top:-50%;
+left:-50%;
+}
+
+</style>
+
 
 </head>
 <body>
 
 
+	<div class="container-fluid" style="text-align:center">
+	<p/>
+<!-- 頁面主體 開始 -->
+			<div class="row-fluid">
+				<div id="left-Blank" class="col-md-1"></div>
+				<div id="mid-Blank" class="col-md-10" >
+					<div class="row-fluid">
+						<div id="mid-left-Blank" class="col-xs-12" style="height:340px">
+						<div class="row-fluid" style="height:100px"></div>
+						<p><h1 style="text-shadow: 5px 5px 5px #f9f9f9"><strong>StatementHorse</strong></h1></p>
+						<h1>－－－－－－－－－－－－－－－－－－－－－</h1>
+						</div>
+					</div>
+					<div class="row-fluid">
+						<p/>
+						<div id="mid-left-Blank" class="col-xs-4" style="height:280px">
+						<img src="picture/analysis.png" width="150" height="150">
+							<h3>Data visualization</h3>
+							
+							</div>
+						<div id="mid-left-Blank" class="col-xs-4" style="height:280px">
+<!-- 							<img src="picture/promotion.png" width="150" height="150"> -->
+							<img src="picture/statementdog_logo.png" width="150" height="150">
+							<h3>Faster than dog</h3>
+						</div>
+						<div id="mid-left-Blank" class="col-xs-4" style="height:280px">
+							<img src="picture/piggy-bank.png" width="150" height="150">
+							<h3>FREE</h3>
 
-			<section id="one" class="wrapper style1 special">
-				<div class="container">
-					<header class="major">
-						<h2>Consectetur adipisicing elit</h2>
-						<p>Lorem ipsum dolor sit amet, delectus consequatur, similique quia!</p>
-					</header>
-					<div class="row 150%">
-						<div class="4u 12u$(medium)">
-							<section class="box">
-								<i class="icon big rounded color1 fa-cloud"></i>
-								<h3>Lorem ipsum dolor</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim quam consectetur quibusdam magni minus aut modi aliquid.</p>
-							</section>
-						</div>
-						<div class="4u 12u$(medium)">
-							<section class="box">
-								<i class="icon big rounded color9 fa-desktop"></i>
-								<h3>Consectetur adipisicing</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium ullam consequatur repellat debitis maxime.</p>
-							</section>
-						</div>
-						<div class="4u$ 12u$(medium)">
-							<section class="box">
-								<i class="icon big rounded color6 fa-rocket"></i>
-								<h3>Adipisicing elit totam</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eaque eveniet, nesciunt molestias. Ipsam, voluptate vero.</p>
-							</section>
 						</div>
 					</div>
 				</div>

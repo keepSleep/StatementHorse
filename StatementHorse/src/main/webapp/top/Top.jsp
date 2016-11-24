@@ -271,7 +271,7 @@ table {
 				});
 				var last = 0;
 				var array;
-// 				setInterval("refreshnews()",5000);
+				setInterval("refreshnews()",5000);
 				$("#tg").click(function() {
 					$("#tg").attr("style", "color:#337ab7;width:65px")
 				})

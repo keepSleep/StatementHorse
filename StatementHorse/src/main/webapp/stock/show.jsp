@@ -58,12 +58,13 @@ a:link {
 	padding: 5px 20px
 }
 </style>
-<title>Insert title here</title>
+<title>StatementHorse</title>
 </head>
 <body>
 <div class="container-fluid">	
 	<input type="hidden" id="stockno" value="${stockVO.stockNo}" />
 	<input type="hidden" id="stockname" value="${stockVO.stockName}" />
+	<input type="hidden" id="stockcapital" value="${stockVO.capital}" />
 	<div class="row-fluid">
 		<div id="left-Blank" class="col-md-1"></div>
 		<div id="mid-Blank" class="col-md-10" >
@@ -179,8 +180,8 @@ a:link {
 				</tr>
 				<tr>
 
-					<td style="background-color: lightblue">資本額(單位:百萬)</td>
-					<td style="background-color: lightcyan">${stockVO.capital}</td>
+					<td style="background-color: lightblue">資本額</td>
+					<td style="background-color: lightcyan" id="capital"></td>
 				</tr>
 				<tr>
 					<td style="background-color: lightblue">公司網址</td>
@@ -599,7 +600,8 @@ a:link {
 
 	<script>
 		$(function() {
-
+			var stockcapital= $("#stockcapital").val();
+			$("#capital").text(Math.round(stockcapital/100000000)+"億");
 			var stockno = $("#stockno").val();
 			var stockname = $("#stockname").val();
 			var url = "ShowStockServlet?action=stock&stock_no=" + stockno;
@@ -820,27 +822,51 @@ a:link {
 								//mgrjson
 // 								var mgrurl = 'http://localhost:8080/StatementHorse/ShowStockServlet?json=mgrjson&stock_no='
 // 										+ stockno;
-								$.getJSON("ShowStockServlet",{"json":"mgrjson","stock_no":stockno}, function(data) {
-									$('#tab1info').highcharts(
-											'StockChart',
-											{
-												rangeSelector : {
-													selected : 5
-												},
-												title : {
-													text : '月營收(' + stockno
-															+ ')(單位:千元)'
-												},
-												series : [ {
-													name : stockname,
-													data : data,
-													tooltip : {
-														valueDecimals : 2
-													}
-												} ]
-											});
-
+								$.getJSON("ShowStockServlet",{"json":"mgrjson","stock_no":stockno},function(data) {
+									// create the chart
+									$('#tab1info').highcharts('StockChart', {
+										chart : {
+											alignTicks : false
+										},
+										rangeSelector : {
+											selected : 4
+										},
+										title : {
+											text : '月營收(' + stockno + ')'
+										},
+										series : [ {
+											type : 'column',
+											name : "",
+											data : data,
+										//				                 dataGrouping: {units: [['week', // unit name [1] // allowed multiples
+										//				                     ], ['month', [1, 2, 3, 4, 6] ]] }
+										} ]
+									});
 								});
+								
+								
+								
+// 								$.getJSON("ShowStockServlet",{"json":"mgrjson","stock_no":stockno}, function(data) {
+// 									$('#tab1info').highcharts(
+// 											'StockChart',
+// 											{
+// 												rangeSelector : {
+// 													selected : 5
+// 												},
+// 												title : {
+// 													text : '月營收(' + stockno
+// 															+ ')(單位:千元)'
+// 												},
+// 												series : [ {
+// 													name : stockname,
+// 													data : data,
+// 													tooltip : {
+// 														valueDecimals : 2
+// 													}
+// 												} ]
+// 											});
+
+// 								});
 
 								//mgr_table
 								var myHead = $("#show_mgr_table>thead")
