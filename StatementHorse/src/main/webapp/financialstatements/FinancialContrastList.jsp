@@ -88,10 +88,8 @@ word-break: keep-all;
 				var StockNo = this.StockNo;	
 				stock.push(StockNo.toString());
 			});
-			
-			$( "input[name='stockText']" ).css("width","150px").autocomplete({source: stock}).parents('td').addClass("text-left");
-			
 		});
+			$( "input[name='stockText']" ).css("width","150px").autocomplete({source: stock}).parents('td').addClass("text-left");
 		
 		//載入AllStatementDates
 		$.getJSON("${pageContext.servletContext.contextPath}/financialstatements/financialstatements.do",{"action":"getAllSDs"},function(data){
@@ -170,10 +168,11 @@ word-break: keep-all;
 						});
 		//清空整個頁面，還原到一開始進入的樣子
 		$('#clear').click(function() {
-			$('#simpleTable').empty().prepend('<thead id="Fhead"><td class="col-md-1"></td><td class="col-md-3">股票號碼</td><td name="tr">+增加會計科目</td></thead><tbody id="Fbody"><tr><td><a href="#" class="btn btn-danger  btn-lg">刪除</a></td><td><input type="text" name="stockText" maxlength="4" placeholder="請輸入股號"/></td><td name="tr"></td></tr></tbody>')
+			$('#simpleTable').empty().prepend('<thead id="Fhead"><td class="col-md-1"></td><td class="col-md-3 text-left">股票號碼</td><td name="tr">+增加會計科目</td></thead><tbody id="Fbody"><tr><td><a href="#" class="btn btn-danger  btn-lg">刪除</a></td><td><input type="text" name="stockText" maxlength="4" placeholder="請輸入股號"/></td><td name="tr"></td></tr></tbody>')
 			colNo = 0;
 			start = true;
 			$('dd').css(c2);
+			$( "input[name='stockText']" ).css("width","150px").autocomplete({source: stock}).parents('td').addClass("text-left");
 		})
 		//自動查詢個股股名,增加到輸入方塊中
 		$('#simpleTable').on('blur','input[name="stockText"]',function(){
