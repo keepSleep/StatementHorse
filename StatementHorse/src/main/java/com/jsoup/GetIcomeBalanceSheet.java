@@ -206,23 +206,23 @@ public class GetIcomeBalanceSheet {
 		}
 		stockvo.setStockNo(stockno);
 //
-//		balancesheetvo.setStockVO(stockvo);
-//		balancesheetvo.setStatementDate("" + (year - 1911) + "0" + season);
-//		balancesheetvo.setCurrentAssets(current_assets);
-//		balancesheetvo.setFixedAssets(fixed_assets);
-//		balancesheetvo.setAssets(assets);
-//		balancesheetvo.setCurrentLiabilities(current_liabilities);
-//		balancesheetvo.setLongTermLiabilities(long_term_liabilities);
-//		balancesheetvo.setLiabilities(liabilities);
-//		balancesheetvo.setCapitalStock(capital_stock);
-//		balancesheetvo.setAdditionalPaidInCapital(additional_paid_in_capital);
-//		balancesheetvo.setRetainedEarnings(retained_earnings);
-//		balancesheetvo.setOtherEquity(other_equity);
-//		balancesheetvo.setConsolidatedNetIncomeAttributedToStockholdersOfTheCompany(
-//				Consolidated_Net_Income_Attributed_to_Stockholders_of_the_Company);
-//		balancesheetvo.setTotalEquity(total_equity);
-//
-//		balancesheetdao.insert(balancesheetvo);
+		balancesheetvo.setStockVO(stockvo);
+		balancesheetvo.setStatementDate("" + (year - 1911) + "0" + season);
+		balancesheetvo.setCurrentAssets(current_assets);
+		balancesheetvo.setFixedAssets(fixed_assets);
+		balancesheetvo.setAssets(assets);
+		balancesheetvo.setCurrentLiabilities(current_liabilities);
+		balancesheetvo.setLongTermLiabilities(long_term_liabilities);
+		balancesheetvo.setLiabilities(liabilities);
+		balancesheetvo.setCapitalStock(capital_stock);
+		balancesheetvo.setAdditionalPaidInCapital(additional_paid_in_capital);
+		balancesheetvo.setRetainedEarnings(retained_earnings);
+		balancesheetvo.setOtherEquity(other_equity);
+		balancesheetvo.setConsolidatedNetIncomeAttributedToStockholdersOfTheCompany(
+				Consolidated_Net_Income_Attributed_to_Stockholders_of_the_Company);
+		balancesheetvo.setTotalEquity(total_equity);
+
+		balancesheetdao.insert(balancesheetvo);
 
 		incomestatementvo.setStockVO(stockvo);
 		incomestatementvo.setStatementDate("" + (year - 1911) + "0" + season);

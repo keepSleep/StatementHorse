@@ -16,14 +16,14 @@
 <!-- 		<property name="hibernate.connection.password">P@ssw0rd</property> -->
 
 		<!-- AzureDB -->
-		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-		<property name="hibernate.connection.url">jdbc:sqlserver://starbooksdbeeit8912.database.windows.net:1433;DatabaseName=starbooksdb8912</property>
-		<property name="hibernate.connection.username">cherry@starbooksdbeeit8912</property>
-		<property name="hibernate.connection.password">tomatoes57KEN</property>
+<!-- 		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> -->
+<!-- 		<property name="hibernate.connection.url">jdbc:sqlserver://starbooksdbeeit8912.database.windows.net:1433;DatabaseName=starbooksdb8912</property> -->
+<!-- 		<property name="hibernate.connection.username">cherry@starbooksdbeeit8912</property> -->
+<!-- 		<property name="hibernate.connection.password">tomatoes57KEN</property> -->
 		
 
 
-<!-- 		<property name="hibernate.connection.datasource">java:/comp/env/jdbc/TestDB</property> -->
+		<property name="hibernate.connection.datasource">java:/comp/env/jdbc/TestDB</property>
 		<!--SQL方言,以下使用SQLServer -->
 		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
 

@@ -72,26 +72,11 @@ public class BackStageMgr extends HttpServlet {
 			Integer year = new Integer(request.getParameter("year"));
 			Integer season =new Integer(request.getParameter("season"));
 			System.out.println(stockno + ":" + year + "/" + season);
-			Date postDate=null;
-			switch(season){
-			case 1:
-					postDate=Date.valueOf(year+"-05-01");
-					break;
-			case 2:
-				postDate=Date.valueOf(year+"-08-01");
-				break;
-			case 3:
-				postDate=Date.valueOf(year+"-10-01");
-				break;
-			case 4:
-				postDate=Date.valueOf((year+1)+"-03-01");
-				break;
-			}
 			JSONArray json=null;
 			JSONArray json1=null;
 			try {
-				 Calendar calendar = new Calendar.Builder().build();
-				financialstatementservice.addFinancialStatements(stockno, (year-1911)+"0"+season, postDate,Calendar.HOUR+":"+Calendar.MINUTE+":"+Calendar.SECOND) ;
+
+				financialstatementservice.addFinancialStatements(stockno, (year-1911)+"0"+season, new java.sql.Date(System.currentTimeMillis()),new java.util.Date(System.currentTimeMillis()).toString().substring(11,16)) ;
 					
 				
 				
