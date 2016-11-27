@@ -26,6 +26,10 @@
 *{
 font-family:微軟正黑體;
 }
+.color{
+color:blue;
+}
+
 .modal-header, h4, .close {
 	background-color: #5cb85c;
 	color: white !important;
@@ -108,29 +112,29 @@ table {
 		</div>
 		<div id="navbar" class="navbar-collapse collapse" >
 			<ul class="nav navbar-nav">
-				<li><a
+				<li ><a
 					href="${pageContext.servletContext.contextPath}/ShowStockServlet?action=stock&stock_no=2330">
 						<button type="button"
-							class="btn btn-default btn-outline btn-info btn-lg"
-							style="border: 0px blue none">個股資料</button>
+							class="btn btn-default btn-outline btn-info btn-lg "
+							style="border: 0px blue none;font-size:26px">個股資料</button>
 				</a></li>
 				<li><a
 					href="${pageContext.servletContext.contextPath}/financialstatements/ListStatementsDate.jsp"><button
-							type="button" class="btn btn-outline btn-info btn-lg"
-							style="border: 0px blue none">財報日期</button></a></li>
+							type="button" class="btn btn-outline btn-info btn-lg "
+							style="border: 0px blue none;font-size:26px">財報日期</button></a></li>
 				<li><a
 					href="${pageContext.servletContext.contextPath}/financialstatements/FinancialContrastList.jsp"><button
-							type="button" class="btn btn-outline btn-info btn-lg"
-							style="border: 0px blue none">財報比較</button></a></li>
+							type="button" class="btn btn-outline btn-info btn-lg "
+							style="border: 0px blue none;font-size:26px">財報比較</button></a></li>
 			</ul>
 			
 			<form class="navbar-form navbar-left" role="search" method="post" action="/StatementHorse/ShowStockServlet">
 				<div class="form-group">
 			
-					<input type="text" style="width: 400px;margin-top:12px"
-						class="form-control" placeholder="輸入股號或股名..." name="stock_no" id="getstockno" autocomplete="off">
+					<input type="text" style="width: 400px;margin-top:18px;font-size:26px""
+						class="form-control" placeholder="輸入股號或股名..."  name="stock_no" id="getstockno" autocomplete="off">
 					<input type="hidden" name="action" value="stock" >
-					<button class="btn btn-default" type="submit" style="height:140%;margin-top:12px">
+					<button class="btn btn-default" type="submit" style="height:140%;margin-top:18px">
 						<i class="fa fa-search"></i>
 					</button>
 					
@@ -146,7 +150,7 @@ table {
 					<li>
 						<a
 					href="${pageContext.servletContext.contextPath}/account/login"><button type="button" class="btn btn-outline btn-warning btn-lg"
-							style="border: 0px blue none" id="login">
+							style="border: 0px blue none;font-size:26px" id="login">
 							<i class="fa fa-user fa-fw"></i>登入
 						</button></a>
 					</li>
