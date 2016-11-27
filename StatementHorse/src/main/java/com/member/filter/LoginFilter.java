@@ -31,7 +31,7 @@ public class LoginFilter implements Filter {
 			HttpServletResponse resp = (HttpServletResponse) response;
 			String servletPath = req.getServletPath();
 			System.out.println("servletPath" + servletPath);
-			if (servletPath.startsWith("/resources")|| servletPath.startsWith("/login")|| checkLogin(req)) {
+			if (servletPath.startsWith("/resources")||servletPath.startsWith("/login")|| checkLogin(req)) {
 				chain.doFilter(request, response);
 			} else {
 				HttpSession session = req.getSession();
