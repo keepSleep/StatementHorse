@@ -111,7 +111,9 @@ $('#datepicker').change(function(){
 	
 	$.getJSON("financialstatements.do",{"action":"financialstatements","date":$(this).val()},function(data){
 		$.each(data,function(key){
- 			$('#Fbody').append("<tr border=1><td></td><td>"+data[key][0]+"</td><td>"+data[key][1]+"</td><td>"+data[key][2].substring(0,10)+"</td><td>"+data[key][3]+"</td></tr>")
+			var stockno=data[key][0];
+		
+ 			$('#Fbody').append("<tr border=1><td></td><td><a href='${pageContext.servletContext.contextPath}/ShowStockServlet?action=stock&stock_no="+data[key][0]+"'>"+data[key][0]+"</a></td><td>"+data[key][1]+"</td><td>"+data[key][2].substring(0,10)+"</td><td>"+data[key][3]+"</td></tr>")
 			
 // 			高明寫法 by 葉哲
 // 			$('#Fbody').append("<tr border=1><td></td></tr>")
