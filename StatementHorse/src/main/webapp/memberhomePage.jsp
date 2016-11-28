@@ -56,15 +56,15 @@
  
   <br>
   <fieldset style="font-size: 16px ; font-family: Microsoft JhengHei;">
-    <label >資料顯示筆數</label>
-    <label for="radio-1">10</label>
+    <label >資料顯示筆數&nbsp;</label>
     <input type="radio" name="radio-1" value="10" id="radio-1" checked>
-    <label for="radio-2">50</label>
+    <label for="radio-1">10&nbsp;</label>
     <input type="radio" name="radio-1" value="50" id="radio-2">
-    <label for="radio-3">100</label>
+    <label for="radio-2">50&nbsp;</label>
     <input type="radio" name="radio-1" value="100" id="radio-3">
-    <label for="radio-4">全部</label>
+    <label for="radio-3">100&nbsp;</label>
     <input type="radio" name="radio-1" value="0" id="radio-4">
+    <label for="radio-4">全部</label>
   </fieldset>
   
    <input type="text" placeholder="新增追蹤清單" name="createListingText" style="width: 150px ; height: 25px ; font-family: Microsoft JhengHei;font-size: 16px">
@@ -147,7 +147,7 @@ function showMGR(StockNo,stockName){
 					},
 					
 					title : {
-						text : '月營收(' + StockNo + ')(單位:千元)'
+						text : '月營收(' + " " + stockName + " " + StockNo + " " + ')(單位:千元)'
 					},
 					
 					series : [ {
