@@ -286,7 +286,7 @@ word-break: keep-all;
 					<!--查詢表格 -->
 					<div class="row-fluid">
 						<div class="col-md-2 ">
-							<input type="button" value="add" id="buttonAdd"
+							<input type="button" value="增加" id="buttonAdd"
 								class="btn btn-success  btn-lg">
 						</div>
                     <!-- 年分下拉選單開始 -->
@@ -327,9 +327,9 @@ word-break: keep-all;
 					<div class="row-fluid">
 							<div class="col-md-8"></div>
 							<div class="col-md-4">
-								<input type="button" value="clear" id="clear"
+								<input type="button" value="清空" id="clear"
 									class="btn btn-success  btn-lg">
-								<input type="button" value="submit" id="submit"
+								<input type="button" value="送出" id="submit"
 									class="btn btn-info  btn-lg">
 							</div>
 					</div>
