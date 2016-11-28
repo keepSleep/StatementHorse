@@ -294,13 +294,12 @@ word-break: keep-all;
                     	<div class="col-md-3">
 							<select name="SDSelect" class="form-control input-lg">
 							</select>
+							
 						</div>
 					<!-- 年分下拉選單結束 -->
 					<!-- 季度下拉選單開始 -->
 					<!-- 尚未做動態 -->
-						<div class="col-md-3">
-						</div>
-						<div class="col-md-4"></div>
+						<div class="col-md-4" style="line-height: 50px;font-size:22px">年/季</div>
 					</div>
 					<!-- 季度下拉選單結束 -->	
 					<div class="row-fluid">
