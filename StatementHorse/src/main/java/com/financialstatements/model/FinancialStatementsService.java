@@ -99,10 +99,10 @@ public class FinancialStatementsService {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-//			System.out.println("時分時間"+lastdate.toString().substring(0,10)+lasttime+":00");
-//			System.out.println("資料庫的時間"+lastdateandtime1);
-//			System.out.println("使用者的登入時間"+lastdateandtime);
-//			System.out.println(lastdateandtime1.after(lastdateandtime));
+			System.out.println("時分時間"+lastdate.toString().substring(0,10)+lasttime+":00");
+			System.out.println("資料庫的時間"+lastdateandtime1);
+			System.out.println("使用者的登入時間"+lastdateandtime);
+			System.out.println(lastdateandtime1.after(lastdateandtime));
 			if(lastdateandtime1.before(lastdateandtime)){
 				break;
 			}else{

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.member.model.MemberHibernateDAO;
 import com.member.model.MemberVO;
 
 
@@ -25,7 +26,7 @@ public class ChangeCreateTime extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
+		MemberHibernateDAO memberdao = new MemberHibernateDAO();
 		HttpSession session = request.getSession();
 		MemberVO membervo = (MemberVO)session.getAttribute("user");
 		MemberVO membervo1= new MemberVO();
@@ -34,6 +35,7 @@ public class ChangeCreateTime extends HttpServlet {
 		membervo1.setMemberPassword(membervo.getMemberPassword());
 		membervo1.setCreatetime(new Timestamp(System.currentTimeMillis()));
 		membervo1.setMemberEmail(membervo.getMemberEmail());
+		memberdao.update(membervo1);
 		session.setAttribute("user", membervo1);
 		
 		response.sendRedirect("GetTrackListing");
